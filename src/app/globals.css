@@ -17,11 +17,43 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  /* color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
+  background-color: palevioletred;
+}
+
+.card {
+  margin-top: 40px;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-body {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.login-btn {
+  padding: 10px 90px;
+}
+
+.google-btn {
+  padding: 10px 40px;
+}
+
+.google-btn i {
+  font-size: 20px;
+}
+
+.google-btn:hover {
+  background-color: #dd91aa;
 }
