@@ -12,12 +12,16 @@ const Login = (props: Props) => {
   const handleSubmit = (values: any) => {
     console.log("values", values)
   };
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().required('Email is required').email('Invalid email format'),
+    password: Yup.string().required('Password is required'),
+  });
   return (
     <div className="card bg-white p-6 rounded-lg shadow-md mx-auto">
       <h1 className="text-2xl font-bold text-center">Login</h1>
       <Formik
         initialValues={{ email: '', password: '' }}
-        // validationSchema={validationSchema}
+        validationSchema={validationSchema}
         onSubmit={handleSubmit}>
         {() => (
           <Form>
