@@ -1,7 +1,5 @@
 "use client"
 import Image from 'next/image'
-import fireBase from '../shared/firebase'
-import { Auth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -25,33 +23,8 @@ const Login = (props: Props) => {
     } catch (error) {
       console.error('Login failed in login file', error);
     }
-
-
   };
-  // const handleSubmit = async ((values:any), { setSubmitting, setFieldError }) => {
-  //   try {
-  //     // Make an API request here using Axios or any other HTTP library
-  //     const response = await HTTP.post('your-api-endpoint', values);
-
-  //     // Handle the response as needed
-  //     console.log(response.data);
-
-  //     // Reset the form and setSubmitting to false
-  //     setSubmitting(false);
-  //   } catch (error) {
-  //     // Handle API errors, and setFieldError to display errors next to the form fields
-  //     if (error.response && error.response.data) {
-  //       const errorData = error.response.data;
-  //       if (errorData.email) {
-  //         setFieldError('email', errorData.email);
-  //       }
-  //       if (errorData.password) {
-  //         setFieldError('password', errorData.password);
-  //       }
-  //     }
-  //     setSubmitting(false);
-  //   }
-  // };
+ 
   const validationSchema = Yup.object().shape({
     email: Yup.string().required('Email is required').email('Invalid email format'),
     password: Yup.string().min(8).required('Password is required'),

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/react-select": "^5.0.1",
     "firebase": "^10.5.2",
     "formik": "^2.4.5",
     "next": "14.0.1",
