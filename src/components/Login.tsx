@@ -1,20 +1,60 @@
 "use client"
 import Image from 'next/image'
+import fireBase from '../shared/firebase'
+import { Auth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { login } from '@/shared/auth';
 type Props = {}
 
 const Login = (props: Props) => {
   const router = useRouter();
-  const [email, setEmail] = useState('');
-  const handleSubmit = (values: any) => {
-    console.log("values", values)
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const handleSubmit = async (values: any) => {
+
+    console.log("values", values);
+    const email = values.email;
+    const password = values.password
+
+    try {
+      const user = await login(email, password);
+      
+      console.log('Logged in user:', user);
+    } catch (error) {
+      console.error('Login failed in login file', error);
+    }
+
+
   };
+  // const handleSubmit = async ((values:any), { setSubmitting, setFieldError }) => {
+  //   try {
+  //     // Make an API request here using Axios or any other HTTP library
+  //     const response = await HTTP.post('your-api-endpoint', values);
+
+  //     // Handle the response as needed
+  //     console.log(response.data);
+
+  //     // Reset the form and setSubmitting to false
+  //     setSubmitting(false);
+  //   } catch (error) {
+  //     // Handle API errors, and setFieldError to display errors next to the form fields
+  //     if (error.response && error.response.data) {
+  //       const errorData = error.response.data;
+  //       if (errorData.email) {
+  //         setFieldError('email', errorData.email);
+  //       }
+  //       if (errorData.password) {
+  //         setFieldError('password', errorData.password);
+  //       }
+  //     }
+  //     setSubmitting(false);
+  //   }
+  // };
   const validationSchema = Yup.object().shape({
     email: Yup.string().required('Email is required').email('Invalid email format'),
-    password: Yup.string().required('Password is required'),
+    password: Yup.string().min(8).required('Password is required'),
   });
   return (
     <div className="card bg-white p-6 rounded-lg shadow-md mx-auto">
@@ -52,54 +92,25 @@ const Login = (props: Props) => {
       </div>
       <div className='text-center mt-2'>
         <button className="google-btn border border-gray-300 rounded-full" >
-        <i className="fa-brands fa-google me-1" style={{ color:' #c61010' }}></i>
+          <i className="fa-brands fa-google me-1" style={{ color: ' #c61010' }}></i>
           Login with Google</button>
       </div>
       <div className='text-center mt-2'>
         <button className="google-btn border border-gray-300 rounded-full" >
-        <i className="fa-brands fa-facebook me-1" style={{ color:'rgb(19 16 198)'}}></i>
+          <i className="fa-brands fa-facebook me-1" style={{ color: 'rgb(19 16 198)' }}></i>
           Login with Facebook</button>
       </div>
       <div className='text-center mt-2'>
         <button className="google-btn border border-gray-300 rounded-full" >
-        <i className="fa-brands fa-apple me-1" style={{ color:'rgb(28 27 27)' }}></i>
+          <i className="fa-brands fa-apple me-1" style={{ color: 'rgb(28 27 27)' }}></i>
           Login with Apple ID</button>
       </div>
       <div className='text-center mt-5'>
-        <span>Don't have an account?<a className='cursor-pointer text-red-500' onClick={()=>router.push('/signup')}>Sign in</a></span>
+        <span>Don't have an account?<a className='cursor-pointer text-red-500' onClick={() => router.push('/signup')}>Sign in</a></span>
       </div>
     </div >
-
-    // <div className="bg-white p-6 rounded-lg shadow-md w-96 mx-auto mt-10">
-    //   <h1 className="text-2xl font-bold text-center">Login</h1>
-    //   <form onSubmit={handleLogin}>
-    //     <div>
-    //       <label>Email</label>
-    //       <input
-    //         type="email"
-    //         value={email}
-    //         onChange={(e) => setEmail(e.target.value)}
-    //       />
-    //     </div>
-    //     <div>
-    //       <label>Password</label>
-    //       <input
-    //         type="password"
-    //         value={password}
-    //         onChange={(e) => setPassword(e.target.value)}
-    //       />
-    //     </div>
-    //     <div>
-    //       <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
-    //         onClick={() => router.push('/dashboard')}>Login</button>
-    //     </div>
-    //   </form>
-    // </div>
   );
-
-
-
-
-
 }
 export default Login
+
+
