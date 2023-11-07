@@ -58,3 +58,6 @@ body {
 .google-btn:hover {
   background-color: #dd91aa;
 }
+.prev-btn{
+  padding: 8px 20px;
+}
