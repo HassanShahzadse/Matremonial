@@ -69,7 +69,7 @@ const Login = (props: Props) => {
           Login with Google</button>
       </div>
       <div className='text-center mt-2'>
-        <button className="google-btn border border-gray-300 rounded-full" >
+        <button className="facebook-btn border border-gray-300 rounded-full" >
           <i className="fa-brands fa-facebook me-1" style={{ color: 'rgb(19 16 198)' }}></i>
           Login with Facebook</button>
       </div>

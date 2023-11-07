@@ -7,7 +7,7 @@ function DateOfBirthInput() {
     year: '',
   });
 
-  const handleInputChange = (e:any) => {
+  const handleInputChange = (e: any) => {
     const { name, value } = e.target;
     setDateOfBirth({
       ...dateOfBirth,
@@ -16,43 +16,63 @@ function DateOfBirthInput() {
   };
 
   return (
-    <div className="max-w-md mx-auto  p-4">
+    <div className="max-w-md mx-auto p-4">
       <div className="flex space-x-8">
         <div className="w-1/4">
-          {/* <label className="block mb-2">Day:</label> */}
-          <input
-            type="text"
+          <select
             name="day"
             value={dateOfBirth.day}
             onChange={handleInputChange}
-            placeholder='Day'
             className="w-full border border-gray-300 rounded p-2"
-          />
+          >
+            <option value="">Day</option>
+            {Array.from({ length: 31 }, (_, i) => (
+              <option key={i} value={i + 1}>
+                {i + 1}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="w-1/4">
-          {/* <label className="block mb-2">Month:</label> */}
-          <input
-            type="text"
+          <select
             name="month"
             value={dateOfBirth.month}
-            placeholder='Month'
             onChange={handleInputChange}
             className="w-full border border-gray-300 rounded p-2"
-          />
+          >
+            <option value="">Month</option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+          </select>
         </div>
         <div className="w-1/4">
-          {/* <label className="block mb-2">Year:</label> */}
-          <input
-            type="text"
+          <select
             name="year"
             value={dateOfBirth.year}
             onChange={handleInputChange}
-            placeholder='Year'
             className="w-full border border-gray-300 rounded p-2"
-          />
+          >
+            <option value="">Year</option>
+            {Array.from({ length: 100 }, (_, i) => (
+              <option key={i} value={2023 - i}>
+                {2023 - i}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
     </div>
+
   );
 }
 

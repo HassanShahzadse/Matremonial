@@ -57,7 +57,23 @@ const SignUp = (props: Props) => {
   ];
   return (
     <div className="card bg-white p-6 rounded-lg shadow-md mx-auto">
+      {step === 1 && (
       <h1 className="text-2xl font-bold text-center">Sign Up</h1>
+      )}
+      {step === 2 && (
+      <div className='flex'>
+          <div className='previous-btn'>
+            <button type="button" onClick={handlePreviousStep} className="prev-btn border border-gray-300 rounded-full bg-pink-500 hover:bg-pink-700 text-white"
+            ><i className="fas fa-arrow-left me-1"></i>
+              Previous
+            </button>
+          </div>
+      
+        <div className='flex justify-center'>
+          <h1 className="text-2xl font-bold">Sign Up</h1>
+        </div>
+      </div>
+        )}
       <Formik
         initialValues={{ email: '', userName: '', confirmEmail: '', phone: '', country: '', dateOfBirth: '', reason: '', hearAbout: '' }}
         validationSchema={validationSchema}
@@ -127,15 +143,6 @@ const SignUp = (props: Props) => {
               )}
               {step === 2 && (
                 <>
-                  <div className='text-start'>
-                    <button
-                      type="button"
-                      onClick={handlePreviousStep}
-                      className="prev-btn border border-gray-300 rounded-full bg-pink-500 hover:bg-pink-700 text-white"
-                    >
-                      Previous
-                    </button>
-                  </div>
                   <div className="form-group mb-3">
                     <label className="block mb-2">Where do you Live?</label>
                     <select className="w-full border border-gray-300 rounded p-2" >
@@ -175,9 +182,9 @@ const SignUp = (props: Props) => {
                       <option value="option4">From</option>
                     </select>
                   </div>
-                    <div className='text-center mt-5'>
-                      <button className="login-btn border border-gray-300 rounded-full bg-pink-500 hover:bg-pink-700 text-white" type="submit">Login</button>
-                    </div>
+                  <div className='text-center mt-5'>
+                    <button className="login-btn border border-gray-300 rounded-full bg-pink-500 hover:bg-pink-700 text-white" type="submit">Sign up</button>
+                  </div>
                   <div className="flex items-center mt-2">
                     <hr className="flex-1 border-t border-black" />
                     <span className="px-2">OR</span>
@@ -186,17 +193,17 @@ const SignUp = (props: Props) => {
                   <div className='text-center mt-2'>
                     <button className="google-btn border border-gray-300 rounded-full" >
                       <i className="fa-brands fa-google me-1" style={{ color: ' #c61010' }}></i>
-                      Login with Google</button>
+                      Sign up with Google</button>
                   </div>
                   <div className='text-center mt-2'>
-                    <button className="google-btn border border-gray-300 rounded-full" >
+                    <button className="facebook-btn border border-gray-300 rounded-full" >
                       <i className="fa-brands fa-facebook me-1" style={{ color: 'rgb(19 16 198)' }}></i>
-                      Login with Facebook</button>
+                      Sign up with Facebook</button>
                   </div>
                   <div className='text-center mt-2'>
                     <button className="google-btn border border-gray-300 rounded-full" >
                       <i className="fa-brands fa-apple me-1" style={{ color: 'rgb(28 27 27)' }}></i>
-                      Login with Apple ID</button>
+                      Sign up with Apple ID</button>
                   </div>
                 </>
               )}
@@ -212,7 +219,7 @@ const SignUp = (props: Props) => {
       </Formik>
 
       <div className='text-center mt-5'>
-        <span>Already have an account?<a className='cursor-pointer text-red-500' onClick={() => router.push('/login')}>Login in</a></span>
+        <span>Already have an account?<a className='cursor-pointer text-red-500' onClick={() => router.push('/login')}>Log In</a></span>
       </div>
     </div >
     // <div><button onClick={()=>router.push('/login')}>Sign Up</button></div>
