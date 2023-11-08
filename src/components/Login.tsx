@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { login } from '@/shared/auth';
+import { login, loginWithFacebook, loginWithGoogle } from '@/shared/auth';
 type Props = {}
 
 const Login = (props: Props) => {
@@ -22,6 +22,24 @@ const Login = (props: Props) => {
       console.log('Logged in user:', user);
     } catch (error) {
       console.error('Login failed in login file', error);
+    }
+  };
+  const handleGoogleLogin = async () => {
+    try {
+      const user = await loginWithGoogle();
+      console.log('Logged in with Google:', user);
+     
+    } catch (error) {
+      console.error('Google login error:', error);
+      
+    }
+  };
+  const handleFacebookLogin = async () => {
+    try {
+      const user = await loginWithFacebook();
+      console.log('Logged in with Facebook:', user);
+    } catch (error) {
+      console.error('Facebook login error:', error);
     }
   };
  
@@ -64,12 +82,12 @@ const Login = (props: Props) => {
         <hr className="flex-1 border-t border-black" />
       </div>
       <div className='text-center mt-2'>
-        <button className="google-btn border border-gray-300 rounded-full" >
+        <button className="google-btn border border-gray-300 rounded-full" onClick={handleGoogleLogin}>
           <i className="fa-brands fa-google me-1" style={{ color: ' #c61010' }}></i>
           Login with Google</button>
       </div>
       <div className='text-center mt-2'>
-        <button className="facebook-btn border border-gray-300 rounded-full" >
+        <button className="facebook-btn border border-gray-300 rounded-full"  onClick={handleFacebookLogin}>
           <i className="fa-brands fa-facebook me-1" style={{ color: 'rgb(19 16 198)' }}></i>
           Login with Facebook</button>
       </div>

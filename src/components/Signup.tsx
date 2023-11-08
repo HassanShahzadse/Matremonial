@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import Select from 'react-select';
 import RadioButtons from './radioBtn';
 import DateOfBirthInput from './dateOfBirth';
+import { signupWithFacebook, signupWithGoogle } from '@/shared/auth';
 type Props = {}
 
 const SignUp = (props: Props) => {
@@ -37,6 +38,23 @@ const SignUp = (props: Props) => {
       // console.log('Logged in user:', user);
     } catch (error) {
       console.error('Login failed in login file', error);
+    }
+  };
+  const handleGoogleSignup = async () => {
+    try {
+      const user = await signupWithGoogle();
+      console.log('Signed up with Google:', user);
+      
+    } catch (error) {
+      console.error('Google signup error:', error);
+    }
+  };
+  const handleFacebookSignup = async () => {
+    try {
+      const user = await signupWithFacebook();
+      console.log('Signed up with Facebook:', user);
+    } catch (error) {
+      console.error('Facebook signup error:', error);
     }
   };
   const validationSchema = Yup.object().shape({
@@ -191,12 +209,12 @@ const SignUp = (props: Props) => {
                     <hr className="flex-1 border-t border-black" />
                   </div>
                   <div className='text-center mt-2'>
-                    <button className="google-btn border border-gray-300 rounded-full" >
+                    <button className="google-btn border border-gray-300 rounded-full" onClick={handleGoogleSignup}>
                       <i className="fa-brands fa-google me-1" style={{ color: ' #c61010' }}></i>
                       Sign up with Google</button>
                   </div>
                   <div className='text-center mt-2'>
-                    <button className="facebook-btn border border-gray-300 rounded-full" >
+                    <button className="facebook-btn border border-gray-300 rounded-full" onClick={handleFacebookSignup}>
                       <i className="fa-brands fa-facebook me-1" style={{ color: 'rgb(19 16 198)' }}></i>
                       Sign up with Facebook</button>
                   </div>
