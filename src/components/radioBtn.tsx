@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 
-function RadioButtons() {
-    const [selectedOption, setSelectedOption] = useState('');
+interface RadioButtonsProps {
+    selectedOption: string;
+    onOptionChange: (value: string) => void;
+  }
+  
+function RadioButtons({ selectedOption, onOptionChange }:RadioButtonsProps ) {
+    // const [selectedOption, setSelectedOption] = useState('');
 
-    const handleOptionChange = (event: any) => {
-        setSelectedOption(event.target.value);
-    };
+    // const handleOptionChange = (event: any) => {
+    //     setSelectedOption(event.target.value);
+    // };
 
     return (
         <div className="flex space-x-4">
@@ -14,7 +19,7 @@ function RadioButtons() {
                     type="radio"
                     value="option1"
                     checked={selectedOption === 'option1'}
-                    onChange={handleOptionChange}
+                    onChange={() => onOptionChange('option1')}
                 />
                 <span>Male</span>
             </label>
@@ -24,7 +29,7 @@ function RadioButtons() {
                     type="radio"
                     value="option2"
                     checked={selectedOption === 'option2'}
-                    onChange={handleOptionChange}
+                    onChange={() => onOptionChange('option2')}
                 />
                 <span>Female</span>
             </label>
@@ -34,7 +39,7 @@ function RadioButtons() {
                     type="radio"
                     value="option3"
                     checked={selectedOption === 'option3'}
-                    onChange={handleOptionChange}
+                    onChange={() => onOptionChange('option3')}
                 />
                 <span>Non-Binary</span>
             </label>

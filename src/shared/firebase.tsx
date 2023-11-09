@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getAnalytics, isSupported } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
@@ -12,11 +12,16 @@ const firebaseConfig = {
     measurementId: "G-T0FG9EXQX1"
 };
 
-const initializeFirebase = () => {
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const auth = getAuth(app); 
-    return { app, analytics, auth };
+const initializeFirebase = async () => {
+    if (await isSupported()) {
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+        return { app, analytics, auth };
+    } else {
+        console.warn('Firebase Analytics is not supported in this environment.');
+      
+    }
 };
 
 export default initializeFirebase;

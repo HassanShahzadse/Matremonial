@@ -1,8 +1,8 @@
-import { Auth, FacebookAuthProvider, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { FacebookAuthProvider, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import initializeFirebase  from './firebase';
 
 
-const { auth } = initializeFirebase();
+const { auth }:any = initializeFirebase();
 
 export const login = async (email: string, password: string) => {
   try {
