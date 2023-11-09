@@ -11,9 +11,8 @@ function DateOfBirthInput({ dateOfBirth, onDateOfBirthChange }: DateOfBirthInput
   };
 
   return (
-    <div className="max-w-md mx-auto p-4">
-      <div className="flex space-x-8">
-        <div className="w-1/2">
+    <div className="max-w-md mx-auto mt-2">
+        <div>
           <input
             type="date"
             name="dateOfBirth"
@@ -22,7 +21,6 @@ function DateOfBirthInput({ dateOfBirth, onDateOfBirthChange }: DateOfBirthInput
             className="w-full border border-gray-300 rounded p-2"
           />
         </div>
-      </div>
     </div>
   );
 }

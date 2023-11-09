@@ -1,8 +1,9 @@
 
+import DashboardComponent from "@/components/dashboardComponent"
 export default function Dashboard() {
     return(
     <div>
-        DASHBOARD
+        <DashboardComponent />
     </div>
 )
 

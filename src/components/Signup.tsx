@@ -5,14 +5,14 @@ import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Select from 'react-select';
-import RadioButtons from './radioBtn';
-import DateOfBirthInput from './dateOfBirth';
+import RadioButtons from '../utils/radioBtn';
+import DateOfBirthInput from '../utils/dateOfBirth';
 import { signupWithFacebook, signupWithGoogle } from '@/shared/auth';
 type Props = {}
 
 const SignUp = (props: Props) => {
   const router = useRouter();
-  const [selectedCountryCode, setSelectedCountryCode] = useState(0); // Initialize with the first option
+  const [selectedCountryCode, setSelectedCountryCode] = useState(); // Initialize with the first option
 
   // const [selectedCountryCode, setSelectedCountryCode] = useState(null);
   const [step, setStep] = useState(1);
@@ -204,7 +204,7 @@ const SignUp = (props: Props) => {
 
 
                   <div className='form-group mb-3'>
-                    <label className='mb-2'>Date Of Birth</label>
+                    <label>Date Of Birth</label>
                     <DateOfBirthInput
                       dateOfBirth={formValues.dateOfBirth}
                       onDateOfBirthChange={(dateOfBirth) => handleFormChange('dateOfBirth', dateOfBirth)}
