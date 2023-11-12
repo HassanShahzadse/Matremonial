@@ -1,11 +1,13 @@
-"use client"
+'use client'
 
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useState } from 'react';
 
 const SideBar = ({ show }: any) => {
+    // const router = useRouter();
     //   const [show, setShow] = useState(false);
-
+    // const isLinkActive = (href:string) => router.asPath === href;
     return (
         <aside className={`sidebar ${show ? 'show' : null}`}>
             <nav className='nav'>
@@ -16,7 +18,8 @@ const SideBar = ({ show }: any) => {
                     </Link>
 
                     <div className='nav-list'>
-                        <Link href='/dashboard' className='nav-link active'>
+                        {/* <Link href='/dashboard' className={`nav-link ${isLinkActive('/dashboard') ? 'active' : ''}`}> */}
+                        <Link href='/dashboard' className='nav-link active'>    
                             <i className='fas fa-tachometer-alt nav-link-icon'></i>
                             <span className='nav-link-name'>Dashboard</span>
                         </Link>
