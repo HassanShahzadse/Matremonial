@@ -1,29 +1,29 @@
 "use client"
 import { useState } from "react";
 import Layout from "./layout";
-
+import Image from 'next/image'
 type CardProps = {
-    title: string;
-    content: string;
-    imageUrl: string;
-  };
+  title: string;
+  content: string;
+  imageUrl: string;
+};
 const Card: React.FC<CardProps> = ({ title, content, imageUrl }) => (
-    <div className="bg-white p-4 rounded-lg shadow-md mb-4 mt-10 flex items-center">
-      <img src={imageUrl} alt={title} className="w-16 h-16 object-cover rounded-full" />
-      <div className="ml-4">
-        <h2 className="text-lg font-semibold">{title}</h2>
-        <p className="text-gray-600">{content}</p>
-      </div>
+  <div className="bg-white p-4 rounded-lg shadow-md mb-4 mt-10 flex items-center">
+    <Image width={500} height={500} src={imageUrl} alt={title} className="card-image object-cover rounded-full" />
+    <div className="ml-4">
+      <h2 className="text-lg font-semibold">{title}</h2>
+      <p className="text-gray-600">{content}</p>
     </div>
-  );
-  
+  </div>
+);
+
 
 export default function DashboardComponent() {
   const [show, setShow] = useState(false);
   const cardData = [
-    { title: 'Ahmed', content: 'Good to work', imageUrl: "../assets/images/img1.jpg" },
-    { title: 'Muneeb', content: 'Looking Good', imageUrl:"../assets/images/img2.jpeg"},
-    { title: 'Aslam', content: 'Having good business', imageUrl:"../assets/images/img1.jpg"},
+    { title: 'Ahmed', content: 'Good to work', imageUrl: "/img1.jpg" },
+    { title: 'Muneeb', content: 'Looking Good', imageUrl: "/img2.jpeg" },
+    { title: 'Aslam', content: 'Having good business', imageUrl: "/img1.jpg" },
   ];
   return (
     <Layout show={show} setShow={setShow}>
