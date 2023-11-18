@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import Select from 'react-select';
 import RadioButtons from '../utils/radioBtn';
 import DateOfBirthInput from '../utils/dateOfBirth';
-import { signupWithFacebook, signupWithGoogle } from '@/shared/auth';
+import { createUserWithEmailAndPassword, signupWithFacebook, signupWithGoogle } from '@/shared/auth';
 type Props = {}
 
 const SignUp = (props: Props) => {
@@ -21,6 +21,7 @@ const SignUp = (props: Props) => {
     email: '',
     userName: '',
     confirmEmail: '',
+    password: '',
     phone: '',
     selectedCountryCode: '',
     country: '',
@@ -48,8 +49,21 @@ const SignUp = (props: Props) => {
   };
   const handleSubmit = async (values: any, setValue:any) => {
     console.log("Form Values", values);
-    // You can now access form values from the 'values' parameter
-    // Handle form submission, e.g., make an API request, etc.
+    let data = {
+      email: values.email,
+      name: values.userName,
+      password: values.password,
+      phone_number: values.phone,
+    }
+    console.log("data to send", data);
+    try {
+      const user = await createUserWithEmailAndPassword(data);
+      
+      console.log('Logged in user:', user);
+    } catch (error) {
+      console.error('Login failed in login file', error);
+    }
+   
   };
 
   const handleGoogleSignup = async () => {
@@ -72,8 +86,8 @@ const SignUp = (props: Props) => {
   const validationSchema = Yup.object().shape({
     userName: Yup.string(),
     email: Yup.string().email("Invalid email address"),
-    confirmEmail: Yup.string().oneOf([Yup.ref("email"), ''], "Emails must match")
-      ,
+    confirmEmail: Yup.string().oneOf([Yup.ref("email"), ''], "Emails must match"),
+    password: Yup.string().min(8).required('Password is required'),
     phone: Yup.string().min(9),
     country: Yup.string(),
     dateOfBirth: Yup.string(),
@@ -143,6 +157,11 @@ const SignUp = (props: Props) => {
                     <ErrorMessage name="confirmEmail" component="div" className="text-red-500" />
                   </div>
 
+                  <div className='form-group mb-3'>
+                    <label className='mb-2'>Password</label>
+                    <Field type="text" name="password" className="w-full border border-gray-300 rounded p-2" placeholder="Enter your password" />
+                    <ErrorMessage name="password" component="div" className="text-red-500" />
+                  </div>
 
                   <div className='form-group mb-3'>
                     <label className='mb-2'>Phone Number</label>

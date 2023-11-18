@@ -4,27 +4,28 @@ import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { login, loginWithFacebook, loginWithGoogle } from '@/shared/auth';
+import {loginWithFacebook, loginWithGoogle, signInWithEmailAndPassword } from '@/shared/auth';
+
 type Props = {}
 
 const Login = (props: Props) => {
   const router = useRouter();
   const [formData, setFormData] = useState({ email: "", password: "" });
   
-  const handleSubmit = async (values: any) => {
+    const handleSubmit = async (values: any) => {
 
-    console.log("values", values);
-    const email = values.email;
-    const password = values.password
+      console.log("values", values);
+      const email = values.email;
+      const password = values.password
 
-    try {
-      const user = await login(email, password);
-      
-      console.log('Logged in user:', user);
-    } catch (error) {
-      console.error('Login failed in login file', error);
-    }
-  };
+      try {
+        const user = await signInWithEmailAndPassword(email, password);
+        
+        console.log('Logged in user:', user);
+      } catch (error) {
+        console.error('Login failed in login file', error);
+      }
+    };
   const handleGoogleLogin = async () => {
     try {
       const user = await loginWithGoogle();

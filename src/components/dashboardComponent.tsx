@@ -9,7 +9,7 @@ type CardProps = {
 };
 const Card: React.FC<CardProps> = ({ title, content, imageUrl }) => (
   <div className="bg-white p-4 rounded-lg shadow-md mb-4 mt-10 flex items-center">
-    <Image width={500} height={500} src={imageUrl} alt={title} className="card-image object-cover rounded-full" />
+    <Image width={500} height={500} src={imageUrl} alt={title} className="card-image rounded" />
     <div className="ml-4">
       <h2 className="text-lg font-semibold">{title}</h2>
       <p className="text-gray-600">{content}</p>
