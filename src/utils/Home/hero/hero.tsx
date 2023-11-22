@@ -33,7 +33,7 @@ function Hero() {
 
       <div className="mx-auto relative ">
         <div className="text-center pe-4 ps-4 lg:mt-[22rem]  mt-[10rem]">
-          <h1 className="text-[#FFFFFF]  lg:text-6xl sm:text-5xl  text-4xl  font-bold  xl:ps-[18rem] lg:ps-[8rem]  xl:pe-[18rem] lg:pe-[8rem]   ">
+          <h1 className="text-[#FFFFFF]  lg:text-6xl sm:text-5xl  text-4xl  font-bold   2xl:ps-[24rem] 2xl:pe-[24rem]   xl:ps-[18rem] lg:ps-[8rem]  xl:pe-[18rem] lg:pe-[8rem]   ">
             Dating for Grown Ups Make a Real Connection
           </h1>
           <p className="text-[#FFFFFF] sm:mt-9 mt-6 text-2xl">
@@ -84,35 +84,47 @@ function Hero() {
         </div>
       </div>
 
-      <div className="mx-auto relative">
-        <div className="grid md:grid-cols-2  grid-cols-1">
+      <div className="mx-auto relative ">
+        <div className="grid lg:grid-cols-2  grid-cols-1">
           <Image
             src="/Video-Banner.jpg"
             alt="My Image"
-            width={750}
-            height={750}
+            width={1020}
+            height={1020}
           />
-          <div className="text-center / justify-center flex flex-col">
-            <h1 className="text-[#1F2F49]  font-semibold text-3xl ">Explore Dating Advice</h1>
-            <p className="text-[#1F2F49] font-semibold mt-1">Be calm. Be kind. Be yourself.</p>
-            <p className="mt-6 ">
-              Hello, I’m Sarah and I’m the first Dating AI for Qiupid. What are
-              your preferences?
-            </p>
-           <div className="flex flex-col items-center"> 
-            <Button
-              children="Men"
-              css="bg-[#ED147D] pe-52 ps-52   pt-3 pb-3 text-[#fff] rounded-[30px] text-[13px] font-bold "
-            />
-            <Button
-              children="Men"
-              css="bg-[#ED147D] pe-52 ps-52 mt-5 mb-5   pt-3 pb-3 text-[#fff] rounded-[30px] text-[13px] font-bold "
-            />
-            <Button
-              children="Men"
-              css="bg-[#ED147D] pe-52 ps-52    pt-3 pb-3 text-[#fff] rounded-[30px] text-[13px] font-bold "
-            />
-            </div>  
+          <div className="ps-[10rem] pe-[10rem]  pt-14 pb-14 lg:pt-0 lg:pb-0 flex flex-col justify-center items-center">
+            <div className="text-center  justify-center items-center flex flex-col">
+              <h1 className="text-[#1F2F49]  font-semibold text-4xl ">
+                Explore Dating Advice
+              </h1>
+              <p className="text-[#1F2F49] font-bold mt-2">
+                Be calm. Be kind. Be yourself.
+              </p>
+              <div className="ps-[3rem] lg:mt-1 xl:mt-5 mt-5 mb-5">
+                <p className="mt-6 rounded-t-[28px] rounded-r-[28px] bg-[#ffff] pt-4 ps-4 pb-4 pe-8 text-start text-sm text-shadow   font-bold       text-[#676770]">
+                  Hello, I’m Sarah and I’m the first Dating AI for Qiupid. What
+                  are your preferences?
+                </p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Button
+                  children="Men"
+                  css="bg-[#ED147D] sm:pe-52 sm:ps-52 pe-44 ps-44 shadow-[#ED147D]  xl:pt-3 xl:pb-3 pt-3 pb-3  lg:pt-2 lg:pb-2 text-[#fff] rounded-[30px] text-[13px] font-bold "
+                />
+                <Button
+                  children="Men"
+                  css="bg-[#ED147D] sm:pe-52 sm:ps-52 pe-44 ps-44 mt-5 mb-5  shadow-[#ED147D]
+
+                  xl:pt-3 xl:pb-3 lg:t-2 lg:pb-2 pt-3 pb-3 text-[#fff] rounded-[30px] text-[13px] font-bold "
+                />
+                <Button
+                  children="Men"
+                  css="bg-[#ED147D] sm:pe-52 sm:ps-52  pe-44 ps-44 shadow-[#ED147D]
+
+                  xl:pt-3 xl:pb-3 lg:pt-2 lg:pb-2    pt-3 pb-3 text-[#fff] rounded-[30px] text-[13px] font-bold "
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
