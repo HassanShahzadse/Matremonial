@@ -25,6 +25,40 @@ const datingSiteFeatures = [
     image: "/forums.jpg", // Replace with the actual path to your image
   },
 ];
+const cardsData = [
+  {
+    imageSrc: "/member1.png",
+    altText: "My Image",
+    name: "Maisha Reid",
+    role: "Marketing",
+    description:
+      "Quisque sit amet ante vehicula risus pharetra sagittis ac sit amet justo. Duis eu sapien nisl condimentum vitae.",
+  },
+  {
+    imageSrc: "/member2.png",
+    altText: "My Image",
+    name: "Carter Bridges",
+    role: "Brand Manager",
+    description:
+      "Quisque sit amet ante vehicula risus pharetra sagittis ac sit amet justo. Duis eu sapien nisl Quisque sit",
+  },
+  {
+    imageSrc: "/member3.png",
+    altText: "My Image",
+    name: "Bella Williams",
+    role: "General Manager",
+    description:
+      "Pellentesque aliquet mi in leo tempus fringilla. Donec convallis libero risus, non varius augue condimentum vitae.",
+  },
+  {
+    imageSrc: "/member4.png",
+    altText: "My Image",
+    name: "George Andone",
+    role: "Dating Expert",
+    description:
+      "Morbi tortor purus, efficitur in lobortis vitae, varius nec turpis. Aliquam eu pellentesque dolor, nec faucibus nisl.",
+  },
+];
 
 function Hero() {
   return (
@@ -84,7 +118,7 @@ function Hero() {
         </div>
       </div>
 
-      <div className="mx-auto relative ">
+      <div className="mx-auto relative   ">
         <div className="grid lg:grid-cols-2  grid-cols-1">
           <Image
             src="/Video-Banner.jpg"
@@ -127,6 +161,38 @@ function Hero() {
             </div>
           </div>
         </div>
+      </div>
+
+
+
+   <div className="bg-[#ffffff]">
+      <div className="  container mx-auto relative pt-24 pb-24   text-center bg-[#ffffff]">
+        <h1 className="text-[#ed147d] font-bold">Our Groups</h1>
+        <p className="text-[#1F2F49] text-4xl font-semibold mb-10">
+          Start your Search Here
+        </p>
+        <div className="flex  md:flex-row flex-col / justify-center  ">
+          {cardsData.map((card, index) => (
+            <div className="max-w-fit       bg-white ">
+              <Image
+                src={card.imageSrc}
+                alt={card.altText}
+                width={750}
+                height={750}
+                className="md:p-4 mt-2"
+              />
+
+              <div className="pe-7 ps-7 pt-5 pb-5">
+                <h1 className="mt-5 text-[#222] font-semibold text-xl">
+                  {card.name}
+                </h1>
+                <h2 className="mt-2 text-[#888] ">{card.role}</h2>
+                <p className="mt-2 text-[#888] text-sm">{card.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
       </div>
     </>
   );
