@@ -1,7 +1,7 @@
 "use client"
 
-import SideBar from '@/utils/sideBar';
-import TopBar from '@/utils/topBar';
+import SideBar from '@/utils/sideBar/sideBar';
+import TopBar from '@/utils/topBar/topBar';
 import { useState } from 'react';
 
 export default function Layout({ children, show, setShow }: any) {

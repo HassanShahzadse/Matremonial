@@ -1,5 +1,5 @@
-import Login from "@/components/Login"
-import SignUp from "@/components/Signup"
+import Login from "@/components/login/Login"
+import SignUp from "@/components/signUp/Signup"
 export default function SignUpPage() {
     return(
         <>

@@ -5,9 +5,9 @@ import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Select from 'react-select';
-import RadioButtons from '../utils/radioBtn';
-import DateOfBirthInput from '../utils/dateOfBirth';
-import { createUserWithEmailAndPassword, signupWithFacebook, signupWithGoogle } from '@/shared/auth';
+import RadioButtons from '../../utils/shared/radioBtn';
+import DateOfBirthInput from '../../utils/dateOfBirth/dateOfBirth';
+import { createUserWithEmailAndPassword, signupWithFacebook, signupWithGoogle } from '@/sharedService/auth/auth';
 type Props = {}
 
 const SignUp = (props: Props) => {

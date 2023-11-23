@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import {loginWithFacebook, loginWithGoogle, signInWithEmailAndPassword } from '@/shared/auth';
+import {loginWithFacebook, loginWithGoogle, signInWithEmailAndPassword } from '@/sharedService/auth/auth';
 
 type Props = {}
 

@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react";
-import Layout from "./layout";
+import Layout from "../mainLayout/layout";
 
 
 export default function About() {
