@@ -5,7 +5,7 @@
 import { useState, useEffect } from 'react'
 
 // ** Custom Components
-import Avatar from '../avatar'
+import Avatar from '../../utility/avatar/avatar'
 
 // ** Store & Actions
 // import { selectChat } from './store'

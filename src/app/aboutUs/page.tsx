@@ -1,4 +1,4 @@
-import About from "@/components/aboutUS";
+import About from "@/components/aboutUs/aboutUS";
 
 export default function ContactUs() {
     return(

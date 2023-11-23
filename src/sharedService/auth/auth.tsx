@@ -1,5 +1,5 @@
 import { FacebookAuthProvider, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword as createUserWithEmailAndPasswordFirebase } from 'firebase/auth';
-import initializeFirebase from './firebase';
+import initializeFirebase from '../fireBase/firebase';
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { getAuth, signInWithEmailAndPassword as signInWithEmailAndPasswordFirebase } from 'firebase/auth';
 
