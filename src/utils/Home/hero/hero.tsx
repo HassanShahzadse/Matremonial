@@ -3,6 +3,10 @@ import styles from "./hero.module.css";
 import Button from "@/utils/shared/button";
 import Image from "next/image";
 import { IoLogoFacebook } from "react-icons/io5";
+import Slider from "react-slick";
+import { Card, Dropdown } from "flowbite-react";
+import PersonCard from "../personCard/personCard";
+
 const datingSiteFeatures = [
   {
     title: "Awesome Community",
@@ -60,7 +64,52 @@ const cardsData = [
   },
 ];
 
+const peopleData = [
+  {
+    para:"dddfd",
+    name: "Bonnie Green",
+    role: "Visual Designer",
+    imageUrl: "/avatar1.jpg",
+  },
+  {
+    para:"dddfd",
+    name: "Bonnie Green",
+    role: "Visual Designer",
+    imageUrl: "/avatar1.jpg",
+  },
+  {
+    para:"dddfd",
+    name: "Bonnie Green",
+    role: "Visual Designer",
+    imageUrl: "/avatar1.jpg",
+  },
+  {
+    para:"dddfd",
+    name: "Bonnie Green",
+    role: "Visual Designer",
+    imageUrl: "/avatar1.jpg",
+  },
+  {
+    para:"dddfd",
+    name: "Bonnie Green",
+    role: "Visual Designer",
+    imageUrl: "/avatar1.jpg",
+  },
+
+
+];
+
 function Hero() {
+  var settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    pauseOnHover: true,
+  };
+
   return (
     <>
       <div className={styles.heroBanner}></div>
@@ -163,36 +212,91 @@ function Hero() {
         </div>
       </div>
 
+      <div className="bg-[#ffffff]">
+        <div className="  container mx-auto relative pt-24 pb-24   text-center bg-[#ffffff]">
+          <h1 className="text-[#ed147d] font-bold">Our Groups</h1>
+          <p className="text-[#1F2F49] text-4xl font-semibold mb-10">
+            Start your Search Here
+          </p>
+          <div className="flex  md:flex-row flex-col / justify-center  ">
+            {cardsData.map((card, index) => (
+              <div className="max-w-fit       bg-white ">
+                <Image
+                  src={card.imageSrc}
+                  alt={card.altText}
+                  width={750}
+                  height={750}
+                  className="md:p-4 mt-2"
+                />
 
-
-   <div className="bg-[#ffffff]">
-      <div className="  container mx-auto relative pt-24 pb-24   text-center bg-[#ffffff]">
-        <h1 className="text-[#ed147d] font-bold">Our Groups</h1>
-        <p className="text-[#1F2F49] text-4xl font-semibold mb-10">
-          Start your Search Here
-        </p>
-        <div className="flex  md:flex-row flex-col / justify-center  ">
-          {cardsData.map((card, index) => (
-            <div className="max-w-fit       bg-white ">
-              <Image
-                src={card.imageSrc}
-                alt={card.altText}
-                width={750}
-                height={750}
-                className="md:p-4 mt-2"
-              />
-
-              <div className="pe-7 ps-7 pt-5 pb-5">
-                <h1 className="mt-5 text-[#222] font-semibold text-xl">
-                  {card.name}
-                </h1>
-                <h2 className="mt-2 text-[#888] ">{card.role}</h2>
-                <p className="mt-2 text-[#888] text-sm">{card.description}</p>
+                <div className="pe-7 ps-7 pt-5 pb-5">
+                  <h1 className="mt-5 text-[#222] font-semibold text-xl">
+                    {card.name}
+                  </h1>
+                  <h2 className="mt-2 text-[#888] ">{card.role}</h2>
+                  <p className="mt-2 text-[#888] text-sm">{card.description}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
+
+      <div className={styles.downloadBanner}>
+        <div className="container mx-auto">
+          <div className="grid md:grid-cols-2 grid-cols-1 ">
+            <div className="text-center xl:pt-[10rem]  lg:pt-[8rem]  pt-[4rem]  xl:ps-20 xl:pe-20  lg:ps-12 lg:pe-12  ps-4 pe-4">
+              <h1 className="text-[#1F2F49] font-semibold text-4xl">
+                Over 30 Million Downloads
+              </h1>
+              <p className="mt-9 text-[#676770] text-sm">
+                Download eAmo online dating app and you’re always ready to check
+                out profiles near you & chat with real commited singles ready
+                for a real relationship. It puts at the power of eAmo in the
+                palm of your hand for a faster dating experience.​
+              </p>
+
+              <button className="btn p-2  bg-black  rounded-md mt-8 me-4">
+                <Image src="/Apple.png" alt="Apple" width={110} height={110} />
+              </button>
+
+              <button className="btn p-2   bg-black  rounded-md">
+                <Image
+                  src="/Playstore.png"
+                  alt="Playstore"
+                  width={125}
+                  height={125}
+                />
+              </button>
+            </div>
+
+            <div className="flex  justify-center items-center  lg:justify-start">
+              {" "}
+              <Image
+                src="/App.png"
+                alt="Apple"
+                width={480}
+                height={480}
+                className="mt-4 mb-4 "
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-[#ed147d]">
+        <div className="container mx-auto text-center pt-12 pb-12">
+          <h2 className="mb-10 text-[#ffff] font-bold text-4xl">
+            Qiupid Love Stories
+          </h2>
+          <Slider {...settings} className="">
+            {peopleData.map((person, index) => (
+              <div key={index}>
+                <PersonCard {...person} />
+              </div>
+            ))}
+          </Slider>
+        </div>
       </div>
     </>
   );
