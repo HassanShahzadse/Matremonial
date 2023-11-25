@@ -11,3 +11,7 @@
    background-position: center;
    background-attachment: fixed;
 }
+.downloadBanner{
+   background-image: url('./../../../../public/Banner.jpg');
+  
+}
