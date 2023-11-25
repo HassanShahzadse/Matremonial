@@ -133,7 +133,7 @@ function Hero() {
   return (
     <>
       <div className={styles.heroBanner}></div>
-      {/* relative p-[0.88rem] pt-4 bg-transparent */}
+    
 
       <Navbar
         fluid
