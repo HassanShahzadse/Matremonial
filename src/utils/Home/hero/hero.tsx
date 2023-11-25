@@ -354,9 +354,9 @@ function Hero() {
       </div>
 
       <footer className="">
-        <div className="flex pt-4 pb-4   lg:flex-row   flex-col  pe-16 ps-16  lg:justify-between  items-center justify-center   bg-[#ffffff] ">
+        <div className="flex pt-4 pb-4     space-y-4 lg:space-y-0  lg:flex-row   flex-col  pe-16 ps-16  lg:justify-between  items-center justify-center   bg-[#ffffff] ">
           <div className="Logo text-3xl font-bold">Quipid</div>
-          <p className="text-sm text-[#868790]">
+          <p className="text-sm text-[#868790] text-center">
             Copyright © 2023 Qiupid. All Rights Reserved by Modeltheme.
           </p>
           <div className="flex space-x-2">
