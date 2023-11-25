@@ -6,10 +6,10 @@ interface RadioButtonsProps {
   }
   
 function RadioButtons({ selectedOption, onOptionChange }:RadioButtonsProps ) {
-    // const [selectedOption, setSelectedOption] = useState('');
+    // const [selectedOptions, setSelectedOptions] = useState('');
 
     // const handleOptionChange = (event: any) => {
-    //     setSelectedOption(event.target.value);
+    //     setSelectedOptions(event.target.value);
     // };
 
     return (
@@ -17,9 +17,9 @@ function RadioButtons({ selectedOption, onOptionChange }:RadioButtonsProps ) {
             <label className="flex items-center space-x-2">
                 <input
                     type="radio"
-                    value="option1"
-                    checked={selectedOption === 'option1'}
-                    onChange={() => onOptionChange('option1')}
+                    value="Male"
+                    checked={selectedOption === 'Male'}
+                    onChange={() => onOptionChange('Male')}
                 />
                 <span>Male</span>
             </label>
@@ -27,9 +27,9 @@ function RadioButtons({ selectedOption, onOptionChange }:RadioButtonsProps ) {
             <label className="flex items-center space-x-2">
                 <input
                     type="radio"
-                    value="option2"
-                    checked={selectedOption === 'option2'}
-                    onChange={() => onOptionChange('option2')}
+                    value="Female"
+                    checked={selectedOption === 'Female'}
+                    onChange={() => onOptionChange('Female')}
                 />
                 <span>Female</span>
             </label>
@@ -37,9 +37,9 @@ function RadioButtons({ selectedOption, onOptionChange }:RadioButtonsProps ) {
             <label className="flex items-center space-x-2">
                 <input
                     type="radio"
-                    value="option3"
-                    checked={selectedOption === 'option3'}
-                    onChange={() => onOptionChange('option3')}
+                    value="Non-Binary"
+                    checked={selectedOption === 'Non-Binary'}
+                    onChange={() => onOptionChange('Non-Binary')}
                 />
                 <span>Non-Binary</span>
             </label>

@@ -1,20 +1,46 @@
 "use client"
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Select from 'react-select';
 import RadioButtons from '../../utils/shared/radioBtn';
 import DateOfBirthInput from '../../utils/dateOfBirth/dateOfBirth';
-import { createUserWithEmailAndPassword, signupWithFacebook, signupWithGoogle } from '@/sharedService/auth/auth';
+import { createUser, signupWithFacebook, signupWithGoogle } from '@/sharedService/auth/auth';
 type Props = {}
 
+
+
+const countryOption = [
+  { value: "", label: "Select Option" },
+  { value: "option1", label: "Pakistan" },
+  { value: "option2", label: "Afghanistan" },
+  { value: "option3", label: "India" },
+  { value: "option4", label: "England" },
+  { value: "option5", label: "Australia" },
+];
+const registeringOptions = [
+  { value: "", label: "Select Option" },
+  { value: "option1", label: "I am registering to find best partner" },
+  { value: "option2", label: "I am registering to find my friend a partner" },
+  { value: "option3", label: "I am registering to find my son a partner" },
+  { value: "option4", label: "I am registering to find my daughter a partner" },
+];
+const hearAboutOptions = [
+  { value: "", label: "Select Option" },
+  { value: "option1", label: "From Internet" },
+  { value: "option2", label: "From Facebook" },
+  { value: "option3", label: "From Linkdin" },
+  { value: "option4", label: "From Youtube" },
+];
+const countryCodeOptions = [
+  { value: '+1', label: 'United States (+1)' },
+  { value: '+44', label: 'United Kingdom (+44)' },
+];
 const SignUp = (props: Props) => {
   const router = useRouter();
-  const [selectedCountryCode, setSelectedCountryCode] = useState(); // Initialize with the first option
-
-  // const [selectedCountryCode, setSelectedCountryCode] = useState(null);
+  const [selectedCountryCode, setSelectedCountryCode] = useState();
   const [step, setStep] = useState(1);
 
   const [formValues, setFormValues] = useState({
@@ -28,13 +54,16 @@ const SignUp = (props: Props) => {
     dateOfBirth: '',
     reason: '',
     hearAbout: '',
-    gender: '', 
+    gender: '',
   });
 
   const handleFormChange = (fieldName: string, value: any) => {
-    setFormValues({ ...formValues, [fieldName]: value });
-    console.log("setFormValues",setFormValues)
+    setFormValues((prevFormValues) => {
+      const updatedFormValues = { ...prevFormValues, [fieldName]: value };
+      return updatedFormValues;
+    });
   };
+
 
   const handleNextStep = () => {
     if (step < 2) {
@@ -47,30 +76,33 @@ const SignUp = (props: Props) => {
       setStep(step - 1);
     }
   };
-  const handleSubmit = async (values: any, setValue:any) => {
-    console.log("Form Values", values);
+  const handleSubmit = async (values: any) => {
+    console.log("Form Values in handle submit", formValues);
     let data = {
-      email: values.email,
-      name: values.userName,
-      password: values.password,
-      phone_number: values.phone,
+      email: formValues.email,
+      name: formValues.userName,
+      password: formValues.password,
+      phone_number: formValues.phone,
+      country: formValues.country,
+      birth_date: formValues.dateOfBirth,
+      reason_for_registering: formValues.reason,
+      heard_about_us: formValues.hearAbout,
+      gender: formValues.gender
     }
-    console.log("data to send", data);
     try {
-      const user = await createUserWithEmailAndPassword(data);
-      
-      console.log('Logged in user:', user);
+      const user = await createUser(data);
+      router.push('/login'); 
     } catch (error) {
       console.error('Login failed in login file', error);
     }
-   
   };
-
+  useEffect(() => {
+  }, [formValues]);
   const handleGoogleSignup = async () => {
     try {
       const user = await signupWithGoogle();
       console.log('Signed up with Google:', user);
-
+      router.push('/login'); 
     } catch (error) {
       console.error('Google signup error:', error);
     }
@@ -79,6 +111,7 @@ const SignUp = (props: Props) => {
     try {
       const user = await signupWithFacebook();
       console.log('Signed up with Facebook:', user);
+      router.push('/login'); 
     } catch (error) {
       console.error('Facebook signup error:', error);
     }
@@ -104,10 +137,7 @@ const SignUp = (props: Props) => {
     // hearAbout: Yup.string().required('Reason of registering is required'),
     // password: Yup.string().min(8).required('Password is required'),
   });
-  const countryOptions = [
-    { value: '+1', label: 'United States (+1)' },
-    { value: '+44', label: 'United Kingdom (+44)' },
-  ];
+
   return (
     <div className="card bg-white p-6 rounded-lg shadow-md mx-auto">
       {step === 1 && (
@@ -132,7 +162,7 @@ const SignUp = (props: Props) => {
           initialValues={formValues}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}>
-          {() => (
+          {({ handleChange, handleSubmit, values, setFieldValue }) => (
 
             <Form>
 
@@ -140,26 +170,43 @@ const SignUp = (props: Props) => {
                 <>
                   <div className='form-group mb-3'>
                     <label className='mb-2'>User Name</label>
-                    <Field type="text" name="userName" className="w-full border border-gray-300 rounded p-2" placeholder="Enter your Name" />
+                    <Field type="text" name="userName" className="w-full border border-gray-300 rounded p-2" placeholder="Enter your Name"
+                      onChange={(e: any) => {
+                        setFieldValue('userName', e.target.value)
+                        handleFormChange('userName', e.target.value);
+                      }}
+                    />
                     <ErrorMessage name="userName" component="div" className="text-red-500" />
                   </div>
 
 
                   <div className='form-group mb-3'>
                     <label className='mb-2'>Email</label>
-                    <Field type="text" name="email" className="w-full border border-gray-300 rounded p-2" placeholder="Enter your email" />
+                    <Field type="text" name="email" className="w-full border border-gray-300 rounded p-2" placeholder="Enter your email"
+                      onChange={(e: any) => {
+                        setFieldValue('email', e.target.value)
+                        handleFormChange('email', e.target.value);
+                      }} />
                     <ErrorMessage name="email" component="div" className="text-red-500" />
                   </div>
 
                   <div className='form-group mb-3'>
                     <label className='mb-2'>Confirm Email</label>
-                    <Field type="text" name="confirmEmail" className="w-full border border-gray-300 rounded p-2" placeholder="Re-enter your Email " />
+                    <Field type="text" name="confirmEmail" className="w-full border border-gray-300 rounded p-2" placeholder="Re-enter your Email "
+                      onChange={(e: any) => {
+                        setFieldValue('confirmEmail', e.target.value)
+                        handleFormChange('confirmEmail', e.target.value);
+                      }} />
                     <ErrorMessage name="confirmEmail" component="div" className="text-red-500" />
                   </div>
 
                   <div className='form-group mb-3'>
                     <label className='mb-2'>Password</label>
-                    <Field type="text" name="password" className="w-full border border-gray-300 rounded p-2" placeholder="Enter your password" />
+                    <Field type="text" name="password" className="w-full border border-gray-300 rounded p-2" placeholder="Enter your password"
+                      onChange={(e: any) => {
+                        setFieldValue('password', e.target.value)
+                        handleFormChange('password', e.target.value);
+                      }} />
                     <ErrorMessage name="password" component="div" className="text-red-500" />
                   </div>
 
@@ -167,10 +214,11 @@ const SignUp = (props: Props) => {
                     <label className='mb-2'>Phone Number</label>
                     <div className='flex items-center'>
                       <div className='w-2/4'>
+                        
                         <Select
-                          options={countryOptions}
+                          options={countryCodeOptions}
                           value={selectedCountryCode}
-                          onChange={(option: any) => setSelectedCountryCode(option)}
+                          onChange={(option: any) =>  handleFormChange('selectedCountryCode', option.label)}
                           placeholder="Country Code"
                         />
                       </div>
@@ -180,6 +228,10 @@ const SignUp = (props: Props) => {
                           name="phone"
                           className="w-full border border-gray-300 rounded p-2"
                           placeholder="Enter your Phone Number"
+                          onChange={(e: any) => {
+                            setFieldValue('phone', e.target.value)
+                            handleFormChange('phone', e.target.value);
+                          }}
                         />
                       </div>
                     </div>
@@ -211,13 +263,14 @@ const SignUp = (props: Props) => {
                     <select
                       className="w-full border border-gray-300 rounded p-2"
                       value={formValues.country}
-                      onChange={(e) => handleFormChange('country', e.target.value)}>
-                      <option value="">Select Option</option>
-                      <option value="option1">Pakistan</option>
-                      <option value="option2">Afghanistan</option>
-                      <option value="option3">India</option>
-                      <option value="option4">England</option>
-                      <option value="option5">Australia</option>
+                      onChange={(e) => {
+                        handleFormChange('country', e.target.value)
+                      }}>
+                      {countryOption.map((option) => (
+                        <option key={option.value} value={option.label}>
+                          {option.label}
+                        </option>
+                      ))}
                     </select>
                   </div>
 
@@ -234,12 +287,14 @@ const SignUp = (props: Props) => {
                     <label className="block mb-2">Reason of Registering</label>
                     <select className="w-full border border-gray-300 rounded p-2"
                       value={formValues.reason}
-                      onChange={(e) => handleFormChange('reason', e.target.value)}>
-                      <option value="">Select Option</option>
-                      <option value="option1">I am registering to find best partner</option>
-                      <option value="option2">I am registering to find my friend a partner</option>
-                      <option value="option3">I am registering to find my son a partner</option>
-                      <option value="option4">I am registering to find my daughter a partner</option>
+                      onChange={(e) => {
+                        handleFormChange('reason', e.target.value)
+                      }}>
+                      {registeringOptions.map((option) => (
+                        <option key={option.value} value={option.label}>
+                          {option.label}
+                        </option>
+                      ))}
                     </select>
                   </div>
 
@@ -248,15 +303,15 @@ const SignUp = (props: Props) => {
                     <select className="w-full border border-gray-300 rounded p-2"
                       value={formValues.hearAbout}
                       onChange={(e) => handleFormChange('hearAbout', e.target.value)}>
-                      <option defaultValue="">Select Option</option>
-                      <option value="option1">From Internet</option>
-                      <option value="option2">From Facebook</option>
-                      <option value="option3">From Linkdin</option>
-                      <option value="option4">From Youtube</option>
+                      {hearAboutOptions.map((option) => (
+                        <option key={option.value} value={option.label}>
+                          {option.label}
+                        </option>
+                      ))}
                     </select>
                   </div>
                   <div className='text-center mt-5'>
-                    <button type="submit" className="login-btn border border-gray-300 rounded-full bg-pink-500 hover:bg-pink-700 text-white" 
+                    <button type="submit" className="login-btn border border-gray-300 rounded-full bg-pink-500 hover:bg-pink-700 text-white"
                     >Sign up</button>
                   </div>
                 </>
@@ -290,22 +345,14 @@ const SignUp = (props: Props) => {
             </div>
           </>
         )}
-        {/* <div className='form-group'>
-                <label className='mb-2'>Password</label>
-                <Field type="password" name="password" className="w-full border border-gray-300 rounded p-2" placeholder="Enter your password" />
-                <ErrorMessage name="password" component="div" className="text-red-500" />
-              </div> */}
-
-
-
       </div>
-
 
       <div className='text-center mt-5'>
         <span>Already have an account?<a className='cursor-pointer text-red-500' onClick={() => router.push('/login')}>Log In</a></span>
       </div>
     </div >
-    // <div><button onClick={()=>router.push('/login')}>Sign Up</button></div>
   )
 }
 export default SignUp
+
+

@@ -16,10 +16,10 @@ const firebaseConfig = {
 const initializeFirebase = async () => {
     if (await isSupported()) {
         const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
+        // const analytics = getAnalytics(app);
         const auth = getAuth(app);
         const db = getFirestore(app);
-        return { app, analytics, auth, db };
+        return { app, auth, db };
     } else {
         console.warn('Firebase Analytics is not supported in this environment.');
       

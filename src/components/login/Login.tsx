@@ -4,47 +4,45 @@ import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import {loginWithFacebook, loginWithGoogle, signInWithEmailAndPassword } from '@/sharedService/auth/auth';
+import { loginUser, loginWithFacebook, loginWithGoogle } from '@/sharedService/auth/auth';
 
 type Props = {}
 
 const Login = (props: Props) => {
   const router = useRouter();
   const [formData, setFormData] = useState({ email: "", password: "" });
-  
-    const handleSubmit = async (values: any) => {
 
-      console.log("values", values);
-      const email = values.email;
-      const password = values.password
-
-      try {
-        const user = await signInWithEmailAndPassword(email, password);
-        
-        console.log('Logged in user:', user);
-      } catch (error) {
-        console.error('Login failed in login file', error);
-      }
-    };
+  const handleSubmit = async (values: any) => {
+    const email = values.email;
+    const password = values.password
+    try {
+      const user = await loginUser(email, password);
+      console.log('Logged in user:', user);
+      router.push('/dashboard'); 
+    } catch (error) {
+      console.error('Login failed in login file', error);
+    }
+  };
   const handleGoogleLogin = async () => {
     try {
       const user = await loginWithGoogle();
       console.log('Logged in with Google:', user);
-     
+      router.push('/dashboard'); 
+
     } catch (error) {
       console.error('Google login error:', error);
-      
     }
   };
   const handleFacebookLogin = async () => {
     try {
       const user = await loginWithFacebook();
       console.log('Logged in with Facebook:', user);
+      router.push('/dashboard'); 
     } catch (error) {
       console.error('Facebook login error:', error);
     }
   };
- 
+
   const validationSchema = Yup.object().shape({
     email: Yup.string().required('Email is required').email('Invalid email format'),
     password: Yup.string().min(8).required('Password is required'),
@@ -89,7 +87,7 @@ const Login = (props: Props) => {
           Login with Google</button>
       </div>
       <div className='text-center mt-2'>
-        <button className="facebook-btn border border-gray-300 rounded-full"  onClick={handleFacebookLogin}>
+        <button className="facebook-btn border border-gray-300 rounded-full" onClick={handleFacebookLogin}>
           <i className="fa-brands fa-facebook me-1" style={{ color: 'rgb(19 16 198)' }}></i>
           Login with Facebook</button>
       </div>
