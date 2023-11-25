@@ -6,6 +6,11 @@ import { IoLogoFacebook } from "react-icons/io5";
 import Slider from "react-slick";
 import { Card, Dropdown } from "flowbite-react";
 import PersonCard from "../personCard/personCard";
+import { Navbar } from "flowbite-react";
+import { RiFacebookCircleLine } from "react-icons/ri";
+import { SlSocialTwitter } from "react-icons/sl";
+import { ImPinterest2 } from "react-icons/im";
+import { FaInstagramSquare } from "react-icons/fa";
 
 const datingSiteFeatures = [
   {
@@ -66,37 +71,29 @@ const cardsData = [
 
 const peopleData = [
   {
-    para:"dddfd",
-    name: "Bonnie Green",
-    role: "Visual Designer",
+    para: `"Love ac nunc laoreet, lobortis libero nec, semper velit sollicitudin nec lingula ut, aliquet volutpat eros"`,
+    name: "Devon Larret",
+    role: "FOUNDER, SOME COMPANY",
     imageUrl: "/avatar1.jpg",
   },
   {
-    para:"dddfd",
-    name: "Bonnie Green",
-    role: "Visual Designer",
-    imageUrl: "/avatar1.jpg",
+    para: `"Qiupid et nim quam, viverra sit amet purus eget, tempus pulvinar sollicitudin enim ac justo commodo dapibus"`,
+    name: "Jenna Smith",
+    role: "FOUNDER, SOME COMPANY",
+    imageUrl: "/avatar2.jpg",
   },
   {
-    para:"dddfd",
-    name: "Bonnie Green",
-    role: "Visual Designer",
-    imageUrl: "/avatar1.jpg",
+    para: `"Quis Love ipsum suspendisse ultrices gravida viverra maecenas accumsan lacus vel facilisis"`,
+    name: "Devon Larret",
+    role: "FOUNDER, SOME COMPANY",
+    imageUrl: "/avatar3.jpg",
   },
   {
-    para:"dddfd",
-    name: "Bonnie Green",
-    role: "Visual Designer",
+    para: `"Vestibulum egestas fringilla hendrerit.Nam sodales nulla arcu, ac ecuismod elit tristique love"`,
+    name: "Withney Austin",
+    role: "FOUNDER, SOME COMPANY",
     imageUrl: "/avatar1.jpg",
   },
-  {
-    para:"dddfd",
-    name: "Bonnie Green",
-    role: "Visual Designer",
-    imageUrl: "/avatar1.jpg",
-  },
-
-
 ];
 
 function Hero() {
@@ -108,14 +105,71 @@ function Hero() {
     autoplay: true,
     autoplaySpeed: 4000,
     pauseOnHover: true,
+    responsive: [
+      {
+        breakpoint: 1024, // Adjust settings for screens between 1024px and 768px
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768, // Adjust settings for screens between 768px and 480px
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480, // Adjust settings for screens below 480px
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
     <>
       <div className={styles.heroBanner}></div>
+      {/* relative p-[0.88rem] pt-4 bg-transparent */}
+
+      <Navbar
+        fluid
+        rounded
+        className="relative p-[0.88rem] pt-4 bg-transparent"
+      >
+        <Navbar.Brand>
+          {/* <img src="/favicon.svg" className="mr-3 h-6 sm:h-9" alt="Flowbite React Logo" /> */}
+          <span className="self-center whitespace-nowrap text-3xl text-[#ffffff]  font-bold">
+            Qiupid
+          </span>
+        </Navbar.Brand>
+        <div className="flex md:order-2">
+          <Navbar.Toggle />
+        </div>
+        <Navbar.Collapse>
+          <Navbar.Link href="#" active>
+            Home
+          </Navbar.Link>
+          <Navbar.Link href="#" className="bg-[#ffffff]">
+            About
+          </Navbar.Link>
+          <Navbar.Link href="#" className="">
+            Services
+          </Navbar.Link>
+          <Navbar.Link href="#" className="">
+            Pricing
+          </Navbar.Link>
+          <Navbar.Link href="#" className="">
+            Contact
+          </Navbar.Link>
+        </Navbar.Collapse>
+      </Navbar>
 
       <div className="mx-auto relative ">
-        <div className="text-center pe-4 ps-4 lg:mt-[22rem]  mt-[10rem]">
+        <div className="text-center pe-4 ps-4 lg:mt-[15.35rem]  mt-[10rem] ">
           <h1 className="text-[#FFFFFF]  lg:text-6xl sm:text-5xl  text-4xl  font-bold   2xl:ps-[24rem] 2xl:pe-[24rem]   xl:ps-[18rem] lg:ps-[8rem]  xl:pe-[18rem] lg:pe-[8rem]   ">
             Dating for Grown Ups Make a Real Connection
           </h1>
@@ -127,7 +181,7 @@ function Hero() {
             css="bg-[#ED147D] pe-7 ps-7   pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold mt-6 sm:mt-8 mb-2"
           />
         </div>
-        <div className="flex pt-10 pb-10  lg:pt-0 lg:pb-0   lg:flex-row   flex-col  pe-16 ps-16  lg:justify-between  items-center justify-center lg:mt-[3.25rem] mt-12  bg-[#ED147D] ">
+        <div className="flex pt-10 pb-10  lg:pt-0 lg:pb-0   lg:flex-row   flex-col  pe-16 ps-16  lg:justify-between  items-center justify-center lg:mt-[5.75rem] mt-12  bg-[#ED147D] ">
           <Image
             src="/Explore-Image.png"
             alt="My Image"
@@ -285,11 +339,11 @@ function Hero() {
       </div>
 
       <div className="bg-[#ed147d]">
-        <div className="container mx-auto text-center pt-12 pb-12">
+        <div className="  overflow-hidden text-center pt-12 pb-12">
           <h2 className="mb-10 text-[#ffff] font-bold text-4xl">
             Qiupid Love Stories
           </h2>
-          <Slider {...settings} className="">
+          <Slider {...settings} className="flex justify-center">
             {peopleData.map((person, index) => (
               <div key={index}>
                 <PersonCard {...person} />
@@ -298,6 +352,34 @@ function Hero() {
           </Slider>
         </div>
       </div>
+
+      <footer className="">
+        <div className="flex pt-4 pb-4   lg:flex-row   flex-col  pe-16 ps-16  lg:justify-between  items-center justify-center   bg-[#ffffff] ">
+          <div className="Logo text-3xl font-bold">Quipid</div>
+          <p className="text-sm text-[#868790]">
+            Copyright © 2023 Qiupid. All Rights Reserved by Modeltheme.
+          </p>
+          <div className="flex space-x-2">
+            <i className=" p-2 bg-black">
+              <RiFacebookCircleLine  className="fill-white"/>
+            </i>
+             
+            <i className=" p-2 bg-black">
+            <SlSocialTwitter  className="fill-white"/>
+            </i>
+
+            <i className=" p-2 bg-black">
+            <ImPinterest2  className="fill-white"/>
+            </i>
+              
+            <i className=" p-2 bg-black">
+
+              <FaInstagramSquare  className="fill-white"/>
+              </i>
+
+          </div>
+        </div>
+      </footer>
     </>
   );
 }
