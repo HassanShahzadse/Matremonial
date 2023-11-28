@@ -109,6 +109,7 @@ export default function CreateProfile() {
         livingArrangements: '',
         myHeight: '',
         hairColor: '',
+        eyesColor: '',
         myBuild: '',
         doISmoke: '',
         anyDisabilitites: '',
@@ -142,22 +143,49 @@ export default function CreateProfile() {
     const handleSubmit = async (values: any) => {
         console.log("Form Values in handle submit", formValues);
         let data = {
+            //heard_about_us
             headline: formValues.headline,
-            aboutMe: formValues.aboutMe,
-            educationLevel: formValues.educationLevel,
-            jobTitle: formValues.jobTitle,
+            bio: formValues.aboutMe,
+            education: formValues.educationLevel,
+            job: formValues.jobTitle,
             profession: formValues.profession,
-            motherTongue: formValues.motherTongue,
-            secondLanguage: formValues.secondLanguage,
+            tongue: formValues.motherTongue,
+            slang: formValues.secondLanguage,
             gender: formValues.gender,
             citizenship: formValues.citizenship,
             income: formValues.income,
-            willingToRelocate: formValues.willingToRelocate,
-            haveChildren: formValues.haveChildren,
-            likeHaveChildren: formValues.likeHaveChildren,
-            martialStatus: formValues.martialStatus,
-            lookingToMarry: formValues.lookingToMarry
+            relocate: formValues.willingToRelocate,
+            children: formValues.haveChildren,
+            haveChildren: formValues.likeHaveChildren,
+            maritalStatus: formValues.martialStatus,
+            maritalTime: formValues.lookingToMarry,
+            livingArrange: formValues.livingArrangements,
+            height: formValues.myHeight,
+            hair: formValues.hairColor,
+            eyes: formValues.eyesColor,
+            buildCont: formValues.myBuild,
+            smokeFreq: formValues.doISmoke,
+            disability: formValues.anyDisabilitites,
+            religion: formValues.religiuosness,
+            sect: formValues.mySect,
+            revert: formValues.revert,
+            halal: formValues.keepHalal,
+            hijab: formValues.wearHijab,
+            beard: formValues.preferBeard,
+            salah: formValues.performSalaah,
+            zakat: formValues.payZakat,
+            ramadan: formValues.fastRamadan,
+            partnerLocation: formValues.partnerLocation,
+            partnerReligion: formValues.partnerReligion,
+            partnerSect: formValues.partnerSect,
+            partnerEducation: formValues.partnerEducation,
+            partnerProfession: formValues.partnerProfession,
+            partnerType:formValues.describePartner,
+            imageUrls: formValues.profileImage,
+            // imageUrls: formValues.morePics
+            
         }
+        console.log("data",data)
         // try {
         //   const user = await createUser(data);
         //   router.push('/login'); 
@@ -207,6 +235,88 @@ export default function CreateProfile() {
                             </div>
                         </div>
                         <div className="col-span-12 md:col-span-9">
+                        <div className="card bg-white p-6 rounded-25 shadow-custom-dark mx-auto">
+                                <h1 className="text-2xl font-bold text-center">Profile Info</h1>
+                                <div className='card-body'>
+                                    <div className='form-group mb-3'>
+                                        <label className='mb-2'>Headline</label>
+                                        <Field type="text" name="headline" className="w-full border border-gray-300 rounded-25 p-2" placeholder="Enter Headline"
+                                            onChange={(e: any) => {
+                                                setFieldValue('headline', e.target.value)
+                                                handleFormChange('headline', e.target.value);
+                                            }}
+                                        />
+                                        <ErrorMessage name="headline" component="div" className="text-red-500" />
+                                    </div>
+                                    <div className='form-group mb-3'>
+                                        <label className='mb-2'>About Me</label>
+                                        <textarea name="aboutMe" className="w-full border border-gray-300 rounded-25 p-2" placeholder="Enter" rows={5}
+                                            onChange={(e: any) => {
+                                                setFieldValue('aboutMe', e.target.value)
+                                                handleFormChange('aboutMe', e.target.value);
+                                            }} />
+                                        <ErrorMessage name="aboutMe" component="div" className="text-red-500" />
+                                    </div>
+                                    <div className='form-group mb-3'>
+                                        <label className='mb-2'>What I am Looking for</label>
+                                        <RadioButtons
+                                            options={radioGenderOptions}
+                                            selectedOption={formValues.gender}
+                                            onOptionChange={(value: any) => handleFormChange('gender', value)}
+                                        />
+                                    </div>
+                                    <div className='form-group mb-3'>
+                                        <label className='mb-2'>Education Level</label>
+                                        <Field type="text" name="educationLevel" className="w-full border border-gray-300 rounded-25 p-2" placeholder="Enter Education Level"
+                                            onChange={(e: any) => {
+                                                setFieldValue('educationLevel', e.target.value)
+                                                handleFormChange('educationLevel', e.target.value);
+                                            }} />
+                                        <ErrorMessage name="educationLevel" component="div" className="text-red-500" />
+                                    </div>
+
+                                    <div className='form-group mb-3'>
+                                        <label className='mb-2'>My Job Title</label>
+                                        <Field type="text" name="jobTitle" className="w-full border border-gray-300 rounded-25 p-2" placeholder="Enter Job Title"
+                                            onChange={(e: any) => {
+                                                setFieldValue('jobTitle', e.target.value)
+                                                handleFormChange('jobTitle', e.target.value);
+                                            }} />
+                                        <ErrorMessage name="jobTitle" component="div" className="text-red-500" />
+                                    </div>
+
+                                    <div className='form-group mb-3'>
+                                        <label className='mb-2'>My Profession</label>
+                                        <Field type="text" name="profession" className="w-full border border-gray-300 rounded-25 p-2" placeholder="Enter Profession"
+                                            onChange={(e: any) => {
+                                                setFieldValue('profession', e.target.value)
+                                                handleFormChange('profession', e.target.value);
+                                            }} />
+                                        <ErrorMessage name="profession" component="div" className="text-red-500" />
+                                    </div>
+
+                                    <div className='form-group mb-3'>
+                                        <label className='mb-2'>Mother Tongue</label>
+                                        <Field type="text" name="motherTongue" className="w-full border border-gray-300 rounded-25 p-2" placeholder="Enter Mother Tongue"
+                                            onChange={(e: any) => {
+                                                setFieldValue('motherTongue', e.target.value)
+                                                handleFormChange('motherTongue', e.target.value);
+                                            }} />
+                                        <ErrorMessage name="motherTongue" component="div" className="text-red-500" />
+                                    </div>                                 
+
+                                    <div className='form-group mb-3'>
+                                        <label className='mb-2'>Second Language</label>
+                                        <Field type="text" name="secondLanguage" className="w-full border border-gray-300 rounded-25 p-2" placeholder="Enter econdLanguage"
+                                            onChange={(e: any) => {
+                                                setFieldValue('secondLanguage', e.target.value)  
+                                                handleFormChange('secondLanguage', e.target.value);
+                                            }} />
+                                        <ErrorMessage name="secondLanguage" component="div" className="text-red-500" />
+                                    </div>                                    
+                                </div>
+                            </div>
+
                             <div className="card bg-white p-6 rounded-25 shadow-custom-dark mx-auto">
                                 <h1 className="text-2xl font-bold text-center">Personal Info</h1>
                                 <div className='card-body'>
