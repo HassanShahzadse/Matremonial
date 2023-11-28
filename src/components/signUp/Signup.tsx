@@ -89,6 +89,8 @@ const SignUp = (props: Props) => {
       heard_about_us: formValues.hearAbout,
       gender: formValues.gender
     }
+console.log("data", data)
+    return
     try {
       const user = await createUser(data);
       router.push('/login'); 
@@ -137,7 +139,7 @@ const SignUp = (props: Props) => {
     // hearAbout: Yup.string().required('Reason of registering is required'),
     // password: Yup.string().min(8).required('Password is required'),
   });
-
+  const radioGenderOptions = ['Male', 'Female', 'Non-Binary']; 
   return (
     <div className="card bg-white p-6 rounded-lg shadow-md mx-auto">
       {step === 1 && (
@@ -241,6 +243,7 @@ const SignUp = (props: Props) => {
                   <div className='form-group mb-3'>
                     <label className='mb-2'>Gender</label>
                     <RadioButtons
+                     options={radioGenderOptions}
                       selectedOption={formValues.gender}
                       onOptionChange={(value: any) => handleFormChange('gender', value)}
                     />
