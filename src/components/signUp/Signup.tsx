@@ -76,8 +76,7 @@ const SignUp = (props: Props) => {
       setStep(step - 1);
     }
   };
-  const handleSubmit = async (values: any) => {
-    console.log("Form Values in handle submit", formValues);
+  const handleSubmit = async () => {
     let data = {
       email: formValues.email,
       name: formValues.userName,
@@ -89,8 +88,6 @@ const SignUp = (props: Props) => {
       heard_about_us: formValues.hearAbout,
       gender: formValues.gender
     }
-console.log("data", data)
-    return
     try {
       const user = await createUser(data);
       router.push('/login'); 

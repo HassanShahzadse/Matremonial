@@ -1,6 +1,8 @@
 "use client"
+import { userProfile } from "@/sharedService/userProfile/userProfile";
 import RadioButtons from "@/utils/shared/radioBtn";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import * as Yup from 'yup';
 
@@ -88,7 +90,10 @@ const radioWearHijabOptions = ['Yes', 'No', 'Occasionally'];
 const radioPreferBeardOptions = ['Yes', 'No', 'Trend'];
 const radioPayZakatOptions = ['Yes', 'No', 'Sometimes'];
 const radioFastRamadanOptions = ['Yes', 'No', 'A few'];
-export default function CreateProfile() {
+const CreateProfile = () => {
+    // const router = useRouter();
+    //  const userId = router.query.id;
+    const userId = 'jhDIToIVreeMK3yT8XAE';
     const [show, setShow] = useState(false);
     const [formValues, setFormValues] = useState({
         headline: '',
@@ -133,17 +138,16 @@ export default function CreateProfile() {
 
     });
     const validationSchema = Yup.object().shape({
-        userName: Yup.string(),
-        email: Yup.string().email("Invalid email address"),
-        country: Yup.string(),
-        dateOfBirth: Yup.string(),
-        reason: Yup.string(),
-        hearAbout: Yup.string(),
+        // headline: Yup.string(),
+        // aboutMe: Yup.string(),
+        // educationLevel: Yup.string(),
+        // jobTitle: Yup.string(),
+        // profession: Yup.string(),
+        // motherTongue: Yup.string(),
     });
-    const handleSubmit = async (values: any) => {
+    const handleSubmit = async () => {
         console.log("Form Values in handle submit", formValues);
         let data = {
-            //heard_about_us
             headline: formValues.headline,
             bio: formValues.aboutMe,
             education: formValues.educationLevel,
@@ -180,18 +184,17 @@ export default function CreateProfile() {
             partnerSect: formValues.partnerSect,
             partnerEducation: formValues.partnerEducation,
             partnerProfession: formValues.partnerProfession,
-            partnerType:formValues.describePartner,
+            partnerType: formValues.describePartner,
             imageUrls: formValues.profileImage,
             // imageUrls: formValues.morePics
-            
         }
-        console.log("data",data)
-        // try {
-        //   const user = await createUser(data);
-        //   router.push('/login'); 
-        // } catch (error) {
-        //   console.error('Login failed in login file', error);
-        // }
+        console.log("data", data)
+        try {
+          const user = await userProfile(data,userId);
+        //   router.push('/dashboard'); 
+        } catch (error) {
+          console.error('Login failed in login file', error);
+        }
     };
     const handleFormChange = (fieldName: string, value: any) => {
         setFormValues((prevFormValues) => {
@@ -235,7 +238,7 @@ export default function CreateProfile() {
                             </div>
                         </div>
                         <div className="col-span-12 md:col-span-9">
-                        <div className="card bg-white p-6 rounded-25 shadow-custom-dark mx-auto">
+                            <div className="card bg-white p-6 rounded-25 shadow-custom-dark mx-auto">
                                 <h1 className="text-2xl font-bold text-center">Profile Info</h1>
                                 <div className='card-body'>
                                     <div className='form-group mb-3'>
@@ -303,17 +306,17 @@ export default function CreateProfile() {
                                                 handleFormChange('motherTongue', e.target.value);
                                             }} />
                                         <ErrorMessage name="motherTongue" component="div" className="text-red-500" />
-                                    </div>                                 
+                                    </div>
 
                                     <div className='form-group mb-3'>
                                         <label className='mb-2'>Second Language</label>
-                                        <Field type="text" name="secondLanguage" className="w-full border border-gray-300 rounded-25 p-2" placeholder="Enter econdLanguage"
+                                        <Field type="text" name="secondLanguage" className="w-full border border-gray-300 rounded-25 p-2" placeholder="Enter SecondLanguage"
                                             onChange={(e: any) => {
-                                                setFieldValue('secondLanguage', e.target.value)  
+                                                setFieldValue('secondLanguage', e.target.value)
                                                 handleFormChange('secondLanguage', e.target.value);
                                             }} />
                                         <ErrorMessage name="secondLanguage" component="div" className="text-red-500" />
-                                    </div>                                    
+                                    </div>
                                 </div>
                             </div>
 
@@ -698,3 +701,4 @@ export default function CreateProfile() {
         </Formik>
     );
 }
+export default CreateProfile

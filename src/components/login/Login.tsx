@@ -16,9 +16,15 @@ const Login = (props: Props) => {
     const email = values.email;
     const password = values.password
     try {
-      const user = await loginUser(email, password);
+      let user = await loginUser(email, password);
       console.log('Logged in user:', user);
-      router.push('/dashboard'); 
+      if(user && user.id){
+        const userId = user.id
+        router.push(`/createUserProfile?id=${userId}`);
+      }
+      else {
+        console.error('User object or user.id is undefined');
+      }
     } catch (error) {
       console.error('Login failed in login file', error);
     }

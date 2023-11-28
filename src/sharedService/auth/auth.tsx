@@ -4,14 +4,21 @@ import { addDoc, collection, getDocs, getFirestore, query, where } from 'firebas
 import { getAuth, signInWithEmailAndPassword as signInWithEmailAndPasswordFirebase } from 'firebase/auth';
 
 
+
 export const loginUser = async (email: any, password: any) => {
   try {
-    const db = getFirestore();
+    const firebaseInstance = await initializeFirebase();
+    if (!firebaseInstance) {
+      console.error('Firebase is not supported.');
+      return false;
+    }
+    const { db } = firebaseInstance;
     const usersCollection = collection(db, 'users');
     const q = query(usersCollection, where('email', '==', email), where('password', '==', password));
     const querySnapshot = await getDocs(q);
     if (querySnapshot.size > 0) {
-      const userData = querySnapshot.docs[0].data();
+      // const userData = querySnapshot.docs[0].data();
+      const userData = { id: querySnapshot.docs[0].id, ...querySnapshot.docs[0].data() };
       return userData;
     } else {
       console.error('Invalid login credentials');
