@@ -1,10 +1,8 @@
 
 interface DashboardCardProps {
-  id: number;
-  image: string;
-  avatar: string;
-  name: string;
-  rating: string;
+  age: number;
+  location: string;
+  decision: string;
 }
 
 export default DashboardCardProps;
