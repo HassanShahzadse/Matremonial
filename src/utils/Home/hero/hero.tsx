@@ -1,4 +1,6 @@
+"use client";
 import React from "react";
+import { useState } from "react";
 import styles from "./hero.module.css";
 import Button from "@/utils/shared/button";
 import Image from "next/image";
@@ -11,7 +13,7 @@ import { RiFacebookCircleLine } from "react-icons/ri";
 import { SlSocialTwitter } from "react-icons/sl";
 import { ImPinterest2 } from "react-icons/im";
 import { FaInstagramSquare } from "react-icons/fa";
-
+import Link from "next/link";
 const datingSiteFeatures = [
   {
     title: "Awesome Community",
@@ -95,6 +97,12 @@ const peopleData = [
     imageUrl: "/avatar1.jpg",
   },
 ];
+const navLinks = [
+  { href: "/", text: "Home" },
+  { href: "/subscription", text: "Subscription" },
+  { href: "/contact-us", text: "Contact Us" },
+  { href: "/members", text: "Members" },
+];
 
 function Hero() {
   var settings = {
@@ -129,47 +137,70 @@ function Hero() {
       },
     ],
   };
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
       <div className={styles.heroBanner}></div>
-    
 
-      <Navbar
-        fluid
-        rounded
-        className="relative p-[0.88rem] pt-4 bg-transparent"
-      >
-        <Navbar.Brand>
-          {/* <img src="/favicon.svg" className="mr-3 h-6 sm:h-9" alt="Flowbite React Logo" /> */}
-          <span className="self-center whitespace-nowrap text-3xl text-[#ffffff]  font-bold">
-            Qiupid
-          </span>
-        </Navbar.Brand>
-        <div className="flex md:order-2">
-          <Navbar.Toggle />
+      <nav className="flex items-center justify-between flex-wrap p-5   relative">
+        <div className="flex items-center flex-shrink-0 text-white mr-6 lg:mr-12">
+          <h1 className="font-bold text-3xl text-[#fffff] cursor-pointer -mt-2">
+            Matrimonial
+          </h1>
         </div>
-        <Navbar.Collapse>
-          <Navbar.Link href="#" active>
-            Home
-          </Navbar.Link>
-          <Navbar.Link href="#" className="bg-[#ffffff]">
-            About
-          </Navbar.Link>
-          <Navbar.Link href="#" className="">
-            Services
-          </Navbar.Link>
-          <Navbar.Link href="#" className="">
-            Pricing
-          </Navbar.Link>
-          <Navbar.Link href="#" className="">
-            Contact
-          </Navbar.Link>
-        </Navbar.Collapse>
-      </Navbar>
+        <div className="block lg:hidden">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="flex items-center px-3 py-2 rounded text-black-500 hover:text-black-400   text-[#ffffff]"
+          >
+            <svg
+              className={`fill-current h-3 w-3 ${isOpen ? "hidden" : "block"}`}
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+            </svg>
+            <svg
+              className={`fill-current h-3 w-3 ${isOpen ? "block" : "hidden"}`}
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
+            </svg>
+          </button>
+        </div>
+        <div
+          className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto ${
+            isOpen ? "block" : "hidden"
+          }`}
+        >
+          <div className="text-sm lg:flex-grow">
+          {navLinks.map((link, index) => (
+            <Link key={index} href={link.href} className="block mt-4 lg:inline-block lg:mt-0 text-[#ffff] mr-4 font-bold" >
+              {link.text}
+            </Link>
+          ))}
+          </div>
+          <div className="mt-4 md:mt-0">
+            <Link href="/login">
+              <Button
+                children="Login"
+                css="bg-[#ED147D] pe-7 ps-7   pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold "
+              />
+            </Link>
+            <Link href="/signup">
+              <Button
+                children="Signup"
+                css="bg-[#ED147D] pe-7 ps-7  ms-3  pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold "
+              />
+            </Link>
+          </div>
+        </div>
+      </nav>
 
       <div className="mx-auto relative ">
-        <div className="text-center pe-4 ps-4 lg:mt-[15.35rem]  mt-[10rem] ">
+        <div className="text-center pe-4 ps-4 lg:mt-[14.5rem]  mt-[10rem] ">
           <h1 className="text-[#FFFFFF]  lg:text-6xl sm:text-5xl  text-4xl  font-bold   2xl:ps-[24rem] 2xl:pe-[24rem]   xl:ps-[18rem] lg:ps-[8rem]  xl:pe-[18rem] lg:pe-[8rem]   ">
             Dating for Grown Ups Make a Real Connection
           </h1>
@@ -361,22 +392,20 @@ function Hero() {
           </p>
           <div className="flex space-x-2">
             <i className=" p-2 bg-black">
-              <RiFacebookCircleLine  className="fill-white"/>
-            </i>
-             
-            <i className=" p-2 bg-black">
-            <SlSocialTwitter  className="fill-white"/>
+              <RiFacebookCircleLine className="fill-white" />
             </i>
 
             <i className=" p-2 bg-black">
-            <ImPinterest2  className="fill-white"/>
+              <SlSocialTwitter className="fill-white" />
             </i>
-              
+
             <i className=" p-2 bg-black">
+              <ImPinterest2 className="fill-white" />
+            </i>
 
-              <FaInstagramSquare  className="fill-white"/>
-              </i>
-
+            <i className=" p-2 bg-black">
+              <FaInstagramSquare className="fill-white" />
+            </i>
           </div>
         </div>
       </footer>
