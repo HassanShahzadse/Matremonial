@@ -133,6 +133,7 @@ export default function DashboardComponent() {
       <button className="bg-[#F10086] text-white active:scale-95 font-semibold my-4 p-2 px-4 rounded-sm ">{card.Profile}</button>
       <button className="bg-[#F10086] text-white active:scale-95 font-semibold p-2 px-4 rounded-sm">{card.Chat}</button>
             
+            
             </div>
           ))}
         
