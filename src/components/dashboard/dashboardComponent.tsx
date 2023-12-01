@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Layout from "../mainLayout/layout";
 import Image from "next/image";
 import Button from "@/utils/shared/button";
@@ -10,6 +10,10 @@ import Bridal from "/public/img1.jpg";
 import Love from "/public/img2.jpeg";
 import DashboardCardProps from './../../types/dashboard/DashboardProps';
 import fetchData from "@/sharedService/dashboardService/page"; // permanently
+import initializeFirebase from "@/sharedService/fireBase/firebase";
+import { Firestore, collection, getDocs, query } from "firebase/firestore";
+import { FirebaseApp } from "firebase/app";
+import { Auth } from "firebase/auth";
 
 const DashboardCard = [
   { id: 1, image: Bridal, avatar: Avatar, name: 'John Snow', Profile: 'View Porfile', Chat:'Chat'},
@@ -23,9 +27,11 @@ const DashboardCard = [
 ];
 
 type CardProps = {
+  id:number;
   title: string;
   content: string;
-  imageUrl: string;
+  name:string;
+  image: string;
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -33,14 +39,14 @@ type CardProps = {
 const Card: React.FC<CardProps> = ({
   title,
   content,
-  imageUrl,
+  image,
   setIsModalOpen,
 }) => (
   <div className="bg-white p-4 rounded-lg shadow-md mb-4 mt-10 flex items-center">
     <Image
       width={500}
       height={500}
-      src={imageUrl}
+      src={image}
       alt={title}
       className="card-image rounded"
     />
@@ -57,31 +63,41 @@ const Card: React.FC<CardProps> = ({
     </div>
   </div>
 );
+const fetchDataFromFirebase = async () => {
+  const firebaseInstance = await initializeFirebase();
+  const { app, auth, db } = firebaseInstance as { app: FirebaseApp; auth: Auth; db: Firestore };
+  const usersCollection = collection(db, 'users');
+  const usersQuery = query(usersCollection);
+  const querySnapshot = await getDocs(usersQuery);
+  const usersData = querySnapshot.docs.map(doc => doc.data());
 
-export default function DashboardComponent() {
+  return usersData;
+};
+export default  function DashboardComponent() {
   const [show, setShow] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const cardData = [
-    {
-      title: "Ahmed",
-      content: "Good to work",
-      imageUrl: "/img1.jpg",
-      setIsModalOpen,
-    },
-    {
-      title: "Muneeb",
-      content: "Looking Good",
-      imageUrl: "/img2.jpeg",
-      setIsModalOpen,
-    },
-    {
-      title: "Aslam",
-      content: "Having good business",
-      imageUrl: "/img1.jpg",
-      setIsModalOpen,
-    },
-  ];
+  const [userCards, setUserCards] = useState<CardProps[]>([]); 
+  useEffect(() => {
+    async function fetchData() {
+      const usersData = await fetchDataFromFirebase();
 
+      const cards = usersData.map(user => ({
+        id:user.phone_number,
+        title: user.username,
+        name: user.username,
+        content: user.bio,
+        image: user?.imageUrls ? user.imageUrls[0]:'', // Assuming there's at least one image URL
+        isModalOpen: false,
+        setIsModalOpen
+      }));
+
+      setUserCards(cards);
+      console.log(cards)
+    }
+
+    fetchData();
+  }, []);
+  console.log(fetchDataFromFirebase())
   const handleGoogleLogin = async () => {
     try {
       const userId = "someUserId";
@@ -111,7 +127,7 @@ export default function DashboardComponent() {
       {/* ****** Cards ****** */}
 
         <div className="grid lg:grid-cols-3 gap-6 mb-8">
-          {DashboardCard.map((card) => (
+          {userCards.map((card) => (
             <div key={card.id} className="card shadow-xl p-5 rounded-md text-center hover:scale-105 duration-300">
               <div className="img">
                 <Image
@@ -122,16 +138,17 @@ export default function DashboardComponent() {
                 />
                 <div className="flex justify-center ">
                   <Image
-                    src={card.avatar}
+                    src={card.image}
                     alt="My Image"
                     className="w-[80px] h-[80px] rounded-full -mt-10"
+                    width={500} height={200}
                   />
                 </div>
               </div>
               <h1 className="my-3">{card.name}</h1>
               {/* <button className="my-3 bg"> </button>    */}
-      <button className="bg-[#F10086] text-white active:scale-95 font-semibold my-4 p-2 px-4 rounded-sm ">{card.Profile}</button>
-      <button className="bg-[#F10086] text-white active:scale-95 font-semibold p-2 px-4 rounded-sm">{card.Chat}</button>
+      <button className="bg-[#F10086] text-white active:scale-95 font-semibold my-4 p-2 px-4 rounded-sm ">abc</button>
+      <button className="bg-[#F10086] text-white active:scale-95 font-semibold p-2 px-4 rounded-sm">abc</button>
             
             
             </div>
