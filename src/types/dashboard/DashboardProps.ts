@@ -1,5 +1,5 @@
 
-interface DashboardCardProps {
+interface DashboardCardProps {  
   age: number;
   location: string;
   decision: string;

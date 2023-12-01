@@ -26,6 +26,11 @@ const DashboardCard = [
   // { id: 2, image: myImage, avatar: Avatar,name:'John Snow', Profile: 'View Porfile', Chat:'Chat'},
   // { id: 2, image: myImage, avatar: Avatar, name: 'John Snow', Profile: 'View Porfile', Chat:'Chat'},
   // { id: 2, image: myImage, avatar: Avatar, name: 'John Snow', Profile: 'View Porfile', Chat:'Chat'},
+  { id: 1, image: Avatar, name: 'John Snow', age: 28, location: 'New York, USA', gender: 'Female', decision: 'Chat ' },
+  { id: 1, image: Man, name: 'John Snow', age: 28, location: 'New York, USA', gender: 'Female', decision: 'Chat' },
+  { id: 1, image: Woman, name: 'John Snow', age: 28, location: 'New York, USA', gender: 'Female', decision: 'Chat' },
+  { id: 1, image: Man, name: 'John Snow', age: 28, location: 'New York, USA', gender: 'Female', decision: 'Chat' },
+  { id: 1, image: Avatar, name: 'John Snow', age: 28, location: 'New York, USA', gender: 'Female', decision: 'Chat ' },
   {
     id: 1,
     image: Avatar,
@@ -189,7 +194,7 @@ export default function DashboardComponent() {
       {/* ****** Cards ****** */}
 
 
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 mx-5 gap-4  my-10">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 mx-5 gap-4  my-10">
         {DashboardCard.map((card) => (
           <div
             key={card.id}
@@ -211,11 +216,11 @@ export default function DashboardComponent() {
                     {card.gender}
                   </span>
                 </p>
-                <span className="text-red-500 bg-gray-300 p-1 rounded-2xl  px-6">
+                <span className="text-red-500 bg-gray-300 p-1 rounded-2xl text-sm ">
                   {card.decision}
                 </span>
-                <span className="text-green-500 bg-gray-300 p-1 rounded-2xl ml-2  px-6 ">
-                  Yes
+                <span className="text-green-500 bg-gray-300 p-1 rounded-2xl ml-2 text-sm  ">
+                  View Profile
                 </span>
               </div>
             </div>
