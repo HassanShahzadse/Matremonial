@@ -181,7 +181,7 @@ export default function DashboardComponent() {
     <Layout show={show} setShow={setShow}>
       {/* ****** Search Bar ****** */}
 
-      <div className="  mx-auto shadow-xl   ">
+      <div className="  mx-auto shadow-xl z-10 ">
         <div className="search h-36 flex items-center justify-center relative">
           <input type="text" className="w-[60%] rounded-md focus:outline-0" />
           <button className="bg-[#F10086] text-white active:scale-95 font-semibold p-3 px-3 ml-5 rounded ">
