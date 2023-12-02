@@ -1,17 +1,25 @@
-'use client'
-import React, { useEffect } from "react";
-import { useAuthContext } from "@/context/AuthContext";
-import { useRouter } from "next/router"; // Changed from "next/navigation"
+// components/ProtectedRouteWrapper.tsx
+import React, { ReactNode, useEffect } from 'react';
+import { useAuthContext } from '../../context/AuthContext';
+import { useRouter } from 'next/navigation';
 
-function Page() {
-  const { user, /* Add setUser if needed */ } = useAuthContext();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (user == null) router.push("/");
-  }, [user, router]);
-
-  return <h1>Only logged in users can view this page</h1>;
+interface ProtectedRouteWrapperProps {
+  children: ReactNode;
 }
 
-export default Page;
+const ProtectedRouteWrapper: React.FC<ProtectedRouteWrapperProps> = ({ children }) => {
+  const { user } = useAuthContext();
+  const router = useRouter();
+   
+  useEffect(() => {
+    
+    if (!user) {
+      // Redirect to the login page if the user is not authenticated
+      router.push('/login');
+    }
+  }, [user, router]);
+
+  return <>{children}</>;
+};
+
+export default ProtectedRouteWrapper;
