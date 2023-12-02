@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp,getApps } from "firebase/app";
 import { getAnalytics, isSupported } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
@@ -25,5 +25,5 @@ const initializeFirebase = async () => {
       
     }
 };
-
+export let firebase_app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 export default initializeFirebase;
