@@ -105,7 +105,7 @@ const Card: React.FC<CardProps> = ({
   image,
   setIsModalOpen,
 }) => (
-  <div className="bg-white p-4 rounded-lg shadow-md mb-4 mt-10 flex items-center">
+  <div className="bg-white p-4 rounded-lg  mb-4 mt-10 flex items-center">
     <Image
       width={500}
       height={500}
@@ -181,6 +181,7 @@ export default function DashboardComponent() {
     <Layout show={show} setShow={setShow}>
       {/* ****** Search Bar ****** */}
 
+
       <div className="  mx-auto shadow-xl z-10 ">
         <div className="search h-36 flex items-center justify-center relative">
           <input type="text" className="w-[60%] rounded-md focus:outline-0" />
@@ -194,11 +195,11 @@ export default function DashboardComponent() {
       {/* ****** Cards ****** */}
 
 
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 mx-5 gap-4  my-10">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 mx-5 / gap-6  my-12">
         {DashboardCard.map((card) => (
           <div
             key={card.id}
-            className="card1 shadow-xl rounded-md text-center hover:scale-105 duration-300"
+            className="card1 shadow-md rounded-md text-center hover:scale-105 duration-300"
           >
             <div className="flex flex-row space-x-5">
               <div className="basis-1/2">
