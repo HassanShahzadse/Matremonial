@@ -2,6 +2,8 @@ import { FacebookAuthProvider, GoogleAuthProvider, signInWithPopup, createUserWi
 import initializeFirebase from '../fireBase/firebase';
 import { addDoc, collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
 import { getAuth, signInWithEmailAndPassword as signInWithEmailAndPasswordFirebase } from 'firebase/auth';
+import {  signOut } from 'firebase/auth';
+import { firebase_app } from "./../fireBase/firebase"
 
 
 
@@ -160,3 +162,12 @@ export const createUser = async (formData: any) => {
   }
 };
 
+const auth = getAuth(firebase_app);
+export const logout = async (): Promise<void> => {
+  try {
+    await signOut(auth);
+    console.log('User logged out successfully');
+  } catch (error) {
+    console.error('Logout error:', error);
+  }
+};

@@ -14,9 +14,7 @@ interface AuthContextProviderProps {
 }
 
 export const AuthContext = createContext<AuthContextProps>({ user: null });
-
 export const useAuthContext = () => useContext(AuthContext);
-
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
