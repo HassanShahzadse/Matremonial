@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { loginUser, loginWithFacebook, loginWithGoogle } from '@/sharedService/auth/auth';
+import { fetchUserInfoFromFirebase, fetchUserInfoFromFirebaseEmail } from '@/sharedService/users/user';
 
 type Props = {}
 
@@ -31,7 +32,8 @@ const Login = (props: Props) => {
   };
   const handleGoogleLogin = async () => {
     try {
-      const user = await loginWithGoogle();
+      const user:any = await loginWithGoogle();
+      const userInfo:any = await fetchUserInfoFromFirebaseEmail(user.email);
       console.log('Logged in with Google:', user);
       router.push('/dashboard'); 
 
@@ -103,7 +105,7 @@ const Login = (props: Props) => {
           Login with Apple ID</button>
       </div>
       <div className='text-center mt-5'>
-        <span>Don't have an account?<a className='cursor-pointer text-red-500' onClick={() => router.push('/signup')}>Sign in</a></span>
+        <span>Don't have an account?<a className='cursor-pointer text-red-500' onClick={() => router.push('/signup')}>Sign Up</a></span>
       </div>
     </div >
   );
