@@ -3,6 +3,14 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useState } from "react";
+import { FaMessage } from "react-icons/fa6";
+import { FaUserFriends } from "react-icons/fa";
+import { IoNotifications } from "react-icons/io5";
+import { CgProfile } from "react-icons/cg";
+import { IoMdSettings } from "react-icons/io";
+
+
+
 
 const SideBar = ({ show }: any) => {
   return (
@@ -20,23 +28,23 @@ const SideBar = ({ show }: any) => {
               <span className="nav-link-name">Dashboard</span>
             </Link>
             <Link href="/dashboard/messages" className="nav-link ">
-              <i className="fas fa-tachometer-alt nav-link-icon"></i>
+              <FaMessage/>
               <span className="">Messages</span>
             </Link>
             <Link href="/dashboard/friends" className="nav-link ">
-              <i className="fas fa-tachometer-alt nav-link-icon"></i>
+             <FaUserFriends/>
               <span className="">Friends</span>
             </Link>
             <Link href="/dashboard/notifications" className="nav-link ">
-              <i className="fas fa-tachometer-alt nav-link-icon"></i>
+              <IoNotifications/>
               <span className="nav-link-name">Notifications</span>
             </Link>
             <Link href="/dashboard/profile" className="nav-link ">
-              <i className="fas fa-tachometer-alt nav-link-icon"></i>
+              <CgProfile/>
               <span className="nav-link-name">Profile</span>
             </Link>
             <Link href="/dashboard/settings" className="nav-link ">
-              <i className="fas fa-tachometer-alt nav-link-icon"></i>
+              <IoMdSettings/>
               <span className="nav-link-name">Settings</span>
             </Link>
           </div>
