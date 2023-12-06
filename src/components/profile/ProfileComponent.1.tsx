@@ -4,20 +4,24 @@ import Image from "next/image";
 import { useState } from "react";
 import Layout from "../mainLayout/layout";
 import Man from "/public/member2.png";
+import { ChooseImg } from "./profileComponents/ChooseImg";
+import { InputField } from "./profileComponents/InputField";
+import { PhotosList } from "./profileComponents/PhotosList";
+import { Appearance } from "./profileComponents/Appearance";
+import { GeneralInput } from "./profileComponents/GeneralInput";
 
 export default function ProfileComponent() {
   const [show, setShow] = useState(false);
   return (
     <Layout show={show} setShow={setShow}>
       <>
-        {/* <div className=" top-16 fixed inline w-full p-4 bg-white">
+        <div className=" lg:top-16 xsm:top-10 fixed inline w-full p-4 bg-white">
               <h2 className="text-2xl font-bold  z-10  inline">Profile</h2>
-            </div> */}
+            </div>
 
         <form action="">
-
-          <div className="grid w-full  lg:grid-cols-3 md:grid-cols-2 gap-6 mt-20 bg-gray-100">
-            <div className="sm:col-span-2 p-5 shadow-lg bg-white rounded-md">
+          {/* <div className="grid w-full  lg:grid-cols-3 md:grid-cols-2 gap-6 mt-20 bg-gray-100">
+            <div className="sm:col-span-2 p-5 shadow-md bg-white rounded-md">
               <div className="flex">
                 <div>
                   <Image
@@ -31,20 +35,20 @@ export default function ProfileComponent() {
 
                 <div className="ml-7 mt-6">
                   <h1 className="text-xl">Change Profile Picture</h1>
-                  <label className="flex items-center justify-center w-28 mt-5 p-2 rounded-lg shadow-lg cursor-pointer bg-green-300 hover:bg-[#fb1086] hover:text-white">
+                  <label className="flex items-center justify-center w-28 mt-5 p-2 rounded-lg shadow-md cursor-pointer bg-green-300 hover:bg-[#fb1086] hover:text-white">
                     <span className="text-base leading-normal">
                       Select a file
                     </span>
                     <input type="file" className="hidden" />
                   </label>
-                  <button className="w-28 mt-5 p-2 rounded-lg shadow-lg cursor-pointer bg-green-300 hover:bg-[#fb1086] hover:text-white">
+                  <button className="w-28 mt-5 p-2 rounded-lg shadow-md cursor-pointer bg-green-300 hover:bg-[#fb1086] hover:text-white">
                     Upload
                   </button>
                 </div>
               </div>
             </div>
 
-            <div className="description shadow-lg rounded-md bg-white">
+            <div className="description shadow-md rounded-md bg-white">
               <div className="msg leading-10 p-4">
                 <h1>I' am looking for</h1>
                 <span className="bg-[#fb1086] text-white p-2 rounded-md">
@@ -65,10 +69,11 @@ export default function ProfileComponent() {
                 <p></p>
               </div>
             </div>
-          </div>
-
+          </div> */}
+          <ChooseImg/>  
           {/* ********* Section Form ******* */}
-          <div className="grid lg:grid-cols-2 gap-5 bg-white shadow-2xl p-5 rounded-md my-10 w-full">
+
+          {/* <div className="grid lg:grid-cols-2 gap-5 bg-white shadow-md p-5 rounded-md my-10 w-full">
             <div>
               <div className="mb-4 ">
                 <label
@@ -85,7 +90,7 @@ export default function ProfileComponent() {
                 />
               </div>
 
-              {/* Email Input */}
+          
               <div className="mb-4">
                 <label
                   htmlFor="number"
@@ -118,7 +123,7 @@ export default function ProfileComponent() {
                 />
               </div>
 
-              {/* Email Input */}
+              
               <div className="mb-4">
                 <label
                   htmlFor="text"
@@ -135,13 +140,13 @@ export default function ProfileComponent() {
               </div>
             </div>
 
-          </div>
+          </div> */}
+          <InputField/>
           {/* ********* Section Form End ******* */}
 
-
-
           {/* ********* Photos Section **** */}
-          <div className="photos bg-white shadow-2xl rounded-md p-7">
+          
+          {/* <div className="photos bg-white shadow-md rounded-md p-7">
             <h1 className="text-xl font-semibold mb-5 ">Photos</h1>
             <div className="grid lg:grid-cols-9 md:grid-cols-5 gap-2 sm:grid-cols-5 xsm:grid-cols-3 ">
               <div className="xsm:space-y-3">
@@ -221,11 +226,12 @@ export default function ProfileComponent() {
                 <input type="file" className="hidden" />
               </label>
             </div>
-          </div>
+          </div> */}
+          <PhotosList/>
           {/* ********* Photos Section End **** */}
 
 
-          <div className="photos bg-white shadow-2xl rounded-md p-7 my-10">
+          {/* <div className="photos bg-white shadow-md rounded-md p-7 my-10">
             <h1 className="text-xl font-semibold mb-5">Appearance</h1>
             <div className="flex justify-between lg:mx-10">
               <div className="flex-col">
@@ -274,11 +280,12 @@ export default function ProfileComponent() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
+        <Appearance/>
 
           {/* ********* General Section **** */}
 
-          <div className="bg-white shadow-2xl p-5 rounded-md my-10 w-full">
+          {/* <div className="bg-white shadow-md p-5 rounded-md my-10 w-full">
               <h1 className="text-xl font-semibold mb-5 ">General</h1>
               <div className="grid lg:grid-cols-3 gap-5 ">
 
@@ -326,7 +333,7 @@ export default function ProfileComponent() {
                       />
                     </div>
 
-                    {/* Email Input */}
+                    
                     <div className="mb-4">
                       <label
                         htmlFor="number"
@@ -401,7 +408,7 @@ export default function ProfileComponent() {
                       />
                     </div>
 
-                    {/* Email Input */}
+                    
                     <div className="mb-4">
                       <label
                         htmlFor="number"
@@ -476,7 +483,7 @@ export default function ProfileComponent() {
                       />
                     </div>
 
-                    {/* Email Input */}
+                  
                     <div className="mb-4">
                       <label
                         htmlFor="number"
@@ -509,10 +516,9 @@ export default function ProfileComponent() {
                   </div>
 
             </div>
-          </div>
+          </div> */}
 
-
-
+            <GeneralInput/>
 
             {/* Submit Button */}
             <div className="flex justify-end mb-5 space-x-4">

@@ -56,7 +56,7 @@ export default function MessagesComponent() {
   return (
     <Layout show={show} setShow={setShow}>
       {/* ****** Header ****** */}
-      <div className="container sticky top-16 flex mt-3  rounded p-4 mx-auto shadow-md bg-white h-20 items-center space-x-10">
+      <div className="sticky top-16 flex mt-3  rounded p-4 shadow-md bg-white h-20 items-center space-x-10">
         <div className="flex items-center w-[30%] justify-between">
           <div className="flex items-center space-x-2">
             <h3 className="">All Messages</h3>
@@ -80,7 +80,7 @@ export default function MessagesComponent() {
         </div>
       </div>
       {/* ****** Header End****** */}
-      <div className="container mx-auto h-screen">
+      <div className="mx-auto h-screen">
         <div className="flex flex-col md:flex-row h-full">
           {/* <!-- Sidebar (User List) --> */}
           <div className="md:w-1/3 p-4 shadow-lg">
@@ -93,6 +93,20 @@ export default function MessagesComponent() {
             </div>
           </div>
           <ChatWindow />
+        </div>
+
+      {/* <!-- Message Input --> */}
+      <div className="w-full flex sticky bottom-0 xsm:invisible md:visible justify-end">
+      <div className="w-[66.7%] flex  bg-gray-200 p-3 items-center ">
+          <input
+            type="text"
+            placeholder="Type a message"
+            className="flex-1 p-2 rounded border-none focus:outline-none"
+          />
+          <button className="bg-[#fb1086] text-white px-4 py-2 rounded">
+            Send
+          </button>
+        </div>
         </div>
       </div>
     </Layout>
