@@ -14,9 +14,11 @@ const ProtectedRouteWrapper: React.FC<ProtectedRouteWrapperProps> = ({ children 
   useEffect(() => {
     
     if (!user) {
-      // Redirect to the login page if the user is not authenticated
+     
       router.push('/login');
+      console.log(user);
     }
+    console.log(user);
   }, [user, router]);
 
   return <>{children}</>;
