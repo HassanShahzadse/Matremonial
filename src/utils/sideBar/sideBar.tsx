@@ -8,6 +8,7 @@ import { FaUserFriends } from "react-icons/fa";
 import { IoNotifications } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { IoMdSettings } from "react-icons/io";
+import {logout } from "./../../sharedService/auth/auth"
 
 
 
@@ -51,9 +52,11 @@ const SideBar = ({ show }: any) => {
         </div>
 
         <Link href="/logout" className="nav-link">
-          <i className="fas fa-sign-out nav-link-icon"></i>
-          <span className="nav-link-name">Logout</span>
+          {/* <i className="fas fa-sign-out nav-link-icon"></i>
+          <span className="nav-link-name">Logout</span> */}
+          <button onClick={logout}>Logout</button>
         </Link>
+
       </nav>
     </aside>
   );
