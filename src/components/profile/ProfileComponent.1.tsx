@@ -520,6 +520,8 @@ export default function ProfileComponent() {
 
             <GeneralInput/>
 
+
+
             {/* Submit Button */}
             <div className="flex justify-end mb-5 space-x-4">
           <button type="button" className="bg-green-400 text-white p-2 rounded-md px-5">
