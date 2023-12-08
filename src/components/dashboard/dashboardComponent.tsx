@@ -37,6 +37,7 @@ type CardProps = {
 export default function DashboardComponent() {
   const [show, setShow] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [userCards, setUserCards] = useState<CardProps[]>([]);
   useEffect(() => {
     async function fetchData() {
       const usersData:any = await fetchDataFromFirebase();
@@ -54,7 +55,7 @@ export default function DashboardComponent() {
         isModalOpen: false,
         setIsModalOpen,
       }));
-
+      setUserCards(cards)
      
       console.log(cards);
     }

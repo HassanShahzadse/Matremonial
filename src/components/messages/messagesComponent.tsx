@@ -96,7 +96,6 @@ export default function MessagesComponent() {
     
       <div className="container mx-auto grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 mt-1">
         <div className="flex-col shadow-md p-5">
-          <SearchBar/>
           <hr />
         <UserList chat={filteredChats} onCardClick={handleCardClick} />
       </div>
