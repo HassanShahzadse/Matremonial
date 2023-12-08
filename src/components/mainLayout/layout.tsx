@@ -10,12 +10,8 @@ export default function Layout({ children, show, setShow }: any) {
     return (
         <div>
             <main className="space-toggle">
-          
             <SideBar show={show} />
-            
-           
             <ProtectedRouteWrapper>{children}</ProtectedRouteWrapper>
-
             </main> 
         </div>
     );

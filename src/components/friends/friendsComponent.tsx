@@ -111,7 +111,7 @@ export default function FriendsComponent() {
   ];
   return (
     <Layout show={show} setShow={setShow}>
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 mx-5  gap-6  my-24">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 mx-5  gap-6 my-8">
         {FriendsCard.map((card) => (
           <div key={card.id}>
             <UserProfileCard {...card} />
