@@ -10,7 +10,7 @@ import Man from "/public/member2.png";
 import Woman from "/public/member3.png";
 import Bridal from "/public/img1.jpg";
 import Love from "/public/img2.jpeg";
-import DashboardCardProps from "./../../types/dashboard/DashboardProps";
+import UserCardProps from "./../../types/dashboard/UserCardProps";
 import fetchData from "@/sharedService/dashboardService/page"; // permanently
 import initializeFirebase from "@/sharedService/fireBase/firebase";
 import { Firestore, collection, getDocs, query } from "firebase/firestore";
@@ -37,7 +37,6 @@ type CardProps = {
 export default function DashboardComponent() {
   const [show, setShow] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [userCards, setUserCards] = useState<CardProps[]>([]);
   useEffect(() => {
     async function fetchData() {
       const usersData:any = await fetchDataFromFirebase();
@@ -56,7 +55,7 @@ export default function DashboardComponent() {
         setIsModalOpen,
       }));
 
-      setUserCards(cards);
+     
       console.log(cards);
     }
 

@@ -7,8 +7,6 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import { CgSize } from "react-icons/cg";
 import { FaEllipsisV } from "react-icons/fa";
 import Woman from "/public/member3.png";
-import { FaSearch } from "react-icons/fa";
-import { SearchBar } from "@/utils/messages/searchBar";
 import { ChatWindow } from "@/utils/messages/chatWindow";
 import { UserList } from "@/utils/messages/userList";
 import { getAllChats } from "@/sharedService/users/chat";

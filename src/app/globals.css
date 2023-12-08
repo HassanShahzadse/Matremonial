@@ -5,11 +5,6 @@
 
 
 
-/* @layer base {
-  body {
-    @apply bg-gray-100;
-  }
-} */
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -26,13 +21,7 @@
 }
 
 body {
-  /* color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb)); */
+  
   background-color: #f7f7f7;
 }
 
@@ -42,7 +31,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* box-shadow:  0 1px 2px rgba(56, 65, 74, 0.15); */
+ 
 }
 .shadow-custom-dark {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
@@ -223,12 +212,12 @@ main {
 
 @media screen and (min-width: 768px) {
   main {
-    margin: calc(var(--header-height) + 1rem) 0 0 0;
+    margin: 0;
     padding: 0 1rem 0 calc(var(--nav-width) + 2rem);
   }
 
   .header {
-    height: calc(var(--header-height) + 1rem);
+    height: 0;
     padding-left: calc(var(--nav-width) + 2rem);
   }
 
@@ -237,12 +226,12 @@ main {
     padding: 1rem 0 0 0;
   }
 
-  .show {
+   .show {
     width: calc(var(--header-height) + 156px);
-  }
+  } 
 
   .space-toggle {
-    padding-left: calc(var(--nav-width) + 188px);
+    padding-left: calc(var(--nav-width) + 160px);
   }
 }
 
@@ -264,13 +253,6 @@ main {
   visibility: hidden;
   opacity: 0;
   transition: all 0.3s ease;
-  /* &.show {
-    visibility: visible;
-    transition: all 0.3s ease;
-    opacity: 1;
-    background-color: rgba($black, 0.2);
-    border-radius: calc($border-radius/2);
-  } */
 }
 .body-content-overlay {
   position: fixed;
@@ -285,245 +267,27 @@ main {
     opacity: 1;
   }
 }
-
-/* .chat-app-window {
-  // User chats
-  .user-chats {
-    background-color: $chat-image-back-color;
-    padding: 1rem;
-    position: relative;
-    height: calc(100% - #{$chat-head-footer-height} - #{$chat-head-footer-height});
-    .avatar {
-      img {
-        border: 2px solid $white;
-      }
-    }
-  }
-  .active-chat {
-    height: inherit;
-    .chat-header {
-      display: flex;
-      justify-content: space-between;
-      height: $chat-head-footer-height;
-      background-color: $white;
-      padding: 0 1rem;
-      border-bottom: 1px solid $border-color;
-    }
-  }
-
-  // Chat area css
-  .chats {
-    .chat-avatar {
-      float: right;
-    }
-    .chat-body {
-      display: block;
-      margin: 10px 30px 0 0;
-      overflow: hidden;
-      .chat-content {
-        float: right;
-        padding: 0.7rem 1rem;
-        margin: 0 1rem 10px 0;
-        clear: both;
-        color: $white;
-        @include gradient-directional(map-get($primary-color, 'base'), map-get($primary-color, 'lighten-2'), 80deg);
-        border-radius: $border-radius;
-        box-shadow: 0 4px 8px 0 rgba($black, 0.12);
-        max-width: 75%;
-        p {
-          margin: 0;
-        }
-      }
-    }
-    // Chat area left css
-    .chat-left {
-      .chat-avatar {
-        float: left;
-      }
-      .chat-body {
-        .chat-content {
-          float: left;
-          margin: 0 0 10px 1rem;
-          color: $body-color;
-          background: none;
-          background-color: lighten($white, 18%);
-        }
-      }
-    }
-  }
-  // Chat form of user area
-  .chat-app-form {
-    height: $chat-head-footer-height;
-    padding: 0 1rem;
-    background-color: $white;
-    display: flex;
-    align-items: center;
-    border-top: 1px solid $border-color;
-  }
-} */
-
-
-/* .chat-widget {
-  .card-header {
-    padding-top: 0.8rem;
-    padding-bottom: 0.8rem;
-  }
-  .chat-app-window {
-    // User chats
-    .user-chats {
-      background-color: $body-bg;
-      height: $chat-widget-height;
-    }
-    .chat-app-form {
-      border-top: 0;
-      border-bottom-left-radius: $border-radius;
-      border-bottom-right-radius: $border-radius;
-      height: $chat-widget-head-footer-height;
-      .input-group-text,
-      .message {
-        border: 0;
-        padding-left: 0;
-      }
-      .input-group:not(.bootstrap-touchspin):focus-within {
-        box-shadow: none;
-      }
-    }
-  }
-} */
-
-/* .chat-application {
-  .content-area-wrapper {
-    border-color: $theme-dark-border-color;
-  }
-  // left sidebar
-  .sidebar {
-    .chat-profile-sidebar {
-      background-color: $theme-dark-card-bg;
-      border-color: $theme-dark-border-color;
-    }
-
-    .sidebar-content {
-      border-color: $theme-dark-border-color;
-
-      .chat-fixed-search {
-        border-color: $theme-dark-border-color;
-      }
-
-      .chat-user-list-wrapper {
-        .chat-users-list {
-          li {
-            &:not(.active):hover {
-              background: $theme-dark-body-bg;
-            }
-            .chat-info .card-text,
-            .chat-time {
-              color: $theme-dark-text-muted-color;
-            }
-            &.active {
-              .chat-info .card-text,
-              .chat-time {
-                color: $white;
-              }
-            }
-            img {
-              border-color: $theme-dark-border-color;
-            }
-          }
-        }
-      }
-    }
-  }
-  .avatar-border {
-    img {
-      border-color: $theme-dark-border-color;
-    }
-  }
-
-  // Right side content area
-  .content-right {
-    .chat-app-window {
-      .start-chat-area {
-        background-color: $theme-dark-card-bg;
-
-        .start-chat-icon,
-        .start-chat-text {
-          background: $theme-dark-card-bg;
-          color: $theme-dark-body-color;
-        }
-      }
-      .start-chat-area,
-      .user-chats {
-        background-image: url($chat-bg-dark);
-        background-color: #1e232f;
-      }
-      .user-chats {
-        .divider .divider-text {
-          background: $theme-dark-card-bg;
-          &:before,
-          &:after {
-            border-color: $theme-dark-border-color;
-          }
-        }
-        .avatar img {
-          border-color: $theme-dark-border-color;
-        }
-      }
-      // Active conversation style
-      .active-chat {
-        .chat-left {
-          .chat-content {
-            background-color: $theme-dark-card-bg;
-            p {
-              color: $theme-dark-body-color;
-            }
-          }
-        }
-
-        .chat-content {
-          p {
-            color: $white;
-          }
-        }
-        // Chat form
-        .chat-header .dropdown-toggle {
-          color: $theme-dark-body-color;
-        }
-        .chat-header,
-        .chat-app-form {
-          background-color: $theme-dark-card-bg;
-          border-color: $theme-dark-border-color;
-        }
-      }
-    }
-
-    .user-profile-sidebar {
-      background-color: $theme-dark-card-bg;
-      border-color: $theme-dark-border-color;
-    }
-  }
-} */
-
-
-/* .chat-widget {
-  .user-chats {
-    background-color: $theme-dark-widget-bg !important;
-  }
-  .card-header,
-  .chat-app-form {
-    background-color: $theme-dark-card-bg;
-  }
-  .chat-app-window .user-chats .chat-left .chat-content {
-    background-color: $theme-dark-card-bg !important;
-    color: $theme-dark-body-color !important;
-  }
-  .chat-app-window .user-chats .avatar img {
-    border-color: $theme-dark-body-bg;
-  }
-} */
-
-/* -------------------------- */
 @layer utilities {
   .text-shadow {
     text-shadow:  0 0 10px rgba(0,0,0,.3);
   }
   }
+/*------------- Scrollbar design ----------------*/
+/* styles/global.css */
+
+/* Style for WebKit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f8f8f8;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+
+
