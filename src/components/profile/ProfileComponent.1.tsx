@@ -15,7 +15,7 @@ export default function ProfileComponent() {
   return (
     <Layout show={show} setShow={setShow}>
       <>
-        <div className=" lg:top-16 xsm:top-10 fixed inline w-full p-4 bg-white">
+        <div className=" lg:top-0 xsm:top-0 fixed inline w-full p-4  bg-white">
               <h2 className="text-2xl font-bold  z-10  inline">Profile</h2>
             </div>
 

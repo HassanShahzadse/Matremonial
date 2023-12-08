@@ -61,8 +61,8 @@ export const UserList = () => {
   return (
     <>
    
-        <div className="lg:w-1/3 xsm:w-full h-[88vh] ">
-        <div className="flex items-center justify-between bg-white p-2 font-bold">
+        <div className="lg:w-1/3 xsm:w-full">
+        <div className="flex items-center justify-between bg-white p-2 py-6  font-bold">
           <div className="flex items-center space-x-2 cursor-pointer">
             <h3 className="">All Messages</h3>
             <RiArrowDropDownLine />

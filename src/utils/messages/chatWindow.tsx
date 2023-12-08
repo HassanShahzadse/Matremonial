@@ -10,7 +10,7 @@ export const ChatWindow = () => {
    {/* Chat Area */}
       <div className="flex-1 flex flex-col xsm:hidden lg:block">
         {/* Chat Header */}
-        <div className="p-4 bg-white border-b border-gray-300">
+        <div className="p-3 bg-white border-b border-gray-300">
         <div className="right flex justify-between items-center">
           <div className="img-name flex ml-3 items-center space-x-3">
             <Image
@@ -28,7 +28,7 @@ export const ChatWindow = () => {
         </div>
 
   {/* <!-- Chat Messages --> */}
-        <div className="flex-1 overflow-y-auto p-4 h-[72vh] bg-white">
+        <div className="flex-1 overflow-y-auto p-4 h-[80vh] bg-white">
         {/* <!-- User 1 Message --> */}
           <div className="flex mb-4">
             <div className="w-10 h-10 rounded-full bg-gray-500">

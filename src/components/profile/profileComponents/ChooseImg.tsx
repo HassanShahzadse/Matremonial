@@ -13,7 +13,7 @@ import Man from "/public/member2.png";
 export const ChooseImg = () => {
   return (
     <>
-      <div className="grid w-full lg:grid-cols-3 md:grid-cols-2 gap-6 mt-28  bg-gray-100">
+      <div className="grid w-full lg:grid-cols-3 md:grid-cols-2 gap-6 mt-16 bg-gray-100">
             <div className="sm:col-span-2 p-5 shadow-md bg-white rounded-md">
               <div className="flex">
                 <div>
