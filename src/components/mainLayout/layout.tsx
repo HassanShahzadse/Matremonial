@@ -9,11 +9,9 @@ import ProtectedRouteWrapper from '../../app/admin/page';
 export default function Layout({ children, show, setShow }: any) {
     return (
         <div>
-            <main className={show ? 'space-toggle' : ''}>
-            <TopBar show={show} setShow={setShow} />
+            <main className="space-toggle">
+          
             <SideBar show={show} />
-            
-
             
            
             <ProtectedRouteWrapper>{children}</ProtectedRouteWrapper>
