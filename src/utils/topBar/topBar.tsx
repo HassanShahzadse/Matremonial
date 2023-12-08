@@ -1,7 +1,4 @@
 "use client"
-
-
-
 export default function TopBar({ show, setShow }: any) {
     // const [show, setShow] = useState(false);
     return (

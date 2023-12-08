@@ -28,7 +28,7 @@ export const ChatWindow = () => {
         </div>
 
   {/* <!-- Chat Messages --> */}
-        <div className="flex-1 overflow-y-auto p-4 h-[74vh] bg-white">
+        <div className="flex-1 overflow-y-auto p-4 h-[72vh] bg-white">
         {/* <!-- User 1 Message --> */}
           <div className="flex mb-4">
             <div className="w-10 h-10 rounded-full bg-gray-500">

@@ -10,22 +10,17 @@ import Man from "/public/member2.png";
 import Woman from "/public/member3.png";
 import Bridal from "/public/img1.jpg";
 import Love from "/public/img2.jpeg";
-import DashboardCardProps from "./../../types/dashboard/DashboardProps";
+import UserCardProps from "./../../types/dashboard/UserCardProps";
 import fetchData from "@/sharedService/dashboardService/page"; // permanently
 import initializeFirebase from "@/sharedService/fireBase/firebase";
 import { Firestore, collection, getDocs, query } from "firebase/firestore";
 import { FirebaseApp } from "firebase/app";
 import { Auth } from "firebase/auth";
 import { FaSearch } from "react-icons/fa";
+import UserProfileCard from "@/utils/userProfile/userProfileCard";
 
 const DashboardCard = [
-  // { id: 1, image: Bridal, avatar: Avatar, name: 'John Snow', Profile: 'View Porfile', Chat:'Chat'},
-  // { id: 1, image: Bridal, avatar: Avatar, name: 'John Snow', Profile: 'View Porfile', Chat:'Chat'},
-  // { id: 1, image: Bridal, avatar: Avatar, name: 'John Snow', Profile: 'View Porfile', Chat:'Chat'},
-  // { id: 1, image: Bridal, avatar: Avatar, name: 'John Snow', Profile: 'View Porfile', Chat:'Chat'},
-  // { id: 2, image: myImage, avatar: Avatar,name:'John Snow', Profile: 'View Porfile', Chat:'Chat'},
-  // { id: 2, image: myImage, avatar: Avatar, name: 'John Snow', Profile: 'View Porfile', Chat:'Chat'},
-  // { id: 2, image: myImage, avatar: Avatar, name: 'John Snow', Profile: 'View Porfile', Chat:'Chat'},
+ 
   { id: 1, image: Avatar, name: 'John Snow', age: 28, location: 'New York, USA', gender: 'Female', decision: 'Chat ' },
   { id: 1, image: Man, name: 'John Snow', age: 28, location: 'New York, USA', gender: 'Female', decision: 'Chat' },
   { id: 1, image: Woman, name: 'John Snow', age: 28, location: 'New York, USA', gender: 'Female', decision: 'Chat' },
@@ -89,43 +84,6 @@ const DashboardCard = [
   // Add more data objects for additional cards
 ];
 
-type CardProps = {
-  id: number;
-  title: string;
-  content: string;
-  name: string;
-  image: string;
-  isModalOpen: boolean;
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-const Card: React.FC<CardProps> = ({
-  title,
-  content,
-  image,
-  setIsModalOpen,
-}) => (
-  <div className="bg-white p-4 rounded-lg  mb-4 mt-10 flex items-center">
-    <Image
-      width={500}
-      height={500}
-      src={image}
-      alt={title}
-      className="card-image rounded"
-    />
-    <div className="ml-4">
-      <h2 className="text-lg font-semibold">{title}</h2>
-      <p className="text-gray-600">{content}</p>
-      <Button
-        children={"view Profile"}
-        css="bg-pink-500 p-4 rounded-md shadow-md mb-4 mt-10 flex items-center"
-        onClick={() => {
-          setIsModalOpen(true);
-        }}
-      ></Button>
-    </div>
-  </div>
-);
 const fetchDataFromFirebase = async () => {
   const firebaseInstance = await initializeFirebase();
   const { app, auth, db } = firebaseInstance as {
@@ -140,10 +98,11 @@ const fetchDataFromFirebase = async () => {
 
   return usersData;
 };
+
+
 export default function DashboardComponent() {
   const [show, setShow] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [userCards, setUserCards] = useState<CardProps[]>([]);
   useEffect(() => {
     async function fetchData() {
       const usersData = await fetchDataFromFirebase();
@@ -158,7 +117,7 @@ export default function DashboardComponent() {
         setIsModalOpen,
       }));
 
-      setUserCards(cards);
+     
       console.log(cards);
     }
 
@@ -196,37 +155,9 @@ export default function DashboardComponent() {
 
 
       <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 mx-5 / gap-6  my-12">
-        {DashboardCard.map((card) => (
-          <div
-            key={card.id}
-            className="card1 shadow-md rounded-md text-center hover:scale-105 duration-300"
-          >
-            <div className="flex flex-row space-x-5">
-              <div className="basis-1/2">
-                <Image src={card.image} alt="My Image" className="rounded " />
-              </div>
-              <div className="text-start basis-1/2  ">
-                <h2 className="font-semibold text-gray-400 mb-2">
-                  {card.name}
-                </h2>
-                <span>{card.age}</span>
-                <p className="text-sm my-1">{card.location}</p>
-                <p className="text-sm mb-3">
-                  Looking for{" "}
-                  <span className="ml-2 bg-[#F10086] text-white p-1 rounded-xl text-sm">
-                    {card.gender}
-                  </span>
-                </p>
-                <button className="w-full text-red-500 bg-gray-300 p-1 rounded-2xl text-sm ">
-                  {card.decision}
-                </button>
-                <button className="w-full text-green-500 bg-gray-300 p-1 rounded-2xl my-4 text-sm  ">
-                  View Profile
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
+      {DashboardCard.map((card) => (
+          <UserProfileCard {...card} />
+        ))} 
       </div>
 
       {/* ****** Cards ****** */}
