@@ -58,18 +58,21 @@ export default function DashboardComponent() {
       setUserCards(cards)
      
       console.log(cards);
+
+
     }
 
     fetchData();
   }, []);
   console.log(fetchDataFromFirebase());
   const handleGoogleLogin = async () => {
+    
     try {
       const userId = "someUserId";
 
       let data = fetchData(userId);
 
-      console.log("dashboard data", data);
+    
     } catch (error) {
       console.error("dashboard data error:", error);
     }
@@ -100,10 +103,10 @@ export default function DashboardComponent() {
             className="card1 shadow-md rounded-md text-center hover:scale-105 duration-300"
           >
             <div className="flex flex-row space-x-5">
-              <div className="basis-1/2">
-                <Image height={138} width={138} src={card.image} alt="My Image" className="rounded " style={{ objectFit: "cover" }} />
+              <div className="basis-1/2  ">
+                <Image height={138} width={138} src={card.image} alt="My Image" className="rounded  h-36 " style={{ objectFit: "cover" }} />
               </div>
-              <div className="text-start basis-1/2  ">
+              <div className="text-start  basis-1/2   p-2 " >
                 <h2 className="font-semibold text-gray-400 mb-2">
                   {card.name}
                 </h2>
@@ -111,7 +114,7 @@ export default function DashboardComponent() {
                 <p className="text-sm my-1">{card.location}</p>
                 <p className="text-sm mb-3">
                   Looking for{" "}
-                  <span className="ml-2 bg-[#F10086] text-white p-1 rounded-xl text-sm">
+                  <span className="ml-2 bg-[#F10086] text-white p-2 rounded-xl text-sm">
                     {card.gender==='Male'?'female':'male'}
                   </span>
                 </p>
@@ -120,9 +123,13 @@ export default function DashboardComponent() {
                   Chat
                 </Link>
                 </button>
+                 
+                <Link href="dashboard/messages"> 
                 <button className="w-full text-green-500 bg-gray-300 p-1 rounded-2xl my-4 text-sm  ">
                   View Profile
                 </button>
+                </Link>
+              
               </div>
             </div>
           </div>
@@ -137,7 +144,7 @@ export default function DashboardComponent() {
 export async function getServerSideProps(context: any) {
   const userId = "1IW1JRGm3WSzErc6mPrT";
   const userData = await fetchData(userId);
-  console.log("dashboard data", userData);
+  
   return {
     props: {
       userData,
