@@ -5,13 +5,13 @@ import { UseFormRegister, FieldValues, FieldErrors } from 'react-hook-form';
 interface InputFieldProps {
   label: string;
   name: string;
-  placeholder: string;
+  placeholder?: string;
   register: UseFormRegister<FieldValues>;
   errors?: any;
   required?: boolean;
 }
 
-const InputField: React.FC<InputFieldProps> = ({ label, name, placeholder, register, errors, required }) => {
+const InputField: React.FC<InputFieldProps> = ({ label, name, placeholder=' ', register, errors, required }) => {
   return (
     <div className="mb-4">
       <label htmlFor={name} className="block text-sm font-medium text-gray-600">

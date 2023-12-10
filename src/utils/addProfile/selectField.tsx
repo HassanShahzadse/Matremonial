@@ -5,13 +5,13 @@ import { UseFormRegister, FieldValues, FieldErrors } from 'react-hook-form';
 interface SelectFieldProps {
   label: string;
   name: string;
-  options: { label: string; value: string }[];
+  options?: { label: string; value: string }[];
   register: UseFormRegister<FieldValues>;
   errors?: any;
   required?: boolean;
 }
 
-const SelectField: React.FC<SelectFieldProps> = ({ label, name, options, register, errors, required }) => {
+const SelectField: React.FC<SelectFieldProps> = ({ label, name, options=[], register, errors, required }) => {
   return (
     <div className="mb-4">
       <label htmlFor={name} className="block text-sm font-medium text-gray-600">
