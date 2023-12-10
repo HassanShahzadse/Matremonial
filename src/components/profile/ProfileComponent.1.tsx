@@ -64,9 +64,45 @@ const livingArrangementsOptions=[
   { label: "Separate", value: "Separate" },
   { label: "Alone", value: "Alone" },
 ];
+
+const myBuildOptions=[
+  { label: "Normal", value: "Normal" },
+  { label: "Muscular", value: "Muscular" },
+  { label: "Fat", value: "Fat" },
+  { label: "Slim", value: "Slim" },
+]
+
+const smokeOptions=[
+  { label: "No", value: "No" },
+  { label: "Yes", value: "Yes" },
+  { label: "Special Occassion", value: "SpecialOccassion" },
+  { label: "Sometimes", value: "Sometimes" },
+
+]
+
+const locationOptions=[
+  { label: "India", value: "india" },
+  { label: "Pakistan", value: "pakistan" },
+]
+const partnerReligionOptions=[
+  { label: "Doesn't Matter", value: "Doesn'tMatter" },
+  { label: "Hindu", value: "Hindu" },
+  { label: "Muslim", value: "Muslim" },
+  { label: "Cristian", value: "Cristian" },
+
+]
+const partnerSectOptions=[
+  { label: "Doesn't Matter", value: "Doesn'tMatter" },
+  { label: "Only Muslim", value: "OnlyMuslim" },
+  { label: "Shia", value: "Shia" },
+  { label: "Sunni", value: "Sunni" },
+]
+
 export default function ProfileComponent() {
   const [show, setShow] = useState(false);
-  const { register, handleSubmit, control } = useForm();
+  const { register, handleSubmit, control,formState: { errors } } = useForm();
+  
+
   const galleryFields = [
     "gallery1",
     "gallery2",
@@ -154,6 +190,8 @@ export default function ProfileComponent() {
                   name={field.name}
                   placeholder={field.placeholder}
                   register={register}
+                  required
+                  errors={errors} 
                 />
               ))}
             </div>
@@ -168,48 +206,189 @@ export default function ProfileComponent() {
                 name="citizen"
                 placeholder="Enter Citizenship"
                 register={register}
+                required
+                errors={errors} 
               />
               <InputField
                 label="My Income"
                 name="income"
                 placeholder="Enter your Income"
                 register={register}
+                required
+                errors={errors} 
               />
               <SelectField
                 label="Martial Status"
                 name="martial"
                 options={martialOptions}
                 register={register}
+                required
+                errors={errors} 
+              
               />
               <SelectField
                 label="Looking to Marry"
                 name="looking"
                 options={lookingToMarryOptions}
                 register={register}
+                required
+                errors={errors} 
               />
               <InputField
                 label="Willing to Relocate"
                 name="relocate"
                 placeholder="Willing to relocate"
                 register={register}
+                required
+                errors={errors} 
               />
               <InputField
                 label="Do I Have Children?"
                 name="havechildren"
                 placeholder="Do I have children?"
                 register={register}
+                required
+                errors={errors} 
               />
               <SelectField
                 label="Living Arrangements"
                 name="livingarrangements"
                 options={livingArrangementsOptions}
                 register={register}
+                required
+                errors={errors} 
+              />
+            </div>
+          </div>
+
+
+           {/* Body Type */}
+           <div className="w-full bg-white p-5 mt-5">
+           <h1 className="text-xl font-semibold m ">Body Type</h1>
+             <div className="grid lg:grid-cols-3 md:grid-cols-2  grid-cols-1 gap-4 p-4">
+             <InputField
+                label="My Height"
+                name="height"
+                placeholder="Enter your height"
+                register={register}
+                required
+                errors={errors} 
+              />
+                <SelectField
+                label="My Build"
+                name="build"
+                options={myBuildOptions}
+                register={register}
+                required
+                errors={errors} 
+              />
+               <InputField
+                label="Hair color"
+                name="hair"
+                placeholder="Your hair color"
+                register={register}
+                required
+                errors={errors} 
+              />
+               <InputField
+                label="Eyes color"
+                name="eyes"
+                placeholder="Your eyes color"
+                register={register}
+                required
+                errors={errors} 
+              />
+                <SelectField
+                label="Do I Smoke?"
+                name="smoke"
+                options={smokeOptions}
+                register={register}
+                required
+                errors={errors} 
+              />
+                <InputField
+                label="Disabilities?"
+                name="disability"
+                placeholder=""
+                register={register}
+                required
+                errors={errors} 
               />
 
 
-
             </div>
-          </div>
+           </div>
+
+
+
+           {/* Religion */}
+
+           
+           {/* Type of Partner */}
+           <div className="w-full bg-white p-5 mt-5">
+                 <h1 className="text-xl font-semibold m ">Type of Partner Your Looking for</h1>
+                 <div className="grid lg:grid-cols-3 md:grid-cols-2  grid-cols-1 gap-4 p-4">
+                 <SelectField
+                label="Partner Location"
+                name="pl"
+                options={locationOptions}
+                register={register}
+                required
+                errors={errors} 
+              />
+               <SelectField
+                label="Partner Religion"
+                name="pr"
+                options={partnerReligionOptions}
+                register={register}
+                required
+                errors={errors} 
+              />
+               <SelectField
+                label="Partner Sect"
+                name="psect"
+                options={partnerSectOptions}
+                register={register}
+                required
+                errors={errors} 
+              />       
+                <InputField
+                label="Partner Education"
+                name="Peducation"
+                placeholder=""
+                register={register}
+                required
+                errors={errors} 
+               />
+                 <InputField
+                label="Partner Profession"
+                name="Pprofession"
+                placeholder=""
+                register={register}
+                required
+                errors={errors} 
+              />
+                 <InputField
+                label="Describe Type of Partner"
+                name="top"
+                placeholder=""
+                register={register}
+                required
+                errors={errors} 
+              />
+
+           
+                      
+                 
+                 </div>
+           </div>
+
+
+
+
+
+
+
 
           <div className="flex justify-end mb-5 space-x-4 mt-5">
             <button
