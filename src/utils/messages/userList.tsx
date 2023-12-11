@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import Woman from "/public/member3.png";
 import { FaSearch } from "react-icons/fa";
-
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { CgSize } from "react-icons/cg";
 import { FaEllipsisV } from "react-icons/fa";
@@ -60,8 +59,7 @@ const data = [
 export const UserList = () => {
   return (
     <>
-   
-        <div className="lg:w-1/3 xsm:w-full">
+      <div className="lg:w-1/3 xsm:w-full">
         <div className="flex items-center justify-between bg-white p-2 py-6  font-bold">
           <div className="flex items-center space-x-2 cursor-pointer">
             <h3 className="">All Messages</h3>
@@ -80,7 +78,7 @@ export const UserList = () => {
           className="w-[100%] focus:outline-none p-2 rounded-md border bg-gray-100"
         />
       </div>
-      <div className="h-[85vh] p-4 bg-white border-r border-gray-300 overflow-y-scroll">
+      <div className="h-[80vh] p-4 bg-white border-r border-gray-300 overflow-y-scroll">
 
     {data.map((card) => (
         <div

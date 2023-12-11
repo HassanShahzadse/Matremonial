@@ -15,7 +15,7 @@ export default function MessagesComponent() {
     <Layout show={show} setShow={setShow}>
       {/* ****** Header ****** */}
 
-      <div className="flex h-screen bg-gray-100 overflow-y-hidden xsm:-mt-11 sm:mt-0">
+      <div className="flex h-[96vh] bg-gray-100 overflow-y-hidden xsm:-mt-11 sm:mt-0">
         {/* User List */}
         <UserList />
         <ChatWindow />
