@@ -8,6 +8,8 @@ import Select from 'react-select';
 import RadioButtons from '../../utils/shared/radioBtn';
 import DateOfBirthInput from '../../utils/dateOfBirth/dateOfBirth';
 import { createUser, signupWithFacebook, signupWithGoogle } from '@/sharedService/auth/auth';
+import Marrage from "/public/marg.jpg";
+
 type Props = {}
 
 
@@ -138,7 +140,12 @@ const SignUp = (props: Props) => {
   });
   const radioGenderOptions = ['Male', 'Female', 'Non-Binary']; 
   return (
-    <div className="card bg-white p-6 rounded-lg shadow-md mx-auto">
+    <div className="flex container mx-auto justify-center lg:h-screen  items-center overflow-hidden">
+    <div className="grid lg:grid-cols-2 gap-5">
+      <div className="w-full h-full xsm:hidden lg:block">
+        <Image src={Marrage} className='rounded-md' alt=''/>
+      </div>
+    <div className="xsm:mt-2 lg:mt-0 bg-white py-2 px-5 rounded-lg shadow-md mx-auto">
       {step === 1 && (
         <h1 className="text-2xl font-bold text-center">Sign Up</h1>
       )}
@@ -156,7 +163,7 @@ const SignUp = (props: Props) => {
           </div>
         </div>
       )}
-      <div className='card-body'>
+      <div className=''>
         <Formik
           initialValues={formValues}
           validationSchema={validationSchema}
@@ -351,6 +358,8 @@ const SignUp = (props: Props) => {
         <span>Already have an account?<a className='cursor-pointer text-red-500' onClick={() => router.push('/login')}>Log In</a></span>
       </div>
     </div >
+    </div> 
+    </div> 
   )
 }
 export default SignUp

@@ -5,6 +5,8 @@ import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { loginUser, loginWithFacebook, loginWithGoogle } from '@/sharedService/auth/auth';
+import Marrage from "/public/marg.jpg";
+
 
 type Props = {}
 
@@ -54,7 +56,12 @@ const Login = (props: Props) => {
     password: Yup.string().min(8).required('Password is required'),
   });
   return (
-    <div className="card bg-white p-6 rounded-lg shadow-md mx-auto">
+      <div className="flex container mx-auto justify-center lg:h-screen  items-center overflow-hidden">
+    <div className="grid lg:grid-cols-2 gap-5">
+      <div className="w-full h-full xsm:hidden lg:block">
+        <Image src={Marrage} className='rounded-md' alt=''/>
+      </div>
+    <div className="xsm:mt-5 lg:mt-0 bg-white p-6 rounded-lg shadow-md ">
       <h1 className="text-2xl font-bold text-center">Login</h1>
       <Formik
         initialValues={{ email: '', password: '' }}
@@ -65,12 +72,12 @@ const Login = (props: Props) => {
             <div className='card-body'>
               <div className='form-group mb-5'>
                 <label className='mb-2'>Email</label>
-                <Field type="text" name="email" className="w-full border border-gray-300 rounded p-2" placeholder="Enter your email" />
+                <Field type="text" name="email" className="w-full  border-b-2 border-gray-300 outline-none rounded p-2" placeholder="Enter your email" />
                 <ErrorMessage name="email" component="div" className="text-red-500" />
               </div>
               <div className='form-group'>
                 <label className='mb-2'>Password</label>
-                <Field type="password" name="password" className="w-full border border-gray-300 rounded p-2" placeholder="Enter your password" />
+                <Field type="password" name="password" className="w-full  border-b-2 border-gray-300 outline-none rounded p-2" placeholder="Enter your password" />
                 <ErrorMessage name="password" component="div" className="text-red-500" />
 
               </div>
@@ -103,9 +110,11 @@ const Login = (props: Props) => {
           Login with Apple ID</button>
       </div>
       <div className='text-center mt-5'>
-        <span>Don't have an account?<a className='cursor-pointer text-red-500' onClick={() => router.push('/signup')}>Sign in</a></span>
+        <span>Dont have an account?<a className='cursor-pointer text-red-500' onClick={() => router.push('/signup')}>Sign in</a></span>
       </div>
     </div >
+    </div>
+    </div>
   );
 }
 export default Login

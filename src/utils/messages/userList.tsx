@@ -80,7 +80,7 @@ export const UserList = () => {
           className="w-[100%] focus:outline-none p-2 rounded-md border bg-gray-100"
         />
       </div>
-      <div className="h-[80vh] p-4 bg-white border-r border-gray-300 overflow-y-scroll">
+      <div className="h-[85vh] p-4 bg-white border-r border-gray-300 overflow-y-scroll">
 
     {data.map((card) => (
         <div

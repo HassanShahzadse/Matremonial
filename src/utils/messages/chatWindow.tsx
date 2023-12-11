@@ -8,7 +8,7 @@ export const ChatWindow = () => {
       {/* <!-- Chat Window --> */}
       
    {/* Chat Area */}
-      <div className="flex-1 flex flex-col xsm:hidden lg:block">
+      <div className="flex-1 flex flex-col xsm:hidden mb-20 lg:block">
         {/* Chat Header */}
         <div className="p-3 bg-white border-b border-gray-300">
         <div className="right flex justify-between items-center">
@@ -28,7 +28,7 @@ export const ChatWindow = () => {
         </div>
 
   {/* <!-- Chat Messages --> */}
-        <div className="flex-1 overflow-y-auto p-4 h-[80vh] bg-white">
+        <div className="flex-1 overflow-y-auto p-4 md:h-[77vh] lg:h-[84vh] bg-white">
         {/* <!-- User 1 Message --> */}
           <div className="flex mb-4">
             <div className="w-10 h-10 rounded-full bg-gray-500">
@@ -51,7 +51,7 @@ export const ChatWindow = () => {
 
         </div>
 
-    <div className="p-4 bg-white ">
+    <div className="p-4 bg-white sm:-mt-10 md:-mt-7">
       <div className=" flex items-center ">
           <input
             type="text"
