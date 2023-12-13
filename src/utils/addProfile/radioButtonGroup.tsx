@@ -5,15 +5,15 @@ import { UseFormRegister } from 'react-hook-form';
 interface RadioButtonGroupProps {
   label: string;
   name: string;
-  options: { label: string; value: string }[];
+  options?: { label: string; value: string }[];
   register: UseFormRegister<any>;
 }
 
-const RadioButtonGroup: React.FC<RadioButtonGroupProps> = ({ label, name, options, register }) => {
+const RadioButtonGroup: React.FC<RadioButtonGroupProps> = ({ label, name, options=[], register }) => {
   return (
     <div className="mb-4">
       <label className="block text-sm font-medium text-gray-600">{label}</label>
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center space-x-4 mt-4">
         {options.map((option) => (
           <div key={option.value} className="flex items-center">
             <input

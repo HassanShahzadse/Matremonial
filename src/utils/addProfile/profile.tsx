@@ -62,12 +62,7 @@ const ChooseProfilePicture: React.FC<ChooseProfilePictureProps> = ({ control }) 
                   Upload
                 </label>
 
-                <label
-                  htmlFor="profilePictureInput"
-                  className="w-28 mt-5 p-2 rounded-lg text-center shadow-md cursor-pointer bg-green-300 hover:bg-[#fb1086] hover:text-white"
-                >
-                  Choose
-                </label>
+          
               </div>
             </div>
   

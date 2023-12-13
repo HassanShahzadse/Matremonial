@@ -16,8 +16,9 @@ import Gallery from "@/utils/addProfile/galleryPicture";
 import GalleryPicture from "@/utils/addProfile/galleryPicture";
 import InputField from "@/utils/addProfile/inputField";
 import SelectField from "@/utils/addProfile/selectField";
-import { useEffect} from 'react';
-import axios from 'axios';
+import { useEffect } from "react";
+import axios from "axios";
+import RadioButtonGroup from "@/utils/addProfile/radioButtonGroup";
 
 const martialOptions = [
   { label: "Never Married", value: "NeverMarried" },
@@ -64,6 +65,43 @@ const partnerSectOptions = [
   { label: "Shia", value: "Shia" },
   { label: "Sunni", value: "Cristian" },
 ];
+const sectOptions = [
+  { label: "Only Muslim", value: "OnlyMuslim" },
+  { label: "Wahabi", value: "Wahabi" },
+  { label: "Sunni", value: "Sunni" },
+  { label: "Shia", value: "Shia" },
+];
+const hijabOptions = [
+  { label: "Yes", value: "yes" },
+  { label: "No", value: "no" },
+  { label: "Occasionally", value: "Occasionally" },
+];
+const beardOptions = [
+  { label: "Yes", value: "yes" },
+  { label: "No", value: "no" },
+  { label: "Trend", value: "trend" },
+];
+const halalOptions = [
+  { label: "Yes", value: "yes" },
+  { label: "No", value: "no" },
+  { label: "Sometimes", value: "sometimes" },
+];
+const salahOptions = [
+  { label: "Yes", value: "yes" },
+  { label: "No", value: "no" },
+  { label: "Occasionally", value: "Occasionally" },
+];
+const zikatOptions = [
+  { label: "Yes", value: "yes" },
+  { label: "No", value: "no" },
+  { label: "Sometimes", value: "sometimes" },
+];
+const ramadanOptions = [
+  { label: "Yes", value: "yes" },
+  { label: "No", value: "no" },
+  { label: "A Few", value: "a few" },
+];
+
 // PersonalInfoFields.json
 
 const profileInfoFields = [
@@ -187,6 +225,66 @@ const bodyTypeFields = [
   },
 ];
 
+const religiousInfoFields = [
+  {
+    type: "input",
+    label: "Religiousness",
+    name: "religiousness",
+    placeholder: "",
+    required: true,
+  },
+  {
+    type: "select",
+    label: "My Sect",
+    name: "mysect",
+    options: sectOptions,
+    required: true,
+  },
+  {
+    type: "radio",
+    label: "Do you wear a Hijab?",
+    name: "hijab",
+    options: hijabOptions,
+  },
+  {
+    type: "radio",
+    label: "Do you prefer a Beard?",
+    name: "beard",
+    options: beardOptions,
+  },
+  {
+    type: "input",
+    label: "Are you a Revert?",
+    name: "revert",
+    placeholder: "",
+    required: true,
+  },
+  {
+    type: "select",
+    label: "Do you keep Halal?",
+    name: "halal",
+    options: halalOptions,
+    required: true,
+  },
+  {
+    type: "radio",
+    label: "Do you perform Salah?",
+    name: "salah",
+    options: salahOptions,
+  },
+  {
+    type: "radio",
+    label: "Do you pay Zakat?",
+    name: "zakat",
+    options: zikatOptions,
+  },
+  {
+    type: "radio",
+    label: "Do you Fast in the month of Ramadan?",
+    name: "ramadan",
+    options: ramadanOptions,
+  },
+];
 
 export default function ProfileComponent() {
   const [show, setShow] = useState(false);
@@ -224,17 +322,21 @@ export default function ProfileComponent() {
     gallery6: true,
   });
 
-  const [ locationOptions, setLocationOptions] = useState([]);
-  
+  const [locationOptions, setLocationOptions] = useState([]);
+
   useEffect(() => {
     const fetchCountries = async () => {
       try {
-        const response = await axios.get('https://restcountries.com/v3.1/all');
-        
-        console.log("countries",response)
-        setLocationOptions(response.data);
+        const response = await axios.get("https://restcountries.com/v3.1/all");
+        const countryData = response.data.map((country: any) => ({
+          label: country.name.common,
+          value: country.name.common,
+        }));
+
+        console.log(" name of country", countryData);
+        setLocationOptions(countryData);
       } catch (error) {
-        console.error('Error fetching countries:', error);
+        console.error("Error fetching countries:", error);
       }
     };
 
@@ -279,11 +381,6 @@ export default function ProfileComponent() {
       placeholder: "",
     },
   ];
-  
-
-
-
-
 
   const handleFileChange = (fieldName: string, file: File | null) => {
     const imageUrl = file ? URL.createObjectURL(file) : null;
@@ -331,8 +428,6 @@ export default function ProfileComponent() {
             </div>
           </div>
 
-          {/*------------ Gallery Code End-------------------- */}
-
           {/* ProfileInfo */}
 
           <div className="w-full bg-white p-5 mt-5">
@@ -345,8 +440,7 @@ export default function ProfileComponent() {
                   name={field.name}
                   placeholder={field.placeholder}
                   register={register}
-                  required
-                  errors={errors}
+                
                 />
               ))}
             </div>
@@ -364,8 +458,7 @@ export default function ProfileComponent() {
                       name={field.name}
                       placeholder={field.placeholder}
                       register={register}
-                      required={field.required}
-                      errors={errors}
+                    
                     />
                   )}
 
@@ -375,8 +468,7 @@ export default function ProfileComponent() {
                       name={field.name}
                       options={field.options}
                       register={register}
-                      required={field.required}
-                      errors={errors}
+                     
                     />
                   )}
                 </div>
@@ -396,8 +488,7 @@ export default function ProfileComponent() {
                       name={field.name}
                       placeholder={field.placeholder}
                       register={register}
-                      required
-                      errors={errors}
+                     
                     />
                   )}
                   {field.type === "select" && (
@@ -406,8 +497,7 @@ export default function ProfileComponent() {
                       name={field.name}
                       options={field.options || []}
                       register={register}
-                      required
-                      errors={errors}
+                     
                     />
                   )}
                 </React.Fragment>
@@ -416,9 +506,49 @@ export default function ProfileComponent() {
           </div>
 
           {/* Religion */}
-          
-
-
+          <div className="w-full bg-white p-5 mt-5">
+            <h1 className="text-xl font-semibold m ">Religion</h1>
+            <div className="grid lg:grid-cols-3 md:grid-cols-2  grid-cols-1 gap-4 p-4">
+              {religiousInfoFields.map((field) => {
+                switch (field.type) {
+                  case "input":
+                    return (
+                      <InputField
+                        key={field.name}
+                        label={field.label}
+                        name={field.name}
+                        placeholder={field.placeholder}
+                        register={register}
+                       
+                      />
+                    );
+                  case "select":
+                    return (
+                      <SelectField
+                        key={field.name}
+                        label={field.label}
+                        name={field.name}
+                        options={field.options}
+                        register={register}
+                       
+                      />
+                    );
+                  case "radio":
+                    return (
+                      <RadioButtonGroup
+                        key={field.name}
+                        label={field.label}
+                        name={field.name}
+                        options={field.options}
+                        register={register}
+                      />
+                    );
+                  default:
+                    return null;
+                }
+              })}
+            </div>
+          </div>
 
           {/* Type of Partner */}
           <div className="w-full bg-white p-5 mt-5">
@@ -434,8 +564,7 @@ export default function ProfileComponent() {
                       name={field.name}
                       placeholder={field.placeholder}
                       register={register}
-                      required
-                      errors={errors}
+                    
                     />
                   )}
                   {field.type === "select" && (
@@ -444,8 +573,7 @@ export default function ProfileComponent() {
                       name={field.name}
                       options={field.options || []}
                       register={register}
-                      required
-                      errors={errors}
+                     
                     />
                   )}
                 </React.Fragment>
@@ -454,12 +582,7 @@ export default function ProfileComponent() {
           </div>
 
           <div className="flex justify-end mb-5 space-x-4 mt-5">
-            <button
-              type="button"
-              className="bg-green-400 text-white p-2 rounded-md px-5"
-            >
-              Cencel
-            </button>
+           
             <button
               type="submit"
               className="bg-[#fb1086] text-white p-2 rounded-md px-5"
