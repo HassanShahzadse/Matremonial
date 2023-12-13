@@ -8,7 +8,8 @@ import Select from 'react-select';
 import RadioButtons from '../../utils/shared/radioBtn';
 import DateOfBirthInput from '../../utils/dateOfBirth/dateOfBirth';
 import { createUser, signupWithFacebook, signupWithGoogle } from '@/sharedService/auth/auth';
-import Marrage from "/public/marg.jpg";
+import Marrage from "/public/clubmobile.png";
+
 
 type Props = {}
 
@@ -141,25 +142,23 @@ const SignUp = (props: Props) => {
   const radioGenderOptions = ['Male', 'Female', 'Non-Binary']; 
   return (
     <div className="flex container mx-auto justify-center lg:h-screen  items-center overflow-hidden">
-    <div className="grid lg:grid-cols-2 gap-5">
-      <div className="w-full h-full xsm:hidden lg:block">
-        <Image src={Marrage} className='rounded-md' alt=''/>
-      </div>
-    <div className="xsm:mt-2 lg:mt-0 bg-white py-2 px-5 rounded-lg shadow-md mx-auto">
+    <div className="grid lg:grid-cols-2">
+      <div className="col-span-2 h-14 xsm:hidden lg:block bg-[#fb1086]"></div>
+    <div className="xsm:mt-2 lg:mt-0 bg-white py-2 px-5 rounded-lg shadow-md">
       {step === 1 && (
         <h1 className="text-2xl font-bold text-center">Sign Up</h1>
       )}
       {step === 2 && (
         <div className='flex'>
           <div className='previous-btn'>
-            <button type="button" onClick={handlePreviousStep} className="prev-btn border border-gray-300 rounded-full bg-pink-500 hover:bg-pink-700 text-white"
+            <button type="button" onClick={handlePreviousStep} className="prev-btn border border-gray-300 rounded-full active:scale-95 bg-[#fb1086] text-white"
             ><i className="fas fa-arrow-left me-1"></i>
               Previous
             </button>
           </div>
 
           <div className='flex justify-center'>
-            <h1 className="text-2xl font-bold">Sign Up</h1>
+            <h1 className="lg:text-2xl font-bold">Sign Up</h1>
           </div>
         </div>
       )}
@@ -176,7 +175,7 @@ const SignUp = (props: Props) => {
                 <>
                   <div className='form-group mb-3'>
                     <label className='mb-2'>User Name</label>
-                    <Field type="text" name="userName" className="w-full border border-gray-300 rounded p-2" placeholder="Enter your Name"
+                    <Field type="text" name="userName" className="w-full border-b-2 outline-none border-gray-300 rounded p-2" placeholder="Enter your Name"
                       onChange={(e: any) => {
                         setFieldValue('userName', e.target.value)
                         handleFormChange('userName', e.target.value);
@@ -188,7 +187,7 @@ const SignUp = (props: Props) => {
 
                   <div className='form-group mb-3'>
                     <label className='mb-2'>Email</label>
-                    <Field type="text" name="email" className="w-full border border-gray-300 rounded p-2" placeholder="Enter your email"
+                    <Field type="text" name="email" className="w-full border-b-2 outline-none border-gray-300 rounded p-2" placeholder="Enter your email"
                       onChange={(e: any) => {
                         setFieldValue('email', e.target.value)
                         handleFormChange('email', e.target.value);
@@ -198,7 +197,7 @@ const SignUp = (props: Props) => {
 
                   <div className='form-group mb-3'>
                     <label className='mb-2'>Confirm Email</label>
-                    <Field type="text" name="confirmEmail" className="w-full border border-gray-300 rounded p-2" placeholder="Re-enter your Email "
+                    <Field type="text" name="confirmEmail" className="w-full border-b-2 outline-none border-gray-300 rounded p-2" placeholder="Re-enter your Email "
                       onChange={(e: any) => {
                         setFieldValue('confirmEmail', e.target.value)
                         handleFormChange('confirmEmail', e.target.value);
@@ -208,7 +207,7 @@ const SignUp = (props: Props) => {
 
                   <div className='form-group mb-3'>
                     <label className='mb-2'>Password</label>
-                    <Field type="text" name="password" className="w-full border border-gray-300 rounded p-2" placeholder="Enter your password"
+                    <Field type="text" name="password" className="w-full border-b-2 outline-none border-gray-300 rounded p-2" placeholder="Enter your password"
                       onChange={(e: any) => {
                         setFieldValue('password', e.target.value)
                         handleFormChange('password', e.target.value);
@@ -232,7 +231,7 @@ const SignUp = (props: Props) => {
                         <Field
                           type="text"
                           name="phone"
-                          className="w-full border border-gray-300 rounded p-2"
+                          className="w-full border-b-2 outline-none border-gray-300 rounded p-2"
                           placeholder="Enter your Phone Number"
                           onChange={(e: any) => {
                             setFieldValue('phone', e.target.value)
@@ -256,7 +255,7 @@ const SignUp = (props: Props) => {
                     <button
                       type="button"
                       onClick={handleNextStep}
-                      className="login-btn border border-gray-300 rounded-full bg-pink-500 hover:bg-pink-700 text-white"
+                      className="login-btn border border-gray-300 rounded-full active:scale-95 bg-[#fb1086] hover:bg-pink-700 text-white"
                     >
                       Next
                     </button>
@@ -318,7 +317,7 @@ const SignUp = (props: Props) => {
                     </select>
                   </div>
                   <div className='text-center mt-5'>
-                    <button type="submit" className="login-btn border border-gray-300 rounded-full bg-pink-500 hover:bg-pink-700 text-white"
+                    <button type="submit" className="login-btn border border-gray-300 rounded-full active:scale-95 bg-[#fb1086] hover:bg-pink-700 text-white"
                     >Sign up</button>
                   </div>
                 </>
@@ -357,7 +356,11 @@ const SignUp = (props: Props) => {
       <div className='text-center mt-5'>
         <span>Already have an account?<a className='cursor-pointer text-red-500' onClick={() => router.push('/login')}>Log In</a></span>
       </div>
-    </div >
+    </div>
+    <div className="h-full xsm:hidden lg:block">
+    <Image src={Marrage} className='rounded-md bg-[#f5c5dd] h-full' alt=''/>
+      </div>
+    <div className="col-span-2 h-7 xsm:hidden lg:block rounded-l-xl bg-[#fb1086]"></div>
     </div> 
     </div> 
   )

@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { loginUser, loginWithFacebook, loginWithGoogle } from '@/sharedService/auth/auth';
-import Marrage from "/public/marg.jpg";
+import Marrage from "/public/clubmobile.png";
 
 
 type Props = {}
@@ -57,9 +57,10 @@ const Login = (props: Props) => {
   });
   return (
       <div className="flex container mx-auto justify-center lg:h-screen  items-center overflow-hidden">
-    <div className="grid lg:grid-cols-2 gap-5">
+    <div className="grid lg:grid-cols-2 ">
+    <div className="col-span-2 h-14 xsm:hidden lg:block bg-[#fb1086]"></div>
       <div className="w-full h-full xsm:hidden lg:block">
-        <Image src={Marrage} className='rounded-md' alt=''/>
+        <Image src={Marrage} className='rounded-md bg-[#f5c5dd] h-full' alt=''/>
       </div>
     <div className="xsm:mt-5 lg:mt-0 bg-white p-6 rounded-lg shadow-md ">
       <h1 className="text-2xl font-bold text-center">Login</h1>
@@ -83,7 +84,7 @@ const Login = (props: Props) => {
               </div>
 
               <div className='text-center mt-10'>
-                <button className="login-btn border border-gray-300 rounded-full bg-pink-500 hover:bg-pink-700 text-white" type="submit">Login</button>
+                <button className="login-btn border border-gray-300 rounded-full active:scale-95 bg-[#fb1086] text-white" type="submit">Login</button>
               </div>
             </div>
           </Form>
@@ -113,6 +114,8 @@ const Login = (props: Props) => {
         <span>Dont have an account?<a className='cursor-pointer text-red-500' onClick={() => router.push('/signup')}>Sign in</a></span>
       </div>
     </div >
+    <div className="col-span-2 h-7 xsm:hidden lg:block rounded-l-xl bg-[#fb1086]"></div>
+  
     </div>
     </div>
   );
