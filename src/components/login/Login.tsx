@@ -60,14 +60,14 @@ const Login = (props: Props) => {
   });
   return (
 <>
-    <div className="lg:h-[10vh] bg-[#fb1086] "></div>
-    <div className="lg:h-[85vh]    ">
-      <div className=" container-fluid     ">
+    <div className="h-[10vh]   bg-[#fb1086] "></div>
+    <div className="lg:h-[85vh]   ">
+      <div className=" container-fluid ">
         <div className="grid lg:grid-cols-2 ">
          
-          {/* <div className="col-span-2 h-14 xsm:hidden lg:block bg-[#fb1086]"></div> */}
-          <div className=" h-[85vh] flex  items-center justify-end  flex-col   bg-[#ffe8ea] ">
-              
+         
+          <div className=" lg:h-[85vh]   flex  items-center justify-end  flex-col   bg-[#ffe8ea] ">
+              <h1 className="font-bold  lg:text-4xl text-5xl  xl:text-5xl  text-[#f46194] text-center  -mb-16">Muslim Marriage online </h1>
              <Image
               src={Marrage}
               className="rounded-md "
@@ -79,10 +79,10 @@ const Login = (props: Props) => {
 
           </div>
          
-          <div className="xsm:mt-5 lg:mt-0 bg-white h-[85vh] flex justify-center  flex-col   rounded-lg shadow-md ">
+          <div className=" lg:mt-0 bg-white lg:h-[85vh] flex justify-center  flex-col   rounded-lg shadow-md ">
               
-            <div className="card px-32 py-8"> 
-            <h1 className="text-2xl  font-bold text-center">Login</h1>
+            <div className="card px-32 py-8   "> 
+            <h1 className="text-2xl   font-bold text-center">Login</h1>
             <Formik
               initialValues={{ email: "", password: "" }}
               validationSchema={validationSchema}
@@ -96,7 +96,7 @@ const Login = (props: Props) => {
                       <Field
                         type="text"
                         name="email"
-                        className="w-full  border-b-2 border-gray-300 outline-none rounded p-2 2xl:p-4"
+                        className="w-full  border-b-2 border-gray-300 outline-none rounded p-2  "
                         placeholder="Enter your email"
                       />
                       <ErrorMessage
@@ -110,7 +110,7 @@ const Login = (props: Props) => {
                       <Field
                         type="password"
                         name="password"
-                        className="w-full  border-b-2 border-gray-300 outline-none rounded p-2 2xl:p-4"
+                        className="w-full  border-b-2 border-gray-300 outline-none rounded p-2 "
                         placeholder="Enter your password"
                       />
                       <ErrorMessage
@@ -122,7 +122,7 @@ const Login = (props: Props) => {
 
                     <div className="text-center mt-10">
                       <button
-                        className="login-btn 2xl:px-[100px]  2xl:py-[20px] border border-gray-300 rounded-full  active:scale-95 bg-[#fb1086] text-white"
+                        className="login-btn  border border-gray-300 rounded-full  active:scale-95 bg-[#fb1086] text-white"
                         type="submit"
                       >
                         Login
@@ -139,7 +139,7 @@ const Login = (props: Props) => {
             </div>
             <div className="text-center mt-2">
               <button
-                className="google-btn 2xl:px-[100px]  2xl:py-[20px]  border border-gray-300 rounded-full"
+                className="google-btn   border border-gray-300 rounded-full"
                 onClick={handleGoogleLogin}
               >
                 <i
@@ -151,7 +151,7 @@ const Login = (props: Props) => {
             </div>
             <div className="text-center mt-2">
               <button
-                className="facebook-btn 2xl:px-[100px]  2xl:py-[20px] border border-gray-300 rounded-full"
+                className="facebook-btn  border border-gray-300 rounded-full"
                 onClick={handleFacebookLogin}
               >
                 <i
@@ -162,7 +162,7 @@ const Login = (props: Props) => {
               </button>
             </div>
             <div className="text-center mt-2">
-              <button className="google-btn 2xl:px-[100px]  2xl:py-[20px] border border-gray-300 rounded-full">
+              <button className="google-btn  border border-gray-300 rounded-full">
                 <i
                   className="fa-brands fa-apple me-1"
                   style={{ color: "rgb(28 27 27)" }}
@@ -183,7 +183,7 @@ const Login = (props: Props) => {
             </div>
             </div>
           </div>
-          {/* <div className="col-span-2 h-7 xsm:hidden lg:block rounded-l-xl bg-[#fb1086]"></div> */}
+         
         </div>
       </div>
     </div>
