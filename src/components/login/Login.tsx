@@ -61,8 +61,8 @@ const Login = (props: Props) => {
   return (
 <>
     <div className="h-[10vh]   bg-[#fb1086] "></div>
-    <div className="lg:h-[85vh]   ">
-      <div className=" container-fluid ">
+    <div className="lg:h-[85vh] container-fluid  ">
+     
         <div className="grid lg:grid-cols-2 ">
          
          
@@ -185,7 +185,7 @@ const Login = (props: Props) => {
           </div>
          
         </div>
-      </div>
+     
     </div>
     <div className="h-[5vh] rounded-l-xl bg-[#fb1086]"></div>
     </>
