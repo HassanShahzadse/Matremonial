@@ -8,12 +8,12 @@ import ProtectedRouteWrapper from '../../app/admin/page';
 
 export default function Layout({ children, show, setShow }: any) {
     return (
-        <div>
+        <ProtectedRouteWrapper><div>
             <main className="space-toggle">
             <SideBar show={show} />
-            <ProtectedRouteWrapper>{children}</ProtectedRouteWrapper>
+            {children}
             </main> 
-        </div>
+        </div></ProtectedRouteWrapper>
     );
 };
 

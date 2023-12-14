@@ -36,8 +36,9 @@ const Login = (props: Props) => {
   const handleGoogleLogin = async () => {
     try {
       const user = await loginWithGoogle();
-      console.log("Logged in with Google:", user);
-      router.push("/dashboard");
+      console.log('Logged in with Google:', user);
+      router.push('/dashboard'); 
+
     } catch (error) {
       console.error("Google login error:", error);
     }
@@ -120,75 +121,37 @@ const Login = (props: Props) => {
                       />
                     </div>
 
-                    <div className="text-center mt-10">
-                      <button
-                        className="login-btn  border border-gray-300 rounded-full  active:scale-95 bg-[#fb1086] text-white"
-                        type="submit"
-                      >
-                        Login
-                      </button>
-                    </div>
-                  </div>
-                </Form>
-              )}
-            </Formik>
-            <div className="flex items-center mt-2">
-              <hr className="flex-1 border-t border-black" />
-              <span className="px-2">OR</span>
-              <hr className="flex-1 border-t border-black" />
+              <div className='text-center mt-10'>
+                <button className="login-btn border border-gray-300 rounded-full bg-pink-500 hover:bg-pink-700 text-white" type="submit">Login</button>
+              </div>
             </div>
-            <div className="text-center mt-2">
-              <button
-                className="google-btn   border border-gray-300 rounded-full"
-                onClick={handleGoogleLogin}
-              >
-                <i
-                  className="fa-brands fa-google me-1"
-                  style={{ color: " #c61010" }}
-                ></i>
-                Login with Google
-              </button>
-            </div>
-            <div className="text-center mt-2">
-              <button
-                className="facebook-btn  border border-gray-300 rounded-full"
-                onClick={handleFacebookLogin}
-              >
-                <i
-                  className="fa-brands fa-facebook me-1"
-                  style={{ color: "rgb(19 16 198)" }}
-                ></i>
-                Login with Facebook
-              </button>
-            </div>
-            <div className="text-center mt-2">
-              <button className="google-btn  border border-gray-300 rounded-full">
-                <i
-                  className="fa-brands fa-apple me-1"
-                  style={{ color: "rgb(28 27 27)" }}
-                ></i>
-                Login with Apple ID
-              </button>
-            </div>
-            <div className="text-center mt-5">
-              <span>
-                Dont have an account?
-                <a
-                  className="cursor-pointer text-red-500"
-                  onClick={() => router.push("/signup")}
-                >
-                  Sign in
-                </a>
-              </span>
-            </div>
-            </div>
-          </div>
-         
-        </div>
-     
-    </div>
-    <div className="h-[5vh] rounded-l-xl bg-[#fb1086]"></div>
-    </>
+          </Form>
+        )}
+      </Formik>
+      <div className="flex items-center mt-2">
+        <hr className="flex-1 border-t border-black" />
+        <span className="px-2">OR</span>
+        <hr className="flex-1 border-t border-black" />
+      </div>
+      <div className='text-center mt-2'>
+        <button className="google-btn border border-gray-300 rounded-full" onClick={handleGoogleLogin}>
+          <i className="fa-brands fa-google me-1" style={{ color: ' #c61010' }}></i>
+          Login with Google</button>
+      </div>
+      <div className='text-center mt-2'>
+        <button className="facebook-btn border border-gray-300 rounded-full" onClick={handleFacebookLogin}>
+          <i className="fa-brands fa-facebook me-1" style={{ color: 'rgb(19 16 198)' }}></i>
+          Login with Facebook</button>
+      </div>
+      <div className='text-center mt-2'>
+        <button className="google-btn border border-gray-300 rounded-full" >
+          <i className="fa-brands fa-apple me-1" style={{ color: 'rgb(28 27 27)' }}></i>
+          Login with Apple ID</button>
+      </div>
+      <div className='text-center mt-5'>
+        <span>Don't have an account?<a className='cursor-pointer text-red-500' onClick={() => router.push('/signup')}>Sign in</a></span>
+      </div>
+    </div >
   );
 };
 export default Login;

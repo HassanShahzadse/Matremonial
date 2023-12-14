@@ -1,5 +1,5 @@
 "use client"
-import { userProfile } from "@/sharedService/userProfile/userProfile";
+import { userProfile } from "@/sharedService/users/user";
 import RadioButtons from "@/utils/shared/radioBtn";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useRouter } from "next/router";
