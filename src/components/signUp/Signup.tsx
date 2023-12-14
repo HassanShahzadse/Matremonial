@@ -141,9 +141,11 @@ const SignUp = (props: Props) => {
   });
   const radioGenderOptions = ['Male', 'Female', 'Non-Binary']; 
   return (
-    <div className="flex container mx-auto justify-center lg:h-screen  items-center overflow-hidden">
+    <>
+    <div className="h-[10vh] bg-[#fb1086] "></div>
+    <div className="lg:h-[85vh]">
+      <div className=" container-fluid">
     <div className="grid lg:grid-cols-2">
-      <div className="col-span-2 h-14 xsm:hidden lg:block bg-[#fb1086]"></div>
     <div className="xsm:mt-2 lg:mt-0 bg-white py-2 px-5 rounded-lg shadow-md">
       {step === 1 && (
         <h1 className="text-2xl font-bold text-center">Sign Up</h1>
@@ -357,12 +359,16 @@ const SignUp = (props: Props) => {
         <span>Already have an account?<a className='cursor-pointer text-red-500' onClick={() => router.push('/login')}>Log In</a></span>
       </div>
     </div>
-    <div className="h-full xsm:hidden lg:block">
-    <Image src={Marrage} className='rounded-md bg-[#f5c5dd] h-full' alt=''/>
+    <div className="lg:h-[85vh] flex  items-center justify-end  flex-col bg-[#ffe8ea]  ">
+    <h1 className="font-bold  lg:text-4xl text-5xl  xl:text-5xl  text-[#f46194] text-center md:-mb-28">Muslim Marriage online </h1>
+    <Image src={Marrage} className='rounded-md ' alt=''/>
       </div>
-    <div className="col-span-2 h-7 xsm:hidden lg:block rounded-l-xl bg-[#fb1086]"></div>
+    {/* <div className="col-span-2  xsm:hidden lg:block rounded-l-xl bg-[#fb1086]"></div> */}
     </div> 
     </div> 
+    </div>
+    <div className="h-[5vh] rounded-l-xl bg-[#fb1086]"></div>
+    </>
   )
 }
 export default SignUp
