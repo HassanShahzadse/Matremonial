@@ -65,13 +65,13 @@ const Login = (props: Props) => {
          
        
           <div className=" lg:h-[85vh] flex  items-center justify-end  flex-col   bg-[#ffe8ea] ">
-          <h1 className="font-bold  lg:text-4xl text-5xl  xl:text-5xl  text-[#f46194] text-center  md:-mb-28">Muslim Marriage online </h1>
+          <h1 className="font-bold  lg:text-4xl text-5xl  xl:text-5xl  text-[#f46194] text-center  md:-mb-14">Muslim Marriage online </h1>
              <Image
               src={Marrage}
               className="rounded-md "
               alt=""
-              // height={500}
-              // width={500}
+              height={500}
+              width={500}
           /> 
          
 
