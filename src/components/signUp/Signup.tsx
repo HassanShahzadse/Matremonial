@@ -141,6 +141,7 @@ const SignUp = (props: Props) => {
   });
   const radioGenderOptions = ['Male', 'Female', 'Non-Binary']; 
   return (
+    
     <div className="flex container mx-auto justify-center lg:h-screen  items-center overflow-hidden">
     <div className="grid lg:grid-cols-2">
       <div className="col-span-2 h-14 xsm:hidden lg:block bg-[#fb1086]"></div>
