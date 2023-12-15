@@ -186,7 +186,7 @@ const SignUp = (props: Props) => {
                     <ErrorMessage name="userName" component="div" className="text-red-500" />
                   </div>
 
-          <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-2">
+          <div className="grid lg:grid-cols-2 md:grid-cols-2 gap-2">
                   <div className='form-group mb-3'>
                     <label className='mb-2'>Email</label>
                     <Field type="text" name="email" className="w-full border-b-2 outline-none border-gray-300 rounded p-2" placeholder="Enter your email"
