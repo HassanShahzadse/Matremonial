@@ -11,13 +11,19 @@ import { ChatWindow } from "@/utils/messages/chatWindow";
 import { UserList } from "@/utils/messages/userList";
 import { getAllChats } from "@/sharedService/users/chat";
 import { fetchUserInfoFromFirebase } from "@/sharedService/users/user";
+interface MessagesComponentProps {
+  userId: string | string[] | undefined; // Adjust the type based on your use case
+}
 
-
-export default function MessagesComponent() {
+export default function MessagesComponent({ userId }: MessagesComponentProps) {
   const [show, setShow] = useState(false);
   const [filteredChats, setFilteredChats] = useState([]);
   const [selectedChat, setSelectedChat] = useState(null);
+
   useEffect(()=>{
+    console.log(userId)
+    const opposite = fetchUserInfoFromFirebase(userId)
+    console.log(opposite)
     const fetchData = async () => {
       try {
         const chatData:any = await getAllChats();
