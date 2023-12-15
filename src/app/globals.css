@@ -25,24 +25,12 @@ body {
   background-color: #f7f7f7;
 }
 
-.card {
-  margin-top: 40px;
-  max-width: 550px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
- 
-}
+
 .shadow-custom-dark {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
 }
 
-.card-body {
-  margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+
 
 .login-btn {
   padding: 10px 98px;

@@ -5,533 +5,591 @@ import { useState } from "react";
 import Layout from "../mainLayout/layout";
 import Man from "/public/member2.png";
 import { ChooseImg } from "./profileComponents/ChooseImg";
-import { InputField } from "./profileComponents/InputField";
 import { PhotosList } from "./profileComponents/PhotosList";
 import { Appearance } from "./profileComponents/Appearance";
 import { GeneralInput } from "./profileComponents/GeneralInput";
+import Profile from "@/utils/addProfile/profile";
+import { useForm, useFieldArray } from "react-hook-form";
+import { Controller, SubmitHandler } from "react-hook-form";
+import ChooseProfilePicture from "@/utils/addProfile/profile";
+import Gallery from "@/utils/addProfile/galleryPicture";
+import GalleryPicture from "@/utils/addProfile/galleryPicture";
+import InputField from "@/utils/addProfile/inputField";
+import SelectField from "@/utils/addProfile/selectField";
+import { useEffect } from "react";
+import axios from "axios";
+import RadioButtonGroup from "@/utils/addProfile/radioButtonGroup";
+
+const martialOptions = [
+  { label: "Never Married", value: "NeverMarried" },
+  { label: "Legally Separated", value: "LegallySeparated" },
+  { label: "Divorced", value: "Divorced" },
+  { label: "Widowd", value: "Widowd" },
+  { label: "Annulled", value: "Annulled" },
+];
+const lookingToMarryOptions = [
+  { label: "As soon As Possible", value: "AssoonAsPossible" },
+  { label: "This Year", value: "ThisYear" },
+  { label: "Next Year", value: "NextYear" },
+  { label: "Not Sure", value: "NotSure" },
+];
+const livingArrangementsOptions = [
+  { label: "Live with Family", value: "LivewithFamily" },
+  { label: "Separate", value: "Separate" },
+  { label: "Alone", value: "Alone" },
+];
+
+const myBuildOptions = [
+  { label: "Normal", value: "Normal" },
+  { label: "Muscular", value: "Muscular" },
+  { label: "Fat", value: "Fat" },
+  { label: "Slim", value: "Slim" },
+];
+
+const smokeOptions = [
+  { label: "No", value: "No" },
+  { label: "Yes", value: "Yes" },
+  { label: "Special Occassion", value: "SpecialOccassion" },
+  { label: "Sometimes", value: "Sometimes" },
+];
+
+const partnerReligionOptions = [
+  { label: "Doesn't Matter", value: "Doesn'tMatter" },
+  { label: "Hindu", value: "Hindu" },
+  { label: "Muslim", value: "Muslim" },
+  { label: "Cristian", value: "Cristian" },
+];
+const partnerSectOptions = [
+  { label: "Doesn't Matter", value: "Doesn'tMatter" },
+  { label: "Only Muslim", value: "OnlyMuslim" },
+  { label: "Shia", value: "Shia" },
+  { label: "Sunni", value: "Cristian" },
+];
+const sectOptions = [
+  { label: "Only Muslim", value: "OnlyMuslim" },
+  { label: "Wahabi", value: "Wahabi" },
+  { label: "Sunni", value: "Sunni" },
+  { label: "Shia", value: "Shia" },
+];
+const hijabOptions = [
+  { label: "Yes", value: "yes" },
+  { label: "No", value: "no" },
+  { label: "Occasionally", value: "Occasionally" },
+];
+const beardOptions = [
+  { label: "Yes", value: "yes" },
+  { label: "No", value: "no" },
+  { label: "Trend", value: "trend" },
+];
+const halalOptions = [
+  { label: "Yes", value: "yes" },
+  { label: "No", value: "no" },
+  { label: "Sometimes", value: "sometimes" },
+];
+const salahOptions = [
+  { label: "Yes", value: "yes" },
+  { label: "No", value: "no" },
+  { label: "Occasionally", value: "Occasionally" },
+];
+const zikatOptions = [
+  { label: "Yes", value: "yes" },
+  { label: "No", value: "no" },
+  { label: "Sometimes", value: "sometimes" },
+];
+const ramadanOptions = [
+  { label: "Yes", value: "yes" },
+  { label: "No", value: "no" },
+  { label: "A Few", value: "a few" },
+];
+
+// PersonalInfoFields.json
+
+const profileInfoFields = [
+  { label: "Headline", name: "headline", placeholder: "Enter a Headline" },
+  {
+    label: "About",
+    name: "about",
+    placeholder: "Write something About Your-self",
+  },
+  {
+    label: "Education Level",
+    name: "education",
+    placeholder: "Education level",
+  },
+  { label: "My job Title", name: "job", placeholder: "Enter job title" },
+  {
+    label: "My Profession",
+    name: "profession",
+    placeholder: "Enter education level",
+  },
+  {
+    label: "Mother Tongue",
+    name: "tongue",
+    placeholder: "Enter Your Mother Tongue",
+  },
+  {
+    label: "Second Language",
+    name: "secondlanguage",
+    placeholder: "Enter your Second Language",
+  },
+];
+export const personalInfoFields = [
+  {
+    type: "input",
+    label: "My Citizenship",
+    name: "citizen",
+    placeholder: "Enter Citizenship",
+    required: true,
+  },
+  {
+    type: "input",
+    label: "My Income",
+    name: "income",
+    placeholder: "Enter your Income",
+    required: true,
+  },
+  {
+    type: "select",
+    label: "Martial Status",
+    name: "martial",
+    options: martialOptions,
+    required: true,
+  },
+  {
+    type: "select",
+    label: "Looking to Marry",
+    name: "looking",
+    options: lookingToMarryOptions,
+    required: true,
+  },
+  {
+    type: "input",
+    label: "Willing to Relocate",
+    name: "relocate",
+    placeholder: "Willing to relocate",
+    required: true,
+  },
+  {
+    type: "input",
+    label: "Do I Have Children?",
+    name: "havechildren",
+    placeholder: "Do I have children?",
+    required: true,
+  },
+  {
+    type: "select",
+    label: "Living Arrangements",
+    name: "livingarrangements",
+    options: livingArrangementsOptions,
+    required: true,
+  },
+];
+const bodyTypeFields = [
+  {
+    label: "My Height",
+    name: "height",
+    type: "input",
+    placeholder: "Enter your height",
+  },
+  {
+    label: "My Build",
+    name: "build",
+    type: "select",
+    placeholder: "Select build",
+    options: myBuildOptions,
+  },
+  {
+    label: "Hair color",
+    name: "hair",
+    type: "input",
+    placeholder: "Your hair color",
+  },
+  {
+    label: "Eyes color",
+    name: "eyes",
+    type: "input",
+    placeholder: "Your eyes color",
+  },
+  {
+    label: "Do I Smoke?",
+    name: "smoke",
+    type: "select",
+    placeholder: "Select smoke",
+    options: smokeOptions,
+  },
+  {
+    label: "Disabilities?",
+    name: "disability",
+    type: "input",
+    placeholder: "",
+  },
+];
+
+const religiousInfoFields = [
+  {
+    type: "input",
+    label: "Religiousness",
+    name: "religiousness",
+    placeholder: "",
+    required: true,
+  },
+  {
+    type: "select",
+    label: "My Sect",
+    name: "mysect",
+    options: sectOptions,
+    required: true,
+  },
+  {
+    type: "radio",
+    label: "Do you wear a Hijab?",
+    name: "hijab",
+    options: hijabOptions,
+  },
+  {
+    type: "radio",
+    label: "Do you prefer a Beard?",
+    name: "beard",
+    options: beardOptions,
+  },
+  {
+    type: "input",
+    label: "Are you a Revert?",
+    name: "revert",
+    placeholder: "",
+    required: true,
+  },
+  {
+    type: "select",
+    label: "Do you keep Halal?",
+    name: "halal",
+    options: halalOptions,
+    required: true,
+  },
+  {
+    type: "radio",
+    label: "Do you perform Salah?",
+    name: "salah",
+    options: salahOptions,
+  },
+  {
+    type: "radio",
+    label: "Do you pay Zakat?",
+    name: "zakat",
+    options: zikatOptions,
+  },
+  {
+    type: "radio",
+    label: "Do you Fast in the month of Ramadan?",
+    name: "ramadan",
+    options: ramadanOptions,
+  },
+];
 
 export default function ProfileComponent() {
   const [show, setShow] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
+
+  const galleryFields = [
+    "gallery1",
+    "gallery2",
+    "gallery3",
+    "gallery4",
+    "gallery5",
+    "gallery6",
+  ];
+  const [previewImages, setPreviewImages] = useState<
+    Record<string, string | null>
+  >({
+    gallery1: "",
+    gallery2: "",
+    gallery3: "",
+    gallery4: "",
+    gallery5: "",
+    gallery6: "",
+  });
+  const [showPics, setShowPics] = useState<Record<string, boolean>>({
+    gallery1: true,
+    gallery2: true,
+    gallery3: true,
+    gallery4: true,
+    gallery5: true,
+    gallery6: true,
+  });
+
+  const [locationOptions, setLocationOptions] = useState([]);
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await axios.get("https://restcountries.com/v3.1/all");
+        const countryData = response.data.map((country: any) => ({
+          label: country.name.common,
+          value: country.name.common,
+        }));
+
+        console.log(" name of country", countryData);
+        setLocationOptions(countryData);
+      } catch (error) {
+        console.error("Error fetching countries:", error);
+      }
+    };
+
+    fetchCountries();
+  }, []);
+
+  const partnerFields = [
+    {
+      label: "Partner Location",
+      name: "pl",
+      type: "select",
+      options: locationOptions,
+    },
+    {
+      label: "Partner Religion",
+      name: "pr",
+      type: "select",
+      options: partnerReligionOptions,
+    },
+    {
+      label: "Partner Sect",
+      name: "psect",
+      type: "select",
+      options: partnerSectOptions,
+    },
+    {
+      label: "Partner Education",
+      name: "Peducation",
+      type: "input",
+      placeholder: "",
+    },
+    {
+      label: "Partner Profession",
+      name: "Pprofession",
+      type: "input",
+      placeholder: "",
+    },
+    {
+      label: "Describe Type of Partner",
+      name: "top",
+      type: "input",
+      placeholder: "",
+    },
+  ];
+
+  const handleFileChange = (fieldName: string, file: File | null) => {
+    const imageUrl = file ? URL.createObjectURL(file) : null;
+    setPreviewImages((prevImages) => ({
+      ...prevImages,
+      [fieldName]: imageUrl,
+    }));
+    setShowPics((prevShowPics) => ({ ...prevShowPics, [fieldName]: !file }));
+  };
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+    console.log("My name is mehrab");
+  };
+
   return (
     <Layout show={show} setShow={setShow}>
       <>
-        <div className=" lg:top-0 xsm:top-0 fixed inline w-full p-4  bg-white">
-              <h2 className="text-2xl font-bold  z-10  inline">Profile</h2>
-            </div>
-
-        <form action="">
-          {/* <div className="grid w-full  lg:grid-cols-3 md:grid-cols-2 gap-6 mt-20 bg-gray-100">
-            <div className="sm:col-span-2 p-5 shadow-md bg-white rounded-md">
-              <div className="flex">
-                <div>
-                  <Image
-                    src={Man}
-                    alt=""
-                    width={150}
-                    height={150}
-                    className="rounded-full"
-                  />
-                </div>
-
-                <div className="ml-7 mt-6">
-                  <h1 className="text-xl">Change Profile Picture</h1>
-                  <label className="flex items-center justify-center w-28 mt-5 p-2 rounded-lg shadow-md cursor-pointer bg-green-300 hover:bg-[#fb1086] hover:text-white">
-                    <span className="text-base leading-normal">
-                      Select a file
-                    </span>
-                    <input type="file" className="hidden" />
-                  </label>
-                  <button className="w-28 mt-5 p-2 rounded-lg shadow-md cursor-pointer bg-green-300 hover:bg-[#fb1086] hover:text-white">
-                    Upload
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <div className="description shadow-md rounded-md bg-white">
-              <div className="msg leading-10 p-4">
-                <h1>I' am looking for</h1>
-                <span className="bg-[#fb1086] text-white p-2 rounded-md">
-                  Girl
-                </span>
-                <br />
-                <span className="bg-[#fb1086] text-white p-2 rounded-md">
-                  From 21 to 30{" "}
-                </span>
-                <span className="bg-[#fb1086] text-white p-2 rounded-md">
-                  Frinidship
-                </span>
-                <br />
-                <span className="bg-[#fb1086] text-white p-2 rounded-md">
-                  Frinidship
-                </span>
-                <p></p>
-                <p></p>
-              </div>
-            </div>
-          </div> */}
-          <ChooseImg/>  
-          {/* ********* Section Form ******* */}
-
-          {/* <div className="grid lg:grid-cols-2 gap-5 bg-white shadow-md p-5 rounded-md my-10 w-full">
-            <div>
-              <div className="mb-4 ">
-                <label
-                  htmlFor="name"
-                  className="block text-gray-600 text-sm font-medium"
-                >
-                  Display Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  className="mt-1 p-2 w-full border rounded-md"
-                />
-              </div>
-
-          
-              <div className="mb-4">
-                <label
-                  htmlFor="number"
-                  className="block text-gray-600 text-sm font-medium"
-                >
-                  Birthday
-                </label>
-                <input
-                  type="number"
-                  id="email"
-                  name="email"
-                  className="mt-1 p-2 w-full border rounded-md"
-                />
-              </div>
-            </div>
-
-            <div>
-              <div className="mb-4 ">
-                <label
-                  htmlFor="name"
-                  className="block text-gray-600 text-sm font-medium"
-                >
-                  Description
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  className="mt-1 p-2 w-full border rounded-md"
-                />
-              </div>
-
-              
-              <div className="mb-4">
-                <label
-                  htmlFor="text"
-                  className="block text-gray-600 text-sm font-medium"
-                >
-                  City
-                </label>
-                <input
-                  type="text"
-                  id="email"
-                  name="email"
-                  className="mt-1 p-2 w-full border focus:border-none rounded-md"
-                />
-              </div>
-            </div>
-
-          </div> */}
-          <InputField/>
-          {/* ********* Section Form End ******* */}
-
-          {/* ********* Photos Section **** */}
-          
-          {/* <div className="photos bg-white shadow-md rounded-md p-7">
-            <h1 className="text-xl font-semibold mb-5 ">Photos</h1>
-            <div className="grid lg:grid-cols-9 md:grid-cols-5 gap-2 sm:grid-cols-5 xsm:grid-cols-3 ">
-              <div className="xsm:space-y-3">
-                <Image
-                  className="rounded-md"
-                  src={Man}
-                  alt=""
-                  width={100}
-                  height={100}
-                />
-              </div>
-              <div className="xsm:space-y-3">
-                <Image
-                  className="rounded-md"
-                  src={Man}
-                  alt=""
-                  width={100}
-                  height={100}
-                />
-              </div>
-              <div className="xsm:space-y-3">
-                <Image
-                  className="rounded-md"
-                  src={Man}
-                  alt=""
-                  width={100}
-                  height={100}
-                />
-              </div>
-              <div className="xsm:space-y-3">
-                <Image
-                  className="rounded-md"
-                  src={Man}
-                  alt=""
-                  width={100}
-                  height={100}
-                />
-              </div>
-              <div className="xsm:space-y-3">
-                <Image
-                  className="rounded-md"
-                  src={Man}
-                  alt=""
-                  width={100}
-                  height={100}
-                />
-              </div>
-              <div className="xsm:space-y-3">
-                <Image
-                  className="rounded-md"
-                  src={Man}
-                  alt=""
-                  width={100}
-                  height={100}
-                />
-              </div>
-              <div className="xsm:space-y-3">
-                <Image
-                  className="rounded-md"
-                  src={Man}
-                  alt=""
-                  width={100}
-                  height={100}
-                />
-              </div>
-              <div className="xsm:space-y-3">
-                <Image
-                  className="rounded-md"
-                  src={Man}
-                  alt=""
-                  width={100}
-                  height={100}
-                />
-              </div>
-              <label className="bg-[#fb1086]  xsm:w-[90px] flex items-center rounded-md justify-center ">
-                <span className="leading-normal text-4xl text-white ">+</span>
-                <input type="file" className="hidden" />
-              </label>
-            </div>
-          </div> */}
-          <PhotosList/>
-          {/* ********* Photos Section End **** */}
-
-
-          {/* <div className="photos bg-white shadow-md rounded-md p-7 my-10">
-            <h1 className="text-xl font-semibold mb-5">Appearance</h1>
-            <div className="flex justify-between lg:mx-10">
-              <div className="flex-col">
-                <h3>Height</h3>
-                <label htmlFor="">
-                  <input
-                    type="number"
-                    className="rounded border-2  p-2 w-20 my-3 mr-2 "/>{" "}
-                  cm{" "}
-                </label>
-                <h3>Weight</h3>
-                <label htmlFor="">
-                  <input
-                    type="number"
-                    className="rounded border-2 p-2 w-20 mt-3 mr-2"
-                  />
-                  kg
-                </label>
-              </div>
-              <div className="flex">
-                <div className="flex-col ">
-                  <h3 className="leading-10">On your body there is</h3>
-                  <label htmlFor="">
-                    <input
-                      type="checkbox"
-                      className="mr-3 w-5 h-5 accent-[#fb1086]"
-                    />
-                    Piercing
-                  </label>
-                  <br />
-                  <label htmlFor="">
-                    <input
-                      type="checkbox"
-                      className="mr-3 w-5 h-5 accent-[#fb1086]"
-                    />
-                    Tattos
-                  </label>
-                  <br />
-                  <label htmlFor="">
-                    <input
-                      type="checkbox"
-                      className="mr-3 w-5 h-5 accent-[#fb1086]"
-                    />
-                    Freckles
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div> */}
-        <Appearance/>
-
-          {/* ********* General Section **** */}
-
-          {/* <div className="bg-white shadow-md p-5 rounded-md my-10 w-full">
-              <h1 className="text-xl font-semibold mb-5 ">General</h1>
-              <div className="grid lg:grid-cols-3 gap-5 ">
-
-                <div>
-                    <div className="mb-4 ">
-                      <label
-                        htmlFor="name"
-                        className="block text-gray-600 text-sm font-medium"
-                      >
-                        Display Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        className="mt-1 p-2 w-full border rounded-md"
-                      />
-                    </div>
-                    <div className="mb-4 ">
-                      <label
-                        htmlFor="name"
-                        className="block text-gray-600 text-sm font-medium"
-                      >
-                        Display Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        className="mt-1 p-2 w-full border rounded-md"
-                      />
-                    </div>
-                    <div className="mb-4 ">
-                      <label
-                        htmlFor="name"
-                        className="block text-gray-600 text-sm font-medium"
-                      >
-                        Display Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        className="mt-1 p-2 w-full border rounded-md"
-                      />
-                    </div>
-
-                    
-                    <div className="mb-4">
-                      <label
-                        htmlFor="number"
-                        className=" text-gray-600 text-sm font-medium"
-                      >
-                        Birthday
-                      </label>
-                      <input
-                        type="number"
-                        id="email"
-                        name="email"
-                        className="mt-1 p-2 w-full border rounded-md"
-                      />
-                    </div>
-                    <div className="mb-4">
-                      <label
-                        htmlFor="number"
-                        className=" text-gray-600 text-sm font-medium"
-                      >
-                        Birthday
-                      </label>
-                      <input
-                        type="number"
-                        id="email"
-                        name="email"
-                        className="mt-1 p-2 w-full border rounded-md"
-                      />
-                    </div>
-
-                  </div>
-                <div>
-                    <div className="mb-4 ">
-                      <label
-                        htmlFor="name"
-                        className="block text-gray-600 text-sm font-medium"
-                      >
-                        Display Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        className="mt-1 p-2 w-full border rounded-md"
-                      />
-                    </div>
-                    <div className="mb-4 ">
-                      <label
-                        htmlFor="name"
-                        className="block text-gray-600 text-sm font-medium"
-                      >
-                        Display Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        className="mt-1 p-2 w-full border rounded-md"
-                      />
-                    </div>
-                    <div className="mb-4 ">
-                      <label
-                        htmlFor="name"
-                        className="block text-gray-600 text-sm font-medium"
-                      >
-                        Display Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        className="mt-1 p-2 w-full border rounded-md"
-                      />
-                    </div>
-
-                    
-                    <div className="mb-4">
-                      <label
-                        htmlFor="number"
-                        className=" text-gray-600 text-sm font-medium"
-                      >
-                        Birthday
-                      </label>
-                      <input
-                        type="number"
-                        id="email"
-                        name="email"
-                        className="mt-1 p-2 w-full border rounded-md"
-                      />
-                    </div>
-                    <div className="mb-4">
-                      <label
-                        htmlFor="number"
-                        className=" text-gray-600 text-sm font-medium"
-                      >
-                        Birthday
-                      </label>
-                      <input
-                        type="number"
-                        id="email"
-                        name="email"
-                        className="mt-1 p-2 w-full border rounded-md"
-                      />
-                    </div>
-
-                  </div>
-                <div>
-                    <div className="mb-4 ">
-                      <label
-                        htmlFor="name"
-                        className="block text-gray-600 text-sm font-medium"
-                      >
-                        Display Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        className="mt-1 p-2 w-full border rounded-md"
-                      />
-                    </div>
-                    <div className="mb-4 ">
-                      <label
-                        htmlFor="name"
-                        className="block text-gray-600 text-sm font-medium"
-                      >
-                        Display Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        className="mt-1 p-2 w-full border rounded-md"
-                      />
-                    </div>
-                    <div className="mb-4 ">
-                      <label
-                        htmlFor="name"
-                        className="block text-gray-600 text-sm font-medium"
-                      >
-                        Display Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        className="mt-1 p-2 w-full border rounded-md"
-                      />
-                    </div>
-
-                  
-                    <div className="mb-4">
-                      <label
-                        htmlFor="number"
-                        className=" text-gray-600 text-sm font-medium"
-                      >
-                        Birthday
-                      </label>
-                      <input
-                        type="number"
-                        id="email"
-                        name="email"
-                        className="mt-1 p-2 w-full border rounded-md"
-                      />
-                    </div>
-                    <div className="mb-4">
-                      <label
-                        htmlFor="number"
-                        className=" text-gray-600 text-sm font-medium"
-                      >
-                        Birthday
-                      </label>
-                      <input
-                        type="number"
-                        id="email"
-                        name="email"
-                        className="mt-1 p-2 w-full border rounded-md"
-                      />
-                    </div>
-
-                  </div>
-
-            </div>
-          </div> */}
-
-            <GeneralInput/>
-
-
-
-            {/* Submit Button */}
-            <div className="flex justify-end mb-5 space-x-4">
-          <button type="button" className="bg-green-400 text-white p-2 rounded-md px-5">
-            Cencel
-          </button>
-          <button type="submit" className="bg-[#fb1086] text-white p-2 rounded-md px-5">
-            Submit
-          </button>
+        <div className=" lg:top-0 xsm:top-0 fixed inline w-full p-4   bg-white">
+          <h2 className="text-2xl font-bold  z-10  inline">Profile</h2>
         </div>
 
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="card bg-white w-full p-8 ">
+            <ChooseProfilePicture control={control} />
+          </div>
+
+          {/*------------ Gallery Code Start-------------------- */}
+
+          <div className="w-full bg-white p-5 mt-5">
+            <h1 className="text-xl font-semibold  ">Photos</h1>
+
+            <div className="grid lg:grid-cols-6 md:grid-cols-5  mt-4 sm:grid-cols-5 xsm:grid-cols-3  ">
+              {galleryFields.map((field) => (
+                <div key={field}>
+                  <GalleryPicture
+                    control={control}
+                    previewImage={previewImages[field]}
+                    setPreviewImage={(file) => handleFileChange(field, file)}
+                    showPic={showPics[field]}
+                    fieldName={field}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ProfileInfo */}
+
+          <div className="w-full bg-white p-5 mt-5">
+            <h1 className="text-xl font-semibold m ">Profile Info</h1>
+            <div className="grid lg:grid-cols-3 md:grid-cols-2  grid-cols-1 gap-4 p-4">
+              {profileInfoFields.map((field) => (
+                <InputField
+                  key={field.name}
+                  label={field.label}
+                  name={field.name}
+                  placeholder={field.placeholder}
+                  register={register}
+                
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Personal Info */}
+          <div className="w-full bg-white p-5 mt-5">
+            <h1 className="text-xl font-semibold m ">Personal Info</h1>
+            <div className="grid lg:grid-cols-3 md:grid-cols-2  grid-cols-1 gap-4 p-4">
+              {personalInfoFields.map((field) => (
+                <div key={field.name} className="mb-5">
+                  {field.type === "input" && (
+                    <InputField
+                      label={field.label}
+                      name={field.name}
+                      placeholder={field.placeholder}
+                      register={register}
+                    
+                    />
+                  )}
+
+                  {field.type === "select" && (
+                    <SelectField
+                      label={field.label}
+                      name={field.name}
+                      options={field.options}
+                      register={register}
+                     
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Body Type */}
+          <div className="w-full bg-white p-5 mt-5">
+            <h1 className="text-xl font-semibold m ">Body Type</h1>
+            <div className="grid lg:grid-cols-3 md:grid-cols-2  grid-cols-1 gap-4 p-4">
+              {bodyTypeFields.map((field) => (
+                <React.Fragment key={field.name}>
+                  {field.type === "input" && (
+                    <InputField
+                      label={field.label}
+                      name={field.name}
+                      placeholder={field.placeholder}
+                      register={register}
+                     
+                    />
+                  )}
+                  {field.type === "select" && (
+                    <SelectField
+                      label={field.label}
+                      name={field.name}
+                      options={field.options || []}
+                      register={register}
+                     
+                    />
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+
+          {/* Religion */}
+          <div className="w-full bg-white p-5 mt-5">
+            <h1 className="text-xl font-semibold m ">Religion</h1>
+            <div className="grid lg:grid-cols-3 md:grid-cols-2  grid-cols-1 gap-4 p-4">
+              {religiousInfoFields.map((field) => {
+                switch (field.type) {
+                  case "input":
+                    return (
+                      <InputField
+                        key={field.name}
+                        label={field.label}
+                        name={field.name}
+                        placeholder={field.placeholder}
+                        register={register}
+                       
+                      />
+                    );
+                  case "select":
+                    return (
+                      <SelectField
+                        key={field.name}
+                        label={field.label}
+                        name={field.name}
+                        options={field.options}
+                        register={register}
+                       
+                      />
+                    );
+                  case "radio":
+                    return (
+                      <RadioButtonGroup
+                        key={field.name}
+                        label={field.label}
+                        name={field.name}
+                        options={field.options}
+                        register={register}
+                      />
+                    );
+                  default:
+                    return null;
+                }
+              })}
+            </div>
+          </div>
+
+          {/* Type of Partner */}
+          <div className="w-full bg-white p-5 mt-5">
+            <h1 className="text-xl font-semibold m ">
+              Type of Partner Your Looking for
+            </h1>
+            <div className="grid lg:grid-cols-3 md:grid-cols-2  grid-cols-1 gap-4 p-4">
+              {partnerFields.map((field) => (
+                <React.Fragment key={field.name}>
+                  {field.type === "input" && (
+                    <InputField
+                      label={field.label}
+                      name={field.name}
+                      placeholder={field.placeholder}
+                      register={register}
+                    
+                    />
+                  )}
+                  {field.type === "select" && (
+                    <SelectField
+                      label={field.label}
+                      name={field.name}
+                      options={field.options || []}
+                      register={register}
+                     
+                    />
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex justify-end mb-5 space-x-4 mt-5">
+           
+            <button
+              type="submit"
+              className="bg-[#fb1086] text-white p-2 rounded-md px-5"
+            >
+              Submit
+            </button>
+          </div>
         </form>
       </>
     </Layout>

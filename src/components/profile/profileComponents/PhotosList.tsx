@@ -1,7 +1,6 @@
 import React from 'react'
 import Man from "/public/member2.png";
 import Image from "next/image";
-
 export const PhotosList = () => {
   return (
     <>
