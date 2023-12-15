@@ -365,7 +365,7 @@ const SignUp = (props: Props) => {
         <span>Already have an account?<a className='cursor-pointer text-red-500' onClick={() => router.push('/login')}>Log In</a></span>
       </div>
     </div>
-    <div className="h-[85vh] flex  items-center justify-end  flex-col bg-[#ffe8ea]  ">
+    <div className="lg:h-[85vh] flex  items-center justify-end  flex-col bg-[#ffe8ea]  ">
     <h1 className="font-bold  lg:text-4xl text-5xl  xl:text-5xl  text-[#f46194] text-center md:-mb-14">Muslim Marriage online </h1>
     <Image src={Marrage} className='rounded-md ' alt='marriage' width={500} height={500} />
       </div>
