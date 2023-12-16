@@ -9,6 +9,7 @@ export default function page({ params }: { params: { userId: string } }) {
   
   return (
     <div>
+      <h1>jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj</h1>
          <MessagesComponent userId={params.userId}/>
 
     </div>

@@ -10,6 +10,7 @@ import Avatar from "/public/avatar1.jpg";
 import Man from "/public/member2.png";
 import Woman from "/public/member3.png";
 import { v4 as uuidv4 } from 'uuid';
+import MultiRangeSlider from "multi-range-slider-react";
 import Bridal from "/public/img1.jpg";
 import Love from "/public/img2.jpeg";
 import UserCardProps from "./../../types/dashboard/UserCardProps";
@@ -141,24 +142,24 @@ export default function DashboardComponent() {
         </select>
 
         {/* Age Range Slider */}
-        <div>
+        <div className="w-[450px]">
           <label>Age Range:</label>
-          <input
-            type="range"
+          <MultiRangeSlider
+          style={{
+            border: 'none',
+             boxShadow: 'none'
+        }}
             min={18}
             max={100}
-            value={ageRangeFilter[0]}
-            onChange={(e) => setAgeRangeFilter([parseInt(e.target.value), ageRangeFilter[1]])}
-          />
-          <input
-            type="range"
-            min={18}
-            max={100}
-            value={ageRangeFilter[1]}
-            onChange={(e) => setAgeRangeFilter([ageRangeFilter[0], parseInt(e.target.value)])}
+            step={1}
+            ruler={false}
+            label={false}
+            subSteps={false}
+            minValue={ageRangeFilter[0]}
+            maxValue={ageRangeFilter[1]}
+            onInput={(e) => setAgeRangeFilter([e.minValue, e.maxValue])}
           />
         </div>
-
         {/* Gender Preference Dropdown */}
         <select
           className="w-[60%] p-2 rounded-md focus:outline-0"
@@ -175,6 +176,7 @@ export default function DashboardComponent() {
           type="text"
           className="w-[60%] p-2 rounded-md focus:outline-0"
           placeholder="Search Professions"
+          value={professionFilter|| ''}
           onChange={(e) => setProfessionFilter(e.target.value)}
         />
          <Button
