@@ -4,6 +4,7 @@ import { addDoc, collection, getDocs, getFirestore, query, where } from 'firebas
 import { getAuth, signInWithEmailAndPassword as signInWithEmailAndPasswordFirebase } from 'firebase/auth';
 import {  signOut } from 'firebase/auth';
 import { firebase_app } from "./../fireBase/firebase"
+import router, { useRouter } from 'next/router';
 
 
 
@@ -166,7 +167,9 @@ const auth = getAuth(firebase_app);
 export const logout = async (): Promise<void> => {
   try {
     await signOut(auth);
+
     console.log('User logged out successfully');
+    router.push('/login');
   } catch (error) {
     console.error('Logout error:', error);
   }
