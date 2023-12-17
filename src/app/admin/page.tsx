@@ -15,7 +15,7 @@ const ProtectedRouteWrapper: React.FC<ProtectedRouteWrapperProps> = ({ children 
     
     if (!user) {
      
-      router.push('/login');
+      // router.push('/login');
       console.log(user);
     }
     console.log(user);

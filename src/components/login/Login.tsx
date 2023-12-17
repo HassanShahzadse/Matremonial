@@ -22,7 +22,7 @@ const Login = (props: Props) => {
       console.log('Logged in user:', user);
       if(user && user.id){
         const userId = user.id
-        router.push(`/createUserProfile?id=${userId}`);
+        router.push('/dashboard');
       }
       else {
         console.error('User object or user.id is undefined');
