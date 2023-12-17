@@ -21,8 +21,8 @@ export const UserList = ({ chat, onCardClick }: { chat: any; onCardClick: (chat:
               <div className="img">
                 <Image
                   src={
-                    user?.userInfo.imageUrls && user.userInfo.imageUrls[0]?.startsWith('https')
-                      ? user.userInfo.imageUrls[0]
+                    user?.userInfo?.imageUrls && user?.userInfo?.imageUrls[0]?.startsWith('https')
+                      ? user?.userInfo?.imageUrls[0]
                       : 'https://www.w3schools.com/w3images/avatar2.png'
                   }
                   alt="My Image"
@@ -33,7 +33,7 @@ export const UserList = ({ chat, onCardClick }: { chat: any; onCardClick: (chat:
               </div>
 
               <div>
-                <h2 className="font-semibold text-gray-400 mb-2">{user.userInfo.username}</h2>
+                <h2 className="font-semibold text-gray-400 mb-2">{user?.userInfo?.username}</h2>
                 {latestMessage && (
                   <>
                     <p className="text-sm my-1">{latestMessage.text}</p>
