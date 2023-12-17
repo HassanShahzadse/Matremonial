@@ -2,7 +2,7 @@
 import MessagesComponent from '@/components/messages/messagesComponent'
 import React from 'react'
 import { useEffect } from 'react';
-export default function page({ params }: { params: { userId: string } }) {
+export default function Page({ params }: { params: { userId: string } }) {
   useEffect(() => {
     //api call
   }, [params.userId])

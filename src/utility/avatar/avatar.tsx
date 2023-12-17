@@ -88,7 +88,7 @@ const Avatar: any = forwardRef((props, ref) => {
     </Tag>
   )
 })
-
+Avatar.displayName = 'Avatar';
 export default Avatar
 
 // ** PropTypes

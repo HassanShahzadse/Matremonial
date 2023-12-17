@@ -24,13 +24,14 @@ import {
 const ChatLog = (props: any) => {
   const { handleUser, handleUserSidebarRight, handleSidebar, store, userSidebarLeft } = props;
   const { userProfile, selectedUser } = store;
-  const chatArea = useRef(null);
+  const chatArea:any = useRef(null);
 //   const dispatch = useDispatch();
   const [msg, setMsg] = useState('');
 
   const scrollToBottom = () => {
-    const chatContainer: any = ReactDOM.findDOMNode(chatArea.current);
-    chatContainer.scrollTop = Number.MAX_SAFE_INTEGER;
+    if (chatArea.current) {
+      chatArea.current.scrollTop = chatArea.current.scrollHeight;
+    }
   };
 
   useEffect(() => {

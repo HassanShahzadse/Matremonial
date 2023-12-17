@@ -38,6 +38,7 @@ const datingSiteFeatures = [
 ];
 const cardsData = [
   {
+    id:1,
     imageSrc: "/member1.png",
     altText: "My Image",
     name: "Maisha Reid",
@@ -46,6 +47,7 @@ const cardsData = [
       "Quisque sit amet ante vehicula risus pharetra sagittis ac sit amet justo. Duis eu sapien nisl condimentum vitae.",
   },
   {
+    id:2,
     imageSrc: "/member2.png",
     altText: "My Image",
     name: "Carter Bridges",
@@ -54,6 +56,7 @@ const cardsData = [
       "Quisque sit amet ante vehicula risus pharetra sagittis ac sit amet justo. Duis eu sapien nisl Quisque sit",
   },
   {
+    id:3,
     imageSrc: "/member3.png",
     altText: "My Image",
     name: "Bella Williams",
@@ -62,6 +65,7 @@ const cardsData = [
       "Pellentesque aliquet mi in leo tempus fringilla. Donec convallis libero risus, non varius augue condimentum vitae.",
   },
   {
+    id:4,
     imageSrc: "/member4.png",
     altText: "My Image",
     name: "George Andone",
@@ -73,24 +77,28 @@ const cardsData = [
 
 const peopleData = [
   {
+    id:1,
     para: `"Love ac nunc laoreet, lobortis libero nec, semper velit sollicitudin nec lingula ut, aliquet volutpat eros"`,
     name: "Devon Larret",
     role: "FOUNDER, SOME COMPANY",
     imageUrl: "/avatar1.jpg",
   },
   {
+    id:2,
     para: `"Qiupid et nim quam, viverra sit amet purus eget, tempus pulvinar sollicitudin enim ac justo commodo dapibus"`,
     name: "Jenna Smith",
     role: "FOUNDER, SOME COMPANY",
     imageUrl: "/avatar2.jpg",
   },
   {
+    id:3,
     para: `"Quis Love ipsum suspendisse ultrices gravida viverra maecenas accumsan lacus vel facilisis"`,
     name: "Devon Larret",
     role: "FOUNDER, SOME COMPANY",
     imageUrl: "/avatar3.jpg",
   },
   {
+    id:4,
     para: `"Vestibulum egestas fringilla hendrerit.Nam sodales nulla arcu, ac ecuismod elit tristique love"`,
     name: "Withney Austin",
     role: "FOUNDER, SOME COMPANY",
@@ -186,14 +194,16 @@ function Hero() {
             <Link href="/login">
               <Button
                 children="Login"
-                css="bg-[#ED147D] pe-7 ps-7   pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold "
-              />
+                css="bg-[#ED147D] pe-7 ps-7   pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold " onClick={function (): void {
+                  throw new Error("Function not implemented.");
+                } }              />
             </Link>
             <Link href="/signup">
               <Button
                 children="Signup"
-                css="bg-[#ED147D] pe-7 ps-7  ms-3  pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold "
-              />
+                css="bg-[#ED147D] pe-7 ps-7  ms-3  pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold " onClick={function (): void {
+                  throw new Error("Function not implemented.");
+                } }              />
             </Link>
           </div>
         </div>
@@ -209,8 +219,9 @@ function Hero() {
           </p>
           <Button
             children="Get Started"
-            css="bg-[#ED147D] pe-7 ps-7   pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold mt-6 sm:mt-8 mb-2"
-          />
+            css="bg-[#ED147D] pe-7 ps-7   pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold mt-6 sm:mt-8 mb-2" onClick={function (): void {
+              throw new Error("Function not implemented.");
+            } }          />
         </div>
         <div className="flex pt-10 pb-10  lg:pt-0 lg:pb-0   lg:flex-row   flex-col  pe-16 ps-16  lg:justify-between  items-center justify-center lg:mt-[1.2rem] xl:mt-[5rem]  2xl:mt-[24rem]   mt-12  bg-[#ED147D] ">
           <Image
@@ -229,8 +240,9 @@ function Hero() {
           </div>
           <Button
             children="Register Now"
-            css="bg-[#FFF] pe-7 ps-7   pt-2 pb-2 text-[#ED147D] rounded-[30px] text-[16px] font-bold mt-6 sm:mt-8 mb-2"
-          />
+            css="bg-[#FFF] pe-7 ps-7   pt-2 pb-2 text-[#ED147D] rounded-[30px] text-[16px] font-bold mt-6 sm:mt-8 mb-2" onClick={function (): void {
+              throw new Error("Function not implemented.");
+            } }          />
         </div>
 
         <div className="bg-[#fff] text-center md:pt-20 lg:pb-[5rem]  pt-[2rem] pb-[2rem]">
@@ -277,19 +289,24 @@ function Hero() {
               <div className="flex flex-col items-center">
                 <Button
                   children="Men"
-                  css="bg-[#ED147D] sm:pe-52 sm:ps-52 pe-44 ps-44 shadow-[#ED147D]  xl:pt-3 xl:pb-3 pt-3 pb-3  lg:pt-2 lg:pb-2 text-[#fff] rounded-[30px] text-[13px] font-bold "
-                />
+                  css="bg-[#ED147D] sm:pe-52 sm:ps-52 pe-44 ps-44 shadow-[#ED147D]  xl:pt-3 xl:pb-3 pt-3 pb-3  lg:pt-2 lg:pb-2 text-[#fff] rounded-[30px] text-[13px] font-bold " onClick={function (): void {
+                    throw new Error("Function not implemented.");
+                  } }                />
                 <Button
                   children="Men"
                   css="bg-[#ED147D] sm:pe-52 sm:ps-52 pe-44 ps-44 mt-5 mb-5  shadow-[#ED147D]
 
                   xl:pt-3 xl:pb-3 lg:t-2 lg:pb-2 pt-3 pb-3 text-[#fff] rounded-[30px] text-[13px] font-bold "
+                  onClick={function (): void {
+                    throw new Error("Function not implemented.");}}
                 />
                 <Button
                   children="Men"
                   css="bg-[#ED147D] sm:pe-52 sm:ps-52  pe-44 ps-44 shadow-[#ED147D]
 
                   xl:pt-3 xl:pb-3 lg:pt-2 lg:pb-2    pt-3 pb-3 text-[#fff] rounded-[30px] text-[13px] font-bold "
+                  onClick={function (): void {
+                    throw new Error("Function not implemented.");}}
                 />
               </div>
             </div>
@@ -305,7 +322,7 @@ function Hero() {
           </p>
           <div className="flex  md:flex-row flex-col / justify-center  ">
             {cardsData.map((card, index) => (
-              <div className="max-w-fit       bg-white ">
+              <div key={card.id} className="max-w-fit       bg-white ">
                 <Image
                   src={card.imageSrc}
                   alt={card.altText}
