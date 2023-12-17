@@ -54,8 +54,8 @@ export default function DashboardComponent() {
     async function fetchData() {
       const usersData:any = await fetchDataFromFirebase();
       console.log(usersData,"====================================================")
-      const cards = usersData.map((user: { id: any; username: any; bio: any; age: any; country: any; gender: any;profession:any; imageUrls: any[]; }) => ({
-        id: generateUniqueId(),
+      const cards = usersData.map((user: { userId: any; username: any; bio: any; age: any; country: any; gender: any;profession:any; imageUrls: any[]; }) => ({
+        id: user.userId || generateUniqueId(),
         title: user.username,
         name: user.username,
         content: user.bio,
