@@ -1,4 +1,5 @@
 // components/ProtectedRouteWrapper.tsx
+"use client"
 import React, { ReactNode, useEffect } from 'react';
 import { useAuthContext } from '../../context/AuthContext';
 import { useRouter } from 'next/navigation';
