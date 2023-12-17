@@ -72,7 +72,7 @@ export const fetchUserInfoFromFirebaseEmail = async (email:any) => {
       const userDoc = userDocs.docs[0];
       const userData = {
         id: userDoc.id,
-        name: userDoc.data()
+        ...userDoc.data()
       };
       console.log(userData)
       localStorage.setItem('user', JSON.stringify(userData));

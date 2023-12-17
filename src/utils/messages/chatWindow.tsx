@@ -47,7 +47,7 @@ useEffect(()=>{
               </div>
               {message.sender !== userId && (
                 <div className="flex-shrink-0 w-8 h-8 rounded-full ml-2">
-                  <Image width={100} height={100} src={localUser?.name.imageUrls?.[0] || Woman} alt={localUser?.name.username || 'User'} />
+                  <Image width={100} height={100} src={localUser?.imageUrls?.[0] || Woman} alt={localUser?.username || 'User'} />
                 </div>
               )}
             </div>

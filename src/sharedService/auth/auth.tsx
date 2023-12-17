@@ -1,4 +1,4 @@
-import { FacebookAuthProvider, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword as createUserWithEmailAndPasswordFirebase, setPersistence, browserSessionPersistence } from 'firebase/auth';
+import { FacebookAuthProvider, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword as createUserWithEmailAndPasswordFirebase } from 'firebase/auth';
 import initializeFirebase from '../fireBase/firebase';
 import { addDoc, collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
 import { getAuth, signInWithEmailAndPassword as signInWithEmailAndPasswordFirebase } from 'firebase/auth';
@@ -15,36 +15,15 @@ export const loginUser = async (email: any, password: any) => {
       console.error('Firebase is not supported.');
       return false;
     }
-
-    const { auth } = firebaseInstance;
-    
-    // Set persistence to SESSION for email/password login
-    await setPersistence(auth, browserSessionPersistence);
-
-    const usersCollection = collection(firebaseInstance.db, 'users');
+    const { db } = firebaseInstance;
+    const usersCollection = collection(db, 'users');
     const q = query(usersCollection, where('email', '==', email), where('password', '==', password));
     const querySnapshot = await getDocs(q);
-
     if (querySnapshot.size > 0) {
-      const userDoc = querySnapshot.docs[0];
-      const userData = { id: userDoc.id, ...userDoc.data() };
-
-      // Update: Fetching additional user data
-      const userId = userData.id;
-      const userQuery = query(usersCollection, where('id', '==', userId));
-      const userDocs = await getDocs(userQuery);
-
-      if (userDocs.docs.length > 0) {
-        const userDoc = userDocs.docs[0];
-        const additionalUserData = {
-          id: userDoc.id,
-          name: userDoc.data(),
-        };
-
-        console.log(additionalUserData);
-        localStorage.setItem('user', JSON.stringify(additionalUserData));
-      }
-
+      // const userData = querySnapshot.docs[0].data();
+      const userData = { id: querySnapshot.docs[0].id, ...querySnapshot.docs[0].data() };
+      console.log(userData,"-------------------------------------------")
+      localStorage.setItem('user', JSON.stringify(userData));
       return userData;
     } else {
       console.error('Invalid login credentials');
@@ -190,9 +169,8 @@ const auth = getAuth(firebase_app);
 export const logout = async (): Promise<void> => {
   try {
     await signOut(auth);
-
+    localStorage.clear()
     console.log('User logged out successfully');
-    router.push('/login');
   } catch (error) {
     console.error('Logout error:', error);
   }
