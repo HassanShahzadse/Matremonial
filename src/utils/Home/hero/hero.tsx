@@ -212,7 +212,7 @@ function Hero() {
             css="bg-[#ED147D] pe-7 ps-7   pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold mt-6 sm:mt-8 mb-2"
           />
         </div>
-        <div className="flex pt-10 pb-10  lg:pt-0 lg:pb-0   lg:flex-row   flex-col  pe-16 ps-16  lg:justify-between  items-center justify-center lg:mt-[5.75rem] mt-12  bg-[#ED147D] ">
+        <div className="flex pt-10 pb-10  lg:pt-0 lg:pb-0   lg:flex-row   flex-col  pe-16 ps-16  lg:justify-between  items-center justify-center lg:mt-[1.2rem] xl:mt-[5rem]  2xl:mt-[24rem]   mt-12  bg-[#ED147D] ">
           <Image
             src="/Explore-Image.png"
             alt="My Image"
