@@ -14,7 +14,7 @@ export const UserList = ({ chat, onCardClick }: { chat: any; onCardClick: (chat:
         return (
           <div
           key={user.userId}
-          className="card1 rounded-md active:bg-green-200 bg-white my-3 shadow-md p-5"
+          className="card1 rounded-md active:bg-green-200  bg-white my-3 shadow-md p-5"
           onClick={() => onCardClick(user)}
         >
             <div className="flex space-x-10">
