@@ -4,12 +4,12 @@ import Layout from "../mainLayout/layout";
 import Image from "next/image";
 import Button from "@/utils/shared/button";
 import Modal from "@/utils/profileModal/profileModal";
-import {fetchDataFromFirebase} from "@/sharedService/users/user"
-import Select from 'react-select';
+import { fetchDataFromFirebase } from "@/sharedService/users/user";
+import Select from "react-select";
 import Avatar from "/public/avatar1.jpg";
 import Man from "/public/member2.png";
 import Woman from "/public/member3.png";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import MultiRangeSlider from "multi-range-slider-react";
 import Bridal from "/public/img1.jpg";
 import Love from "/public/img2.jpeg";
@@ -22,6 +22,7 @@ import { Auth } from "firebase/auth";
 import { FaSearch } from "react-icons/fa";
 import Link from "next/link";
 import { countries } from "@/utils/shared/countries";
+import DashboardModal from "@/utils/dashboardModel/dashboardModel";
 
 type CardProps = {
   id: number;
@@ -29,16 +30,16 @@ type CardProps = {
   content: string;
   name: string;
   image: string;
-  age:number;
-  location:string;
-  gender:string;
-  decision:string;
+  age: number;
+  location: string;
+  gender: string;
+  decision: string;
   isModalOpen: boolean;
-  profession:string;
+  profession: string;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 const generateUniqueId = () => {
-  return '_' + Math.random().toString(36).substr(2, 9);
+  return "_" + Math.random().toString(36).substr(2, 9);
 };
 export default function DashboardComponent() {
   const [show, setShow] = useState(false);
@@ -52,83 +53,123 @@ export default function DashboardComponent() {
 
   useEffect(() => {
     async function fetchData() {
-      const usersData:any = await fetchDataFromFirebase();
-      console.log(usersData,"====================================================")
-      const cards = usersData.map((user: { userId: any; username: any; bio: any; age: any; country: any; gender: any;profession:any; imageUrls: any[]; }) => ({
-        id: user.userId || generateUniqueId(),
-        title: user.username,
-        name: user.username,
-        content: user.bio,
-        age:user.age,
-        profession:user.profession,
-        location:user.country,
-        gender:user.gender,
-        decision:'yes',
-        image: user?.imageUrls && user.imageUrls[0]?.startsWith("https") ? user.imageUrls[0] : "https://www.w3schools.com/w3images/avatar2.png",
-        isModalOpen: false,
-        setIsModalOpen,
-      }));
-      setUserCards(cards)
-      setfilterCards(cards)
+      const usersData: any = await fetchDataFromFirebase();
+      console.log(
+        usersData,
+        "===================================================="
+      );
+      const cards = usersData.map(
+        (user: {
+          userId: any;
+          username: any;
+          bio: any;
+          age: any;
+          country: any;
+          gender: any;
+          profession: any;
+          imageUrls: any[];
+        }) => ({
+          id: user.userId || generateUniqueId(),
+          title: user.username,
+          name: user.username,
+          content: user.bio,
+          age: user.age,
+          profession: user.profession,
+          location: user.country,
+          gender: user.gender,
+          decision: "yes",
+          image:
+            user?.imageUrls && user.imageUrls[0]?.startsWith("https")
+              ? user.imageUrls[0]
+              : "https://www.w3schools.com/w3images/avatar2.png",
+          isModalOpen: false,
+          setIsModalOpen,
+        })
+      );
+      setUserCards(cards);
+      setfilterCards(cards);
     }
 
     fetchData();
   }, []);
 
   useEffect(() => {
-    const filteredCards = userCards
-      .filter((user) => {
-        if (locationFilter && locationFilter !== 'ALL' && user.location?.toLowerCase() !== locationFilter?.toLowerCase()) {
-          return false;
-        }
-        const userAge = user.age
-        if (userAge < ageRangeFilter[0] || userAge > ageRangeFilter[1]) {
-          return false;
-        }
-        if (genderFilter && user.gender !== genderFilter) {
-          return false;
-        }
-        if (professionFilter && !user.profession?.includes(professionFilter)) {
-          return false;
-        }
-        return true;
-      });
-      setfilterCards(filteredCards);
+    const filteredCards = userCards.filter((user) => {
+      if (
+        locationFilter &&
+        locationFilter !== "ALL" &&
+        user.location?.toLowerCase() !== locationFilter?.toLowerCase()
+      ) {
+        return false;
+      }
+      const userAge = user.age;
+      if (userAge < ageRangeFilter[0] || userAge > ageRangeFilter[1]) {
+        return false;
+      }
+      if (genderFilter && user.gender !== genderFilter) {
+        return false;
+      }
+      if (professionFilter && !user.profession?.includes(professionFilter)) {
+        return false;
+      }
+      return true;
+    });
+    setfilterCards(filteredCards);
   }, [locationFilter, ageRangeFilter, genderFilter, professionFilter]);
 
-
   const handleGoogleLogin = async () => {
-    
     try {
       const userId = "someUserId";
 
       let data = fetchData(userId);
-
-    
     } catch (error) {
       console.error("dashboard data error:", error);
     }
+  };
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    
+
+
   };
 
   return (
     <Layout show={show} setShow={setShow}>
       {/* ****** Search Bar ****** */}
 
-
-      <div className="container mx-auto shadow-xl">
-        <div className="search h-36 flex items-center justify-center relative">
-          <input type="text" className="w-[60%] p-2 rounded-md focus:outline-0" />
-          <button className="bg-[#F10086] text-white active:scale-95 font-semibold p-3 px-3 ml-5 rounded ">
-            <FaSearch />
-          </button>
-        </div>
-      </div>
       {/* ****** Search Bar End ****** */}
-     
+
       {/* ****** Filters ****** */}
 
-      <div className="container mx-auto shadow-xl flex">
-        {/* Location Filter Dropdown */}
+    
+      {/* ****** Filters ****** */}
+
+      {/* ****** Cards ****** */}
+
+      <div className="card bg-[#ffff]  p-10  ">
+        <div className="flex  flex-row  justify-between px-5">
+          <div className="search  flex items-center justify-center relative">
+            <input
+              type="text"
+              className="w-full p-2   focus:outline-0 border-t-2  border-b-2 border-s-2   border-black "
+            />
+            <button className="bg-[#F10086] text-white active:scale-95 font-semibold p-[0.85rem] px-3   ">
+              <FaSearch />
+            </button>
+          </div>
+          <div>
+            <button
+              onClick={openModal}
+              className="bg-[#f10086] text-white rounded-md p-2"
+            >
+             Users Filter
+            </button>
+            <DashboardModal isOpen={isModalOpen} onClose={closeModal}>
+        {/* Content of your modal goes here */}
         <select
           className="w-[60%] p-2 rounded-md focus:outline-0"
           onChange={(e) => setLocationFilter(e.target.value)}
@@ -141,7 +182,7 @@ export default function DashboardComponent() {
           ))}
         </select>
 
-        {/* Age Range Slider */}
+      
         <div className="w-[450px]">
           <label>Age Range:</label>
           <MultiRangeSlider
@@ -160,7 +201,7 @@ export default function DashboardComponent() {
             onInput={(e) => setAgeRangeFilter([e.minValue, e.maxValue])}
           />
         </div>
-        {/* Gender Preference Dropdown */}
+       
         <select
           className="w-[60%] p-2 rounded-md focus:outline-0"
           onChange={(e) => setGenderFilter(e.target.value)}
@@ -171,7 +212,7 @@ export default function DashboardComponent() {
           <option value="Female">Female</option>
         </select>
 
-        {/* Search Bar for Professions */}
+       
         <input
           type="text"
           className="w-[60%] p-2 rounded-md focus:outline-0"
@@ -181,6 +222,7 @@ export default function DashboardComponent() {
         />
          <Button
           onClick={() => {
+            
             setLocationFilter('ALL');
             setAgeRangeFilter([18, 30]);
             setGenderFilter(null);
@@ -189,50 +231,58 @@ export default function DashboardComponent() {
         >
           Reset Filters
         </Button>
-      </div>
-      {/* ****** Filters ****** */}
+                   
+      </DashboardModal>
 
-      {/* ****** Cards ****** */}
-
-
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 mx-5 / gap-6  my-12">
-        {filterCards.map((card) => (
-          <div
-            key={card.id}
-            className="card1 shadow-md rounded-md text-center hover:scale-105 duration-300"
-          >
-            <div className="flex flex-row space-x-5">
-              <div className="basis-1/2  ">
-                <Image height={138} width={138} src={card.image} alt="My Image" className="rounded  h-36 " style={{ objectFit: "cover" }} />
-              </div>
-              <div className="text-start  basis-1/2   p-2 " >
-                <h2 className="font-semibold text-gray-400 mb-2">
-                  {card.name}
-                </h2>
-                <span>{card.age}</span>
-                <p className="text-sm my-1">{card.location}</p>
-                <p className="text-sm mb-3">
-                  Looking for{" "}
-                  <span className="ml-2 bg-[#F10086] text-white p-2 rounded-xl text-sm">
-                    {card.gender==='Male'?'female':'male'}
-                  </span>
-                </p>
-
-                <Link href={`dashboard/messages/${card.id}`}>
-                <button className="w-full text-red-500 bg-gray-300 p-1 rounded-2xl text-sm ">
-                  Chat
-                </button>
-                </Link>
-                {/* <Link href="dashboard/messages">  */}
-                <button className="w-full text-green-500 bg-gray-300 p-1 rounded-2xl my-4 text-sm  ">
-                  View Profile
-                </button>
-                {/* </Link> */}
-              
-              </div>
-            </div>
           </div>
-        ))}
+        </div>
+        <div className="card-body mt-5 p-2">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 mx-5  gap-6     ">
+            {filterCards.map((card) => (
+              <div
+                key={card.id}
+                className="card1 bg-[#ffff] shadow-md rounded-md text-center hover:scale-105 duration-300"
+              >
+                <div className="flex flex-row space-x-5">
+                  <div className="basis-1/2  ">
+                    <Image
+                      height={138}
+                      width={138}
+                      src={card.image}
+                      alt="My Image"
+                      className="rounded  h-36 "
+                      style={{ objectFit: "cover" }}
+                    />
+                  </div>
+                  <div className="text-start  basis-1/2   p-2 ">
+                    <h2 className="font-semibold text-gray-400 mb-2">
+                      {card.name}
+                    </h2>
+                    <span>{card.age}</span>
+                    <p className="text-sm my-1">{card.location}</p>
+                    <p className="text-sm mb-3">
+                      Looking for{" "}
+                      <span className="ml-2 text-[#fb1086] p-2 rounded-xl text-sm">
+                        {card.gender === "Male" ? "male" : "female"}
+                      </span>
+                    </p>
+
+                    <Link href={`dashboard/messages/${card.id}`}>
+                      <button className="w-full bg-[#fb1086] hover:bg-pink-700 p-1 text-[#ffff]  rounded-2xl text-sm ">
+                        Chat
+                      </button>
+                    </Link>
+                    {/* <Link href="dashboard/messages">  */}
+                    <button className="w-full bg-[#fb1086] hover:bg-pink-700 text-[#ffff]  p-1 rounded-2xl my-4 text-sm  ">
+                      View Profile
+                    </button>
+                    {/* </Link> */}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* ****** Cards ****** */}
@@ -243,7 +293,7 @@ export default function DashboardComponent() {
 export async function getServerSideProps(context: any) {
   const userId = "1IW1JRGm3WSzErc6mPrT";
   const userData = await fetchData(userId);
-  
+
   return {
     props: {
       userData,
