@@ -53,11 +53,10 @@ export default function DashboardComponent() {
 
   useEffect(() => {
     async function fetchData() {
-      const usersData: any = await fetchDataFromFirebase();
-      console.log(
-        usersData,
-        "===================================================="
-      );
+      const usersDataInitial: any = await fetchDataFromFirebase();
+      const localUser:any = localStorage.getItem('user')
+      const parsedLocalUser = JSON.parse(localUser)
+      const usersData = usersDataInitial.filter((user: any)=> user.userId !==parsedLocalUser.id)
       const cards = usersData.map(
         (user: {
           userId: any;

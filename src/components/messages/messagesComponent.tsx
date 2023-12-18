@@ -68,6 +68,7 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
   };
 
   const sortUsersData = (usersData: any[], targetUserId: string | string[] | undefined) => {
+    console.log(usersData)
     if (targetUserId) {
       // If targetUserId exists, move it to the top of the array
       const targetIndex = usersData.findIndex((user) => user.userId === targetUserId);
@@ -94,6 +95,8 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
   };
   const handleCardClick = (chat:any) => {
     setSelectedChat(chat);
+    console.log(chat.userInfo,"---------------------")
+    setSelectedUser(chat.userInfo);
     setShow(true);
   };
   return (
