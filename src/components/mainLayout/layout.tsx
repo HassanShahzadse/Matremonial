@@ -3,7 +3,7 @@
 import SideBar from '@/utils/sideBar/sideBar';
 import TopBar from '@/utils/topBar/topBar';
 import { useState } from 'react';
-import ProtectedRouteWrapper from '../../app/admin/page';
+import {ProtectedRouteWrapper} from '../settings/protectedRoute';
 
 
 export default function Layout({ children, show, setShow }: any) {
