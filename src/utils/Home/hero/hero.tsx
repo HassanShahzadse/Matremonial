@@ -196,7 +196,7 @@ function Hero() {
                 css="bg-[#ED147D] pe-7 ps-7   pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold " onClick={function (): void {
                   throw new Error("Function not implemented.");
                 } }              >
-                children="Login"
+                Login
                 </Button>
             </Link>
             <Link href="/signup">
@@ -204,7 +204,7 @@ function Hero() {
                 css="bg-[#ED147D] pe-7 ps-7  ms-3  pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold " onClick={function (): void {
                   throw new Error("Function not implemented.");
                 } }              >
-                  children="Signup"
+                  Signup
                   </Button>
             </Link>
           </div>
@@ -223,7 +223,7 @@ function Hero() {
             css="bg-[#ED147D] pe-7 ps-7   pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold mt-6 sm:mt-8 mb-2" onClick={function (): void {
               throw new Error("Function not implemented.");
             } }          >
-            children="Get Started"
+            Get Started
             </Button>
         </div>
         <div className="flex pt-10 pb-10  lg:pt-0 lg:pb-0   lg:flex-row   flex-col  pe-16 ps-16  lg:justify-between  items-center justify-center lg:mt-[1.2rem] xl:mt-[5rem]  2xl:mt-[24rem]   mt-12  bg-[#ED147D] ">
@@ -245,7 +245,7 @@ function Hero() {
             css="bg-[#FFF] pe-7 ps-7   pt-2 pb-2 text-[#ED147D] rounded-[30px] text-[16px] font-bold mt-6 sm:mt-8 mb-2" onClick={function (): void {
               throw new Error("Function not implemented.");
             } }          >
-              children="Register Now"
+              Register Now
             </Button>
 
         </div>
@@ -296,7 +296,7 @@ function Hero() {
                   css="bg-[#ED147D] sm:pe-52 sm:ps-52 pe-44 ps-44 shadow-[#ED147D]  xl:pt-3 xl:pb-3 pt-3 pb-3  lg:pt-2 lg:pb-2 text-[#fff] rounded-[30px] text-[13px] font-bold " onClick={function (): void {
                     throw new Error("Function not implemented.");
                   } }                >
-                  children="Men"
+                  Men
             </Button>
 
                 <Button
@@ -306,7 +306,7 @@ function Hero() {
                   onClick={function (): void {
                     throw new Error("Function not implemented.");}}
                     >
-                    children="Men"
+                    Men"
             </Button>
 
                 <Button
@@ -316,7 +316,7 @@ function Hero() {
                   onClick={function (): void {
                     throw new Error("Function not implemented.");}}
                     >
-                  children="Men"
+                  Men
             </Button>
 
               </div>
