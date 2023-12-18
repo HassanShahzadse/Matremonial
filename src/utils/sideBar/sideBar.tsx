@@ -51,7 +51,7 @@ const SideBar = ({ show }: any) => {
             </Link>
           </div>
         </div>
-          <button onClick={handleLogout}>Logout</button>
+          <button onClick={handleLogout} className="text-[#f57aa5]">Logout</button>
       </nav>
     </aside>
   );

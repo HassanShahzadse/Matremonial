@@ -217,11 +217,13 @@ export default function DashboardComponent() {
                     {card.gender==='Male'?'female':'male'}
                   </span>
                 </p>
-                <button className="w-full text-red-500 bg-gray-300 p-1 rounded-2xl text-sm ">
+
                 <Link href={`dashboard/messages/${card.id}`}>
+                <button className="w-full text-red-500 bg-gray-300 p-1 rounded-2xl text-sm ">
                   Chat
-                </Link>
                 </button>
+                </Link>
+ 
                  
                 <Link href="dashboard/messages"> 
                 <button className="w-full text-green-500 bg-gray-300 p-1 rounded-2xl my-4 text-sm  ">
