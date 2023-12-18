@@ -8,7 +8,7 @@ import Select from 'react-select';
 import RadioButtons from '../../utils/shared/radioBtn';
 import DateOfBirthInput from '../../utils/dateOfBirth/dateOfBirth';
 import { createUser, signupWithFacebook, signupWithGoogle } from '@/sharedService/auth/auth';
-import Marrage from "/public/clubmobile.png";
+import Marrage from "/public/pngwing.png";
 
 
 type Props = {}
@@ -139,31 +139,18 @@ const SignUp = (props: Props) => {
     // hearAbout: Yup.string().required('Reason of registering is required'),
     // password: Yup.string().min(8).required('Password is required'),
   });
-  const radioGenderOptions = ['Male', 'Female', 'Non-Binary']; 
+  const radioGenderOptions = ['Male', 'Female',]; 
   return (
     <>
     <div className="h-[10vh] bg-[#fb1086] "></div>
-    <div className="lg:h-[85vh]">
+    <div className="lg:h-[85vh]  ">
       <div className=" container-fluid">
     <div className="grid lg:grid-cols-2">
-    <div className="xsm:mt-2 lg:mt-0 bg-white py-2 px-5 rounded-lg shadow-md">
-      {step === 1 && (
+    <div className="xsm:mt-2 lg:mt-0 bg-white p-7 rounded-lg shadow-md lg:h-[85vh]  overflow-auto ">
+      
         <h1 className="text-2xl font-bold text-center">Sign Up</h1>
-      )}
-      {step === 2 && (
-        <div className='flex'>
-          <div className='previous-btn'>
-            <button type="button" onClick={handlePreviousStep} className="prev-btn border border-gray-300 rounded-full active:scale-95 bg-[#fb1086] text-white"
-            ><i className="fas fa-arrow-left me-1"></i>
-              Previous
-            </button>
-          </div>
-
-          <div className='flex justify-center'>
-            <h1 className="lg:text-2xl font-bold">Sign Up</h1>
-          </div>
-        </div>
-      )}
+   
+     
       <div className=''>
         <Formik
           initialValues={formValues}
@@ -173,8 +160,8 @@ const SignUp = (props: Props) => {
 
             <Form>
 
-              {step === 1 && (
-                <>
+             
+                <div className='2xl:px-16 2xl:py-4 '> 
                   <div className='form-group mb-3'>
                     <label className='mb-2'>User Name</label>
                     <Field type="text" name="userName" className="w-full border-b-2 outline-none border-gray-300 rounded p-2" placeholder="Enter your Name"
@@ -186,7 +173,7 @@ const SignUp = (props: Props) => {
                     <ErrorMessage name="userName" component="div" className="text-red-500" />
                   </div>
 
-          <div className="grid lg:grid-cols-2 md:grid-cols-2 gap-2">
+          <div className="grid lg:grid-cols-2 md:grid-cols-2 gap-2 ">
                   <div className='form-group mb-3'>
                     <label className='mb-2'>Email</label>
                     <Field type="text" name="email" className="w-full border-b-2 outline-none border-gray-300 rounded p-2" placeholder="Enter your email"
@@ -254,7 +241,7 @@ const SignUp = (props: Props) => {
                       onOptionChange={(value: any) => handleFormChange('gender', value)}
                     />
                   </div>
-                  <div className="text-center mt-3">
+                  {/* <div className="text-center mt-3">
                     <button
                       type="button"
                       onClick={handleNextStep}
@@ -262,11 +249,11 @@ const SignUp = (props: Props) => {
                     >
                       Next
                     </button>
-                  </div>
-                </>
-              )}
-              {step === 2 && (
-                <>
+                  </div> */}
+                </div>
+             
+             
+                <div className='2xl:px-16 2xl:py-4'>
                   <div className="form-group xl:mb-3">
                     <label className="block mb-2">Where do you Live?</label>
                     <select
@@ -326,14 +313,14 @@ const SignUp = (props: Props) => {
                     <button type="submit" className="login-btn border border-gray-300 rounded-full active:scale-95 bg-[#fb1086] hover:bg-pink-700 text-white"
                     >Sign up</button>
                   </div>
-                </>
-              )}
+                </div>
+             
             </Form>
           )}
         </Formik>
 
 
-        {step === 2 && (
+       
           <>
             <div className="flex items-center xl:mt-2">
               <hr className="flex-1 border-t border-black" />
@@ -358,16 +345,18 @@ const SignUp = (props: Props) => {
                 Sign up with Apple ID</button>
             </div>
           </>
-        )}
+       
       </div>
 
       <div className='text-center mt-5'>
         <span>Already have an account?<a className='cursor-pointer text-red-500' onClick={() => router.push('/login')}>Log In</a></span>
       </div>
     </div>
+
+
     <div className="lg:h-[85vh] flex  items-center justify-end  flex-col bg-[#ffe8ea]  ">
-    <h1 className="font-bold  lg:text-4xl text-5xl  xl:text-5xl  text-[#f46194] text-center md:-mb-14">Muslim Marriage online </h1>
-    <Image src={Marrage} className='rounded-md ' alt='marriage' width={500} height={500} />
+    <h1 className="font-bold  lg:text-4xl text-5xl  xl:text-5xl  text-[#f46194] text-center md:-mb-3">Muslim Marriage online </h1>
+    <Image src={Marrage} className='rounded-md ' alt='marriage' width={325} height={325} />
       </div>
     {/* <div className="col-span-2  xsm:hidden lg:block rounded-l-xl bg-[#fb1086]"></div> */}
     </div> 

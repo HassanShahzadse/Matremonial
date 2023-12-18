@@ -15,3 +15,47 @@
    background-image: url('./../../../../public/Banner.jpg');
   
 }
+.group{
+  animation: group-animation;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
+  position: relative;
+  animation-direction: alternate;
+
+
+}
+
+@keyframes group-animation{
+   from{
+     top:0;
+     bottom: 0;
+
+   }
+   to{
+      top:10px;
+      bottom: 100px;
+      
+    
+   }
+}
+.mobile{
+   animation: mobile-animation;
+   animation-iteration-count: infinite;
+   animation-duration: 1s;
+   position: relative;
+   animation-direction: alternate;
+   
+}
+@keyframes mobile-animation{
+   from{
+     top:0;
+     bottom: 0;
+
+   }
+   to{
+      top:10px;
+      bottom: 100px;
+      
+    
+   }
+}

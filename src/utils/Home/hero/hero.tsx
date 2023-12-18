@@ -154,7 +154,7 @@ function Hero() {
       <nav className="flex items-center justify-between flex-wrap p-5   relative">
         <div className="flex items-center flex-shrink-0 text-white mr-6 lg:mr-12">
           <h1 className="font-bold text-3xl text-[#fffff] cursor-pointer -mt-2">
-            Matrimonial
+            Muslim Marriage Online
           </h1>
         </div>
         <div className="block lg:hidden">
@@ -226,11 +226,12 @@ function Hero() {
             Get Started
             </Button>
         </div>
-        <div className="flex pt-10 pb-10  lg:pt-0 lg:pb-0   lg:flex-row   flex-col  pe-16 ps-16  lg:justify-between  items-center justify-center lg:mt-[1.2rem] xl:mt-[5rem]  2xl:mt-[24rem]   mt-12  bg-[#ED147D] ">
+        <div className="flex pt-10 pb-10  lg:pt-0 lg:pb-0   lg:flex-row   flex-col  pe-16 ps-16  lg:justify-between  items-center justify-center lg:mt-[1.2rem] xl:mt-[5rem]  2xl:mt-[9.3rem]   mt-12  bg-[#ED147D] ">
           <Image
             src="/Explore-Image.png"
             alt="My Image"
-            width={250}
+            className={styles.group}
+                        width={250}
             height={250}
           />
           <div className="text-center ">
@@ -238,7 +239,7 @@ function Hero() {
               Start your love story
             </h1>
             <p className="text-[#FFFFFFBD] mt-1">
-              Matrimonial: find love with our Marriage site!
+              Muslim Marriage: find love with our Marriage site!
             </p>
           </div>
           <Button
@@ -379,6 +380,7 @@ function Hero() {
                   alt="Playstore"
                   width={125}
                   height={125}
+                 
                 />
               </button>
             </div>
@@ -390,7 +392,8 @@ function Hero() {
                 alt="Apple"
                 width={480}
                 height={480}
-                className="mt-4 mb-4 "
+                
+                className={styles.mobile}
               />
             </div>
           </div>
@@ -400,7 +403,7 @@ function Hero() {
       <div className="bg-[#ed147d]">
         <div className="  overflow-hidden text-center pt-12 pb-12">
           <h2 className="mb-10 text-[#ffff] font-bold text-4xl">
-            Matrimonial Love Stories
+            Muslim Marriage Love Stories
           </h2>
           <Slider {...settings} className="flex justify-center">
             {peopleData.map((person, index) => (
@@ -414,24 +417,24 @@ function Hero() {
 
       <footer className="">
         <div className="flex pt-4 pb-4     space-y-4 lg:space-y-0  lg:flex-row   flex-col  pe-16 ps-16  lg:justify-between  items-center justify-center   bg-[#ffffff] ">
-          <div className="Logo text-3xl font-bold">Quipid</div>
-          <p className="text-sm text-[#868790] text-center">
-            Copyright © 2023 Matrimonial. All Rights Reserved by Modeltheme.
+          <div className="Logo text-3xl font-bold text-[#ed147d]">Muslim Marriage Online</div>
+          <p className="text-sm text-[#ed147d] text-center">
+            Copyright © 2023 Muslim Marriage Online. All Rights Reserved by Modeltheme.
           </p>
           <div className="flex space-x-2">
-            <i className=" p-2 bg-black">
+            <i className=" p-2 bg-[#ed147d]">
               <RiFacebookCircleLine className="fill-white" />
             </i>
 
-            <i className=" p-2 bg-black">
+            <i className=" p-2 bg-[#ed147d]">
               <SlSocialTwitter className="fill-white" />
             </i>
 
-            <i className=" p-2 bg-black">
+            <i className=" p-2 bg-[#ed147d]">
               <ImPinterest2 className="fill-white" />
             </i>
 
-            <i className=" p-2 bg-black">
+            <i className=" p-2 bg-[#ed147d]">
               <FaInstagramSquare className="fill-white" />
             </i>
           </div>
