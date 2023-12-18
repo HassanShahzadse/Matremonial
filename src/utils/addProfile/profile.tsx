@@ -26,7 +26,7 @@ const ChooseProfilePicture: React.FC<ChooseProfilePictureProps> = ({ control }) 
   };
   return (
   <>
-           <div className="flex flex-row space-x-5">
+           <div className="flex flex-row space-x-5 mt-12">
               <div>
                 {previewImage && (
                   <Image

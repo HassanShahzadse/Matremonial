@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDoc, getDocs, query, setDoc } from "firebase/firestore";
+import { addDoc, collection, Timestamp,doc, getDoc, getDocs, query, setDoc } from "firebase/firestore";
 import initializeFirebase from "../fireBase/firebase";
 
 
@@ -25,7 +25,29 @@ export const getAllChats = async () => {
       return false;
     }
   };
+ export const createMessage = async (receiver:any, sender:any, text:any) => {
+    try {
+      const timestamp = Timestamp.fromDate(new Date());
+      const firebaseInstance = await initializeFirebase();
+      if (!firebaseInstance) {
+        console.error('Firebase is not supported.');
+        return false;
+      }
+      const { db } = firebaseInstance;
+      const messagesCollection = collection(db, "messages");
   
+      await addDoc(messagesCollection, {
+        receiver,
+        sender,
+        text,
+        timestamp,
+      });
+  
+      console.log("Message created successfully!");
+    } catch (error) {
+      console.error("Error creating message:", error);
+    }
+  };
 export const fetchDataFromFirebase = async () => {
   const firebaseInstance = await initializeFirebase();
   if (!firebaseInstance) {

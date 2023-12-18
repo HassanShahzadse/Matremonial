@@ -35,15 +35,23 @@ export const userProfile = async (formData: any, id: any) => {
 };
 export const fetchDataFromFirebase = async () => {
   const firebaseInstance = await initializeFirebase();
+  
   if (!firebaseInstance) {
     console.error('Firebase is not supported.');
     return false;
   }
+  
   const { db } = firebaseInstance;
   const usersCollection = collection(db, "users");
   const usersQuery = query(usersCollection);
   const querySnapshot = await getDocs(usersQuery);
-  const usersData = querySnapshot.docs.map((doc) => doc.data());
+
+  const usersData = await Promise.all(querySnapshot.docs.map(async (doc) => {
+    // Get the document name (id)
+    const userId = doc.id;
+    const userData = doc.data();
+    return { ...userData, userId };
+  }));
 
   return usersData;
 };
@@ -64,7 +72,7 @@ export const fetchUserInfoFromFirebaseEmail = async (email:any) => {
       const userDoc = userDocs.docs[0];
       const userData = {
         id: userDoc.id,
-        name: userDoc.data()
+        ...userDoc.data()
       };
       console.log(userData)
       localStorage.setItem('user', JSON.stringify(userData));

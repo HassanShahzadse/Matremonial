@@ -1,5 +1,4 @@
 "use client";
-import { useRouter } from "next/router";
 import Link from "next/link";
 import { useState } from "react";
 import { FaMessage } from "react-icons/fa6";
@@ -8,9 +7,15 @@ import { IoNotifications } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { IoMdSettings } from "react-icons/io";
 import { logout } from "./../../sharedService/auth/auth";
+import { useRouter } from "next/navigation";
 
 
 const SideBar = ({ show }: any) => {
+  const router = useRouter()
+  const handleLogout = async() =>{
+    await logout()
+    router.push('/login');
+  }
   return (
     <aside className={`sidebar ${show ? "show" : "show"}`}>
       <nav className="nav">
@@ -46,9 +51,7 @@ const SideBar = ({ show }: any) => {
             </Link>
           </div>
         </div>
-        <Link href="/logout" className="nav-link">
-          <button onClick={logout}>Logout</button>
-        </Link>
+          <button onClick={handleLogout} className="text-[#f57aa5]">Logout</button>
       </nav>
     </aside>
   );

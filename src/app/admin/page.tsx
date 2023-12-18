@@ -12,8 +12,8 @@ const ProtectedRouteWrapper: React.FC<ProtectedRouteWrapperProps> = ({ children 
   const router = useRouter();
    
   useEffect(() => {
-    
-    if (!user) {
+const localUser = localStorage.getItem('user');
+    if (!user && !localUser) {
      
       router.push('/login');
       console.log(user);

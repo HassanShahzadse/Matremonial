@@ -141,10 +141,7 @@ const SignUp = (props: Props) => {
   });
   const radioGenderOptions = ['Male', 'Female', 'Non-Binary']; 
   return (
-    <div className="flex container mx-auto justify-center lg:h-screen  items-center overflow-hidden">
-    <div className="grid lg:grid-cols-2">
-      <div className="col-span-2 h-14 xsm:hidden lg:block bg-[#fb1086]"></div>
-    <div className="xsm:mt-2 lg:mt-0 bg-white py-2 px-5 rounded-lg shadow-md">
+    <div className="card bg-white p-6 rounded-lg shadow-md mx-auto">
       {step === 1 && (
         <h1 className="text-2xl font-bold text-center">Sign Up</h1>
       )}
@@ -184,7 +181,7 @@ const SignUp = (props: Props) => {
                     <ErrorMessage name="userName" component="div" className="text-red-500" />
                   </div>
 
-
+          <div className="grid lg:grid-cols-2 md:grid-cols-2 gap-2">
                   <div className='form-group mb-3'>
                     <label className='mb-2'>Email</label>
                     <Field type="text" name="email" className="w-full border-b-2 outline-none border-gray-300 rounded p-2" placeholder="Enter your email"
@@ -203,6 +200,7 @@ const SignUp = (props: Props) => {
                         handleFormChange('confirmEmail', e.target.value);
                       }} />
                     <ErrorMessage name="confirmEmail" component="div" className="text-red-500" />
+                  </div>
                   </div>
 
                   <div className='form-group mb-3'>
@@ -264,7 +262,7 @@ const SignUp = (props: Props) => {
               )}
               {step === 2 && (
                 <>
-                  <div className="form-group mb-3">
+                  <div className="form-group xl:mb-3">
                     <label className="block mb-2">Where do you Live?</label>
                     <select
                       className="w-full border border-gray-300 rounded p-2"
@@ -289,6 +287,7 @@ const SignUp = (props: Props) => {
                     />
                   </div>
 
+                <div className="grid lg:grid-cols-2 gap-2">
                   <div className="form-group mb-3">
                     <label className="block mb-2">Reason of Registering</label>
                     <select className="w-full border border-gray-300 rounded p-2"
@@ -316,7 +315,9 @@ const SignUp = (props: Props) => {
                       ))}
                     </select>
                   </div>
-                  <div className='text-center mt-5'>
+                  </div>
+
+                  <div className='text-center xl:mt-5'>
                     <button type="submit" className="login-btn border border-gray-300 rounded-full active:scale-95 bg-[#fb1086] hover:bg-pink-700 text-white"
                     >Sign up</button>
                   </div>
@@ -329,23 +330,25 @@ const SignUp = (props: Props) => {
 
         {step === 2 && (
           <>
-            <div className="flex items-center mt-2">
+            <div className="flex items-center xl:mt-2">
               <hr className="flex-1 border-t border-black" />
               <span className="px-2">OR</span>
               <hr className="flex-1 border-t border-black" />
             </div>
+            <div className="grid md:grid-cols-2 gap-2">
             <div className='text-center mt-2'>
-              <button className="google-btn border border-gray-300 rounded-full" onClick={handleGoogleSignup}>
+              <button className="px-8 py-2 border border-gray-300 rounded-full" onClick={handleGoogleSignup}>
                 <i className="fa-brands fa-google me-1" style={{ color: ' #c61010' }}></i>
                 Sign up with Google</button>
             </div>
             <div className='text-center mt-2'>
-              <button className="facebook-btn border border-gray-300 rounded-full" onClick={handleFacebookSignup}>
+              <button className="px-5 py-2  border border-gray-300 rounded-full" onClick={handleFacebookSignup}>
                 <i className="fa-brands fa-facebook me-1" style={{ color: 'rgb(19 16 198)' }}></i>
                 Sign up with Facebook</button>
             </div>
+            </div>
             <div className='text-center mt-2'>
-              <button className="google-btn border border-gray-300 rounded-full" >
+              <button className="px-8 py-2 border border-gray-300 rounded-full" >
                 <i className="fa-brands fa-apple me-1" style={{ color: 'rgb(28 27 27)' }}></i>
                 Sign up with Apple ID</button>
             </div>
@@ -356,15 +359,7 @@ const SignUp = (props: Props) => {
       <div className='text-center mt-5'>
         <span>Already have an account?<a className='cursor-pointer text-red-500' onClick={() => router.push('/login')}>Log In</a></span>
       </div>
-    </div>
-    <div className="h-full xsm:hidden lg:block">
-    <Image src={Marrage} className='rounded-md bg-[#f5c5dd] h-full' alt=''/>
-      </div>
-    <div className="col-span-2 h-7 xsm:hidden lg:block rounded-l-xl bg-[#fb1086]"></div>
-    </div> 
-    </div> 
+    </div >
   )
 }
 export default SignUp
-
-

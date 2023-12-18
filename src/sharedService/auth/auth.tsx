@@ -4,6 +4,7 @@ import { addDoc, collection, getDocs, getFirestore, query, where } from 'firebas
 import { getAuth, signInWithEmailAndPassword as signInWithEmailAndPasswordFirebase } from 'firebase/auth';
 import {  signOut } from 'firebase/auth';
 import { firebase_app } from "./../fireBase/firebase"
+import router, { useRouter } from 'next/router';
 
 
 
@@ -21,6 +22,8 @@ export const loginUser = async (email: any, password: any) => {
     if (querySnapshot.size > 0) {
       // const userData = querySnapshot.docs[0].data();
       const userData = { id: querySnapshot.docs[0].id, ...querySnapshot.docs[0].data() };
+      console.log(userData,"-------------------------------------------")
+      localStorage.setItem('user', JSON.stringify(userData));
       return userData;
     } else {
       console.error('Invalid login credentials');
@@ -166,6 +169,7 @@ const auth = getAuth(firebase_app);
 export const logout = async (): Promise<void> => {
   try {
     await signOut(auth);
+    localStorage.clear()
     console.log('User logged out successfully');
   } catch (error) {
     console.error('Logout error:', error);
