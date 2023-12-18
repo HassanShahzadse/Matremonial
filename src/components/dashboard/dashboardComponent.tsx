@@ -223,13 +223,11 @@ export default function DashboardComponent() {
                   Chat
                 </button>
                 </Link>
- 
-                 
-                <Link href="dashboard/messages"> 
+                {/* <Link href="dashboard/messages">  */}
                 <button className="w-full text-green-500 bg-gray-300 p-1 rounded-2xl my-4 text-sm  ">
                   View Profile
                 </button>
-                </Link>
+                {/* </Link> */}
               
               </div>
             </div>

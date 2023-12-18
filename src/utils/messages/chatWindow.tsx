@@ -16,6 +16,15 @@ useEffect(()=>{
     return null; // or render a loading state or an error message
   }
 
+  const handleKeyPress = async(e:any) => {
+     console.log("mehrab")
+
+
+    if (e.key === 'Enter' && inputText.trim() !== '') {
+      handleSendMessage();
+    }
+  };
+
   const handleSendMessage = async() => {
     await createMessage(selectedChat.userId, localUser.id, inputText);
     setInputText('');
@@ -59,6 +68,7 @@ useEffect(()=>{
               type="text"
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
+              onKeyPress={handleKeyPress}
               placeholder="Type a message"
               className="col-span-2 border rounded-l-md pl-4 p-2 outline-none"
             />

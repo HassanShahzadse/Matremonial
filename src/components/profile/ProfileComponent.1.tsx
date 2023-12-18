@@ -24,7 +24,7 @@ const martialOptions = [
   { label: "Never Married", value: "NeverMarried" },
   { label: "Legally Separated", value: "LegallySeparated" },
   { label: "Divorced", value: "Divorced" },
-  { label: "Widowd", value: "Widowd" },
+  { label: "Widow", value: "Widowd" },
   { label: "Annulled", value: "Annulled" },
 ];
 const lookingToMarryOptions = [
@@ -57,7 +57,7 @@ const partnerReligionOptions = [
   { label: "Doesn't Matter", value: "Doesn'tMatter" },
   { label: "Hindu", value: "Hindu" },
   { label: "Muslim", value: "Muslim" },
-  { label: "Cristian", value: "Cristian" },
+  { label: "Christian", value: "Christian" },
 ];
 const partnerSectOptions = [
   { label: "Doesn't Matter", value: "Doesn'tMatter" },

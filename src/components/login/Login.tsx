@@ -175,7 +175,7 @@ const Login = (props: Props) => {
                   className="cursor-pointer text-red-500"
                   onClick={() => router.push("/signup")}
                 >
-                  Sign in
+                  Sign up
                 </a>
               </span>
             </div>

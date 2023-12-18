@@ -85,7 +85,7 @@ const peopleData = [
   },
   {
     id:2,
-    para: `"Qiupid et nim quam, viverra sit amet purus eget, tempus pulvinar sollicitudin enim ac justo commodo dapibus"`,
+    para: `"Matrimonial et nim quam, viverra sit amet purus eget, tempus pulvinar sollicitudin enim ac justo commodo dapibus"`,
     name: "Jenna Smith",
     role: "FOUNDER, SOME COMPANY",
     imageUrl: "/avatar2.jpg",
@@ -214,7 +214,7 @@ function Hero() {
       <div className="mx-auto relative ">
         <div className="text-center pe-4 ps-4 lg:mt-[14.5rem]  mt-[10rem] ">
           <h1 className="text-[#FFFFFF]  lg:text-6xl sm:text-5xl  text-4xl  font-bold   2xl:ps-[24rem] 2xl:pe-[24rem]   xl:ps-[18rem] lg:ps-[8rem]  xl:pe-[18rem] lg:pe-[8rem]   ">
-            Dating for Grown Ups Make a Real Connection
+            Marriage for Grown Ups Make a Real Connection
           </h1>
           <p className="text-[#FFFFFF] sm:mt-9 mt-6 text-2xl">
             Start meeting singles who are ready to commit today.
@@ -238,7 +238,7 @@ function Hero() {
               Start your love story
             </h1>
             <p className="text-[#FFFFFFBD] mt-1">
-              Qiupid: find love with our dating site!
+              Matrimonial: find love with our Marriage site!
             </p>
           </div>
           <Button
@@ -252,7 +252,7 @@ function Hero() {
 
         <div className="bg-[#fff] text-center md:pt-20 lg:pb-[5rem]  pt-[2rem] pb-[2rem]">
           <h1 className="text-[#1F2F49]  text-5xl font-semibold  ">
-            The No.1 Trusted Dating Site
+            The No.1 Trusted Marriage Site
           </h1>
           <div className="grid lg:grid-cols-4   md:grid-cols-2 grid-cols-1    ">
             {datingSiteFeatures.map((feature, index) => (
@@ -280,14 +280,14 @@ function Hero() {
           <div className="ps-[10rem] pe-[10rem]  pt-14 pb-14 lg:pt-0 lg:pb-0 flex flex-col justify-center items-center">
             <div className="text-center  justify-center items-center flex flex-col">
               <h1 className="text-[#1F2F49]  font-semibold text-4xl ">
-                Explore Dating Advice
+                Explore Marriage Advice
               </h1>
               <p className="text-[#1F2F49] font-bold mt-2">
                 Be calm. Be kind. Be yourself.
               </p>
               <div className="ps-[3rem] lg:mt-1 xl:mt-5 mt-5 mb-5">
                 <p className="mt-6 rounded-t-[28px] rounded-r-[28px] bg-[#ffff] pt-4 ps-4 pb-4 pe-8 text-start text-sm text-shadow   font-bold       text-[#676770]">
-                  Hello, I’m Sarah and I’m the first Dating AI for Qiupid. What
+                  Hello, I’m Sarah and I’m the first Marriage AI for Matrimonial. What
                   are your preferences?
                 </p>
               </div>
@@ -366,7 +366,7 @@ function Hero() {
                 Download eAmo online dating app and you’re always ready to check
                 out profiles near you & chat with real commited singles ready
                 for a real relationship. It puts at the power of eAmo in the
-                palm of your hand for a faster dating experience.​
+                palm of your hand for a faster marriage experience.​
               </p>
 
               <button className="btn p-2  bg-black  rounded-md mt-8 me-4">
@@ -400,7 +400,7 @@ function Hero() {
       <div className="bg-[#ed147d]">
         <div className="  overflow-hidden text-center pt-12 pb-12">
           <h2 className="mb-10 text-[#ffff] font-bold text-4xl">
-            Qiupid Love Stories
+            Matrimonial Love Stories
           </h2>
           <Slider {...settings} className="flex justify-center">
             {peopleData.map((person, index) => (
@@ -416,7 +416,7 @@ function Hero() {
         <div className="flex pt-4 pb-4     space-y-4 lg:space-y-0  lg:flex-row   flex-col  pe-16 ps-16  lg:justify-between  items-center justify-center   bg-[#ffffff] ">
           <div className="Logo text-3xl font-bold">Quipid</div>
           <p className="text-sm text-[#868790] text-center">
-            Copyright © 2023 Qiupid. All Rights Reserved by Modeltheme.
+            Copyright © 2023 Matrimonial. All Rights Reserved by Modeltheme.
           </p>
           <div className="flex space-x-2">
             <i className=" p-2 bg-black">
