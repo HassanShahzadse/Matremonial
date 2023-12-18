@@ -262,7 +262,7 @@ export default function DashboardComponent() {
                     <p className="text-sm mb-3">
                       Looking for{" "}
                       <span className="ml-2 text-[#fb1086] p-2 rounded-xl text-sm">
-                        {card.gender === "Male" ? "male" : "female"}
+                        {card.gender === "Male" ? "female" : "male"}
                       </span>
                     </p>
 
