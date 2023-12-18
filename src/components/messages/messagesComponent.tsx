@@ -100,10 +100,11 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
     <Layout show={show} setShow={setShow}>
 
 {/* ******* Header ******* */}
-      <div className="my-6">
+<div className="h-[100vh] overflow-hidden xsm:-mt-12 md:mt-0">
+      <div className="h-[5vh]">
         <h1 className="text-2xl font-semibold">Messages</h1>
       </div>
-      <div className="container flex mt-7 rounded p-4 mx-auto shadow-md bg-white h-20 items-center space-x-10">
+      <div className="md:container flex mt-5 rounded p-4 mx-auto shadow-md bg-white h-[9vh] items-center space-x-10">
         <div className="left flex items-center w-[30%] justify-between">
           <div className="flex items-center space-x-2">
             <h3 className="">All Messages</h3>
@@ -118,23 +119,24 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
               className="rounded"
               src={selectedUser?.imageUrls && selectedUser.imageUrls[0]?.startsWith("https") ? selectedUser.imageUrls[0] : "https://www.w3schools.com/w3images/avatar2.png"}
               alt=""
-              width={60}
-              height={60}
+              width={50}
+              height={50}
             />
             <h3>{selectedUser.username}</h3>
           </div>
           <div className="star shadow-md p-2">⭐</div>
         </div>
-      </div>
+      </div> 
 
       {/* ******* Section 2 Card **** */}
     
-      <div className="container mx-auto grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 mt-1">
-        <div className="flex-col shadow-md p-5">
+      <div className="md:container h-[83vh] mx-auto mt-1 grid lg:grid-cols-3 md:grid-cols-1 xsm:grid-cols-1 ">
+        <div className="flex-col shadow-md p-5 h-[83vh] overflow-y-auto">
           <hr />
         <UserList chat={filteredChats} onCardClick={handleCardClick} />
       </div>
     <ChatWindow selectedChat={selectedChat} onSendMessage={fetchDataAgain}/>
+  </div>
   </div>
 </Layout>
   );
