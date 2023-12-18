@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Woman from '/public/member3.png';
-import { createMessage } from '@/sharedService/users/chat';
+import { createMessage, getChatsByUserIds } from '@/sharedService/users/chat';
 
 export const ChatWindow: React.FC<any> = ({ selectedChat, onSendMessage }) => {
   const [inputText, setInputText] = useState('');
   const [localUser, setLocalUser] = useState<any>([]);
-useEffect(()=>{
+  const [chatData, setChatData] = useState<any>([]);
+  useEffect(()=>{
   const localuser: any = localStorage.getItem('user');
   const user = JSON.parse(localuser);
   setLocalUser(user)
-},[])
+  fetchChats()
+},[selectedChat])
+const fetchChats = async() => {
+  const chat:any = await getChatsByUserIds(selectedChat.userId, localUser.id);
+  console.log(chat)
+  setChatData(chat)
+}
   if (!selectedChat || !selectedChat.userInfo) {
     // Handle the case where selectedChat or userInfo is null
     return null; // or render a loading state or an error message
@@ -28,11 +35,11 @@ useEffect(()=>{
   const handleSendMessage = async() => {
     await createMessage(selectedChat.userId, localUser.id, inputText);
     setInputText('');
-    onSendMessage();
+    fetchChats()
   };
 
-  const { userId, userInfo, chats } = selectedChat || { userId: null, userInfo: null, chats: [] };
-  const sortedChats = chats.length >= 0 ? chats?.slice().sort((a: any, b: any) => a.timestamp.seconds - b.timestamp.seconds) : [];
+  const { userId, userInfo } = selectedChat || { userId: null, userInfo: null };
+  const sortedChats = chatData.length >= 0 ? chatData?.slice().sort((a: any, b: any) => a.timestamp.seconds - b.timestamp.seconds) : [];
   return (
     <>
       <div className="flex-1 col-span-2 flex h-[74.5vh]">
