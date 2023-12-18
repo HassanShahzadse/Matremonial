@@ -104,7 +104,7 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
       <div className="h-[5vh]">
         <h1 className="text-2xl font-semibold">Messages</h1>
       </div>
-      <div className="container flex mt-5 rounded p-4 mx-auto shadow-md bg-white h-[9vh] items-center space-x-10">
+      <div className="md:container flex mt-5 rounded p-4 mx-auto shadow-md bg-white h-[9vh] items-center space-x-10">
         <div className="left flex items-center w-[30%] justify-between">
           <div className="flex items-center space-x-2">
             <h3 className="">All Messages</h3>
