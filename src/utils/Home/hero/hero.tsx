@@ -193,17 +193,19 @@ function Hero() {
           <div className="mt-4 md:mt-0">
             <Link href="/login">
               <Button
-                children="Login"
                 css="bg-[#ED147D] pe-7 ps-7   pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold " onClick={function (): void {
                   throw new Error("Function not implemented.");
-                } }              />
+                } }              >
+                children="Login"
+                </Button>
             </Link>
             <Link href="/signup">
               <Button
-                children="Signup"
                 css="bg-[#ED147D] pe-7 ps-7  ms-3  pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold " onClick={function (): void {
                   throw new Error("Function not implemented.");
-                } }              />
+                } }              >
+                  children="Signup"
+                  </Button>
             </Link>
           </div>
         </div>
@@ -218,10 +220,11 @@ function Hero() {
             Start meeting singles who are ready to commit today.
           </p>
           <Button
-            children="Get Started"
             css="bg-[#ED147D] pe-7 ps-7   pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold mt-6 sm:mt-8 mb-2" onClick={function (): void {
               throw new Error("Function not implemented.");
-            } }          />
+            } }          >
+            children="Get Started"
+            </Button>
         </div>
         <div className="flex pt-10 pb-10  lg:pt-0 lg:pb-0   lg:flex-row   flex-col  pe-16 ps-16  lg:justify-between  items-center justify-center lg:mt-[1.2rem] xl:mt-[5rem]  2xl:mt-[24rem]   mt-12  bg-[#ED147D] ">
           <Image
@@ -239,10 +242,12 @@ function Hero() {
             </p>
           </div>
           <Button
-            children="Register Now"
             css="bg-[#FFF] pe-7 ps-7   pt-2 pb-2 text-[#ED147D] rounded-[30px] text-[16px] font-bold mt-6 sm:mt-8 mb-2" onClick={function (): void {
               throw new Error("Function not implemented.");
-            } }          />
+            } }          >
+              children="Register Now"
+            </Button>
+
         </div>
 
         <div className="bg-[#fff] text-center md:pt-20 lg:pb-[5rem]  pt-[2rem] pb-[2rem]">
@@ -288,26 +293,32 @@ function Hero() {
               </div>
               <div className="flex flex-col items-center">
                 <Button
-                  children="Men"
                   css="bg-[#ED147D] sm:pe-52 sm:ps-52 pe-44 ps-44 shadow-[#ED147D]  xl:pt-3 xl:pb-3 pt-3 pb-3  lg:pt-2 lg:pb-2 text-[#fff] rounded-[30px] text-[13px] font-bold " onClick={function (): void {
                     throw new Error("Function not implemented.");
-                  } }                />
-                <Button
+                  } }                >
                   children="Men"
-                  css="bg-[#ED147D] sm:pe-52 sm:ps-52 pe-44 ps-44 mt-5 mb-5  shadow-[#ED147D]
+            </Button>
 
+                <Button
+                  css="bg-[#ED147D] sm:pe-52 sm:ps-52 pe-44 ps-44 mt-5 mb-5  shadow-[#ED147D]
+                  
                   xl:pt-3 xl:pb-3 lg:t-2 lg:pb-2 pt-3 pb-3 text-[#fff] rounded-[30px] text-[13px] font-bold "
                   onClick={function (): void {
                     throw new Error("Function not implemented.");}}
-                />
-                <Button
-                  children="Men"
-                  css="bg-[#ED147D] sm:pe-52 sm:ps-52  pe-44 ps-44 shadow-[#ED147D]
+                    >
+                    children="Men"
+            </Button>
 
+                <Button
+                  css="bg-[#ED147D] sm:pe-52 sm:ps-52  pe-44 ps-44 shadow-[#ED147D]
+                  
                   xl:pt-3 xl:pb-3 lg:pt-2 lg:pb-2    pt-3 pb-3 text-[#fff] rounded-[30px] text-[13px] font-bold "
                   onClick={function (): void {
                     throw new Error("Function not implemented.");}}
-                />
+                    >
+                  children="Men"
+            </Button>
+
               </div>
             </div>
           </div>
