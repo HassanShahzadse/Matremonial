@@ -23,8 +23,7 @@ import { FaSearch } from "react-icons/fa";
 import Link from "next/link";
 import { countries } from "@/utils/shared/countries";
 import DashboardModal from "@/utils/dashboardModel/dashboardModel";
-import { GiSettingsKnobs } from "react-icons/gi";
-
+import { FaFilter } from "react-icons/fa6";
 type CardProps = {
   id: number;
   title: string;
@@ -150,7 +149,7 @@ export default function DashboardComponent() {
 
       {/* ****** Cards ****** */}
 
-      <div className="card bg-[#ffff]  p-10  ">
+      <div className="card  bg-[#ffff] font-serif p-10  ">
         <div className="flex  flex-row  justify-between px-5">
           <div className="search  flex items-center justify-center relative">
             <input
@@ -164,9 +163,9 @@ export default function DashboardComponent() {
           <div>
             <button
               onClick={openModal}
-              className="bg-[#f10086] text-white text-xl rounded-md p-2"
+              className=" text-slate-600 text-xl rounded-md p-2"
             >
-            <GiSettingsKnobs/>
+            <FaFilter/>
             </button>
             <DashboardModal isOpen={isModalOpen} onClose={closeModal}>
         {/* Content of your modal goes here */}
@@ -237,11 +236,11 @@ export default function DashboardComponent() {
           </div>
         </div>
         <div className="card-body mt-5 p-2">
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 mx-5  gap-6     ">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 mx-5  gap-8 ">
             {filterCards.map((card) => (
               <div
                 key={card.id}
-                className="card1 bg-[#ffff] shadow-md rounded-md text-center hover:scale-105 duration-300"
+                className="card1 border  border-gray-300 bg-[#ffff] shadow-md rounded-md text-center hover:scale-105 duration-300"
               >
                 <div className="flex flex-row space-x-5">
                   <div className="basis-1/2 ">

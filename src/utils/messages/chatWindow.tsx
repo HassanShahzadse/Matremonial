@@ -52,7 +52,6 @@ const fetchChats = async() => {
             <div key={message.timestamp.seconds} className={message.sender === userId ? 'mb-4 flex justify-start items-start' : 'mb-4 flex justify-end items-end'}>
               {message.sender === userId && (
                 <div className="flex-shrink-0 w-8 h-8 rounded-full ml-2">
-                  <Image width={100} height={100} src={userInfo?.imageUrls?.[0] || Woman} alt={userInfo?.username || 'User'} />
                 </div>
               )}
               <div className="ml-3">
@@ -63,7 +62,7 @@ const fetchChats = async() => {
               </div>
               {message.sender !== userId && (
                 <div className="flex-shrink-0 w-8 h-8 rounded-full ml-2">
-                  <Image className='rounded-full' width={100} height={100} src={localUser?.imageUrls?.[0] || Woman} alt={localUser?.username || 'User'} />
+               
                 </div>
               )}
             </div>  
