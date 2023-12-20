@@ -34,9 +34,9 @@ const ChooseProfilePicture: React.FC<ChooseProfilePictureProps> = ({ control }) 
                   <Image
                     src={previewImage}
                     alt="Preview"
-                    width={40}
-                    height={40}
-                    className="rounded-full mt-2 h-32 w-32"
+                    width={100}
+                    height={100}
+                    className="rounded-full mt-2 "
                   />
                 )}
               </div>

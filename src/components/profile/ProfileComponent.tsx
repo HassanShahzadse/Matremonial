@@ -472,7 +472,7 @@ export default function ProfileComponent() {
           </div>
         </div>   */}
 
-          <div className="container mx-auto  rounded-[3rem] bg-white bg-opacity-70 p-8  mt-20 mb-3 ">
+          <div className="container mx-auto  rounded-[3rem] bg-white bg-opacity-70 p-8  mt-20 mb-5 ">
             <div className="card flex justify-center p-1 ">
               <ChooseProfilePicture control={control} />
             </div>
@@ -519,30 +519,36 @@ export default function ProfileComponent() {
               }
             })()}
           </div>
-          {step == 5 && (
-            <div className={`btn text-center mx-auto space-x-3    ${step==5 ? "mb-0" :" mb-1"}  `}>
-              <button
-                type="submit"
-                className="bg-[#fb1086] text-white p-2 rounded-md px-5"
-              >
-                Submit
-              </button>
-            </div>
-          )}
-        </form>
+
+          <div className="btn text-center mx-auto space-x-3 mb-20 "> 
         
-          <div className="btn text-center mx-auto space-x-3 mb-20">
-          {step != 1 &&  (<button className="bg-[#fb1086] w-20 rounded-md p-2 my-2 text-white" onClick={previous}>
+          {step != 1 &&  (<span className="bg-[#fb1086]  rounded-md px-4 p-2 mt-10 cursor-pointer text-white" onClick={previous}>
               Previous
-            </button>)}
+            </span>)}
           
-          {step!=5 &&  (<button
-              className="bg-[#fb1086] w-20 rounded-md p-2 my-2 text-white"
+          {step!=5 &&  (<span
+              className="bg-[#fb1086]  rounded-md px-4 p-2  cursor-pointer text-white"
               onClick={next}
             >
               Next
-            </button>)}
+            </span>)}
+
+            {step == 5 && (
+         
+         <button
+           type="submit"
+           className="bg-[#fb1086] text-white p-2 rounded-md px-5"
+         >
+           Submit
+         </button>
+      
+     )}
+      
           </div>
+
+        </form>
+        
+         
         
 
         <div className="h-[5vh] bg-[#fb1086] fixed bottom-0 left-0 right-0  rounded-s-2xl"></div>
