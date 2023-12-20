@@ -23,6 +23,7 @@ import { FaSearch } from "react-icons/fa";
 import Link from "next/link";
 import { countries } from "@/utils/shared/countries";
 import DashboardModal from "@/utils/dashboardModel/dashboardModel";
+import { GiSettingsKnobs } from "react-icons/gi";
 
 type CardProps = {
   id: number;
@@ -154,18 +155,18 @@ export default function DashboardComponent() {
           <div className="search  flex items-center justify-center relative">
             <input
               type="text"
-              className="w-full p-2   focus:outline-0 border-t-2  border-b-2 border-s-2   border-black "
+              className="w-full p-2   focus:outline-0 border-t-2  border-b-2 border-s-2 border-gray-500 "
             />
-            <button className="bg-[#F10086] text-white active:scale-95 font-semibold p-[0.85rem] px-3   ">
+            <button className="bg-[#F10086] text-white active:scale-95 font-semibold p-[0.90rem] px-3   ">
               <FaSearch />
             </button>
           </div>
           <div>
             <button
               onClick={openModal}
-              className="bg-[#f10086] text-white rounded-md p-2"
+              className="bg-[#f10086] text-white text-xl rounded-md p-2"
             >
-             Users Filter
+            <GiSettingsKnobs/>
             </button>
             <DashboardModal isOpen={isModalOpen} onClose={closeModal}>
         {/* Content of your modal goes here */}
@@ -243,7 +244,7 @@ export default function DashboardComponent() {
                 className="card1 bg-[#ffff] shadow-md rounded-md text-center hover:scale-105 duration-300"
               >
                 <div className="flex flex-row space-x-5">
-                  <div className="basis-1/2  ">
+                  <div className="basis-1/2 ">
                     <Image
                       height={138}
                       width={138}

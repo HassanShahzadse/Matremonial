@@ -119,7 +119,7 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
         <div className="right flex w-[70%] justify-between items-center">
           <div className="img-name flex ml-3 items-center space-x-3">
             <Image
-              className="rounded"
+              className="rounded-full h-14 w-14"
               src={selectedUser?.imageUrls && selectedUser.imageUrls[0]?.startsWith("https") ? selectedUser.imageUrls[0] : "https://www.w3schools.com/w3images/avatar2.png"}
               alt=""
               width={50}

@@ -66,7 +66,7 @@ const fetchChats = async() => {
                   <Image className='rounded-full' width={100} height={100} src={localUser?.imageUrls?.[0] || Woman} alt={localUser?.username || 'User'} />
                 </div>
               )}
-            </div>
+            </div>  
           ))}
 
           {/* Input area for sending messages */}
