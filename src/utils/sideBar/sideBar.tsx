@@ -41,10 +41,10 @@ const SideBar = ({ show }: any) => {
               <IoNotifications />
               <span className="nav-link-name">Notifications</span>
             </Link>
-            <Link href="/dashboard/addprofile" className="nav-link ">
+            {/* <Link href="/dashboard/addprofile" className="nav-link ">
               <CgProfile />
               <span className="nav-link-name">Profile</span>
-            </Link>
+            </Link> */}
             <Link href="/dashboard/settings" className="nav-link ">
               <IoMdSettings />
               <span className="nav-link-name">Settings</span>

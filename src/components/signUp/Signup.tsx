@@ -9,7 +9,7 @@ import RadioButtons from '../../utils/shared/radioBtn';
 import DateOfBirthInput from '../../utils/dateOfBirth/dateOfBirth';
 import { createUser, signupWithFacebook, signupWithGoogle } from '@/sharedService/auth/auth';
 import Marrage from "/public/pngwing.png";
-
+import { loginUser } from '@/sharedService/auth/auth';
 
 type Props = {}
 
@@ -92,8 +92,20 @@ const SignUp = (props: Props) => {
       gender: formValues.gender
     }
     try {
-      const user = await createUser(data);
-      router.push('/login'); 
+      const users = await createUser(data);
+      
+      let user = await loginUser(data.email,data.password);
+      console.log('Logged in user:', user);
+      if(user && user.id){
+        const userId = user.id
+        router.push('/dashboard');
+      }
+      else {
+        console.error('User object or user.id is undefined');
+      }
+
+
+      router.push('/addprofile'); 
     } catch (error) {
       console.error('Login failed in login file', error);
     }
@@ -104,7 +116,7 @@ const SignUp = (props: Props) => {
     try {
       const user = await signupWithGoogle();
       console.log('Signed up with Google:', user);
-      router.push('/login'); 
+      router.push('/addprofile'); 
     } catch (error) {
       console.error('Google signup error:', error);
     }
@@ -113,7 +125,7 @@ const SignUp = (props: Props) => {
     try {
       const user = await signupWithFacebook();
       console.log('Signed up with Facebook:', user);
-      router.push('/login'); 
+      router.push(''); 
     } catch (error) {
       console.error('Facebook signup error:', error);
     }

@@ -31,6 +31,7 @@ const Login = (props: Props) => {
       console.error('Login failed in login file', error);
     }
   };
+  
   const handleGoogleLogin = async () => {
     try {
       const user:any = await loginWithGoogle();
