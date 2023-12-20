@@ -16,8 +16,7 @@ import SelectField from "@/utils/addProfile/selectField";
 import { useEffect } from "react";
 import axios from "axios";
 import RadioButtonGroup from "@/utils/addProfile/radioButtonGroup";
-import styles from "./hero.module.css";
-
+import styles from "./Profile.module.css";
 
 const martialOptions = [
   { label: "Never Married", value: "NeverMarried" },
@@ -441,17 +440,13 @@ export default function ProfileComponent() {
         <h2 className="text-2xl font-bold  z-10  inline">Profile</h2>
       </div> */}
 
-    <div className={styles.backgroundImg}>
-    <div className="h-[8vh] bg-[#fb1086] "></div>
+      <div className={styles.backgroundImg}>
+        <div className="h-[8vh] bg-[#fb1086] fixed top-0  left-0 right-0 "></div>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="card bg-white bg-opacity-70 flex justify-center p-1 ">
-          <ChooseProfilePicture control={control} />
-        </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
 
-        {/*------------ Gallery Code Start-------------------- */}
-
-        {/* <div className="w-full bg-white bg-opacity-70 p-5 mt-5">
+          {/* Photos */}
+          {/* <div className="w-full bg-white bg-opacity-70 p-5 mt-5">
           <h1 className="text-xl font-semibold  ">Photos</h1>
 
           <div className="grid lg:grid-cols-6 md:grid-cols-5  mt-4 sm:grid-cols-5 xsm:grid-cols-3  ">
@@ -467,60 +462,67 @@ export default function ProfileComponent() {
               </div>
             ))}
           </div>
-        </div> */}
+        </div>   */}
 
-        {/* ProfileInfo */}
+          <div className="container mx-auto  rounded-[3rem] bg-white bg-opacity-70 p-8  mt-20 mb-3 ">
+            <div className="card flex justify-center p-1 ">
+              <ChooseProfilePicture control={control} />
+            </div>
 
-        <div className="w-full bg-white bg-opacity-70 p-5 mt-5">
-          <h1 className="text-xl font-semibold m ">Profile Info</h1>
-          <div className="md:container mx-auto grid lg:grid-cols-1 md:grid-cols-1 grid-cols-1 gap-4 p-4">
-            {profileInfoFields.map((field) => {
-              switch (field.type) {
-                case "input":
-                  return (
-                    <InputField
-                      key={field.name}
-                      label={field.label}
-                      name={field.name}
-                      placeholder={field.placeholder}
-                      register={register}
-                    />
-                  );
-                case "select":
-                  return (
-                    <SelectField
-                      key={field.name}
-                      label={field.label}
-                      name={field.name}
-                      options={field.options}
-                      register={register}
-                    />
-                  );
-                case "radio":
-                  return (
-                    <RadioButtonGroup
-                      key={field.name}
-                      label={field.label}
-                      name={field.name}
-                      options={field.options}
-                      register={register}
-                    />
-                  );
-                default:
-                  return null;
-              }
-            })}
+            {/* Profile info */}
+            <h1 className="text-md font-bold text-center ">Profile Info</h1>
+            <div className=" mx-auto grid lg:grid-cols-1 md:grid-cols-1 grid-cols-1 gap-4 p-4">
+              {profileInfoFields.map((field) => {
+                switch (field.type) {
+                  case "input":
+                    return (
+                      <InputField
+                        key={field.name}
+                        label={field.label}
+                        name={field.name}
+                        placeholder={field.placeholder}
+                        register={register}
+                      />
+                    );
+                  case "select":
+                    return (
+                      <SelectField
+                        key={field.name}
+                        label={field.label}
+                        name={field.name}
+                        options={field.options}
+                        register={register}
+                      />
+                    );
+                  case "radio":
+                    return (
+                      <RadioButtonGroup
+                        key={field.name}
+                        label={field.label}
+                        name={field.name}
+                        options={field.options}
+                        register={register}
+                      />
+                    );
+                  default:
+                    return null;
+                }
+              })}
+            </div>
+
+
           </div>
-        </div>
-        <div className="btn text-center mx-auto space-x-3">
-        <button className="bg-[#fb1086] w-20 rounded-md p-2 my-2 text-white">Previous</button>
-        <button className="bg-[#fb1086] w-20 rounded-md p-2 my-2 text-white">Next</button>
-        </div>
-<div className="h-[5vh] bg-[#fb1086] "></div>
-
-
-        {/* Personal Info */}
-        <div className="w-full bg-white bg-opacity-70 p-5 mt-5">
+          <div className="btn text-center mx-auto space-x-3 mb-20">
+            <button className="bg-[#fb1086] w-20 rounded-md p-2 my-2 text-white">
+              Previous
+            </button>
+            <button className="bg-[#fb1086] w-20 rounded-md p-2 my-2 text-white">
+              Next
+            </button>
+          </div>
+            
+          {/* Personal info */}
+          {/* <div className="w-full bg-white bg-opacity-70 p-5 mt-5">
           <h1 className="text-xl font-semibold m ">Personal Info</h1>
           <div className="md:container mx-auto grid lg:grid-cols-1 md:grid-cols-1  grid-cols-1 gap-4 p-4">
             {personalInfoFields.map((field) => {
@@ -560,10 +562,10 @@ export default function ProfileComponent() {
               }
             })}
           </div>
-        </div>
+        </div> */}
 
-        {/* Body Type */}
-        <div className="w-full bg-white bg-opacity-70 p-5 mt-5">
+           {/* Body Type */}
+          {/* <div className="w-full bg-white bg-opacity-70 p-5 mt-5">
           <h1 className="text-xl font-semibold m ">Body Type</h1>
           <div className="md:container mx-auto grid lg:grid-cols-1 md:grid-cols-1  grid-cols-1 gap-4 p-4">
             {bodyTypeFields.map((field) => (
@@ -587,10 +589,11 @@ export default function ProfileComponent() {
               </React.Fragment>
             ))}
           </div>
-        </div>
+        </div> */}
 
-        {/* Religion */}
-        <div className="w-full bg-white bg-opacity-70 p-5 mt-5">
+
+          {/* Religion */}
+          {/* <div className="w-full bg-white bg-opacity-70 p-5 mt-5">
           <h1 className="text-xl font-semibold m ">Religion</h1>
           <div className="md:container mx-auto grid lg:grid-cols-1 md:grid-cols-1  grid-cols-1 gap-4 p-4">
             {religiousInfoFields.map((field) => {
@@ -630,10 +633,12 @@ export default function ProfileComponent() {
               }
             })}
           </div>
-        </div>
+        </div> */}
 
-        {/* Type of Partner */}
-        <div className="w-full bg-white bg-opacity-70 p-5 mt-5">
+          
+
+            {/* Partner */}
+          {/* <div className="w-full bg-white bg-opacity-70 p-5 mt-5">
           <h1 className="text-xl font-semibold m ">
             Type of Partner Your Looking for
           </h1>
@@ -659,17 +664,20 @@ export default function ProfileComponent() {
               </React.Fragment>
             ))}
           </div>
-        </div>
+        </div> */}
 
-        <div className="flex justify-end mb-5 space-x-4 mt-5">
+          
+          {/* <div className="flex justify-end mb-5 space-x-4 mt-5">
           <button
             type="submit"
             className="bg-[#fb1086] text-white p-2 rounded-md px-5"
           >
             Submit
           </button>
-        </div>
-      </form>
+        </div> */}
+        </form>
+
+        <div className="h-[5vh] bg-[#fb1086] fixed bottom-0 left-0 right-0  rounded-s-2xl"></div>
       </div>
     </>
   );

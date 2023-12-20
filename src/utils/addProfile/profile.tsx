@@ -27,22 +27,21 @@ const ChooseProfilePicture: React.FC<ChooseProfilePictureProps> = ({ control }) 
   return (
     <>
    
-           <div className="flex flex-row space-x-5 mt-3">
-    {/* <h1 className='text-center'>Create Your Account</h1> */}
+           <div className="flex flex-col items-center justify-center space-x-5 mt-3">
+             <h1 className='text-center text-2xl font-bold uppercase'>Create an Account</h1>
               <div>
                 {previewImage && (
                   <Image
                     src={previewImage}
                     alt="Preview"
-                    width={100}
-                    height={100}
-                    className="rounded-full  h-44 w-44"
+                    width={40}
+                    height={40}
+                    className="rounded-full mt-2 h-32 w-32"
                   />
                 )}
               </div>
               
               <div className="flex  flex-col">
-                <h1 className="text-xl">Change Profile Picture</h1>
                 <Controller
                   name="profilePicture"
                   control={control}
@@ -60,9 +59,9 @@ const ChooseProfilePicture: React.FC<ChooseProfilePictureProps> = ({ control }) 
                 />
                 <label
                   htmlFor="profilePictureInput"
-                  className="w-28 mt-5 p-2 rounded-lg text-center shadow-md cursor-pointer bg-green-300 hover:bg-[#fb1086] hover:text-white"
+                  className="  font-bold p-2 rounded-lg text-center  cursor-pointer  "
                 >
-                  Upload
+                  Upload Profile Image
                 </label>
 
           
