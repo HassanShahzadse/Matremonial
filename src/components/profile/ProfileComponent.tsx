@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { useState } from "react";
 import Man from "/public/member2.png";
+// import Ring from "/public/ring.jpg";
 import { useRouter } from "next/navigation";
 import Profile from "@/utils/addProfile/profile";
 import { useForm, useFieldArray } from "react-hook-form";
@@ -15,6 +16,8 @@ import SelectField from "@/utils/addProfile/selectField";
 import { useEffect } from "react";
 import axios from "axios";
 import RadioButtonGroup from "@/utils/addProfile/radioButtonGroup";
+import styles from "./hero.module.css";
+
 
 const martialOptions = [
   { label: "Never Married", value: "NeverMarried" },
@@ -434,18 +437,21 @@ export default function ProfileComponent() {
 
   return (
     <>
-      <div className=" lg:top-0 xsm:top-0 fixed inline w-full p-4   bg-white">
+      {/* <div className=" lg:top-0 xsm:top-0 fixed inline w-full p-4   bg-white">
         <h2 className="text-2xl font-bold  z-10  inline">Profile</h2>
-      </div>
+      </div> */}
+
+    <div className={styles.backgroundImg}>
+    <div className="h-[8vh] bg-[#fb1086] "></div>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="card bg-white w-full p-8 ">
+        <div className="card bg-white bg-opacity-70 flex justify-center p-1 ">
           <ChooseProfilePicture control={control} />
         </div>
 
         {/*------------ Gallery Code Start-------------------- */}
 
-        <div className="w-full bg-white p-5 mt-5">
+        {/* <div className="w-full bg-white bg-opacity-70 p-5 mt-5">
           <h1 className="text-xl font-semibold  ">Photos</h1>
 
           <div className="grid lg:grid-cols-6 md:grid-cols-5  mt-4 sm:grid-cols-5 xsm:grid-cols-3  ">
@@ -461,13 +467,13 @@ export default function ProfileComponent() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* ProfileInfo */}
 
-        <div className="w-full bg-white p-5 mt-5">
+        <div className="w-full bg-white bg-opacity-70 p-5 mt-5">
           <h1 className="text-xl font-semibold m ">Profile Info</h1>
-          <div className="grid lg:grid-cols-3 md:grid-cols-2  grid-cols-1 gap-4 p-4">
+          <div className="md:container mx-auto grid lg:grid-cols-1 md:grid-cols-1 grid-cols-1 gap-4 p-4">
             {profileInfoFields.map((field) => {
               switch (field.type) {
                 case "input":
@@ -506,11 +512,17 @@ export default function ProfileComponent() {
             })}
           </div>
         </div>
+        <div className="btn text-center mx-auto space-x-3">
+        <button className="bg-[#fb1086] w-20 rounded-md p-2 my-2 text-white">Previous</button>
+        <button className="bg-[#fb1086] w-20 rounded-md p-2 my-2 text-white">Next</button>
+        </div>
+<div className="h-[5vh] bg-[#fb1086] "></div>
+
 
         {/* Personal Info */}
-        <div className="w-full bg-white p-5 mt-5">
+        <div className="w-full bg-white bg-opacity-70 p-5 mt-5">
           <h1 className="text-xl font-semibold m ">Personal Info</h1>
-          <div className="grid lg:grid-cols-3 md:grid-cols-2  grid-cols-1 gap-4 p-4">
+          <div className="md:container mx-auto grid lg:grid-cols-1 md:grid-cols-1  grid-cols-1 gap-4 p-4">
             {personalInfoFields.map((field) => {
               switch (field.type) {
                 case "input":
@@ -551,9 +563,9 @@ export default function ProfileComponent() {
         </div>
 
         {/* Body Type */}
-        <div className="w-full bg-white p-5 mt-5">
+        <div className="w-full bg-white bg-opacity-70 p-5 mt-5">
           <h1 className="text-xl font-semibold m ">Body Type</h1>
-          <div className="grid lg:grid-cols-3 md:grid-cols-2  grid-cols-1 gap-4 p-4">
+          <div className="md:container mx-auto grid lg:grid-cols-1 md:grid-cols-1  grid-cols-1 gap-4 p-4">
             {bodyTypeFields.map((field) => (
               <React.Fragment key={field.name}>
                 {field.type === "input" && (
@@ -578,9 +590,9 @@ export default function ProfileComponent() {
         </div>
 
         {/* Religion */}
-        <div className="w-full bg-white p-5 mt-5">
+        <div className="w-full bg-white bg-opacity-70 p-5 mt-5">
           <h1 className="text-xl font-semibold m ">Religion</h1>
-          <div className="grid lg:grid-cols-3 md:grid-cols-2  grid-cols-1 gap-4 p-4">
+          <div className="md:container mx-auto grid lg:grid-cols-1 md:grid-cols-1  grid-cols-1 gap-4 p-4">
             {religiousInfoFields.map((field) => {
               switch (field.type) {
                 case "input":
@@ -621,11 +633,11 @@ export default function ProfileComponent() {
         </div>
 
         {/* Type of Partner */}
-        <div className="w-full bg-white p-5 mt-5">
+        <div className="w-full bg-white bg-opacity-70 p-5 mt-5">
           <h1 className="text-xl font-semibold m ">
             Type of Partner Your Looking for
           </h1>
-          <div className="grid lg:grid-cols-3 md:grid-cols-2  grid-cols-1 gap-4 p-4">
+          <div className="md:container mx-auto grid lg:grid-cols-1 md:grid-cols-1  grid-cols-1 gap-4 p-4">
             {partnerFields.map((field) => (
               <React.Fragment key={field.name}>
                 {field.type === "input" && (
@@ -658,6 +670,7 @@ export default function ProfileComponent() {
           </button>
         </div>
       </form>
+      </div>
     </>
   );
 }

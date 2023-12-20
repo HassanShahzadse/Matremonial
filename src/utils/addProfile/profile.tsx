@@ -25,19 +25,22 @@ const ChooseProfilePicture: React.FC<ChooseProfilePictureProps> = ({ control }) 
     field.onChange(file);
   };
   return (
-  <>
-           <div className="flex flex-row space-x-5 mt-12">
+    <>
+   
+           <div className="flex flex-row space-x-5 mt-3">
+    {/* <h1 className='text-center'>Create Your Account</h1> */}
               <div>
                 {previewImage && (
                   <Image
                     src={previewImage}
                     alt="Preview"
-                    width={150}
-                    height={150}
+                    width={100}
+                    height={100}
                     className="rounded-full  h-44 w-44"
                   />
                 )}
               </div>
+              
               <div className="flex  flex-col">
                 <h1 className="text-xl">Change Profile Picture</h1>
                 <Controller

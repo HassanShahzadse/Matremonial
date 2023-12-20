@@ -13,8 +13,8 @@ interface InputFieldProps {
 
 const InputField: React.FC<InputFieldProps> = ({ label, name, placeholder=' ', register, errors, required }) => {
   return (
-    <div className="mb-4">
-      <label htmlFor={name} className="block text-sm font-medium text-gray-600">
+    <div className="mb-1 md:flex items-center">
+      <label htmlFor={name} className="block text-xl font-medium mr-2 text-gray-600">
         {label} {required && <span className="text-red-500">*</span>}
       </label>
       <input
