@@ -366,6 +366,7 @@ export default function ProfileComponent() {
   });
 
   const [locationOptions, setLocationOptions] = useState([]);
+  const [step, setStep] = useState(1);
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -434,6 +435,13 @@ export default function ProfileComponent() {
     setShowPics((prevShowPics) => ({ ...prevShowPics, [fieldName]: !file }));
   };
 
+  const previous = () => {
+
+    setStep((step) => step - 1);
+  };
+  const next = () => {
+    setStep((step) => step + 1);
+  };
   const onSubmit = (data: any) => {
     console.log(data);
     router.push("/dashboard");
@@ -441,13 +449,10 @@ export default function ProfileComponent() {
 
   return (
     <>
-      
-
       <div className={styles.backgroundImg}>
         <div className="h-[8vh] bg-[#fb1086] fixed top-0  left-0 right-0 "></div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-
           {/* Photos */}
           {/* <div className="w-full bg-white bg-opacity-70 p-5 mt-5">
           <h1 className="text-xl font-semibold  ">Photos</h1>
@@ -472,31 +477,73 @@ export default function ProfileComponent() {
               <ChooseProfilePicture control={control} />
             </div>
 
-            
-            <ProfileInfo profileInfoFields={profileInfoFields} register={register} />
-            <PersonalInfo personalInfoFields={personalInfoFields} register={register}/>
-            <BodyType bodyTypeFields={bodyTypeFields}  register={register}/>
-            <Religion religiousInfoFields={religiousInfoFields} register={register}/>
-            <Partner partnerFields={partnerFields} register={register}/>
-
-
+            {(() => {
+              switch (step) {
+                case 1:
+                  return (
+                    <ProfileInfo
+                      profileInfoFields={profileInfoFields}
+                      register={register}
+                    />
+                  );
+                case 2:
+                  return (
+                    <PersonalInfo
+                      personalInfoFields={personalInfoFields}
+                      register={register}
+                    />
+                  );
+                case 3:
+                  return (
+                    <BodyType
+                      bodyTypeFields={bodyTypeFields}
+                      register={register}
+                    />
+                  );
+                case 4:
+                  return (
+                    <Religion
+                      religiousInfoFields={religiousInfoFields}
+                      register={register}
+                    />
+                  );
+                case 5:
+                  return (
+                    <Partner
+                      partnerFields={partnerFields}
+                      register={register}
+                    />
+                  );
+                default:
+                  return null;
+              }
+            })()}
           </div>
-          <div className="btn text-center mx-auto space-x-3 mb-20">
-            <button className="bg-[#fb1086] w-20 rounded-md p-2 my-2 text-white">
-              Previous
-            </button>
-            <button className="bg-[#fb1086] w-20 rounded-md p-2 my-2 text-white">
-              Next
-            </button>
-            <button
-            type="submit"
-            className="bg-[#fb1086] text-white p-2 rounded-md px-5"
-          >
-            Submit
-          </button>
-          </div>
-            
+          {step == 5 && (
+            <div className={`btn text-center mx-auto space-x-3    ${step==5 ? "mb-0" :" mb-1"}  `}>
+              <button
+                type="submit"
+                className="bg-[#fb1086] text-white p-2 rounded-md px-5"
+              >
+                Submit
+              </button>
+            </div>
+          )}
         </form>
+        
+          <div className="btn text-center mx-auto space-x-3 mb-20">
+          {step != 1 &&  (<button className="bg-[#fb1086] w-20 rounded-md p-2 my-2 text-white" onClick={previous}>
+              Previous
+            </button>)}
+          
+          {step!=5 &&  (<button
+              className="bg-[#fb1086] w-20 rounded-md p-2 my-2 text-white"
+              onClick={next}
+            >
+              Next
+            </button>)}
+          </div>
+        
 
         <div className="h-[5vh] bg-[#fb1086] fixed bottom-0 left-0 right-0  rounded-s-2xl"></div>
       </div>
