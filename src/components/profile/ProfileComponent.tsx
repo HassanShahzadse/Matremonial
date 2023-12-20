@@ -17,6 +17,11 @@ import { useEffect } from "react";
 import axios from "axios";
 import RadioButtonGroup from "@/utils/addProfile/radioButtonGroup";
 import styles from "./Profile.module.css";
+import ProfileInfo from "@/utils/addProfile/profileInfo";
+import PersonalInfo from "@/utils/addProfile/personalInfo";
+import BodyType from "@/utils/addProfile/bodyType";
+import Religion from "@/utils/addProfile/Religion";
+import Partner from "@/utils/addProfile/partner";
 
 const martialOptions = [
   { label: "Never Married", value: "NeverMarried" },
@@ -436,9 +441,7 @@ export default function ProfileComponent() {
 
   return (
     <>
-      {/* <div className=" lg:top-0 xsm:top-0 fixed inline w-full p-4   bg-white">
-        <h2 className="text-2xl font-bold  z-10  inline">Profile</h2>
-      </div> */}
+      
 
       <div className={styles.backgroundImg}>
         <div className="h-[8vh] bg-[#fb1086] fixed top-0  left-0 right-0 "></div>
@@ -469,46 +472,12 @@ export default function ProfileComponent() {
               <ChooseProfilePicture control={control} />
             </div>
 
-            {/* Profile info */}
-            <h1 className="text-md font-bold text-center ">Profile Info</h1>
-            <div className=" mx-auto grid lg:grid-cols-1 md:grid-cols-1 grid-cols-1 gap-4 p-4">
-              {profileInfoFields.map((field) => {
-                switch (field.type) {
-                  case "input":
-                    return (
-                      <InputField
-                        key={field.name}
-                        label={field.label}
-                        name={field.name}
-                        placeholder={field.placeholder}
-                        register={register}
-                      />
-                    );
-                  case "select":
-                    return (
-                      <SelectField
-                        key={field.name}
-                        label={field.label}
-                        name={field.name}
-                        options={field.options}
-                        register={register}
-                      />
-                    );
-                  case "radio":
-                    return (
-                      <RadioButtonGroup
-                        key={field.name}
-                        label={field.label}
-                        name={field.name}
-                        options={field.options}
-                        register={register}
-                      />
-                    );
-                  default:
-                    return null;
-                }
-              })}
-            </div>
+            
+            <ProfileInfo profileInfoFields={profileInfoFields} register={register} />
+            <PersonalInfo personalInfoFields={personalInfoFields} register={register}/>
+            <BodyType bodyTypeFields={bodyTypeFields}  register={register}/>
+            <Religion religiousInfoFields={religiousInfoFields} register={register}/>
+            <Partner partnerFields={partnerFields} register={register}/>
 
 
           </div>
@@ -519,162 +488,14 @@ export default function ProfileComponent() {
             <button className="bg-[#fb1086] w-20 rounded-md p-2 my-2 text-white">
               Next
             </button>
-          </div>
-            
-          {/* Personal info */}
-          {/* <div className="w-full bg-white bg-opacity-70 p-5 mt-5">
-          <h1 className="text-xl font-semibold m ">Personal Info</h1>
-          <div className="md:container mx-auto grid lg:grid-cols-1 md:grid-cols-1  grid-cols-1 gap-4 p-4">
-            {personalInfoFields.map((field) => {
-              switch (field.type) {
-                case "input":
-                  return (
-                    <InputField
-                      key={field.name}
-                      label={field.label}
-                      name={field.name}
-                      placeholder={field.placeholder}
-                      register={register}
-                    />
-                  );
-                case "select":
-                  return (
-                    <SelectField
-                      key={field.name}
-                      label={field.label}
-                      name={field.name}
-                      options={field.options}
-                      register={register}
-                    />
-                  );
-                case "radio":
-                  return (
-                    <RadioButtonGroup
-                      key={field.name}
-                      label={field.label}
-                      name={field.name}
-                      options={field.options}
-                      register={register}
-                    />
-                  );
-                default:
-                  return null;
-              }
-            })}
-          </div>
-        </div> */}
-
-           {/* Body Type */}
-          {/* <div className="w-full bg-white bg-opacity-70 p-5 mt-5">
-          <h1 className="text-xl font-semibold m ">Body Type</h1>
-          <div className="md:container mx-auto grid lg:grid-cols-1 md:grid-cols-1  grid-cols-1 gap-4 p-4">
-            {bodyTypeFields.map((field) => (
-              <React.Fragment key={field.name}>
-                {field.type === "input" && (
-                  <InputField
-                    label={field.label}
-                    name={field.name}
-                    placeholder={field.placeholder}
-                    register={register}
-                  />
-                )}
-                {field.type === "select" && (
-                  <SelectField
-                    label={field.label}
-                    name={field.name}
-                    options={field.options || []}
-                    register={register}
-                  />
-                )}
-              </React.Fragment>
-            ))}
-          </div>
-        </div> */}
-
-
-          {/* Religion */}
-          {/* <div className="w-full bg-white bg-opacity-70 p-5 mt-5">
-          <h1 className="text-xl font-semibold m ">Religion</h1>
-          <div className="md:container mx-auto grid lg:grid-cols-1 md:grid-cols-1  grid-cols-1 gap-4 p-4">
-            {religiousInfoFields.map((field) => {
-              switch (field.type) {
-                case "input":
-                  return (
-                    <InputField
-                      key={field.name}
-                      label={field.label}
-                      name={field.name}
-                      placeholder={field.placeholder}
-                      register={register}
-                    />
-                  );
-                case "select":
-                  return (
-                    <SelectField
-                      key={field.name}
-                      label={field.label}
-                      name={field.name}
-                      options={field.options}
-                      register={register}
-                    />
-                  );
-                case "radio":
-                  return (
-                    <RadioButtonGroup
-                      key={field.name}
-                      label={field.label}
-                      name={field.name}
-                      options={field.options}
-                      register={register}
-                    />
-                  );
-                default:
-                  return null;
-              }
-            })}
-          </div>
-        </div> */}
-
-          
-
-            {/* Partner */}
-          {/* <div className="w-full bg-white bg-opacity-70 p-5 mt-5">
-          <h1 className="text-xl font-semibold m ">
-            Type of Partner Your Looking for
-          </h1>
-          <div className="md:container mx-auto grid lg:grid-cols-1 md:grid-cols-1  grid-cols-1 gap-4 p-4">
-            {partnerFields.map((field) => (
-              <React.Fragment key={field.name}>
-                {field.type === "input" && (
-                  <InputField
-                    label={field.label}
-                    name={field.name}
-                    placeholder={field.placeholder}
-                    register={register}
-                  />
-                )}
-                {field.type === "select" && (
-                  <SelectField
-                    label={field.label}
-                    name={field.name}
-                    options={field.options || []}
-                    register={register}
-                  />
-                )}
-              </React.Fragment>
-            ))}
-          </div>
-        </div> */}
-
-          
-          {/* <div className="flex justify-end mb-5 space-x-4 mt-5">
-          <button
+            <button
             type="submit"
             className="bg-[#fb1086] text-white p-2 rounded-md px-5"
           >
             Submit
           </button>
-        </div> */}
+          </div>
+            
         </form>
 
         <div className="h-[5vh] bg-[#fb1086] fixed bottom-0 left-0 right-0  rounded-s-2xl"></div>
