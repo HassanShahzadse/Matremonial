@@ -8,14 +8,14 @@ import Woman from "/public/member3.png";
 
 
 const notificationsData = [
-  { id : 1 , imgUrl:'/public/member3.png', message: 'Jasica liked you back, you can now chat with her.', timestamp: '2 minutes ago', button:'Chat' },
-  { id : 1 , imgUrl:'/public/member3.png', message: 'Jasica liked you back, you can now chat with her.', timestamp: '2 minutes ago', button:'Chat' },
-  { id : 1 , imgUrl:'/public/member3.png', message: 'Jasica liked you back, you can now chat with her.', timestamp: '2 minutes ago', button:'Chat' },
-  { id : 1 , imgUrl:'/public/member3.png', message: 'Jasica liked you back, you can now chat with her.', timestamp: '2 minutes ago', button:'Chat' },
-  { id : 1 , imgUrl:'/public/member3.png', message: 'Jasica liked you back, you can now chat with her.', timestamp: '2 minutes ago', button:'Chat' },
-  { id : 1 , imgUrl:'/public/member3.png', message: 'Jasica liked you back, you can now chat with her.', timestamp: '2 minutes ago', button:'Chat' },
-  { id : 1 , imgUrl:'/public/member3.png', message: 'Jasica liked you back, you can now chat with her.', timestamp: '2 minutes ago', button:'Chat' },
-  { id : 1 , imgUrl:'/public/member3.png', message: 'Jasica liked you back, you can now chat with her.', timestamp: '2 minutes ago', button:'Chat' },
+  { id : 1 , imgUrl:'/member3.png', message: 'Jasica liked you back, you can now chat with her.', timestamp: '2 minutes ago', button:'Chat' },
+  { id : 1 , imgUrl:'/member3.png', message: 'Jasica liked you back, you can now chat with her.', timestamp: '2 minutes ago', button:'Chat' },
+  { id : 1 , imgUrl:'/member3.png', message: 'Jasica liked you back, you can now chat with her.', timestamp: '2 minutes ago', button:'Chat' },
+  { id : 1 , imgUrl:'/member3.png', message: 'Jasica liked you back, you can now chat with her.', timestamp: '2 minutes ago', button:'Chat' },
+  { id : 1 , imgUrl:'/member3.png', message: 'Jasica liked you back, you can now chat with her.', timestamp: '2 minutes ago', button:'Chat' },
+  { id : 1 , imgUrl:'/member3.png', message: 'Jasica liked you back, you can now chat with her.', timestamp: '2 minutes ago', button:'Chat' },
+  { id : 1 , imgUrl:'/member3.png', message: 'Jasica liked you back, you can now chat with her.', timestamp: '2 minutes ago', button:'Chat' },
+  { id : 1 , imgUrl:'/member3.png', message: 'Jasica liked you back, you can now chat with her.', timestamp: '2 minutes ago', button:'Chat' },
   // Add more notifications as needed
 ];
 export default function NotificationsComponent() {
