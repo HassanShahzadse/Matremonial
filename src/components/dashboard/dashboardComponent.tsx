@@ -153,7 +153,7 @@ export default function DashboardComponent() {
 
       {/* ****** Cards ****** */}
 
-      <div className="card  bg-[#ffff] font-serif p-10  ">
+      <div className="card  bg-[#ffff] font-serif xl:p-10 px-2 py-6  ">
         <div className="flex  flex-row  justify-between px-5">
           <div className="search  flex items-center justify-center relative">
             <input
@@ -246,7 +246,7 @@ export default function DashboardComponent() {
             {filterCards.map((card) => (
               <div
                 key={card.id}
-                className="card1 border  border-gray-300 bg-[#ffff] shadow-md rounded-md text-center hover:scale-105 duration-300"
+                className=" border  border-gray-300 bg-[#ffff] shadow-md rounded-md text-center hover:scale-105 duration-300"
               >
                 <div className="flex flex-row space-x-5">
                   <div className="basis-1/2 ">
