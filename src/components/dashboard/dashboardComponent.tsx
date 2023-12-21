@@ -44,6 +44,7 @@ const generateUniqueId = () => {
 export default function DashboardComponent() {
   const [show, setShow] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchText, setSearchText] = useState('');
   const [userCards, setUserCards] = useState<CardProps[]>([]);
   const [filterCards, setfilterCards] = useState<CardProps[]>([]);
   const [locationFilter, setLocationFilter] = useState<string | null>(null);
@@ -111,10 +112,13 @@ export default function DashboardComponent() {
       if (professionFilter && !user.profession?.includes(professionFilter)) {
         return false;
       }
+      if (searchText && !user.name?.toLowerCase().includes(searchText.toLowerCase())) {
+        return false; 
+      }
       return true;
     });
     setfilterCards(filteredCards);
-  }, [locationFilter, ageRangeFilter, genderFilter, professionFilter]);
+  }, [locationFilter, ageRangeFilter, genderFilter, professionFilter,searchText]);
 
   const handleGoogleLogin = async () => {
     try {
@@ -153,6 +157,8 @@ export default function DashboardComponent() {
         <div className="flex  flex-row  justify-between px-5">
           <div className="search  flex items-center justify-center relative">
             <input
+            value={searchText}
+            onChange={(e)=>setSearchText(e.target.value)}
               type="text"
               className="w-full p-2   focus:outline-0 border-t-2  border-b-2 border-s-2 border-gray-500 "
             />
