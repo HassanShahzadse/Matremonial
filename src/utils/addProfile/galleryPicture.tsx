@@ -32,7 +32,7 @@ const GalleryPicture: React.FC<ChooseProfilePictureProps> = ({ control, previewI
         )}
       />
       {showPic ? (
-        <label htmlFor={`${fieldName}Input`} className="bg-[#fb1086] xsm:w-[90px] flex items-center rounded-md justify-center">
+        <label htmlFor={`${fieldName}Input`} className="bg-[#fb1086] xsm:my-2 xsm:w-[90px] flex items-center rounded-md justify-center">
           <span className="leading-normal text-4xl text-white">+</span>
         </label>
       ) : (
