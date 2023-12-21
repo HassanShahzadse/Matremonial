@@ -11,7 +11,7 @@ interface RadioButtonGroupProps {
 
 const RadioButtonGroup: React.FC<RadioButtonGroupProps> = ({ label, name, options=[], register }) => {
   return (
-    <div className="mb-1 md:flex items-center space-x-20">
+    <div className="mb-1 md:flex items-center md:space-x-20">
       <label className="block text-sm font-medium text-gray-600">{label}</label>
       <div className="flex items-center space-x-4 mt-1">
         {options.map((option) => (
@@ -21,7 +21,7 @@ const RadioButtonGroup: React.FC<RadioButtonGroupProps> = ({ label, name, option
               id={option.value}
               {...register(name)}
               value={option.value}
-              className="focus:ring-[#fb1086] h-4 w-4 text-[#fb1086]"
+              className="focus:ring-[#fb1086] accent-[#fb1086] h-4 w-4 text-[#fb1086]"
             />
             <label htmlFor={option.value} className="ml-2 text-sm text-gray-700">
               {option.label}

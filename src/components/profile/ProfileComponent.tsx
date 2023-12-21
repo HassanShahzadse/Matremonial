@@ -453,7 +453,7 @@ export default function ProfileComponent() {
 
         <form onSubmit={handleSubmit(onSubmit)}>
          
-          <div className="container mx-auto  rounded-[3rem] bg-white bg-opacity-70 p-8  mt-20 mb-5 ">
+          <div className="sm:container mx-auto  rounded-[3rem] bg-white bg-opacity-70 p-8  mt-20 mb-5 ">
             <div className="card flex justify-center p-1 ">
               <ChooseProfilePicture control={control} />
             </div>

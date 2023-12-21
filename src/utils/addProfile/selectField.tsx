@@ -13,20 +13,20 @@ interface SelectFieldProps {
 
 const SelectField: React.FC<SelectFieldProps> = ({ label, name, options=[], register, errors, required }) => {
   return (
-    <div className="mb-4 md:flex items-center ">
+    <div className="group mb-4 md:flex items-center ">
       <label htmlFor={name} className="block text-xl font-medium text-gray-600">
         {label} {required && <span className="text-red-500">*</span>}
       </label>
       <select
         {...register(name, { required: required && 'This field is required' })}
         id={name}
-        className={`mt-1 p-2 border ${errors?.[name] ? 'border-red-500' : 'border-gray-300'} rounded-md w-full`}
+        className={`mt-1 appearance-none bg-white p-2 border ${errors?.[name] ? 'border-red-500' : 'border-gray-300'} rounded-md w-full`}
       >
-        <option value="" disabled selected>
+        <option value=""  disabled selected>
           Select an option
         </option>
         {options.map((option) => (
-          <option key={option.value} value={option.value}>
+          <option key={option.value} style={{color:"#bf1086"}}  value={option.value}>
             {option.label}
           </option>
         ))}
@@ -34,6 +34,8 @@ const SelectField: React.FC<SelectFieldProps> = ({ label, name, options=[], regi
       {errors?.[name] && (
         <p className="text-red-500 text-sm mt-1">{errors[name]?.message || 'This field is required'}</p>
       )}
+    
+
     </div>
   );
 };
