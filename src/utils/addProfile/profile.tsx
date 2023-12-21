@@ -28,7 +28,7 @@ const ChooseProfilePicture: React.FC<ChooseProfilePictureProps> = ({ control }) 
     <>
    
            <div className="flex flex-col items-center justify-center space-x-5 mt-3">
-             <h1 className='text-center text-2xl font-bold uppercase'>Create an Account</h1>
+             <h1 className='text-center text-2xl font-bold uppercase'>Create an Account(In progress)</h1>
               <div>
                 {previewImage && (
                   <Image

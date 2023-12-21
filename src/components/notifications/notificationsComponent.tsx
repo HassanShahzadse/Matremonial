@@ -26,7 +26,7 @@ export default function NotificationsComponent() {
     <>
 
 <div className="heading sticky top-0  bg-white p-3 xsm:-mt-11 sm:mt-0 py-5">
-  <h2 className='text-2xl font-semibold'>Notificaions</h2>
+  <h2 className='text-2xl font-semibold'>Notificaions(This page is in progress)</h2>
 </div>
 
 {notificationsData.map((card) => (
