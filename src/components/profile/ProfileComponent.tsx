@@ -331,6 +331,64 @@ const religiousInfoFields = [
 export default function ProfileComponent() {
   const router = useRouter();
   const [show, setShow] = useState(false);
+  const [profile,setProfile]=useState({
+     beard:"",
+     bio:" ",
+     buildCont:" ",
+     children:"",
+     citizenship:" ",
+     country:" ",
+     disability:"",
+     education:" ",
+     eyes:" ",
+     gender:" ",
+     hair:" ",
+     halal:" ",
+     haveChilden:"",
+     headline:" ",
+     height:" ",
+     hijab:"",
+     imageUrls:[null,null,null,null,null,null,null],
+     income:"",
+     job:" ",
+     livingArrange:"",
+     martialStatus:"",
+     martialTime:"",
+     partnerEducation:" ",
+     partnerLocation:" ",
+     partnerProfession:"",
+     partnerReligion:" ",
+     partnerSect:"",
+     partnerType:"",
+     profession:"",
+     ramadan:"",
+     religion:"",
+     relocate:"",
+     revert:"",
+     salah:"",
+     smokeFreq:"",
+     tongue:"",
+     zakat:"",
+
+
+
+
+
+
+
+
+
+
+
+
+     
+
+     
+
+
+  });
+
+
   const {
     register,
     handleSubmit,
@@ -441,8 +499,54 @@ export default function ProfileComponent() {
   const next = () => {
     setStep((step) => step + 1);
   };
+  
+
+
   const onSubmit = (data: any) => {
-    console.log(data);
+    console.log(data.beard);
+
+    setProfile(
+      {
+        beard:data.beard,
+        bio:data.bio,
+        buildCont:data.buildCont,
+        children:data.children,
+        citizenship:data.citizenship,
+        country:data.country,
+        disability:data.disability,
+        education:data.education,
+        eyes:data.eyes,
+        gender:data.gender,
+        hair:data.hair,
+        halal:data.halal,
+        haveChilden:data.haveChilden,
+        headline:data.headline,
+        height:data.height,
+        hijab:data.hijab,
+        imageUrls:[data.profilePicture,data.gallery1,data.gallery2,data.gallery2,data.gallery2,data.gallery2,data.gallery2],
+        income:data.income,
+        job:data.job,
+        livingArrange:data.livingArrange,
+        martialStatus:data.martialStatus,
+        martialTime:data.martialTime,
+        partnerEducation:data.partnerEducation,
+        partnerLocation:data.partnerLocation,
+        partnerProfession:data.partnerProfession,
+        partnerReligion:data.partnerReligion,
+        partnerSect:data.partnerSect,
+        partnerType:data.partnerType,
+        profession:data.profession,
+        ramadan:data.ramadan,
+        religion:data. religion,
+        relocate:data.relocate,
+        revert:data.revert,
+        salah:data.salah,
+        smokeFreq:data.smokeFreq,
+        tongue:data.tongue,
+        zakat:data.zakat,
+     }
+    )
+
     router.push("/dashboard");
   };
 

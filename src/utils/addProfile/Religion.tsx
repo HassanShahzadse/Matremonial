@@ -6,7 +6,7 @@ import RadioButtonGroup from "@/utils/addProfile/radioButtonGroup";
 
 interface ReligionProps {
   religiousInfoFields: Array<{ label: string; name: string; type: string; placeholder?: string; options?: Array<{ label: string; value: string }> }>;
-  register: any; // Adjust the type as per your register function
+  register: any; 
 }
 
 const Religion: React.FC<ReligionProps> = ({ religiousInfoFields, register }) => {
