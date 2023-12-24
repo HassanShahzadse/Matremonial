@@ -18,7 +18,6 @@ import fetchData from "@/sharedService/dashboardService/page"; // permanently
 import initializeFirebase from "@/sharedService/fireBase/firebase";
 import { Firestore, collection, getDocs, query } from "firebase/firestore";
 import { FirebaseApp } from "firebase/app";
-import { Auth } from "firebase/auth";
 import { FaSearch } from "react-icons/fa";
 import Link from "next/link";
 import { countries } from "@/utils/shared/countries";
