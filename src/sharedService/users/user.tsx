@@ -1,4 +1,4 @@
-import { DocumentData, DocumentReference, addDoc, collection, doc, getDoc, getDocs, query, setDoc, where } from "firebase/firestore";
+import { DocumentData, DocumentReference, addDoc, arrayRemove, arrayUnion, collection, doc, getDoc, getDocs, query, setDoc, updateDoc, where } from "firebase/firestore";
 import initializeFirebase from "../fireBase/firebase";
 
 
@@ -113,6 +113,153 @@ export const fetchUserInfoFromFirebase = async (userId:any) => {
     }
   } catch (error) {
     console.error('Error fetching user information from Firebase:', error);
+    return false;
+  }
+};
+export const fetchFriendRequests = async (userId: any) => {
+  const firebaseInstance = await initializeFirebase();
+
+  if (!firebaseInstance) {
+    console.error('Firebase is not supported.');
+    return false;
+  }
+
+  const { db } = firebaseInstance;
+  const userDocRef: DocumentReference<DocumentData> = doc(db, 'users', userId);
+
+  try {
+    const userDoc: any = await getDoc(userDocRef);
+
+    if (userDoc.exists()) {
+      const userData = userDoc.data();
+
+      // Extract friend requests from the user data
+      const friendRequests = userData.friendRequests || [];
+
+      // Fetch users based on friend requests
+      const usersWithFriendRequests = await Promise.all(
+        friendRequests.map(async (friendId: string) => {
+          const friendDocRef: DocumentReference<DocumentData> = doc(db, 'users', friendId);
+          const friendDoc = await getDoc(friendDocRef);
+
+          if (friendDoc.exists()) {
+            return friendDoc.data();
+          } else {
+            console.error('Friend not found with ID:', friendId);
+            return null;
+          }
+        })
+      );
+
+      console.log('User:', userData);
+      console.log('Users with Friend Requests:', usersWithFriendRequests);
+
+      return usersWithFriendRequests;
+    } else {
+      console.error('User not found with ID:', userId);
+      return null;
+    }
+  } catch (error) {
+    console.error('Error fetching user information from Firebase:', error);
+    return false;
+  }
+};
+export const fetchFriends = async (userId: any) => {
+  const firebaseInstance = await initializeFirebase();
+
+  if (!firebaseInstance) {
+    console.error('Firebase is not supported.');
+    return false;
+  }
+
+  const { db } = firebaseInstance;
+  const userDocRef: DocumentReference<DocumentData> = doc(db, 'users', userId);
+
+  try {
+    const userDoc: any = await getDoc(userDocRef);
+
+    if (userDoc.exists()) {
+      const userData = userDoc.data();
+
+      // Extract friend requests from the user data
+      const friends = userData.friends || [];
+
+      // Fetch users based on friend requests
+      const usersFriends = await Promise.all(
+        friends.map(async (friendId: string) => {
+          const friendDocRef: DocumentReference<DocumentData> = doc(db, 'users', friendId);
+          const friendDoc = await getDoc(friendDocRef);
+
+          if (friendDoc.exists()) {
+            return friendDoc.data();
+          } else {
+            console.error('Friend not found with ID:', friendId);
+            return null;
+          }
+        })
+      );
+
+      console.log('User:', userData);
+      console.log('Users with Friend Requests:', usersFriends);
+
+      return usersFriends;
+    } else {
+      console.error('User not found with ID:', userId);
+      return null;
+    }
+  } catch (error) {
+    console.error('Error fetching user information from Firebase:', error);
+    return false;
+  }
+};
+export const acceptFriendRequest = async (loggedInUserId: string, friendUserId: string) => {
+  try {
+    const firebaseInstance = await initializeFirebase();
+    
+    if (!firebaseInstance) {
+      console.error('Firebase is not supported.');
+      return false;
+    }
+
+    const { db } = firebaseInstance;
+    const loggedInUserDocRef = doc(db, 'users', loggedInUserId);
+
+    // Remove friendUserId from friendRequests and add it to friends
+    await updateDoc(loggedInUserDocRef, {
+      friendRequests: arrayRemove(friendUserId),
+      friends: arrayUnion(friendUserId),
+    });
+
+    console.log('Friend request accepted successfully.');
+    return true;
+  } catch (error) {
+    console.error('Error accepting friend request:', error);
+    return false;
+  }
+};
+
+// Function to reject a friend request
+export const rejectFriendRequest = async (loggedInUserId: string, friendUserId: string) => {
+  try {
+    const firebaseInstance = await initializeFirebase();
+    
+    if (!firebaseInstance) {
+      console.error('Firebase is not supported.');
+      return false;
+    }
+
+    const { db } = firebaseInstance;
+    const loggedInUserDocRef = doc(db, 'users', loggedInUserId);
+
+    // Remove friendUserId from friendRequests
+    await updateDoc(loggedInUserDocRef, {
+      friendRequests: arrayRemove(friendUserId),
+    });
+
+    console.log('Friend request rejected successfully.');
+    return true;
+  } catch (error) {
+    console.error('Error rejecting friend request:', error);
     return false;
   }
 };

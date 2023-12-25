@@ -277,9 +277,11 @@ export default function DashboardComponent() {
                       </button>
                     </Link>
                     {/* <Link href="dashboard/messages">  */}
+                    <Link href={`dashboard/viewProfile/${card.id}`}>
                     <button className="w-full bg-[#fb1086] hover:bg-pink-700 text-[#ffff]  p-1 rounded-2xl my-4 text-sm  ">
                       View Profile
                     </button>
+                    </Link>
                     {/* </Link> */}
                   </div>
                 </div>
