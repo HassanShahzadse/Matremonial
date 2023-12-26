@@ -7,7 +7,7 @@ import Man from "/public/member2.png";
 import Woman from "/public/member3.png";
 import { useState } from "react";
 import UserProfileCard from "@/utils/userProfile/userProfileCard";
-import { fetchFriendRequests,fetchFriends } from "@/sharedService/users/user";
+import { acceptFriendRequest, fetchFriendRequests,fetchFriends, rejectFriendRequest } from "@/sharedService/users/user";
 import Link from "next/link";
 export default function FriendsComponent() {
   const [show, setShow] = useState(false);
@@ -74,12 +74,16 @@ useEffect(()=>{
   }
   
 
-  function handleAccept(id: any): void {
-
+  async function handleAccept(id: any) {
+    await acceptFriendRequest(parsedLocalUser.id,id)
+    fetchFriendReq()
+    fetchAllFriend()
   }
 
-  function handleReject(id: any): void {
-
+  async function handleReject(id: any) {
+    await rejectFriendRequest(parsedLocalUser.id,id)
+    fetchFriendReq()
+    fetchAllFriend()
   }
 
   return (
