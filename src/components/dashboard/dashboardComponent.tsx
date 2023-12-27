@@ -18,7 +18,6 @@ import fetchData from "@/sharedService/dashboardService/page"; // permanently
 import initializeFirebase from "@/sharedService/fireBase/firebase";
 import { Firestore, collection, getDocs, query } from "firebase/firestore";
 import { FirebaseApp } from "firebase/app";
-import { Auth } from "firebase/auth";
 import { FaSearch } from "react-icons/fa";
 import Link from "next/link";
 import { countries } from "@/utils/shared/countries";
@@ -278,9 +277,11 @@ export default function DashboardComponent() {
                       </button>
                     </Link>
                     {/* <Link href="dashboard/messages">  */}
+                    <Link href={`dashboard/viewProfile/${card.id}`}>
                     <button className="w-full bg-[#fb1086] hover:bg-pink-700 text-[#ffff]  p-1 rounded-2xl my-4 text-sm  ">
                       View Profile
                     </button>
+                    </Link>
                     {/* </Link> */}
                   </div>
                 </div>
