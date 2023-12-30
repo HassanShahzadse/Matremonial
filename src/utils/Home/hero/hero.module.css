@@ -17,7 +17,7 @@
 }
 .background-img{
    background-image: url('./../../../../public/ring.jpg');
-   /* position: absolute;
+   position: absolute;
    top: 0%;
    left: 0%; 
    height: 100vh;
@@ -26,7 +26,7 @@
    margin: 0%;
    background-size: cover;
    background-position: center;
-   background-attachment: fixed; */
+   background-attachment: fixed; 
 }
 .group{
   animation: group-animation;
