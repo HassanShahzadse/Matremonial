@@ -56,5 +56,4 @@ const SideBar = ({ show }: any) => {
     </aside>
   );
 };
-
 export default SideBar;
