@@ -446,6 +446,8 @@ function Hero() {
             Copyright © 2023 Muslim Marriage Online. All Rights Reserved by
             Modeltheme.
           </p>
+          <Link href="/privacyPolicy" className="cursor-pointer">Privacy Policy</Link>
+          <Link href="/termsAndConditions" className="cursor-pointer">Term & Conditions</Link>
           <div className="flex space-x-2">
             <i className=" p-2 bg-[#ed147d]">
               <RiFacebookCircleLine className="fill-white" />

@@ -1,0 +1,6 @@
+.round {
+    clip-path: ellipse(51% 38% at 50% 7%);
+    position: sticky;
+    top: 0.3px;
+    background-image: linear-gradient(to top right, #ee52a0, #ED147D);
+}
