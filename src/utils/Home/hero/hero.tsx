@@ -542,7 +542,7 @@ function Hero() {
 
 export default Hero;
 
-function FooterList({ footerData }) {
+function  FooterList({ footerData }: { footerData: any[] })  {
   return (
     <>
       {/* {footerData.map((item) => (
