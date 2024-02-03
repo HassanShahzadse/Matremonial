@@ -6,7 +6,7 @@ import Button from "@/utils/shared/button";
 import Image from "next/image";
 import { IoLogoFacebook } from "react-icons/io5";
 import Slider from "react-slick";
-import { Card, Dropdown } from "flowbite-react";
+import { Card, Dropdown, Label } from "flowbite-react";
 import PersonCard from "../personCard/personCard";
 import { Navbar } from "flowbite-react";
 import { RiFacebookCircleLine } from "react-icons/ri";
@@ -105,6 +105,31 @@ const peopleData = [
     imageUrl: "/avatar1.jpg",
   },
 ];
+const footerData = [
+  { label: " > Member Login" },
+  { label: "> Muslim Marriage Online" },
+  { label: "> Signed Up" },
+  { label: "> Member Support" },
+];
+
+const footerCompany = [
+  { label: " > About Us" },
+  { label: "> Blog" },
+  { label: "> Helpful Tips" },
+  { label: "> Submit story" },
+];
+
+const footerPrivacy = [
+  { label: "> Terms of Use" },
+  { label: "> Privacy Policy" },
+  { label: "> Contact Us" },
+];
+const footerMore = [
+  { label: "> Top Ranking Cities" },
+  { label: "> Parent Involved" },
+  { label: "> Intimate Cozy Wadding" },
+  { label: "> Site Map" },
+];
 const navLinks = [
   { href: "/", text: "Home" },
   { href: "/subscription", text: "Subscription" },
@@ -153,11 +178,9 @@ function Hero() {
 
       <nav className="flex items-center justify-between flex-wrap p-5   relative">
         <div className="flex items-center flex-shrink-0 text-white mr-6 lg:mr-12">
-          
           <h1 className="font-bold text-3xl text-[#fffff] cursor-pointer -mt-2">
             Muslim Marriage Online
           </h1>
-          
         </div>
         <div className="block lg:hidden">
           <button
@@ -429,6 +452,48 @@ function Hero() {
         </div>
       </div>
 
+      {/*  ****Footer 1 *****  */}
+      <div className="grid lg:grid-cols-6 mx-8 py-8 font-medium gap-5">
+        <div className="col-span-2">
+          <h1 className="text-2xl text-[#ED147D] font-bold py-6">
+            Muslim Marriage Online
+          </h1>
+          <p>
+            Muslim Marriage Online is registered and trademark corporation based
+            in the USA. We are a leading international matchmaking company for
+            singles globally. Through our network we want to make the process of
+            relationship journy relatively effortiess. All profiles are checked
+            maually with phone verification to ensure a safe environment for the
+            users.
+          </p>
+        </div>
+        <div className="">
+          <h1 className="text-xl font-semibold py-6">NEED HELP?</h1>
+
+          <ul>
+            <FooterList footerData={footerData} />
+          </ul>
+        </div>
+        <div className="">
+          <h1 className="text-xl font-semibold py-6">COMPANY</h1>
+          <ul>
+            <FooterList footerData={footerCompany} />
+          </ul>
+        </div>
+        <div className="">
+          <h1 className="text-xl font-semibold py-6">PRIVACY & YOU</h1>
+          <ul>
+            <FooterList footerData={footerPrivacy} />
+          </ul>
+        </div>
+        <div className="">
+          <h1 className="text-xl font-semibold py-6">MORE</h1>
+          <ul>
+            <FooterList footerData={footerMore} />
+          </ul>
+        </div>
+      </div>
+
       <footer className="">
         <div className="flex pt-4 pb-4     space-y-4 lg:space-y-0  lg:flex-row   flex-col  pe-16 ps-16  lg:justify-between  items-center justify-center   bg-[#ffffff] ">
           <div className="Logo text-3xl font-bold text-[#ed147d] flex items-center  justify-center">
@@ -446,8 +511,12 @@ function Hero() {
             Copyright © 2023 Muslim Marriage Online. All Rights Reserved by
             Modeltheme.
           </p>
-          <Link href="/privacyPolicy" className="cursor-pointer">Privacy Policy</Link>
-          <Link href="/termsAndConditions" className="cursor-pointer">Term & Conditions</Link>
+          <Link href="/privacyPolicy" className="cursor-pointer">
+            Privacy Policy
+          </Link>
+          <Link href="/termsAndConditions" className="cursor-pointer">
+            Term & Conditions
+          </Link>
           <div className="flex space-x-2">
             <i className=" p-2 bg-[#ed147d]">
               <RiFacebookCircleLine className="fill-white" />
@@ -472,3 +541,20 @@ function Hero() {
 }
 
 export default Hero;
+
+function FooterList({ footerData }) {
+  return (
+    <>
+      {/* {footerData.map((item) => (
+        <li className="py-2" key={label}>
+          {item}
+        </li>
+      ))} */}
+      {footerData.map((item) => (
+        <li className="py-2" key={item.label}>
+          {item.label}
+        </li>
+      ))}
+    </>
+  );
+}
