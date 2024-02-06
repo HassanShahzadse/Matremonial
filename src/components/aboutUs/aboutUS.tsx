@@ -1,7 +1,6 @@
-"use client"
+"use client";
 import { useState } from "react";
 import Layout from "../mainLayout/layout";
-
 
 export default function About() {
   const [show, setShow] = useState(false);
@@ -14,6 +13,5 @@ export default function About() {
     //   <h1 className='text-4xl mb-5 font-bold'>About</h1>
     //   <span className='text-7xl'>💬</span>
     // </div>
-
   );
 }

@@ -1,19 +1,23 @@
 // ChooseProfilePicture.tsx
-import React from 'react';
+import React from "react";
 import { useState } from "react";
-import Image from 'next/image';
-import { Controller } from 'react-hook-form';
+import Image from "next/image";
+import { Controller } from "react-hook-form";
 interface ChooseProfilePictureProps {
-  control: any; 
+  control: any;
 }
 
-const ChooseProfilePicture: React.FC<ChooseProfilePictureProps> = ({ control }) => {
-  
+const ChooseProfilePicture: React.FC<ChooseProfilePictureProps> = ({
+  control,
+}) => {
   const [previewImage, setPreviewImage] = useState<string | null>(
     "/member2.png"
   );
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, field: any) => {
+  const handleFileChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: any
+  ) => {
     const file = e.target.files && e.target.files[0];
 
     if (file) {
@@ -26,51 +30,45 @@ const ChooseProfilePicture: React.FC<ChooseProfilePictureProps> = ({ control }) 
   };
   return (
     <>
-   
-           <div className="flex flex-col items-center justify-center space-x-5 mt-3">
-             <h1 className='text-center text-2xl font-bold uppercase'>Create an Account(In progress)</h1>
-              <div>
-                {previewImage && (
-                  <Image
-                    src={previewImage}
-                    alt="Preview"
-                    width={100}
-                    height={100}
-                    className="rounded-full mt-2 "
-                  />
-                )}
-              </div>
-              
-              <div className="flex  flex-col">
-                <Controller
-                  name="profilePicture"
-                  control={control}
-                  render={({ field }) => (
-                    <div className="relative">
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => handleFileChange(e, field)}
-                        className="hidden"
-                        id="profilePictureInput"
-                      />
-                    </div>
-                  )}
-                />
-                <label
-                  htmlFor="profilePictureInput"
-                  className="  font-bold p-2 rounded-lg text-center  cursor-pointer  "
-                >
-                  Upload Profile Image
-                </label>
+      <div className="flex flex-col items-center justify-center space-x-5 mt-3">
+        <div>
+          {previewImage && (
+            <Image
+              src={previewImage}
+              alt="Preview"
+              width={100}
+              height={100}
+              className="rounded-full mt-2 "
+            />
+          )}
+        </div>
 
-          
+        <div className="flex  flex-col">
+          <Controller
+            name="profilePicture"
+            control={control}
+            render={({ field }) => (
+              <div className="relative">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => handleFileChange(e, field)}
+                  className="hidden"
+                  id="profilePictureInput"
+                />
               </div>
-            </div>
-  
-  </>
+            )}
+          />
+          <label
+            htmlFor="profilePictureInput"
+            className=" text-2xl  font-bold p-2 rounded-lg text-center  cursor-pointer  "
+          >
+            +
+          </label>
+        </div>
+      </div>
+    </>
   );
 };
 
 export default ChooseProfilePicture;
-
