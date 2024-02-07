@@ -106,35 +106,36 @@ const peopleData = [
   },
 ];
 const footerData = [
-  { label: " > Member Login" },
-  { label: "> Muslim Marriage Online" },
-  { label: "> Signed Up" },
-  { label: "> Member Support" },
+  { label: " Member Login" },
+  { label: " Muslim Marriage Online" },
+  { label: " Signed Up" },
+  { label: " Member Support" },
 ];
 
 const footerCompany = [
-  { label: " > About Us" },
-  { label: "> Blog" },
-  { label: "> Helpful Tips" },
-  { label: "> Submit story" },
+  { label: " About Us" },
+  { label: " Blog" },
+  { label: " Helpful Tips" },
+  { label: " Submit story" },
 ];
 
 const footerPrivacy = [
-  { label: "> Terms of Use" },
-  { label: "> Privacy Policy" },
-  { label: "> Contact Us" },
+  { label: " Terms of Use" },
+  { label: " Privacy Policy" },
+  { label: " Contact Us" },
+  // { label: " Contact Us" },
 ];
 const footerMore = [
-  { label: "> Top Ranking Cities" },
-  { label: "> Parent Involved" },
-  { label: "> Intimate Cozy Wadding" },
-  { label: "> Site Map" },
+  { label: " Top Ranking Cities" },
+  { label: " Parent Involved" },
+  { label: " Intimate Cozy Wadding" },
+  { label: " Site Map" },
 ];
 const navLinks = [
   { href: "/", text: "Home" },
   { href: "/subscription", text: "Subscription" },
   { href: "/contact-us", text: "Contact Us" },
-  { href: "/members", text: "Members" },
+  // { href: "/members", text: "Members" },
 ];
 
 function Hero() {
@@ -324,8 +325,12 @@ function Hero() {
               </p>
               <div className="ps-[3rem] lg:mt-1 xl:mt-5 mt-5 mb-5">
                 <p className="mt-6 rounded-t-[28px] rounded-r-[28px] bg-[#ffff] pt-4 ps-4 pb-4 pe-8 text-start text-sm text-shadow   font-bold       text-[#676770]">
-                  Hello, I’m Sarah and I’m the first Marriage AI for
-                  Matrimonial. What are your preferences?
+                  {/* Hello, I’m Sarah and I’m the first Marriage AI for
+                  Matrimonial. What are your preferences? */}
+                  Greetings, I am Sarah, the inaugural Marriage AI designed
+                  exclusively for Matrimonial purposes. As an AI dedicated to
+                  fostering lasting connections, I'm here to assist you in
+                  finding your ideal match. What are your preferences?
                 </p>
               </div>
               <div className="flex flex-col items-center">
@@ -453,7 +458,7 @@ function Hero() {
       </div>
 
       {/*  ****Footer 1 *****  */}
-      <div className="grid lg:grid-cols-6 mx-8 py-8 font-medium gap-5">
+      <div className="grid lg:grid-cols-6 items-center mx-8 py-8 font-medium gap-5">
         <div className="col-span-2">
           <h1 className="text-2xl text-[#ED147D] font-bold py-6">
             Muslim Marriage Online
@@ -467,8 +472,8 @@ function Hero() {
             users.
           </p>
         </div>
-        <div className="">
-          <h1 className="text-xl font-semibold py-6">NEED HELP?</h1>
+        <div className=" items-center md:ml-4">
+          <h1 className="text-xl  font-semibold py-6">NEED HELP?</h1>
 
           <ul>
             <FooterList footerData={footerData} />
@@ -481,7 +486,7 @@ function Hero() {
           </ul>
         </div>
         <div className="">
-          <h1 className="text-xl font-semibold py-6">PRIVACY & YOU</h1>
+          <h1 className="text-xl font-semibold py-6 -mt-10">PRIVACY & YOU</h1>
           <ul>
             <FooterList footerData={footerPrivacy} />
           </ul>
