@@ -505,41 +505,14 @@ export const TermsAndConditons = () => {
           <h1 className="text-3xl font-semibold my-10">
             Proprietary Information.
           </h1>
-
           <p>
             The Website is composed of information that is exclusively owned by
             us and our users. We assert comprehensive copyright protection on
-            the website. The data posted by us or other users of The
-          </p>
-
-          <p className="my-10">
-            Website may have intellectual property rights regardless of whether
-            it's marked as proprietary to us or to them. You undertake not to
-            alter, duplicate, or disseminate such information in any way without
-            the explicit consent of the information's rightful owner.
-          </p>
-
-          <p>
-            If you have any questions or concerns about these terms, please
-            contact us at. Tell: +44 (0800) 7999 643
-          </p>
-
-          <p className="my-5">
-            WhatsApp: <a href="">+44 788888 2776</a>
-          </p>
-
-          <p>
-            Customer Care:
-            <a className="text-blue-500" href="">
-              customercare@muslimmarriageonline.com
-            </a>
-          </p>
-
-          <p className="my-5">
-            Tech Support:
-            <a className="text-blue-500" href="">
-              support@muslimmarriageonline.com
-            </a>
+            the website. The data posted by us or other users of The Website may
+            have intellectual property rights regardless of whether it's marked
+            as proprietary to us or to them. You undertake not to alter,
+            duplicate, or disseminate such information in any way without the
+            explicit consent of the information's rightful owner.
           </p>
         </div>
       </div>
