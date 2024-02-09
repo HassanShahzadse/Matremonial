@@ -192,7 +192,8 @@ export default function DashboardComponent() {
           <MultiRangeSlider
           style={{
             border: 'none',
-             boxShadow: 'none'
+             boxShadow: 'none',
+             paddingRight:'50px'
         }}
             min={18}
             max={100}

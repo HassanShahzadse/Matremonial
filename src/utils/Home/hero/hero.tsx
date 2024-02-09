@@ -14,6 +14,7 @@ import { SlSocialTwitter } from "react-icons/sl";
 import { ImPinterest2 } from "react-icons/im";
 import { FaInstagramSquare } from "react-icons/fa";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 const datingSiteFeatures = [
   {
     title: "Awesome Community",
@@ -139,6 +140,7 @@ const navLinks = [
 ];
 
 function Hero() {
+  const router = useRouter();
   var settings = {
     dots: false,
     infinite: true,
@@ -255,9 +257,7 @@ function Hero() {
           </p>
           <Button
             css="bg-[#ED147D] pe-7 ps-7   pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold mt-6 sm:mt-8 mb-2"
-            onClick={function (): void {
-              throw new Error("Function not implemented.");
-            }}
+            onClick={() => router.push('/signup')}
           >
             Get Started
           </Button>
@@ -280,9 +280,7 @@ function Hero() {
           </div>
           <Button
             css="bg-[#FFF] pe-7 ps-7   pt-2 pb-2 text-[#ED147D] rounded-[30px] text-[16px] font-bold mt-6 sm:mt-8 mb-2"
-            onClick={function (): void {
-              throw new Error("Function not implemented.");
-            }}
+            onClick={() => router.push('/signup')}
           >
             Register Now
           </Button>

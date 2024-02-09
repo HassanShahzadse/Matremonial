@@ -118,6 +118,10 @@ const Login = (props: Props) => {
                         className="text-red-500"
                       />
                     </div>
+                    <div className="form-group align-items-center mt-3">
+                      <input type='checkbox' className='me-2'></input>
+                      <label className="mb-2">Remember Me</label>
+                    </div>
 
                     <div className="text-center mt-10">
                       <button

@@ -30,7 +30,7 @@ const ChooseProfilePicture: React.FC<ChooseProfilePictureProps> = ({
   };
   return (
     <>
-      <div className="flex flex-col items-center justify-center space-x-5 mt-3">
+      <div className="flex flex-col items-center justify-center position-relative space-x-5 mt-3">
         <div>
           {previewImage && (
             <Image
@@ -43,7 +43,7 @@ const ChooseProfilePicture: React.FC<ChooseProfilePictureProps> = ({
           )}
         </div>
 
-        <div className="flex  flex-col">
+        <div style={{margin:'0px',background:'rgba(0,0,0,0.5)',borderRadius:'50%'}} className="flex absolute px-1 text-white flex-col">
           <Controller
             name="profilePicture"
             control={control}
@@ -61,7 +61,7 @@ const ChooseProfilePicture: React.FC<ChooseProfilePictureProps> = ({
           />
           <label
             htmlFor="profilePictureInput"
-            className=" text-2xl  font-bold p-2 rounded-lg text-center  cursor-pointer  "
+            className=" text-2xl  font-bold p-0 rounded-lg text-center  cursor-pointer  "
           >
             +
           </label>

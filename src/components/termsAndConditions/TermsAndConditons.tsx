@@ -4,13 +4,13 @@ import "./term.css";
 export const TermsAndConditons = () => {
   return (
     <>
-      <div className="round p-20 bg-[#ED147D]">
+      <div className="round p-5 bg-[#ED147D]">
         <h1 className="text-center mb-24 text-white text-4xl font-bold">
           Terms & Conditions
         </h1>
       </div>
       <div className="container mx-auto leading-7 text-[20px]">
-        <div className="page-1 shadow-lg p-20 rounded-md">
+        <div style={{marginTop: '-50px'}} className="page-1  px-20 rounded-md">
           <h1 className="text-3xl font-semibold mb-6">
             Terms & Conditions and The Agreement
           </h1>
@@ -114,7 +114,7 @@ export const TermsAndConditons = () => {
           </p>
         </div>
         {/* ****** Page 2 ****** */}
-        <div className="page-1 shadow-lg p-20 rounded-md my-10">
+       <div style={{marginTop: '-50px'}} className="page-1  px-20 rounded-md">
           <p>
             <h1 className="text-3xl font-semibold my-10">
               Your Responsibilities
@@ -209,7 +209,7 @@ export const TermsAndConditons = () => {
         </div>
 
         {/* ***** Page 3 **** */}
-        <div className="page-1 shadow-lg p-20 rounded-md my-10">
+       <div style={{marginTop: '-50px'}} className="page-1  px-20 rounded-md">
           <h1 className="text-3xl font-semibold my-10">Our Responsibilities</h1>
 
           <p>
@@ -328,7 +328,7 @@ export const TermsAndConditons = () => {
           </p>
         </div>
         {/* ***** PAGE 3 **** */}
-        <div className="page-1 shadow-lg p-20 rounded-md my-10">
+       <div style={{marginTop: '-50px'}} className="page-1  px-20 rounded-md">
           <h1 className="text-3xl font-semibold my-10">Liability Exemption </h1>
           <p>
             You are responsible for defending, indemnifying, and keeping our
@@ -433,7 +433,7 @@ export const TermsAndConditons = () => {
           </p>
         </div>
         {/* ***** Page 4 **** */}
-        <div className="page-1 shadow-lg p-20 rounded-md my-10">
+       <div style={{marginTop: '-50px'}} className="page-1  px-20 rounded-md">
           <h1 className="text-3xl font-semibold my-10">
             Monitoring of Content.
           </h1>

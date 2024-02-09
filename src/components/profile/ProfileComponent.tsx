@@ -117,13 +117,6 @@ const childrenOptions = [
 
 const profileInfoFields = [
   {
-    type: "input",
-    label: "Headline",
-    name: "headline",
-    placeholder: "Enter a Headline",
-  },
-
-  {
     type: "radio",
     label: "What I am looking for",
     name: "gender",
