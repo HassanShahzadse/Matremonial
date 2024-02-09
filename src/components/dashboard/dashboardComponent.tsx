@@ -187,13 +187,12 @@ export default function DashboardComponent() {
         </select>
 
       
-        <div className="w-[450px]">
+        <div>
           <label>Age Range:</label>
           <MultiRangeSlider
           style={{
             border: 'none',
              boxShadow: 'none',
-             paddingRight:'50px'
         }}
             min={18}
             max={100}
