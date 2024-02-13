@@ -22,15 +22,17 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
   const [selectedUser, setSelectedUser] = useState<any>({});
   const fetchData = async () => {
     try {
-      const chatData:any = await getAllChats();
-      const localuser:any  = localStorage.getItem('user');
+      const chatData: any = await getAllChats();
+      const localuser: any = localStorage.getItem("user");
       const user = JSON.parse(localuser);
       const filteredData = chatData.filter(
-        (chat: { sender: any; receiver: any; }) => chat.sender === user.id || chat.receiver === user.id
+        (chat: { sender: any; receiver: any }) =>
+          chat.sender === user.id || chat.receiver === user.id
       );
-      const combinedRecords:any = {};
-      filteredData.forEach((chat:any) => {
-        const otherUserId = chat.sender === user.id ? chat.receiver : chat.sender;
+      const combinedRecords: any = {};
+      filteredData.forEach((chat: any) => {
+        const otherUserId =
+          chat.sender === user.id ? chat.receiver : chat.sender;
         if (combinedRecords[otherUserId]) {
           combinedRecords[otherUserId].push(chat);
         } else {
@@ -56,22 +58,27 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
         };
       });
 
-      const usersData:any = await Promise.all(usersPromises);
+      const usersData: any = await Promise.all(usersPromises);
       const sortedUsersData = sortUsersData(usersData, userId);
-      
+
       setSelectedChat(sortedUsersData[0]);
       setSelectedUser(sortedUsersData[0].userInfo);
       setFilteredChats(sortedUsersData);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     }
   };
 
-  const sortUsersData = (usersData: any[], targetUserId: string | string[] | undefined) => {
-    console.log(usersData)
+  const sortUsersData = (
+    usersData: any[],
+    targetUserId: string | string[] | undefined
+  ) => {
+    console.log(usersData);
     if (targetUserId) {
       // If targetUserId exists, move it to the top of the array
-      const targetIndex = usersData.findIndex((user) => user.userId === targetUserId);
+      const targetIndex = usersData.findIndex(
+        (user) => user.userId === targetUserId
+      );
       if (targetIndex !== -1) {
         const targetUser = usersData[targetIndex];
         usersData.splice(targetIndex, 1);
@@ -81,69 +88,74 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
     return usersData;
   };
 
-
   useEffect(() => {
     fetchData();
   }, [userId]);
   const fetchDataAgain = async () => {
     try {
       await fetchData();
-      console.log("----------------")
+      console.log("----------------");
     } catch (error) {
-      console.error('Error fetching data again:', error);
+      console.error("Error fetching data again:", error);
     }
   };
-  const handleCardClick = (chat:any) => {
+  const handleCardClick = (chat: any) => {
     setSelectedChat(chat);
-    console.log(chat.userInfo,"---------------------")
+    console.log(chat.userInfo, "---------------------");
     setSelectedUser(chat.userInfo);
     setShow(true);
   };
   return (
-    <Layout show={show} setShow={setShow}>
-
-{/* ******* Header ******* */}
-<div className="h-[100vh] overflow-hidden xsm:-mt-12 md:mt-0">
-      <div className="h-[5vh]">
+    <>
+      {/* <Layout show={show} setShow={setShow}> */}
+      {/* ******* Header ******* */}
+      <div className="h-[100vh] overflow-hidden xsm:-mt-12 md:mt-0">
+        {/* <div className="h-[5vh]">
         <h1 className="text-2xl font-semibold">Messages</h1>
-      </div>
-      <div className="md:container flex mt-5 rounded p-4 mx-auto shadow-md bg-white h-[9vh] items-center space-x-10">
-        <div className="left flex items-center w-[30%] justify-between">
+      </div> */}
+        <div className="flex mt-5 rounded p-4 mx-4 shadow-md bg-white h-[9vh] items-center space-x-10">
+          {/* <div className="left flex items-center w-[30%] justify-between">
           <div className="flex items-center space-x-2">
             <h3 className="">All Messages</h3>
             <RiArrowDropDownLine />
           </div>
           <FaEllipsisV />
-        </div>
+        </div> */}
 
-        <div className="right flex w-[70%] justify-between items-center">
-          <div className="img-name flex ml-3 items-center space-x-3">
-            <Image
-              className="rounded-full h-14 w-14"
-              src={selectedUser?.imageUrls && selectedUser.imageUrls[0]?.startsWith("https") ? selectedUser.imageUrls[0] : "https://www.w3schools.com/w3images/avatar2.png"}
-              alt=""
-              width={50}
-              height={50}
-            />
-            <h3>{selectedUser.username}</h3>
+          <div className="right flex w-full justify-between items-center">
+            <div className="img-name flex ml-3 items-center space-x-3">
+              <Image
+                className="rounded-full h-14 w-14"
+                src={
+                  selectedUser?.imageUrls &&
+                  selectedUser.imageUrls[0]?.startsWith("https")
+                    ? selectedUser.imageUrls[0]
+                    : "https://www.w3schools.com/w3images/avatar2.png"
+                }
+                alt=""
+                width={50}
+                height={50}
+              />
+              <h3>{selectedUser.username}</h3>
+            </div>
+            <div className="star shadow-md text-3xl p-2">...</div>
           </div>
-          <div className="star shadow-md p-2">⭐</div>
         </div>
-      </div> 
 
-      {/* ******* Section 2 Card **** */}
-    
-      <div className="md:container h-[83vh] mx-auto mt-1 grid lg:grid-cols-3 md:grid-cols-1 xsm:grid-cols-1 ">
-        <div className="flex-col shadow-md p-5 h-[83vh] overflow-y-auto">
-          <hr />
-        <UserList chat={filteredChats} onCardClick={handleCardClick} />
+        {/* ******* Section 2 Card **** */}
+
+        <div className="h-[83vh] mx-4 mt-1 grid lg:grid-cols-3 md:grid-cols-1 xsm:grid-cols-1 ">
+          <div className="flex-col shadow-md p-5 h-[83vh] overflow-y-auto">
+            <hr />
+            <UserList chat={filteredChats} onCardClick={handleCardClick} />
+          </div>
+          <ChatWindow
+            selectedChat={selectedChat}
+            onSendMessage={fetchDataAgain}
+          />
+        </div>
       </div>
-    <ChatWindow selectedChat={selectedChat} onSendMessage={fetchDataAgain}/>
-  </div>
-  </div>
-</Layout>
+      {/* </Layout> */}
+    </>
   );
 }
-
-
-

@@ -9,6 +9,9 @@ import Select from "react-select";
 import Avatar from "/public/avatar1.jpg";
 import Man from "/public/member2.png";
 import Woman from "/public/member3.png";
+import Message from "/public/Icons/message.png";
+import Filter from "/public/Icons/filter.png";
+import Batch from "/public/Icons/batch.png";
 import { v4 as uuidv4 } from "uuid";
 import MultiRangeSlider from "multi-range-slider-react";
 import Bridal from "/public/img1.jpg";
@@ -57,7 +60,7 @@ export default function DashboardComponent() {
       const localUser: any = localStorage.getItem("user");
       const parsedLocalUser = JSON.parse(localUser);
       const usersData = usersDataInitial.filter(
-        (user: any) => user.userId !== parsedLocalUser.id
+        (user: any) => user.userId !== parsedLocalUser?.id
       );
       const cards = usersData.map(
         (user: {
@@ -149,119 +152,154 @@ export default function DashboardComponent() {
 
   return (
     <>
-      <div className="flex bg-[#FD307A] sticky top-0 h-[10vh] items-center z-10 justify-between px-5">
-        <div className="search flex space-x-28 items-center justify-center relative">
-          <div>
-            <p className="text-2xl text-white">☰</p>
-          </div>
-          <div className="flex space-x-2">
-            <button className="text-[#F10086] rounded-full bg-white active:scale-95 font-semibold p-3 px-3   ">
-              <FaSearch />
-            </button>
-            <input
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              type="text"
-              className="w-[20vw] p-1 rounded-full focus:outline-0 border-t-2  border-b-2 border-s-2 border-gray-500 "
-            />
-          </div>
-        </div>
-        <div className="right-side flex items-center">
-          <div>
-            <button
-              onClick={openModal}
-              className=" text-slate-600 text-xl rounded-md p-2"
-            >
-              <FaFilter />
-            </button>
-            <DashboardModal isOpen={isModalOpen} onClose={closeModal}>
-              {/* Content of your modal goes here */}
-              <select
-                className="w-[60%] p-2 rounded-md focus:outline-0"
-                onChange={(e) => setLocationFilter(e.target.value)}
-                value={locationFilter || ""}
-              >
-                {countries.map((country) => (
-                  <option key={country.value} value={country.text}>
-                    {country.text}
-                  </option>
-                ))}
-              </select>
-
-              <div className="w-[450px]">
-                <label>Age Range:</label>
-                <MultiRangeSlider
-                  style={{
-                    border: "none",
-                    boxShadow: "none",
-                  }}
-                  min={18}
-                  max={100}
-                  step={1}
-                  ruler={false}
-                  label={false}
-                  subSteps={false}
-                  minValue={ageRangeFilter[0]}
-                  maxValue={ageRangeFilter[1]}
-                  onInput={(e) => setAgeRangeFilter([e.minValue, e.maxValue])}
-                />
-              </div>
-
-              <select
-                className="w-[60%] p-2 rounded-md focus:outline-0"
-                onChange={(e) => setGenderFilter(e.target.value)}
-                value={genderFilter || ""}
-              >
-                <option value={""}>Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-
-              <input
-                type="text"
-                className="w-[60%] p-2 rounded-md focus:outline-0"
-                placeholder="Search Professions"
-                value={professionFilter || ""}
-                onChange={(e) => setProfessionFilter(e.target.value)}
-              />
-              <Button
-                onClick={() => {
-                  setLocationFilter("ALL");
-                  setAgeRangeFilter([18, 30]);
-                  setGenderFilter(null);
-                  setProfessionFilter(null);
-                }}
-              >
-                Reset Filters
-              </Button>
-            </DashboardModal>
-          </div>
-          <div className=" flex-col py-2 items-center">
-            <Image
-              className="rounded-full"
-              src={Woman}
-              alt=""
-              width={40}
-              height={40}
-            />
-            <h3 className="font-semibold text-sm text-white">Mahanor</h3>
-          </div>
-        </div>
-      </div>
       <Layout show={show} setShow={setShow}>
-        {/* ****** Search Bar ****** */}
+        <div className="flex bg-[#FD307A] fixed left-0 w-full top-0 h-[10vh] items-center z-10 justify-between px-5">
+          <div className="search flex sm:space-x-28 items-center justify-center relative">
+            <div>
+              <p className="text-2xl text-white">☰</p>
+            </div>
+            <div className="flex space-x-2">
+              <button className="text-[#F10086] rounded-full bg-white active:scale-95 font-semibold p-3 px-3   ">
+                <FaSearch />
+              </button>
+              <input
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                type="text"
+                placeholder="Search..."
+                className="w-[20vw] p-1 rounded-full focus:outline-0 border-t-2  border-b-2 border-s-2 border-gray-500 "
+              />
+            </div>
+          </div>
+          <div className="right-side flex space-x-5 items-center">
+            <div>
+              <button
+                onClick={openModal}
+                className=" text-slate-600 text-xl rounded-md p-2"
+              >
+                {/* <FaFilter /> */}
+                <div className="icon">
+                  <Image
+                    className=""
+                    src={Filter}
+                    alt="Message"
+                    width={30}
+                    height={30}
+                  />
+                </div>
+              </button>
+              <DashboardModal isOpen={isModalOpen} onClose={closeModal}>
+                {/* Content of your modal goes here */}
+                <select
+                  className="w-[60%] p-2 rounded-md focus:outline-0"
+                  onChange={(e) => setLocationFilter(e.target.value)}
+                  value={locationFilter || ""}
+                >
+                  {countries.map((country) => (
+                    <option key={country.value} value={country.text}>
+                      {country.text}
+                    </option>
+                  ))}
+                </select>
 
+                <div className="w-[450px]">
+                  <label>Age Range:</label>
+                  <MultiRangeSlider
+                    style={{
+                      border: "none",
+                      boxShadow: "none",
+                    }}
+                    min={18}
+                    max={100}
+                    step={1}
+                    ruler={false}
+                    label={false}
+                    subSteps={false}
+                    minValue={ageRangeFilter[0]}
+                    maxValue={ageRangeFilter[1]}
+                    onInput={(e) => setAgeRangeFilter([e.minValue, e.maxValue])}
+                  />
+                </div>
+
+                <select
+                  className="w-[60%] p-2 rounded-md focus:outline-0"
+                  onChange={(e) => setGenderFilter(e.target.value)}
+                  value={genderFilter || ""}
+                >
+                  <option value={""}>Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+
+                <input
+                  type="text"
+                  className="w-[60%] p-2 rounded-md focus:outline-0"
+                  placeholder="Search Professions"
+                  value={professionFilter || ""}
+                  onChange={(e) => setProfessionFilter(e.target.value)}
+                />
+                <Button
+                  onClick={() => {
+                    setLocationFilter("ALL");
+                    setAgeRangeFilter([18, 30]);
+                    setGenderFilter(null);
+                    setProfessionFilter(null);
+                  }}
+                >
+                  Reset Filters
+                </Button>
+              </DashboardModal>
+            </div>
+            <div className="icon">
+              <Image
+                className=""
+                src={Message}
+                alt="Message"
+                width={30}
+                height={30}
+              />
+            </div>
+            <div className="icon">
+              <Image
+                className=""
+                src={Batch}
+                alt="Message"
+                width={30}
+                height={30}
+              />
+            </div>
+
+            <div className=" flex-col py-2 items-center">
+              <Image
+                className="rounded-full"
+                src={Woman}
+                alt=""
+                width={40}
+                height={40}
+              />
+              <h3 className="font-semibold text-sm text-white">Mahanor</h3>
+            </div>
+          </div>
+        </div>
+        ;{/* ****** Search Bar ****** */}
         {/* ****** Search Bar End ****** */}
-
         {/* ****** Filters ****** */}
-
         {/* ****** Filters ****** */}
-
         {/* ****** Cards ****** */}
-
-        <div className="bg-[#ffff] font-serif">
+        <div className="container mx-auto flex flex-col justify-center items-center mt-16 text-center">
+          <Image
+            className="text-center"
+            src={Woman}
+            alt=""
+            width={50}
+            height={50}
+          />
+          <h2 className="text-center text-2xl font-bold">Find Your Soulmate</h2>
+          <p className="text-center">Find Your Perfect Match</p>
+        </div>
+        <div className="bg-[#ffff] mt-10 font-serif">
           <div className="card-body mt-5 p-2">
-            <div className="grid lg:grid-cols-6 md:grid-cols-2 sm:grid-cols-1 mx-5 gap-4 ">
+            <div className="grid lg:grid-cols-6 md:grid-cols-2 sm:grid-cols-1 mx-5 gap-7 ">
               {filterCards.map((card) => (
                 <div
                   key={card.id}
@@ -288,25 +326,6 @@ export default function DashboardComponent() {
                     </div>
                     <span>{card.age}</span>
                     <p className="text-sm my-1">{card.location}</p>
-                    {/* <p className="text-sm mb-3">
-                      Looking for{" "}
-                      <span className="ml-2 text-[#fb1086] p-2 rounded-xl text-sm">
-                        {card.gender === "Male" ? "female" : "male"}
-                      </span>
-                    </p> */}
-
-                    {/* <Link href={`dashboard/messages/${card.id}`}>
-                      <button className="w-full bg-[#fb1086] hover:bg-pink-700 p-1 text-[#ffff]  rounded-2xl text-sm ">
-                        Chat
-                      </button>
-                    </Link> */}
-                    {/* <Link href="dashboard/messages">  */}
-                    {/* <Link href={`dashboard/viewProfile/${card.id}`}>
-                      <button className="w-full bg-[#fb1086] hover:bg-pink-700 text-[#ffff]  p-1 rounded-2xl my-4 text-sm  ">
-                        View Profile
-                      </button>
-                    </Link> */}
-                    {/* </Link> */}
                   </div>
                 </div>
               ))}
@@ -315,7 +334,7 @@ export default function DashboardComponent() {
         </div>
         {/* ****** Cards ****** */}
       </Layout>
-      <div className="bg-[#FD307A] h-[5vh] sticky bottom-0 z-10 "></div>
+      <div className="bg-[#FD307A] h-[5vh] fixed left-0 w-full bottom-0 z-10 "></div>
     </>
   );
 }
