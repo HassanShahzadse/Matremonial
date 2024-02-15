@@ -135,7 +135,7 @@ const footerMore = [
 const navLinks = [
   { href: "/", text: "Home" },
   { href: "/subscription", text: "Subscription" },
-  { href: "/contact-us", text: "Contact Us" },
+  { href: "/contactUs", text: "Contact Us" },
   // { href: "/members", text: "Members" },
 ];
 
