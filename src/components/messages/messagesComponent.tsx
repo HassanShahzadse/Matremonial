@@ -7,6 +7,11 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import { CgSize } from "react-icons/cg";
 import { FaEllipsisV } from "react-icons/fa";
 import Woman from "/public/member3.png";
+import Message from "/public/Icons/message.png";
+import Filter from "/public/Icons/filter.png";
+import Batch from "/public/Icons/batch.png";
+import SearchLove from "/public/Icons/search-love.png";
+import { FaSearch } from "react-icons/fa";
 import { ChatWindow } from "@/utils/messages/chatWindow";
 import { UserList } from "@/utils/messages/userList";
 import { getAllChats } from "@/sharedService/users/chat";
@@ -107,55 +112,106 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
   };
   return (
     <>
-      {/* <Layout show={show} setShow={setShow}> */}
-      {/* ******* Header ******* */}
-      <div className="h-[100vh] overflow-hidden xsm:-mt-12 md:mt-0">
-        {/* <div className="h-[5vh]">
-        <h1 className="text-2xl font-semibold">Messages</h1>
-      </div> */}
-        <div className="flex mt-5 rounded p-4 mx-4 shadow-md bg-white h-[9vh] items-center space-x-10">
-          {/* <div className="left flex items-center w-[30%] justify-between">
-          <div className="flex items-center space-x-2">
-            <h3 className="">All Messages</h3>
-            <RiArrowDropDownLine />
-          </div>
-          <FaEllipsisV />
-        </div> */}
-
-          <div className="right flex w-full justify-between items-center">
-            <div className="img-name flex ml-3 items-center space-x-3">
-              <Image
-                className="rounded-full h-14 w-14"
-                src={
-                  selectedUser?.imageUrls &&
-                  selectedUser.imageUrls[0]?.startsWith("https")
-                    ? selectedUser.imageUrls[0]
-                    : "https://www.w3schools.com/w3images/avatar2.png"
-                }
-                alt=""
-                width={50}
-                height={50}
-              />
-              <h3>{selectedUser.username}</h3>
+      <Layout show={show} setShow={setShow}>
+        {/* ******* Header ******* */}
+        <div className="h-[100vh] overflow-hidden md:mt-0">
+          {/* ***** Header Message ******* */}
+          <div className="flex bg-[#FD307A] fixed left-0 w-full top-0 h-[10vh] items-center z-10 justify-between px-5">
+            <div className="search flex sm:space-x-28 items-center justify-center relative">
+              <div>
+                <p className="text-2xl text-white">☰</p>
+              </div>
+              <div className="flex space-x-2">
+                {/* <button className="text-[#F10086] rounded-full bg-white active:scale-95 font-semibold p-3 px-3   ">
+                <FaSearch />
+              </button> */}
+                <div className="icon">
+                  <Image
+                    className=""
+                    src={SearchLove}
+                    alt="Message"
+                    width={30}
+                    height={30}
+                  />
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  className="w-[20vw] p-1 rounded-full focus:outline-0 border-t-2  border-b-2 border-s-2 border-gray-500 "
+                />
+              </div>
             </div>
-            <div className="star shadow-md text-3xl p-2">...</div>
+            <div className="right-side flex space-x-5 items-center">
+              <div className="icon">
+                <Image
+                  className=""
+                  src={Message}
+                  alt="Message"
+                  width={30}
+                  height={30}
+                />
+              </div>
+              <div className="icon">
+                <Image
+                  className=""
+                  src={Batch}
+                  alt="Message"
+                  width={30}
+                  height={30}
+                />
+              </div>
+
+              <div className=" flex-col py-2 items-center">
+                <Image
+                  className="rounded-full"
+                  src={Woman}
+                  alt=""
+                  width={40}
+                  height={40}
+                />
+                <h3 className="font-semibold text-sm text-white">Mahanor</h3>
+              </div>
+            </div>
+          </div>
+
+          {/* ******* Section 2 Card **** */}
+          <div className=" mx-4 flex space-x-5 items-center mt-20">
+            {/* <div className="flex md:w-[32vw] xsm:w-full justify-between pt-3 font-semibold">
+              <div className="underline underline-offset-4 decoration-[#f10086] 	">
+                All Chats
+              </div>
+              <div className="">Read</div>
+              <div className="">Unread</div>
+            </div> */}
+            <div className="right w-full flex justify-between xsm:hidden md:flex py-2">
+              <div className="img-name flex ml-3 items-center space-x-3">
+                <Image
+                  className="rounded-full h-12 w-12"
+                  src={"https://www.w3schools.com/w3images/avatar2.png"}
+                  alt=""
+                  width={30}
+                  height={30}
+                />
+                <h3>username</h3>
+              </div>
+              <div className="star shadow-md text-3xl items-center text-center p-2">
+                ...
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div className="h-[83vh] mt-1 grid lg:grid-cols-2 md:grid-cols-1 xsm:grid-cols-1 ">
+            {/* <div className="flex-col shadow-md p-5 h-[88vh] overflow-y-auto">
+              <UserList chat={filteredChats} onCardClick={handleCardClick} />
+            </div> */}
+            <ChatWindow
+              selectedChat={selectedChat}
+              onSendMessage={fetchDataAgain}
+            />
           </div>
         </div>
-
-        {/* ******* Section 2 Card **** */}
-
-        <div className="h-[83vh] mx-4 mt-1 grid lg:grid-cols-3 md:grid-cols-1 xsm:grid-cols-1 ">
-          <div className="flex-col shadow-md p-5 h-[83vh] overflow-y-auto">
-            <hr />
-            <UserList chat={filteredChats} onCardClick={handleCardClick} />
-          </div>
-          <ChatWindow
-            selectedChat={selectedChat}
-            onSendMessage={fetchDataAgain}
-          />
-        </div>
-      </div>
-      {/* </Layout> */}
+      </Layout>
+      <div className="bg-[#FD307A] h-[5vh] fixed left-0 w-full bottom-0 z-10 "></div>
     </>
   );
 }

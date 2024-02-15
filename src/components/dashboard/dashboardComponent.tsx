@@ -12,6 +12,8 @@ import Woman from "/public/member3.png";
 import Message from "/public/Icons/message.png";
 import Filter from "/public/Icons/filter.png";
 import Batch from "/public/Icons/batch.png";
+import Soulmate from "/public/Icons/LOGO-soulmate.png";
+import SearchLove from "/public/Icons/search-love.png";
 import { v4 as uuidv4 } from "uuid";
 import MultiRangeSlider from "multi-range-slider-react";
 import Bridal from "/public/img1.jpg";
@@ -159,9 +161,18 @@ export default function DashboardComponent() {
               <p className="text-2xl text-white">☰</p>
             </div>
             <div className="flex space-x-2">
-              <button className="text-[#F10086] rounded-full bg-white active:scale-95 font-semibold p-3 px-3   ">
+              {/* <button className="text-[#F10086] rounded-full bg-white active:scale-95 font-semibold p-3 px-3   ">
                 <FaSearch />
-              </button>
+              </button> */}
+              <div className="icon">
+                <Image
+                  className=""
+                  src={SearchLove}
+                  alt="Message"
+                  width={30}
+                  height={30}
+                />
+              </div>
               <input
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
@@ -289,10 +300,10 @@ export default function DashboardComponent() {
         <div className="container mx-auto flex flex-col justify-center items-center mt-16 text-center">
           <Image
             className="text-center"
-            src={Woman}
+            src={Soulmate}
             alt=""
-            width={50}
-            height={50}
+            width={80}
+            height={80}
           />
           <h2 className="text-center text-2xl font-bold">Find Your Soulmate</h2>
           <p className="text-center">Find Your Perfect Match</p>
