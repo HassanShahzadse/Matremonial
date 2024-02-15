@@ -4,10 +4,10 @@ import Image from "next/image";
 import { useState } from "react";
 import Layout from "../mainLayout/layout";
 import Woman from "/public/member3.png";
-import Message from "/public/Icons/message.png";
-import Filter from "/public/Icons/filter.png";
-import Batch from "/public/Icons/batch.png";
-import SearchLove from "/public/Icons/search-love.png";
+import Message from "/public/icons/message.png";
+import Filter from "/public/icons/filter.png";
+import Batch from "/public/icons/batch.png";
+import SearchLove from "/public/icons/search-love.png";
 
 export default function NotificationsComponent() {
   const [show, setShow] = useState(false);
