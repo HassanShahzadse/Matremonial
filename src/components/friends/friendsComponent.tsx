@@ -27,7 +27,7 @@ export default function FriendsComponent() {
     <>
       <Layout show={show} setShow={setShow}>
         <TopHeader />
-        <div className="container flex flex-col justify-center items-center text-center mx-auto w-full mt-10">
+        <div className="container flex flex-col justify-center items-center text-center mx-auto w-full mt-16">
           <div className="flex-col justify-center items-center">
             <Image src={Contact} alt="" width={300} height={300} />
             <h1 className="text-4xl font-bold -mt-10">Contact Us</h1>
@@ -55,7 +55,9 @@ export default function FriendsComponent() {
               <h3 className="font-bold py-2">FAQ</h3>
             </div>
           </div>
-          <p className="text-center mb-10">V0.0.1 muslimmarriageonline 2024</p>
+          <p className="text-center xsm:mb-10 lg:mt-20">
+            V0.0.1 muslimmarriageonline 2024
+          </p>
         </div>
       </Layout>
       <div className="bg-[#FD307A] h-[5vh] fixed left-0 w-full bottom-0 z-10 "></div>

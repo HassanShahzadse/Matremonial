@@ -182,7 +182,17 @@ export default function DashboardComponent() {
               />
             </div>
           </div>
+
           <div className="right-side flex space-x-5 items-center">
+            <div className="icon">
+              <Image
+                className=""
+                src={Batch}
+                alt="Message"
+                width={30}
+                height={30}
+              />
+            </div>
             <div>
               <button
                 onClick={openModal}
@@ -270,16 +280,6 @@ export default function DashboardComponent() {
                 height={30}
               />
             </div>
-            <div className="icon">
-              <Image
-                className=""
-                src={Batch}
-                alt="Message"
-                width={30}
-                height={30}
-              />
-            </div>
-
             <div className=" flex-col py-2 items-center">
               <Image
                 className="rounded-full"
