@@ -550,11 +550,6 @@ export default Hero;
 function FooterList({ footerData }) {
   return (
     <>
-      {/* {footerData.map((item) => (
-        <li className="py-2" key={label}>
-          {item}
-        </li>
-      ))} */}
       {footerData.map((item) => (
         <li className="py-2" key={item.label}>
           {item.label}

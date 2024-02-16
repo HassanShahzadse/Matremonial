@@ -59,6 +59,10 @@ const SideBar = ({ show }: any) => {
               <IoNotifications />
               <span className="nav-link-name">Gallery</span>
             </Link>
+            <Link href="/dashboard/subscription" className="nav-link ">
+              <IoNotifications />
+              <span className="nav-link-name">Subscription</span>
+            </Link>
             {/* <Link href="/dashboard/addprofile" className="nav-link ">
               <CgProfile />
               <span className="nav-link-name">Profile</span>
