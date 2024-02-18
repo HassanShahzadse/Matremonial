@@ -41,7 +41,7 @@ const SubscriptionComponents = () => {
 
 export default SubscriptionComponents;
 
-const ToggleButton = ({ activeOption, handleClick }) => {
+const ToggleButton : React.FC<any> = ({ activeOption, handleClick }) => {
   return (
     <button
       className="relative flex items-center justify-between w-28 h-8 px-2 rounded-full bg-gray-200 focus:outline-none"
@@ -62,7 +62,7 @@ const ToggleButton = ({ activeOption, handleClick }) => {
   );
 };
 
-const Card = ({ title, days, price }) => {
+const Card : React.FC<any> = ({ title, days, price }) => {
   return (
     <div className="bg-gray-100 p-6 px-10 m-2 h-72 rounded-3xl shadow-xl ">
       <h3 className="text-2xl font-bold text-center">{title}</h3>
@@ -75,7 +75,7 @@ const Card = ({ title, days, price }) => {
   );
 };
 
-const CardsContainer = ({ activeOption }) => {
+const CardsContainer : React.FC<any> = ({ activeOption }) => {
   const subscriptionCards = [
     {
       title: "Silver",
@@ -118,7 +118,7 @@ const CardsContainer = ({ activeOption }) => {
 
   return (
     <div className="container mx-auto grid lg:grid-cols-4 md:grid-cols-2 gap-7 w-screen">
-      {cards.map((data, index) => (
+      {cards.map((data:any, index) => (
         <Card
           key={index}
           title={data.title}
