@@ -8,6 +8,7 @@ import Message from "/public/icons/message.png";
 import Filter from "/public/icons/filter.png";
 import Batch from "/public/icons/batch.png";
 import SearchLove from "/public/icons/search-love.png";
+import TopHeader from "../mainLayout/TopHeader";
 
 export default function NotificationsComponent() {
   const [show, setShow] = useState(false);
