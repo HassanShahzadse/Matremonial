@@ -45,7 +45,7 @@ const SignUp = (props: Props) => {
   const router = useRouter();
   const [selectedCountryCode, setSelectedCountryCode] = useState();
   const [step, setStep] = useState(1);
-
+  const [showPassword, setShowPassword] = useState(false); 
   const [formValues, setFormValues] = useState({
     email: '',
     userName: '',
@@ -206,16 +206,37 @@ const SignUp = (props: Props) => {
                     <ErrorMessage name="confirmEmail" component="div" className="text-red-500" />
                   </div>
                   </div>
-
-                  <div className='form-group mb-3'>
-                    <label className='mb-2'>Password</label>
-                    <Field type="text" name="password" className="w-full border-b-2 outline-none border-gray-300 rounded p-2" placeholder="Enter your password"
-                      onChange={(e: any) => {
-                        setFieldValue('password', e.target.value)
-                        handleFormChange('password', e.target.value);
-                      }} />
-                    <ErrorMessage name="password" component="div" className="text-red-500" />
-                  </div>
+                  <div className="form-group">
+                          <label className="mb-2">Password</label>
+                          <div className="relative">
+                            <Field
+                              type={showPassword ? "text" : "password"}
+                              name="password"
+                              className="w-full  border-b-2 border-gray-300 outline-none rounded p-2 "
+                              placeholder="Enter your password"
+                              onChange={(e: any) => {
+                                setFieldValue('password', e.target.value)
+                                handleFormChange('password', e.target.value);
+                              }} 
+                            />
+                            <button
+                              type="button"
+                              className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                              onClick={() => setShowPassword(!showPassword)}
+                            >
+                              {showPassword ? (
+                                <i className="fas fa-eye-slash text-gray-400"></i>
+                              ) : (
+                                <i className="fas fa-eye text-gray-400"></i>
+                              )}
+                            </button>
+                          </div>
+                          <ErrorMessage
+                            name="password"
+                            component="div"
+                            className="text-red-500"
+                          />
+                        </div>
 
                   <div className='form-group mb-3'>
                     <label className='mb-2'>Phone Number</label>

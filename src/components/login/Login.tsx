@@ -12,6 +12,7 @@ type Props = {}
 
 const Login = (props: Props) => {
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false); 
   const [formData, setFormData] = useState({ email: "", password: "" });
 
   const handleSubmit = async (values: any) => {
@@ -105,19 +106,32 @@ const Login = (props: Props) => {
                       />
                     </div> 
                     <div className="form-group">
-                      <label className="mb-2">Password</label>
-                      <Field
-                        type="password"
-                        name="password"
-                        className="w-full  border-b-2 border-gray-300 outline-none rounded p-2 "
-                        placeholder="Enter your password"
-                      />
-                      <ErrorMessage
-                        name="password"
-                        component="div"
-                        className="text-red-500"
-                      />
-                    </div>
+                          <label className="mb-2">Password</label>
+                          <div className="relative">
+                            <Field
+                              type={showPassword ? "text" : "password"}
+                              name="password"
+                              className="w-full  border-b-2 border-gray-300 outline-none rounded p-2 "
+                              placeholder="Enter your password"
+                            />
+                            <button
+                              type="button"
+                              className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                              onClick={() => setShowPassword(!showPassword)}
+                            >
+                              {showPassword ? (
+                                <i className="fas fa-eye-slash text-gray-400"></i>
+                              ) : (
+                                <i className="fas fa-eye text-gray-400"></i>
+                              )}
+                            </button>
+                          </div>
+                          <ErrorMessage
+                            name="password"
+                            component="div"
+                            className="text-red-500"
+                          />
+                        </div>
                     <div className="form-group align-items-center mt-3">
                       <input type='checkbox' className='me-2'></input>
                       <label className="mb-2">Remember Me</label>

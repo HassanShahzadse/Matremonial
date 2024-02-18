@@ -27,6 +27,7 @@ export const loginUser = async (email: any, password: any) => {
       return userData;
     } else {
       console.error('Invalid login credentials');
+      window.alert('Invalid login credentials');
     }
   } catch (error: any) {
     console.error('Login failed:', error.message);
@@ -64,6 +65,7 @@ export const loginWithGoogle = async () => {
     return user;
   } catch (error) {
     console.error('Google login failed', error);
+    window.alert('Google login failed');
     throw error;
   }
 };
