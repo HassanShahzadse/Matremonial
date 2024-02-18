@@ -6,10 +6,10 @@ import TopHeader from "../mainLayout/TopHeader";
 import Avatar from "/public/avatar1.jpg";
 import Man from "/public/member2.png";
 import Woman from "/public/member3.png";
-import Contact from "/public/Icons/contact.png";
-import Call from "/public/Icons/call.png";
-import Faq from "/public/Icons/faq.png";
-import Massage from "/public/Icons/email.png";
+import Contact from "/public/icons/contact.png";
+import Call from "/public/icons/call.png";
+import Faq from "/public/icons/faq.png";
+import Massage from "/public/icons/email.png";
 
 import { useState } from "react";
 import UserProfileCard from "@/utils/userProfile/userProfileCard";

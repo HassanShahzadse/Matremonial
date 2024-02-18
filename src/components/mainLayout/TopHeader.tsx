@@ -1,11 +1,11 @@
 import React from 'react'
 import Image from 'next/image';
-import Message from "/public/Icons/message.png";
+import Message from "/public/icons/message.png";
 import Woman from "/public/member3.png";
-import Filter from "/public/Icons/filter.png";
-import Batch from "/public/Icons/batch.png";
-import Soulmate from "/public/Icons/LOGO-soulmate.png";
-import SearchLove from "/public/Icons/search-love.png";
+import Filter from "/public/icons/filter.png";
+import Batch from "/public/icons/batch.png";
+import Soulmate from "/public/icons/LOGO-soulmate.png";
+import SearchLove from "/public/icons/search-love.png";
 const TopHeader = () => {
     return (
         <>

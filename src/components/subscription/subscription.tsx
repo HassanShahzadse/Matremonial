@@ -5,7 +5,7 @@ import { useState } from "react";
 import Layout from "../mainLayout/layout";
 import TopHeader from "../mainLayout/TopHeader";
 import Image from "next/image";
-import Logo from "/public/Icons/LOGO-soulmate.png";
+import Logo from "/public/icons/LOGO-soulmate.png";
 
 const SubscriptionComponents = () => {
   const [activeOption, setActiveOption] = useState("Subscription");
