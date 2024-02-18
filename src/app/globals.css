@@ -21,7 +21,7 @@
 }
 
 body {
-  
+
   background-color: #f7f7f7;
 }
 
@@ -39,15 +39,19 @@ body {
 .google-btn {
   padding: 10px 40px;
 }
-.facebook-btn{
+
+.facebook-btn {
   padding: 10px 36px;
 }
+
 .facebook-btn:hover {
   background-color: #dd91aa;
 }
+
 .facebook-btn i {
   font-size: 20px;
 }
+
 .google-btn i {
   font-size: 20px;
 }
@@ -55,10 +59,12 @@ body {
 .google-btn:hover {
   background-color: #dd91aa;
 }
-.prev-btn{
+
+.prev-btn {
   padding: 3px 15px;
 }
-.previous-btn{
+
+.previous-btn {
   margin-right: 85px;
 }
 
@@ -160,7 +166,7 @@ main {
 
 .nav-link {
   position: relative;
-  color: var(--first-color-alt);
+  color: white;
   transition: 0.5s;
   margin-bottom: 1.5rem;
 }
@@ -185,7 +191,8 @@ main {
   background-color: var(--white-color);
   transition: 0.5s;
 }
-.card-image{
+
+.card-image {
   width: 60%;
   height: 110%;
 }
@@ -214,9 +221,9 @@ main {
     padding: 1rem 0 0 0;
   }
 
-   .show {
+  .show {
     width: calc(var(--header-height) + 156px);
-  } 
+  }
 
   .space-toggle {
     padding-left: calc(var(--nav-width) + 160px);
@@ -224,9 +231,10 @@ main {
 }
 
 /* --------------------- */
-.radio-input{
+.radio-input {
   margin-right: 10px;
 }
+
 /* -------------------Chat------------------ */
 
 
@@ -242,6 +250,7 @@ main {
   opacity: 0;
   transition: all 0.3s ease;
 }
+
 .body-content-overlay {
   position: fixed;
   opacity: 0;
@@ -251,15 +260,18 @@ main {
   left: 0;
   right: 0;
   bottom: 0;
+
   &.show {
     opacity: 1;
   }
 }
+
 @layer utilities {
   .text-shadow {
-    text-shadow:  0 0 10px rgba(0,0,0,.3);
+    text-shadow: 0 0 10px rgba(0, 0, 0, .3);
   }
-  }
+}
+
 /*------------- Scrollbar design ----------------*/
 /* styles/global.css */
 
@@ -276,6 +288,3 @@ main {
   background-color: #888;
   border-radius: 4px;
 }
-
-
-

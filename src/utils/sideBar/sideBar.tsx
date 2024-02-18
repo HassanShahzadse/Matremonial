@@ -51,22 +51,26 @@ const SideBar = ({ show }: any) => {
               <FaMessage />
               <span className="">Messages</span>
             </Link>
+            <Link href="/dashboard/notifications" className="nav-link ">
+              <IoNotifications />
+              <span className="nav-link-name">Gallery</span>
+            </Link>
+            <Link href="/dashboard/settings" className="nav-link ">
+              <IoMdSettings />
+              <span className="nav-link-name">Settings</span>
+            </Link>
             <Link href="/dashboard/friends" className="nav-link ">
               <FaUserFriends />
               <span className="">Contact us</span>
             </Link>
-            <Link href="/dashboard/notifications" className="nav-link ">
+            <Link href="/dashboard/subscription" className="nav-link ">
               <IoNotifications />
-              <span className="nav-link-name">Gallery</span>
+              <span className="nav-link-name">Subscription</span>
             </Link>
             {/* <Link href="/dashboard/addprofile" className="nav-link ">
               <CgProfile />
               <span className="nav-link-name">Profile</span>
             </Link> */}
-            <Link href="/dashboard/settings" className="nav-link ">
-              <IoMdSettings />
-              <span className="nav-link-name">Settings</span>
-            </Link>
             <button onClick={handleLogout} className="text-[#f57aa5] nav-link">
               Logout
             </button>
