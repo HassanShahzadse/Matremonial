@@ -100,16 +100,16 @@ const CardsContainer : React.FC<any> = ({ activeOption }) => {
   ];
   const bootsCards = [
     {
-      title: "1 week bost",
+      title: "1 week boost",
     },
     {
-      title: "3 weeks bost",
+      title: "3 weeks boost",
     },
     {
-      title: "1 month bost",
+      title: "1 month boost",
     },
     {
-      title: "2 month bost",
+      title: "2 month boost",
     },
   ];
 
