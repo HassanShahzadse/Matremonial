@@ -184,7 +184,7 @@ export default function DashboardComponent() {
           </div>
 
           <div className="right-side flex space-x-5 items-center">
-          <Link href="dashboard/subscription">
+          <Link href="/dashboard/subscription">
             <div className="icon">
               <Image
                 className=""
@@ -273,7 +273,7 @@ export default function DashboardComponent() {
                 </Button>
               </DashboardModal>
             </div>
-            <Link href="dashboard/messages">
+            <Link href="/dashboard/messages">
             <div className="icon">
               <Image
                 className=""

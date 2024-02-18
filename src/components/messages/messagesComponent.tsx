@@ -143,7 +143,7 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
               </div>
             </div>
             <div className="right-side flex space-x-5 items-center">
-            <Link href="dashboard/messages">
+            <Link href="/dashboard/messages">
               <div className="icon">
                 <Image
                   className=""
@@ -154,7 +154,7 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
                 />
               </div>
               </Link>
-              <Link href="dashboard/subscription">
+              <Link href="/dashboard/subscription">
               <div className="icon">
                 <Image
                   className=""
