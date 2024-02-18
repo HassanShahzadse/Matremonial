@@ -184,6 +184,7 @@ export default function DashboardComponent() {
           </div>
 
           <div className="right-side flex space-x-5 items-center">
+          <Link href="dashboard/subscription">
             <div className="icon">
               <Image
                 className=""
@@ -193,6 +194,7 @@ export default function DashboardComponent() {
                 height={30}
               />
             </div>
+            </Link>
             <div>
               <button
                 onClick={openModal}
@@ -271,6 +273,7 @@ export default function DashboardComponent() {
                 </Button>
               </DashboardModal>
             </div>
+            <Link href="dashboard/messages">
             <div className="icon">
               <Image
                 className=""
@@ -280,6 +283,7 @@ export default function DashboardComponent() {
                 height={30}
               />
             </div>
+            </Link>
             <div className=" flex-col py-2 items-center">
               <Image
                 className="rounded-full"
