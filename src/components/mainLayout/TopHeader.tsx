@@ -6,6 +6,7 @@ import Filter from "/public/icons/filter.png";
 import Batch from "/public/icons/batch.png";
 import Soulmate from "/public/icons/LOGO-soulmate.png";
 import SearchLove from "/public/icons/search-love.png";
+import Link from 'next/link';
 const TopHeader = () => {
     return (
         <>
@@ -35,6 +36,7 @@ const TopHeader = () => {
                     </div>
                 </div>
                 <div className="right-side flex space-x-5 items-center">
+                <Link href="dashboard/messages">
                     <div className="icon">
                         <Image
                             className=""
@@ -44,6 +46,8 @@ const TopHeader = () => {
                             height={30}
                         />
                     </div>
+                    </Link>
+                    <Link href="dashboard/subscription">
                     <div className="icon">
                         <Image
                             className=""
@@ -53,6 +57,7 @@ const TopHeader = () => {
                             height={30}
                         />
                     </div>
+                    </Link>
 
                     <div className=" flex-col py-2 items-center">
                         <Image
