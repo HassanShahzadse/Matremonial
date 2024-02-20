@@ -65,10 +65,10 @@ export default SubscriptionComponents;
 //   );
 // };
 
-const ToggleButton = ({ setActiveButton, activeButton }) => {
+const ToggleButton: React.FC<any> = ({ setActiveButton, activeButton }) => {
   // const [activeButton, setActiveButton] = useState("Subscription");
 
-  const handleClick = (button) => {
+  const handleClick = (button:any) => {
     setActiveButton(button);
   };
 
