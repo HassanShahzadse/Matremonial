@@ -41,7 +41,7 @@ const SideBar = ({ show }: any) => {
           <div className="nav-list" style={{ color: "#fff" }}>
             <Link href="/dashboard" className="nav-link active">
               <i className="fas fa-tachometer-alt nav-link-icon"></i>
-              <span className="nav-link-name">Dashboard</span>
+              <span className="nav-link-name">Home </span>
             </Link>
             <Link href="/dashboard" className="nav-link">
               <i className="fas fa-tachometer-alt nav-link-icon"></i>

@@ -184,16 +184,16 @@ export default function DashboardComponent() {
           </div>
 
           <div className="right-side flex space-x-5 items-center">
-          <Link href="/dashboard/subscription">
-            <div className="icon">
-              <Image
-                className=""
-                src={Batch}
-                alt="Message"
-                width={30}
-                height={30}
-              />
-            </div>
+            <Link href="/dashboard/subscription">
+              <div className="icon">
+                <Image
+                  className=""
+                  src={Batch}
+                  alt="Message"
+                  width={30}
+                  height={30}
+                />
+              </div>
             </Link>
             <div>
               <button
@@ -274,15 +274,15 @@ export default function DashboardComponent() {
               </DashboardModal>
             </div>
             <Link href="/dashboard/messages">
-            <div className="icon">
-              <Image
-                className=""
-                src={Message}
-                alt="Message"
-                width={30}
-                height={30}
-              />
-            </div>
+              <div className="icon">
+                <Image
+                  className=""
+                  src={Message}
+                  alt="Message"
+                  width={30}
+                  height={30}
+                />
+              </div>
             </Link>
             <div className=" flex-col py-2 items-center">
               <Image
@@ -314,7 +314,7 @@ export default function DashboardComponent() {
         </div>
         <div className="bg-[#ffff] mt-10 font-serif">
           <div className="card-body mt-5 p-2">
-            <div className="grid lg:grid-cols-6 md:grid-cols-2 sm:grid-cols-1 mx-5 gap-7 ">
+            <div className="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-1 mx-5 gap-7 ">
               {filterCards.map((card) => (
                 <div
                   key={card.id}
@@ -332,7 +332,7 @@ export default function DashboardComponent() {
                       />
                     </div>
                   </div>
-                  <div className="text-start  basis-1/2   p-2 ">
+                  <div className="text-start p-2 ">
                     <div className="flex justify-between">
                       <h2 className="font-semibold text-gray-400 mb-2">
                         {card.name}

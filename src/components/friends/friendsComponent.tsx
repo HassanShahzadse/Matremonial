@@ -43,12 +43,12 @@ export default function FriendsComponent() {
                 height={60}
               />
               <h3 className="font-bold py-2">Calls</h3>
-              <p>+92 0300096853</p>
+              <p>+44 788888 2776</p>
             </div>
-            <div className="p-3 mx-auto flex flex-col md:w-1/2 border-2 border-gray-400 items-center text-center">
+            <div className="p-3 mx-auto flex flex-col  border-2 border-gray-400 items-center text-center">
               <Image src={Massage} alt="" width={60} height={60} />
               <h3 className="font-bold py-2">Write to us</h3>
-              <p>me@gamil.com</p>
+              <p>customercare@muslimmarriageonline.com</p>
             </div>
             <div className="p-3 px-9 mx-auto md:w-2/4 flex flex-col border-2 border-gray-400 items-center text-center">
               <Image src={Faq} alt="" width={60} height={60} />
