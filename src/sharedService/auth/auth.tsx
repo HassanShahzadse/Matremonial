@@ -27,7 +27,6 @@ export const loginUser = async (email: any, password: any) => {
       return userData;
     } else {
       console.error('Invalid login credentials');
-      window.alert('Invalid login credentials');
     }
   } catch (error: any) {
     console.error('Login failed:', error.message);

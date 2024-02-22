@@ -26,10 +26,10 @@ const Login = (props: Props) => {
         router.push('/dashboard');
       }
       else {
-        console.error('User object or user.id is undefined');
+        window.alert('Login failed , Check your Password and email again');
       }
     } catch (error) {
-      console.error('Login failed in login file', error);
+      window.alert('Login failed , Check your Password and email again');
     }
   };
   
