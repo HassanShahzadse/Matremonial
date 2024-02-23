@@ -5,12 +5,12 @@ import TopBar from "@/utils/topBar/topBar";
 import { useState } from "react";
 import { ProtectedRouteWrapper } from "../settings/protectedRoute";
 
-export default function Layout({ children, show, setShow }: any) {
+export default function Layout({ children, show, setShow, filterOpen }: any) {
   return (
     <ProtectedRouteWrapper>
       <div>
         <main className="space-toggle">
-          <SideBar show={show} />
+          <SideBar show={show} filterOpen={filterOpen} />
           {children}
         </main>
       </div>

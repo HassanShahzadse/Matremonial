@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Message from "/public/icons/message.png";
 import Woman from "/public/member3.png";
@@ -7,18 +7,28 @@ import Batch from "/public/icons/batch.png";
 import Soulmate from "/public/icons/LOGO-soulmate.png";
 import SearchLove from "/public/icons/search-love.png";
 import Link from "next/link";
+
 const TopHeader = () => {
+  const [filterOpen, setFilterOpen] = useState(false);
+
+  function handleFilterOpen({ filterOpen }) {
+    setFilterOpen(filterOpen != filterOpen);
+    alert("Filter");
+  }
+
   return (
     <>
       <div className="flex bg-[#FD307A] fixed left-0 w-full top-0 h-[10vh] items-center z-10 justify-between px-5">
         <div className="search flex sm:space-x-28 items-center justify-center relative">
           <div>
-            <p className="text-2xl text-white">☰</p>
+            <p
+              className="text-2xl text-white cursor-pointer"
+              onClick={handleFilterOpen}
+            >
+              ☰
+            </p>
           </div>
           <div className="flex space-x-2">
-            {/* <button className="text-[#F10086] rounded-full bg-white active:scale-95 font-semibold p-3 px-3   ">
-          <FaSearch />
-        </button> */}
             <div className="icon">
               <Image
                 className=""
