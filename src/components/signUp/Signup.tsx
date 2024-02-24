@@ -67,18 +67,6 @@ const SignUp = (props: Props) => {
     });
   };
 
-
-  const handleNextStep = () => {
-    if (step < 2) {
-      setStep(step + 1);
-    }
-  };
-
-  const handlePreviousStep = () => {
-    if (step > 1) {
-      setStep(step - 1);
-    }
-  };
   const handleSubmit = async () => {
     let data = {
       email: formValues.email,
@@ -131,26 +119,17 @@ const SignUp = (props: Props) => {
     }
   };
   const validationSchema = Yup.object().shape({
-    userName: Yup.string(),
-    email: Yup.string().email("Invalid email address"),
-    confirmEmail: Yup.string().oneOf([Yup.ref("email"), ''], "Emails must match"),
+    userName: Yup.string().required('Username is required'),
+    email: Yup.string().email("Invalid email address").required('Email is required'),
+    confirmEmail: Yup.string().oneOf([Yup.ref("email"), ''], "Emails must match").required('Confirm email is required'),
     password: Yup.string().min(8).required('Password is required'),
-    phone: Yup.string().min(9),
-    country: Yup.string(),
-    dateOfBirth: Yup.string(),
-    reason: Yup.string(),
-    hearAbout: Yup.string(),
-    // userName: Yup.string().required('Name is required'),
-    // email: Yup.string().email("Invalid email address").required("Email is required"),
-    // confirmEmail: Yup.string().oneOf([Yup.ref("email"), ''], "Emails must match")
-    //   .required("Confirm Email is required"),
-    // phone: Yup.string().min(9).required('Phone is required'),
-    // country: Yup.string().required('country is required'),
-    // dateOfBirth: Yup.string().required('Date Of Birth is required'),
-    // reason: Yup.string().required('Reason of registering is required'),
-    // hearAbout: Yup.string().required('Reason of registering is required'),
-    // password: Yup.string().min(8).required('Password is required'),
+    phone: Yup.string().min(9).required('Phone number is required'),
+    country: Yup.string().required('Country is required'),
+    dateOfBirth: Yup.string().required('Date of birth is required'),
+    reason: Yup.string().required('Reason is required'),
+    hearAbout: Yup.string().required('Hear about is required'),
   });
+  
   const radioGenderOptions = ['Male', 'Female',]; 
   return (
     <>
@@ -169,10 +148,7 @@ const SignUp = (props: Props) => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}>
           {({ handleChange, handleSubmit, values, setFieldValue }) => (
-
             <Form>
-
-             
                 <div className='2xl:px-16 2xl:py-4 '> 
                   <div className='form-group mb-3'>
                     <label className='mb-2'>User Name</label>
@@ -274,18 +250,7 @@ const SignUp = (props: Props) => {
                       onOptionChange={(value: any) => handleFormChange('gender', value)}
                     />
                   </div>
-                  {/* <div className="text-center mt-3">
-                    <button
-                      type="button"
-                      onClick={handleNextStep}
-                      className="login-btn border border-gray-300 rounded-full active:scale-95 bg-[#fb1086] hover:bg-pink-700 text-white"
-                    >
-                      Next
-                    </button>
-                  </div> */}
                 </div>
-             
-             
                 <div className='2xl:px-16 2xl:py-4'>
                   <div className="form-group xl:mb-3">
                     <label className="block mb-2">Where do you Live?</label>
@@ -302,8 +267,6 @@ const SignUp = (props: Props) => {
                       ))}
                     </select>
                   </div>
-
-
                   <div className='form-group mb-3'>
                     <label>Date Of Birth</label>
                     <DateOfBirthInput
@@ -391,7 +354,6 @@ const SignUp = (props: Props) => {
     <h1 className="font-bold  lg:text-4xl text-5xl  xl:text-5xl  text-[#f46194] text-center md:-mb-3">Muslim Marriage online </h1>
     <Image src={Marrage} className='rounded-md ' alt='marriage' width={325} height={325} />
       </div>
-    {/* <div className="col-span-2  xsm:hidden lg:block rounded-l-xl bg-[#fb1086]"></div> */}
     </div> 
     </div> 
     </div>
