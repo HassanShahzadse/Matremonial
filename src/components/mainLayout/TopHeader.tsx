@@ -11,8 +11,8 @@ import Link from "next/link";
 const TopHeader = () => {
   const [filterOpen, setFilterOpen] = useState(false);
 
-  function handleFilterOpen({ filterOpen }: { filterOpen: any }) {
-    setFilterOpen(filterOpen != filterOpen);
+  function handleFilterOpen(event: React.MouseEvent<HTMLParagraphElement, MouseEvent>) {
+    setFilterOpen(!filterOpen);
     alert("Filter");
   }
   
