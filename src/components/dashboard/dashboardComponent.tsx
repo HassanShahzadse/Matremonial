@@ -1,303 +1,29 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Layout from "../mainLayout/layout";
 import Image from "next/image";
-import Button from "@/utils/shared/button";
-import Modal from "@/utils/profileModal/profileModal";
-import { fetchDataFromFirebase } from "@/sharedService/users/user";
-import Select from "react-select";
-import Avatar from "/public/avatar1.jpg";
-import Man from "/public/member2.png";
-import Woman from "/public/member3.png";
-import Message from "/public/icons/message.png";
-import Filter from "/public/icons/filter.png";
-import Batch from "/public/icons/batch.png";
 import Soulmate from "/public/icons/LOGO-soulmate.png";
-import SearchLove from "/public/icons/search-love.png";
-import { v4 as uuidv4 } from "uuid";
-import MultiRangeSlider from "multi-range-slider-react";
-import Bridal from "/public/img1.jpg";
-import Love from "/public/img2.jpeg";
-import UserCardProps from "./../../types/dashboard/UserCardProps";
-import fetchData from "@/sharedService/dashboardService/page"; // permanently
-import initializeFirebase from "@/sharedService/fireBase/firebase";
-import { Firestore, collection, getDocs, query } from "firebase/firestore";
-import { FirebaseApp } from "firebase/app";
-import { FaSearch } from "react-icons/fa";
-import Link from "next/link";
-import { countries } from "@/utils/shared/countries";
-import DashboardModal from "@/utils/dashboardModel/dashboardModel";
-import { FaFilter } from "react-icons/fa6";
-type CardProps = {
-  id: number;
-  title: string;
-  content: string;
-  name: string;
-  image: string;
-  age: number;
-  location: string;
-  gender: string;
-  decision: string;
-  isModalOpen: boolean;
-  profession: string;
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
-const generateUniqueId = () => {
-  return "_" + Math.random().toString(36).substr(2, 9);
-};
+import useDashboardEffects from "@/utils/hooks/dashboardEffects";
+
 export default function DashboardComponent() {
+  const [filters, setFilters] = useState<any>({
+    locationFilter: null,
+    ageRangeFilter: [18, 30],
+    genderFilter: null,
+    professionFilter: null
+  });
+  const [searchText, setSearchText] = useState(""); 
   const [show, setShow] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [searchText, setSearchText] = useState("");
-  const [userCards, setUserCards] = useState<CardProps[]>([]);
-  const [filterCards, setfilterCards] = useState<CardProps[]>([]);
-  const [locationFilter, setLocationFilter] = useState<string | null>(null);
-  const [ageRangeFilter, setAgeRangeFilter] = useState<number[]>([18, 30]);
-  const [genderFilter, setGenderFilter] = useState<string | null>(null);
-  const [professionFilter, setProfessionFilter] = useState<string | null>(null);
 
-  useEffect(() => {
-    async function fetchData() {
-      const usersDataInitial: any = await fetchDataFromFirebase();
-      const localUser: any = localStorage.getItem("user");
-      const parsedLocalUser = JSON.parse(localUser);
-      const usersData = usersDataInitial.filter(
-        (user: any) => user.userId !== parsedLocalUser?.id
-      );
-      const cards = usersData.map(
-        (user: {
-          userId: any;
-          username: any;
-          bio: any;
-          age: any;
-          country: any;
-          gender: any;
-          profession: any;
-          imageUrls: any[];
-        }) => ({
-          id: user.userId || generateUniqueId(),
-          title: user.username,
-          name: user.username,
-          content: user.bio,
-          age: user.age,
-          profession: user.profession,
-          location: user.country,
-          gender: user.gender,
-          decision: "yes",
-          image:
-            user?.imageUrls && user.imageUrls[0]?.startsWith("https")
-              ? user.imageUrls[0]
-              : "https://www.w3schools.com/w3images/avatar2.png",
-          isModalOpen: false,
-          setIsModalOpen,
-        })
-      );
-      setUserCards(cards);
-      setfilterCards(cards);
-    }
 
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const filteredCards = userCards.filter((user) => {
-      if (
-        locationFilter &&
-        locationFilter !== "ALL" &&
-        user.location?.toLowerCase() !== locationFilter?.toLowerCase()
-      ) {
-        return false;
-      }
-      const userAge = user.age;
-      if (userAge < ageRangeFilter[0] || userAge > ageRangeFilter[1]) {
-        return false;
-      }
-      if (genderFilter && user.gender !== genderFilter) {
-        return false;
-      }
-      if (professionFilter && !user.profession?.includes(professionFilter)) {
-        return false;
-      }
-      if (
-        searchText &&
-        !user.name?.toLowerCase().includes(searchText.toLowerCase())
-      ) {
-        return false;
-      }
-      return true;
-    });
-    setfilterCards(filteredCards);
-  }, [
-    locationFilter,
-    ageRangeFilter,
-    genderFilter,
-    professionFilter,
-    searchText,
-  ]);
-
-  const handleGoogleLogin = async () => {
-    try {
-      const userId = "someUserId";
-
-      let data = fetchData(userId);
-    } catch (error) {
-      console.error("dashboard data error:", error);
-    }
-  };
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const { userCards, filterCards } = useDashboardEffects(filters,searchText);
+  const updateFilters = (newFilters:any) => {
+    setFilters({...filters, ...newFilters});
   };
 
   return (
     <>
-      <Layout show={show} setShow={setShow}>
-        <div className="flex bg-[#FD307A] fixed left-0 w-full top-0 h-[10vh] items-center z-10 justify-between px-5">
-          <div className="search flex sm:space-x-28 items-center justify-center relative">
-            <div>
-              <p className="text-2xl text-white cursor-pointer">☰</p>
-            </div>
-            <div className="flex space-x-2">
-              <div className="icon">
-                <Image
-                  className=""
-                  src={SearchLove}
-                  alt="Message"
-                  width={30}
-                  height={30}
-                />
-              </div>
-              <input
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
-                type="text"
-                placeholder="Search..."
-                className="w-[20vw] p-1 rounded-full focus:outline-0 border-t-2  border-b-2 border-s-2 border-gray-500 "
-              />
-            </div>
-          </div>
-
-          <div className="right-side flex space-x-5 items-center">
-            <Link href="/dashboard/subscription">
-              <div className="icon">
-                <Image
-                  className=""
-                  src={Batch}
-                  alt="Message"
-                  width={30}
-                  height={30}
-                />
-              </div>
-            </Link>
-            <div>
-              <button
-                onClick={openModal}
-                className=" text-slate-600 text-xl rounded-md p-2"
-              >
-                {/* <FaFilter /> */}
-                <div className="icon">
-                  <Image
-                    className=""
-                    src={Filter}
-                    alt="Message"
-                    width={30}
-                    height={30}
-                  />
-                </div>
-              </button>
-              <DashboardModal isOpen={isModalOpen} onClose={closeModal}>
-                {/* Content of your modal goes here */}
-                <select
-                  className="w-[60%] p-2 rounded-md focus:outline-0"
-                  onChange={(e) => setLocationFilter(e.target.value)}
-                  value={locationFilter || ""}
-                >
-                  {countries.map((country) => (
-                    <option key={country.value} value={country.text}>
-                      {country.text}
-                    </option>
-                  ))}
-                </select>
-
-                <div className="w-[450px]">
-                  <label>Age Range:</label>
-                  <MultiRangeSlider
-                    style={{
-                      border: "none",
-                      boxShadow: "none",
-                    }}
-                    min={18}
-                    max={100}
-                    step={1}
-                    ruler={false}
-                    label={false}
-                    subSteps={false}
-                    minValue={ageRangeFilter[0]}
-                    maxValue={ageRangeFilter[1]}
-                    onInput={(e) => setAgeRangeFilter([e.minValue, e.maxValue])}
-                  />
-                </div>
-
-                <select
-                  className="w-[60%] p-2 rounded-md focus:outline-0"
-                  onChange={(e) => setGenderFilter(e.target.value)}
-                  value={genderFilter || ""}
-                >
-                  <option value={""}>Select Gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-
-                <input
-                  type="text"
-                  className="w-[60%] p-2 rounded-md focus:outline-0"
-                  placeholder="Search Professions"
-                  value={professionFilter || ""}
-                  onChange={(e) => setProfessionFilter(e.target.value)}
-                />
-                <Button
-                  onClick={() => {
-                    setLocationFilter("ALL");
-                    setAgeRangeFilter([18, 30]);
-                    setGenderFilter(null);
-                    setProfessionFilter(null);
-                  }}
-                >
-                  Reset Filters
-                </Button>
-              </DashboardModal>
-            </div>
-            <Link href="/dashboard/messages">
-              <div className="icon">
-                <Image
-                  className=""
-                  src={Message}
-                  alt="Message"
-                  width={30}
-                  height={30}
-                />
-              </div>
-            </Link>
-            <div className=" flex-col py-2 items-center">
-              <Image
-                className="rounded-full"
-                src={Woman}
-                alt=""
-                width={40}
-                height={40}
-              />
-              <h3 className="font-semibold text-sm text-white">Mahanor</h3>
-            </div>
-          </div>
-        </div>
-        ;{/* ****** Search Bar ****** */}
-        {/* ****** Search Bar End ****** */}
-        {/* ****** Filters ****** */}
-        {/* ****** Filters ****** */}
-        {/* ****** Cards ****** */}
+      <Layout show={show} setShow={setShow} updateFilters={updateFilters} filters={filters} searchText={searchText} setSearchText={setSearchText}>
         <div className="container mx-auto flex flex-col justify-center items-center mt-16 text-center">
           <Image
             className="text-center"
@@ -344,20 +70,9 @@ export default function DashboardComponent() {
             </div>
           </div>
         </div>
-        {/* ****** Cards ****** */}
       </Layout>
       <div className="bg-[#FD307A] h-[5vh] fixed left-0 w-full bottom-0 z-10 "></div>
     </>
   );
 }
 
-export async function getServerSideProps(context: any) {
-  const userId = "1IW1JRGm3WSzErc6mPrT";
-  const userData = await fetchData(userId);
-
-  return {
-    props: {
-      userData,
-    },
-  };
-}
