@@ -17,7 +17,7 @@ import { UserList } from "@/utils/messages/userList";
 import { getAllChats } from "@/sharedService/users/chat";
 import { fetchUserInfoFromFirebase } from "@/sharedService/users/user";
 import Link from "next/link";
-import TopHeader from "../mainLayout/TopHeader";
+import Navbar from "../navbar/Navbar";
 interface MessagesComponentProps {
   userId: any | any[] | undefined; // Adjust the type based on your use case
 }
@@ -118,7 +118,7 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
         {/* ******* Header ******* */}
         <div className="h-[100vh] overflow-hidden md:mt-0">
           {/* ***** Header Message ******* */}
-          <TopHeader />
+          <Navbar />
 
           {/* ******* Section 2 Card **** */}
           <div className=" mx-4 flex space-x-5 items-center mt-20">

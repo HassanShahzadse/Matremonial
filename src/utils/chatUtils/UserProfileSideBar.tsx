@@ -1,7 +1,7 @@
 "use client"
 
 // ** Custom Components
-import Avatar from '../../utility/avatar/avatar'
+import Avatar from '../avatar/avatar'
 
 // ** Third Party Components
 import classnames from 'classnames'

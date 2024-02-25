@@ -2,7 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Card } from "flowbite-react";
-import PersonCardProps from './../../../types/Home/PersonCardProps';
+import PersonCardProps from '../../../types/PersonCardProps';
 const PersonCard: React.FC<PersonCardProps> = ({ para,name, role, imageUrl }) => (
   <Card className="min-w-4xl bg-[#ed147d] p-5 ms-4 me-4  border-[#f9acd1] 2xl:min-h-[520px] xl:min-h-[500px] sm:min-h-[480px]  lg:min-h-[540px] md:min-h-[520px] ">
     <div className="flex flex-col items-center  pb-10">

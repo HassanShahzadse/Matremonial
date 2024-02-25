@@ -2,31 +2,19 @@
 import Image from "next/image";
 import React, { useEffect } from "react";
 import Layout from "../mainLayout/layout";
-import TopHeader from "../mainLayout/TopHeader";
-import Avatar from "/public/avatar1.jpg";
-import Man from "/public/member2.png";
-import Woman from "/public/member3.png";
 import Contact from "/public/icons/contact.png";
 import Call from "/public/icons/call.png";
 import Faq from "/public/icons/faq.png";
 import Massage from "/public/icons/email.png";
-
 import { useState } from "react";
-import UserProfileCard from "@/utils/userProfile/userProfileCard";
-import {
-  acceptFriendRequest,
-  fetchFriendRequests,
-  fetchFriends,
-  rejectFriendRequest,
-} from "@/sharedService/users/user";
-import Link from "next/link";
+import Navbar from "../navbar/Navbar";
 export default function FriendsComponent() {
   const [show, setShow] = useState(false);
 
   return (
     <>
       <Layout show={show} setShow={setShow}>
-        <TopHeader />
+        <Navbar />
         <div className="container flex flex-col justify-center items-center text-center mx-auto w-full mt-16">
           <div className="flex-col justify-center items-center">
             <Image src={Contact} alt="" width={300} height={300} />

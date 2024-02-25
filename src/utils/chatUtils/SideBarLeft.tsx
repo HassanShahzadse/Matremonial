@@ -5,14 +5,14 @@
 import { useState, useEffect } from 'react'
 
 // ** Custom Components
-import Avatar from '../../utility/avatar/avatar'
+import Avatar from '../avatar/avatar'
 
 // ** Store & Actions
 // import { selectChat } from './store'
 // import { useDispatch } from 'react-redux'
 
 // ** Utils
-import { formatDateToMonthShort, isObjEmpty } from '../../utility/utils'
+import { formatDateToMonthShort, isObjEmpty } from '../dateUtils'
 
 // ** Third Party Components
 import classnames from 'classnames'

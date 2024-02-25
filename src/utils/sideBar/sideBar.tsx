@@ -7,7 +7,6 @@ import { useState } from "react";
 
 const SideBar = ({ show, updateFilters,filters,searchText,setSearchText }: any) => {
   const [filterVisible, setFilterVisible] = useState(false);
-  console.log(updateFilters,filters)
   const toggleFilter = () => {
     setFilterVisible(!filterVisible);
   };

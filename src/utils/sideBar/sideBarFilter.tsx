@@ -1,10 +1,8 @@
 import { useState } from "react";
 
 export default function SideBarFilter({ filters, updateFilters }:any) {  
-    console.log(updateFilters,filters)
-
   const { locationFilter, ageRangeFilter, genderFilter, professionFilter } = filters;
-
+  const isGenderSelected = (gender: string) => genderFilter === gender;
   return (
     <>
       <div className="filter bg-white h-full">
@@ -55,20 +53,20 @@ export default function SideBarFilter({ filters, updateFilters }:any) {
         <div className="py-4 ml-3">
           <h3 className="font-semibold py-3">Looking for</h3>
           <button
-            className="border ml-3 rounded-lg px-3"
-            onClick={() => updateFilters({genderFilter: "Any"})}
+            className={`border ml-3 rounded-lg px-3 ${isGenderSelected("Any") ? 'text-white bg-pink-500' : ''}`}
+            onClick={() => updateFilters({ genderFilter: "Any" })}
           >
             Any 💑
           </button>
           <button
-            className="border ml-3 rounded-lg px-3"
-            onClick={() => updateFilters({genderFilter: "Male"})}
+            className={`border ml-3 rounded-lg px-3 ${isGenderSelected("Male") ? 'text-white bg-pink-500' : ''}`}
+            onClick={() => updateFilters({ genderFilter: "Male" })}
           >
             Male 🤵
           </button>
           <button
-            className="border ml-12 mt-2 rounded-lg px-3"
-            onClick={() => updateFilters({genderFilter: "Female"})}
+            className={`border ml-12 mt-2 rounded-lg px-3 ${isGenderSelected("Female") ? 'text-white bg-pink-500' : ''}`}
+            onClick={() => updateFilters({ genderFilter: "Female" })}
           >
             Female 💃
           </button>

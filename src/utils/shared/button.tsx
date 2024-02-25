@@ -1,6 +1,6 @@
 // components/Button.tsx
 import React from 'react';
-import ButtonProps from './../../types/shared/button';
+import ButtonProps from '../../types/button';
 const Button: React.FC<ButtonProps> = ({ children, onClick, css}) => {
   return (
     <button

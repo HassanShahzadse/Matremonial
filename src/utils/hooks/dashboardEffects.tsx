@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchDataFromFirebase } from "@/sharedService/users/user";
-import { CardProps } from "@/utils/types";
+import { CardProps } from "@/types/CardProps";
 
 const useDashboardEffects = (filters: any,searchText:any) => {
   const [userCards, setUserCards] = useState<CardProps[]>([]);
@@ -52,7 +52,6 @@ const useDashboardEffects = (filters: any,searchText:any) => {
 
   useEffect(() => {
     if (!filters) return;
-    console.log(filters)
     const filteredCards = userCards.filter((user) => {
       if (
         filters.locationFilter &&
@@ -66,7 +65,8 @@ const useDashboardEffects = (filters: any,searchText:any) => {
         return false;
       }
       if (filters.genderFilter && user.gender !== filters.genderFilter) {
-        return false;
+        if(filters.genderFilter === 'Any') return true
+        else return false;
       }
       if (filters.professionFilter && !user.profession?.includes(filters.professionFilter)) {
         return false;

@@ -7,7 +7,9 @@ import Filter from "/public/icons/filter.png";
 import Batch from "/public/icons/batch.png";
 import SearchLove from "/public/icons/search-love.png";
 import Link from "next/link";
+import { getLoggedInUserInfo } from "@/utils/userProfile/loggedInUserInfo";
 export default function Navbar({toggleFilter,searchText,setSearchText}:any){
+  const user = getLoggedInUserInfo()
     return(
         <>
                 <div className="flex bg-[#FD307A] fixed left-0 w-full top-0 h-[10vh] items-center z-10 justify-between px-5">
@@ -76,13 +78,13 @@ export default function Navbar({toggleFilter,searchText,setSearchText}:any){
             </Link>
             <div className=" flex-col py-2 items-center">
               <Image
-                className="rounded-full"
-                src={Woman}
+                className="rounded-full h-12 w-12"
+                src={user.image}
                 alt=""
                 width={40}
                 height={40}
               />
-              <h3 className="font-semibold text-sm text-white">Mahanor</h3>
+              <h3 className="font-semibold text-sm text-white">{user.username}</h3>
             </div>
           </div>
         </div>

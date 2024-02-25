@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import UserCardProps from "./../../types/dashboard/UserCardProps";
+import UserCardProps from "../../types/UserCardProps";
 
 
 const UserProfileCard: React.FC<UserCardProps> = ({ image,name,age,location,gender,decision }) => (

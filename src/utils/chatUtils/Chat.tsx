@@ -2,7 +2,7 @@
 
 import ReactDOM from 'react-dom';
 import { useState, useEffect, useRef } from 'react';
-import Avatar from '../../utility/avatar/avatar';
+import Avatar from '../avatar/avatar';
 // import { sendMsg } from './store';
 // import { useDispatch } from 'react-redux';
 import classnames from 'classnames';

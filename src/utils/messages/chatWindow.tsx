@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import Woman from "/public/member3.png";
 import { createMessage, getChatsByUserIds } from "@/sharedService/users/chat";
 
 export const ChatWindow: React.FC<any> = ({ selectedChat, onSendMessage }) => {

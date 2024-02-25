@@ -135,16 +135,7 @@ const CreateProfile = () => {
     profileImage: "",
     morePics: "",
   });
-  const validationSchema = Yup.object().shape({
-    // headline: Yup.string(),
-    // aboutMe: Yup.string(),
-    // educationLevel: Yup.string(),
-    // jobTitle: Yup.string(),
-    // profession: Yup.string(),
-    // motherTongue: Yup.string(),
-  });
   const handleSubmit = async () => {
-    console.log("Form Values in handle submit", formValues);
     let data = {
       headline: formValues.headline,
       bio: formValues.aboutMe,
@@ -186,7 +177,6 @@ const CreateProfile = () => {
       imageUrls: formValues.profileImage,
       // imageUrls: formValues.morePics
     };
-    console.log("data", data);
     try {
       const user = await userProfile(data, userId);
       //   router.push('/dashboard');
@@ -203,7 +193,6 @@ const CreateProfile = () => {
   return (
     <Formik
       initialValues={formValues}
-      validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
       {({ handleChange, handleSubmit, values, setFieldValue }) => (

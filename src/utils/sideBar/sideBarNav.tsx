@@ -8,7 +8,9 @@ import { IoNotifications } from "react-icons/io5";
 import { IoMdSettings } from "react-icons/io";
 import Image from "next/image";
 import Woman from "/public/member3.png";
+import { getLoggedInUserInfo } from "../userProfile/loggedInUserInfo";
 export default function SideBarNav(){
+ const user = getLoggedInUserInfo()
     const router = useRouter();
     const handleLogout = async () => {
         await logout();
@@ -21,12 +23,12 @@ export default function SideBarNav(){
             <div className="img-name flex ml-3 my-5 items-center space-x-3">
               <Image
                 className="rounded-full h-14 w-14"
-                src={Woman}
+                src={user.image}
                 alt=""
                 width={50}
                 height={50}
               />
-              <h3 className="font-bold text-2xl">Mahanor</h3>
+              <h3 className="font-bold text-2xl">{user.username}</h3> 
             </div>
             <div className="nav-list" style={{ color: "#fff" }}>
               <Link href="/dashboard" className="nav-link active">

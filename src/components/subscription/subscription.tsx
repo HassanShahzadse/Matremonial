@@ -3,9 +3,9 @@
 import React from "react";
 import { useState } from "react";
 import Layout from "../mainLayout/layout";
-import TopHeader from "../mainLayout/TopHeader";
 import Image from "next/image";
 import Logo from "/public/icons/LOGO-soulmate.png";
+import Navbar from "../navbar/Navbar";
 
 const SubscriptionComponents = () => {
   const [activeButton, setActiveButton] = useState("Subscription");
@@ -15,7 +15,7 @@ const SubscriptionComponents = () => {
   };
   return (
     <>
-      <TopHeader />
+      <Navbar/>
       <div className="container mx-auto grid lg:grid-cols-3 gap-10 mt-20 py-10">
         <div className="flex flex-col items-center">
           <Image src={Logo} alt="Logo" width={100} height={100} />
