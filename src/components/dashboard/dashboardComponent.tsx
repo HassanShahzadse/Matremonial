@@ -28,6 +28,7 @@ import Link from "next/link";
 import { countries } from "@/utils/shared/countries";
 import DashboardModal from "@/utils/dashboardModel/dashboardModel";
 import { FaFilter } from "react-icons/fa6";
+import TopHeader from "../mainLayout/TopHeader";
 type CardProps = {
   id: number;
   title: string;
@@ -41,6 +42,13 @@ type CardProps = {
   isModalOpen: boolean;
   profession: string;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+const DropdownMenu = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
 };
 const generateUniqueId = () => {
   return "_" + Math.random().toString(36).substr(2, 9);
@@ -155,145 +163,9 @@ export default function DashboardComponent() {
   return (
     <>
       <Layout show={show} setShow={setShow}>
-        <div className="flex bg-[#FD307A] fixed left-0 w-full top-0 h-[10vh] items-center z-10 justify-between px-5">
-          <div className="search flex sm:space-x-28 items-center justify-center relative">
-            <div>
-              <p className="text-2xl text-white cursor-pointer">☰</p>
-            </div>
-            <div className="flex space-x-2">
-              <div className="icon">
-                <Image
-                  className=""
-                  src={SearchLove}
-                  alt="Message"
-                  width={30}
-                  height={30}
-                />
-              </div>
-              <input
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
-                type="text"
-                placeholder="Search..."
-                className="w-[20vw] p-1 rounded-full focus:outline-0 border-t-2  border-b-2 border-s-2 border-gray-500 "
-              />
-            </div>
-          </div>
+        <TopHeader />
 
-          <div className="right-side flex space-x-5 items-center">
-            <Link href="/dashboard/subscription">
-              <div className="icon">
-                <Image
-                  className=""
-                  src={Batch}
-                  alt="Message"
-                  width={30}
-                  height={30}
-                />
-              </div>
-            </Link>
-            <div>
-              <button
-                onClick={openModal}
-                className=" text-slate-600 text-xl rounded-md p-2"
-              >
-                {/* <FaFilter /> */}
-                <div className="icon">
-                  <Image
-                    className=""
-                    src={Filter}
-                    alt="Message"
-                    width={30}
-                    height={30}
-                  />
-                </div>
-              </button>
-              <DashboardModal isOpen={isModalOpen} onClose={closeModal}>
-                {/* Content of your modal goes here */}
-                <select
-                  className="w-[60%] p-2 rounded-md focus:outline-0"
-                  onChange={(e) => setLocationFilter(e.target.value)}
-                  value={locationFilter || ""}
-                >
-                  {countries.map((country) => (
-                    <option key={country.value} value={country.text}>
-                      {country.text}
-                    </option>
-                  ))}
-                </select>
-
-                <div className="w-[450px]">
-                  <label>Age Range:</label>
-                  <MultiRangeSlider
-                    style={{
-                      border: "none",
-                      boxShadow: "none",
-                    }}
-                    min={18}
-                    max={100}
-                    step={1}
-                    ruler={false}
-                    label={false}
-                    subSteps={false}
-                    minValue={ageRangeFilter[0]}
-                    maxValue={ageRangeFilter[1]}
-                    onInput={(e) => setAgeRangeFilter([e.minValue, e.maxValue])}
-                  />
-                </div>
-
-                <select
-                  className="w-[60%] p-2 rounded-md focus:outline-0"
-                  onChange={(e) => setGenderFilter(e.target.value)}
-                  value={genderFilter || ""}
-                >
-                  <option value={""}>Select Gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-
-                <input
-                  type="text"
-                  className="w-[60%] p-2 rounded-md focus:outline-0"
-                  placeholder="Search Professions"
-                  value={professionFilter || ""}
-                  onChange={(e) => setProfessionFilter(e.target.value)}
-                />
-                <Button
-                  onClick={() => {
-                    setLocationFilter("ALL");
-                    setAgeRangeFilter([18, 30]);
-                    setGenderFilter(null);
-                    setProfessionFilter(null);
-                  }}
-                >
-                  Reset Filters
-                </Button>
-              </DashboardModal>
-            </div>
-            <Link href="/dashboard/messages">
-              <div className="icon">
-                <Image
-                  className=""
-                  src={Message}
-                  alt="Message"
-                  width={30}
-                  height={30}
-                />
-              </div>
-            </Link>
-            <div className=" flex-col py-2 items-center">
-              <Image
-                className="rounded-full"
-                src={Woman}
-                alt=""
-                width={40}
-                height={40}
-              />
-              <h3 className="font-semibold text-sm text-white">Mahanor</h3>
-            </div>
-          </div>
-        </div>
-        ;{/* ****** Search Bar ****** */}
+        {/* ****** Search Bar ****** */}
         {/* ****** Search Bar End ****** */}
         {/* ****** Filters ****** */}
         {/* ****** Filters ****** */}

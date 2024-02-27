@@ -16,6 +16,14 @@ const TopHeader = () => {
     alert("Filter");
   }
 
+  const DropdownMenu = () => {
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    const toggleDropdown = () => {
+      setIsDropdownOpen(!isDropdownOpen);
+    };
+  };
+
   return (
     <>
       <div className="flex bg-[#FD307A] fixed left-0 w-full top-0 h-[10vh] items-center z-10 justify-between px-5">
