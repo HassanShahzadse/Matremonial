@@ -11,18 +11,10 @@ import Link from "next/link";
 const TopHeader = () => {
   const [filterOpen, setFilterOpen] = useState(false);
 
-  function handleFilterOpen({ filterOpen }) {
+  function handleFilterOpen({ filterOpen }: { filterOpen: boolean }) {
     setFilterOpen(filterOpen != filterOpen);
     alert("Filter");
   }
-
-  const DropdownMenu = () => {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-    const toggleDropdown = () => {
-      setIsDropdownOpen(!isDropdownOpen);
-    };
-  };
 
   return (
     <>
