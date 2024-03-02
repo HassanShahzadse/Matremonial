@@ -177,7 +177,7 @@ function Hero() {
 
   return (
     <>
-      <div className={styles.heroBanner}></div>
+       <div className={styles.heroBanner}></div> 
 
       <nav className="flex items-center justify-between flex-wrap p-5   relative">
         <div className="flex items-center flex-shrink-0 text-white mr-6 lg:mr-12">
@@ -248,7 +248,7 @@ function Hero() {
       </nav>
 
       <div className="mx-auto relative ">
-        <div className="text-center pe-4 ps-4 lg:mt-[14.5rem]  mt-[10rem] ">
+        <div className="text-center pe-4 ps-4   mt-[4rem] ">
           <h1 className="text-[#FFFFFF]  lg:text-6xl sm:text-5xl  text-4xl  font-bold   2xl:ps-[24rem] 2xl:pe-[24rem]   xl:ps-[18rem] lg:ps-[8rem]  xl:pe-[18rem] lg:pe-[8rem]   ">
             Marriage for Grown Ups Make a Real Connection
           </h1>
@@ -313,7 +313,7 @@ function Hero() {
             width={1020}
             height={1020}
           />
-          <div className="ps-[10rem] pe-[10rem]  pt-14 pb-14 lg:pt-0 lg:pb-0 flex flex-col justify-center items-center">
+          <div className="ps-[10rem] pe-[10rem]  pt-14 pb-14 lg:pt-[0.1rem] lg:pb-[0.1rem] flex flex-col justify-center items-center">
             <div className="text-center  justify-center items-center flex flex-col">
               <h1 className="text-[#1F2F49]  font-semibold text-4xl ">
                 Explore Marriage Advice
@@ -322,7 +322,7 @@ function Hero() {
                 Be calm. Be kind. Be yourself.
               </p>
               <div className="ps-[3rem] lg:mt-1 xl:mt-5 mt-5 mb-5">
-                <p className="mt-6 rounded-t-[28px] rounded-r-[28px] bg-[#ffff] pt-4 ps-4 pb-4 pe-8 text-start text-sm text-shadow   font-bold       text-[#676770]">
+                <p className="mt-3 rounded-t-[28px] rounded-r-[28px] bg-[#ffff] pt-4 ps-4 pb-4 pe-8 text-start text-sm text-shadow   font-bold       text-[#676770]">
                   {/* Hello, I’m Sarah and I’m the first Marriage AI for
                   Matrimonial. What are your preferences? */}
                   Greetings, I am Sarah, the inaugural Marriage AI designed
@@ -349,19 +349,10 @@ function Hero() {
                     throw new Error("Function not implemented.");
                   }}
                 >
-                  Men"
-                </Button>
-
-                <Button
-                  css="bg-[#ED147D] sm:pe-52 sm:ps-52  pe-44 ps-44 shadow-[#ED147D]
-                  
-                  xl:pt-3 xl:pb-3 lg:pt-2 lg:pb-2    pt-3 pb-3 text-[#fff] rounded-[30px] text-[13px] font-bold "
-                  onClick={function (): void {
-                    throw new Error("Function not implemented.");
-                  }}
-                >
                   Men
                 </Button>
+
+                
               </div>
             </div>
           </div>
