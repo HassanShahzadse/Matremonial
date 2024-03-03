@@ -22,7 +22,7 @@
 
 body {
 
-  background-color: #f7f7f7;
+  background-color: #ffffff;
 }
 
 
@@ -131,13 +131,14 @@ main {
   background-color: var(--first-color);
   padding-top: 1rem;
   transition: 0.5s;
+  overflow-y: scroll;
 }
 
 .nav {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow: hidden;
+  
   height: 100%;
 }
 

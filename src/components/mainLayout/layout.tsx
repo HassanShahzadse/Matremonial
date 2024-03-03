@@ -7,7 +7,7 @@ export default function Layout({ children, show, filters, updateFilters ,filterO
 
   return (
     <ProtectedRouteWrapper>
-      <div>
+      <div className="">
         <main className="space-toggle">
           <SideBar show={show}  filters={filters} updateFilters={updateFilters} filterOpen={filterOpen} searchText={searchText} setSearchText={setSearchText}/>
           {children}

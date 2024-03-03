@@ -12,8 +12,8 @@ const SideBar = ({ show, updateFilters,filters,searchText,setSearchText }: any) 
   };
   return (
     <aside
-      className={`sidebar mt-[100px] xsm:mt-14 ${show ? "show" : "show"}`}
-      style={{ height: "89vh", backgroundColor: "#F05F93" }}
+      className={`sidebar  mt-[10vh]  ${show ? "show" : "show"}`}
+      style={{ height: "90vh", backgroundColor: "#F05F93" }}
     >
       <Navbar toggleFilter={toggleFilter} searchText={searchText} setSearchText={setSearchText}/>
       {!filterVisible ? (

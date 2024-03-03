@@ -6,6 +6,7 @@ import { FaMessage } from "react-icons/fa6";
 import { FaUserFriends } from "react-icons/fa";
 import { IoNotifications } from "react-icons/io5";
 import { IoMdSettings } from "react-icons/io";
+import { IoLogOut } from "react-icons/io5";
 import Image from "next/image";
 import Woman from "/public/member3.png";
 import { getLoggedInUserInfo } from "../userProfile/loggedInUserInfo";
@@ -18,9 +19,9 @@ export default function SideBarNav(){
       };
     return(
         <>
-                <nav className="nav">
+                <nav className="nav  overflow-y-scroll ">
           <div className="text-white">
-            <div className="img-name flex ml-3 my-5 items-center space-x-3">
+            <div className="img-name flex ml-3 my-5 items-center space-x-3 ">
               <Image
                 className="rounded-full h-14 w-14"
                 src={user.image}
@@ -63,7 +64,8 @@ export default function SideBarNav(){
                 onClick={handleLogout}
                 className="text-[#f57aa5] nav-link"
               >
-                Logout
+                  <IoLogOut />
+                <span className="nav-link-name"> Logout </span>
               </button>
             </div>
           </div>

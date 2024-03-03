@@ -177,7 +177,7 @@ function Hero() {
 
   return (
     <>
-       <div className={styles.heroBanner}></div> 
+      <div className={styles.heroBanner}></div>
 
       <nav className="flex items-center justify-between flex-wrap p-5   relative">
         <div className="flex items-center flex-shrink-0 text-white mr-6 lg:mr-12">
@@ -257,7 +257,7 @@ function Hero() {
           </p>
           <Button
             css="bg-[#ED147D] pe-7 ps-7   pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold mt-6 sm:mt-8 mb-2"
-            onClick={() => router.push('/signup')}
+            onClick={() => router.push("/signup")}
           >
             Get Started
           </Button>
@@ -280,7 +280,7 @@ function Hero() {
           </div>
           <Button
             css="bg-[#FFF] pe-7 ps-7   pt-2 pb-2 text-[#ED147D] rounded-[30px] text-[16px] font-bold mt-6 sm:mt-8 mb-2"
-            onClick={() => router.push('/signup')}
+            onClick={() => router.push("/signup")}
           >
             Register Now
           </Button>
@@ -351,8 +351,6 @@ function Hero() {
                 >
                   Men
                 </Button>
-
-                
               </div>
             </div>
           </div>
@@ -536,7 +534,7 @@ function Hero() {
 
 export default Hero;
 
-function  FooterList({ footerData }: { footerData: any[] })  {
+function FooterList({ footerData }: { footerData: any[] }) {
   return (
     <>
       {footerData.map((item) => (

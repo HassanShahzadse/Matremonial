@@ -68,6 +68,9 @@ const SignUp = (props: Props) => {
   };
 
   const handleSubmit = async () => {
+
+    
+
     let data = {
       email: formValues.email,
       name: formValues.userName,
@@ -146,7 +149,7 @@ const SignUp = (props: Props) => {
         <Formik
           initialValues={formValues}
           validationSchema={validationSchema}
-          onSubmit={handleSubmit}>
+          onSubmit={handleSubmit}> 
           {({ handleChange, handleSubmit, values, setFieldValue }) => (
             <Form>
                 <div className='2xl:px-16 2xl:py-4 '> 
@@ -310,7 +313,6 @@ const SignUp = (props: Props) => {
                     >Sign up</button>
                   </div>
                 </div>
-             
             </Form>
           )}
         </Formik>
