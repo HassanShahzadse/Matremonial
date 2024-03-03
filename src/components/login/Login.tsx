@@ -60,13 +60,11 @@ const Login = (props: Props) => {
   });
   return (
     <>
-    <div className="h-[10vh] bg-[#fb1086] "></div>
-    <div className="lg:h-[85vh]">
+    <div className="md:fixed md:top-0 md:left-0 md:right-0  h-[5vh] bg-[#fb1086] "></div>
+    <div className="md:mt-[5vh] lg:h-[90vh] ">
       <div className=" container-fluid">
         <div className="grid lg:grid-cols-2 ">
-         
-       
-          <div className=" lg:h-[85vh] flex  items-center justify-end  flex-col   bg-[#ffe8ea] ">
+          <div className="  flex  items-center justify-center md:h-[45vh] lg:h-[90vh]    flex-col   bg-[#ffe8ea] ">
           <h1 className="font-bold  lg:text-4xl text-5xl  xl:text-5xl  text-[#f46194] text-center  md:-mb-14">Muslim Marriage online </h1>
              <Image
               src={Marrage}
@@ -75,29 +73,24 @@ const Login = (props: Props) => {
               height={500}
               width={500}
           /> 
-         
-
           </div>
-         
-          <div className="lg:mt-0 bg-white lg:h-[85vh] flex justify-center    flex-col   rounded-lg shadow-md ">
-            
+          <div className="lg:mt-0 bg-white  flex justify-center md:h-[45vh] lg:h-[90vh]  flex-col   rounded-lg shadow-md ">
             <div className="card lg:px-32 lg:py-8 p-8"> 
-            <h1 className="text-2xl  font-bold text-center">Login</h1>
+            <h1 className="text-2xl  font-bold text-center">Find Your Soulmate</h1>
             <Formik
               initialValues={{ email: "", password: "" }}
-              // validationSchema={validationSchema}
               onSubmit={handleSubmit}
             >
               {() => (
                 <Form>
                   <div className="card-body ">
                     <div className="form-group mb-5 ">
-                      <label className="mb-2">Email</label>
+                      
                       <Field
                         type="text"
                         name="email"
                         className="w-full  border-b-2 border-gray-300 outline-none rounded p-2 "
-                        placeholder="Enter your email"
+                        placeholder="Email"
                       />
                       <ErrorMessage
                         name="email"
@@ -106,13 +99,13 @@ const Login = (props: Props) => {
                       />
                     </div> 
                     <div className="form-group">
-                          <label className="mb-2">Password</label>
+                        
                           <div className="relative">
                             <Field
                               type={showPassword ? "text" : "password"}
                               name="password"
                               className="w-full  border-b-2 border-gray-300 outline-none rounded p-2 "
-                              placeholder="Enter your password"
+                              placeholder="Password"
                             />
                             <button
                               type="button"
@@ -154,6 +147,7 @@ const Login = (props: Props) => {
               <span className="px-2">OR</span>
               <hr className="flex-1 border-t border-black" />
             </div>
+            
             <div className="text-center mt-2">
               <button
                 className="google-btn   border border-gray-300 rounded-full"
@@ -187,6 +181,8 @@ const Login = (props: Props) => {
                 Login with Apple ID
               </button>
             </div>
+
+
             <div className="text-center mt-5">
               <span>
                 Dont have an account?
@@ -200,12 +196,10 @@ const Login = (props: Props) => {
             </div>
             </div>
           </div>
-          {/* <div className="col-span-2 h-7 xsm:hidden lg:block rounded-l-xl bg-[#fb1086]"></div> */}
         </div>
       </div>
     </div>
-          {/* <div className="col-span-2 h-7 xsm:hidden lg:block rounded-l-xl bg-[#fb1086]"></div> */}
-    <div className="h-[5vh] rounded-l-xl bg-[#fb1086]"></div>
+    <div className="md:fixed md:bottom-0 md:left-0 md:right-0   h-[5vh] rounded-l-xl bg-[#fb1086]"></div>
     </>
 
   );
