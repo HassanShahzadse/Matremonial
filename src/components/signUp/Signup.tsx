@@ -133,13 +133,13 @@ const SignUp = (props: Props) => {
   const radioGenderOptions = ['Male', 'Female',]; 
   return (
     <>
-    <div className="h-[10vh] bg-[#fb1086] "></div>
-    <div className="lg:h-[85vh]  ">
+    <div className="md:fixed md:top-0 md:left-0 md:right-0  h-[5vh] bg-[#fb1086] "></div>
+    <div className="md:mt-[5vh] lg:h-[90vh] ">
       <div className=" container-fluid">
     <div className="grid lg:grid-cols-2">
-    <div className="xsm:mt-2 lg:mt-0 bg-white p-7 rounded-lg shadow-md lg:h-[85vh]  overflow-auto ">
+    <div className="lg:order-1 order-2    xsm:mt-2 lg:mt-0 bg-white p-7 rounded-lg shadow-md  md:h-[45vh] lg:h-[90vh]   overflow-auto ">
       
-        <h1 className="text-2xl font-bold text-center">Sign Up</h1>
+        <h1 className="text-2xl font-bold text-center">LOOKING FOR SOULMATE</h1>
    
      
       <div className=''>
@@ -350,14 +350,14 @@ const SignUp = (props: Props) => {
     </div>
 
 
-    <div className="lg:h-[85vh] flex  items-center justify-end  flex-col bg-[#ffe8ea]  ">
+    <div className="lg:order-2 order-1   lg:h-[85vh] flex  items-center justify-center  md:h-[45vh] lg:h-[90vh]  flex-col bg-[#ffe8ea]  ">
     <h1 className="font-bold  lg:text-4xl text-5xl  xl:text-5xl  text-[#f46194] text-center md:-mb-3">Muslim Marriage online </h1>
     <Image src={Marrage} className='rounded-md ' alt='marriage' width={325} height={325} />
       </div>
     </div> 
     </div> 
     </div>
-    <div className="h-[5vh] rounded-l-xl bg-[#fb1086]"></div>
+    <div className="md:fixed md:bottom-0 md:left-0 md:right-0   h-[5vh] rounded-l-xl bg-[#fb1086]"></div>
     </>
   )
 }
