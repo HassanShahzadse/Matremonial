@@ -44,7 +44,7 @@ export default function SideBarNav(){
                 <FaMessage />
                 <span className="">Messages</span>
               </Link>
-              <Link href="/dashboard/notifications" className="nav-link ">
+              <Link href="/dashboard/gallery" className="nav-link ">
                 <IoNotifications />
                 <span className="nav-link-name">Gallery</span>
               </Link>

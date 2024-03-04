@@ -1,4 +1,4 @@
-import NotificationsComponent from '@/components/notifications/notificationsComponent'
+import NotificationsComponent from '@/components/gallery/galleryComponent'
 import React from 'react'
 
 export default function page() {

@@ -154,8 +154,15 @@ export const createUser = async (formData: any) => {
       return false;
     }
     const { db } = firebaseInstance;
+    const userQuery = query(collection(db, 'users'), 
+                            where('email', '==', formData.email));
+    const userQuerySnapshot = await getDocs(userQuery);
+    if (!userQuerySnapshot.empty) {
+      window.alert('User with same email already exists.');
+      return false;
+    }
     const docRef = await addDoc(collection(db, 'users'), {
-     ...formData
+      ...formData
     });
     console.log('user id:', docRef.id);
     return true;
@@ -165,7 +172,6 @@ export const createUser = async (formData: any) => {
     return false;
   }
 };
-
 const auth = getAuth(firebase_app);
 export const logout = async (): Promise<void> => {
   try {

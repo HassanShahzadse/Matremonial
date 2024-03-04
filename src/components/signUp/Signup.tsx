@@ -61,6 +61,7 @@ const SignUp = (props: Props) => {
   });
 
   const handleFormChange = (fieldName: string, value: any) => {
+    console.log(formValues)
     setFormValues((prevFormValues) => {
       const updatedFormValues = { ...prevFormValues, [fieldName]: value };
       return updatedFormValues;
@@ -69,7 +70,7 @@ const SignUp = (props: Props) => {
 
   const handleSubmit = async () => {
 
-    
+    console.log('--------------------------------')
 
     let data = {
       email: formValues.email,
@@ -84,7 +85,7 @@ const SignUp = (props: Props) => {
     }
     try {
       const users = await createUser(data);
-      
+      if(!users) return
       let user = await loginUser(data.email,data.password);
       console.log('Logged in user:', user);
       if(user && user.id){
@@ -127,11 +128,9 @@ const SignUp = (props: Props) => {
     confirmEmail: Yup.string().oneOf([Yup.ref("email"), ''], "Emails must match").required('Confirm email is required'),
     password: Yup.string().min(8).required('Password is required'),
     phone: Yup.string().min(9).required('Phone number is required'),
-    country: Yup.string().required('Country is required'),
-    dateOfBirth: Yup.string().required('Date of birth is required'),
-    reason: Yup.string().required('Reason is required'),
-    hearAbout: Yup.string().required('Hear about is required'),
-  });
+    // country: Yup.string().required('Country is required'),
+    // dateOfBirth: Yup.string().required('Date of birth is required'),
+  });  
   
   const radioGenderOptions = ['Male', 'Female',]; 
   return (
@@ -150,7 +149,7 @@ const SignUp = (props: Props) => {
           initialValues={formValues}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}> 
-          {({ handleChange, handleSubmit, values, setFieldValue }) => (
+          {({ setFieldValue }) => (
             <Form>
                 <div className='2xl:px-16 2xl:py-4 '> 
                   <div className='form-group mb-3'>
