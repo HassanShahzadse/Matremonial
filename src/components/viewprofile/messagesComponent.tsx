@@ -83,7 +83,7 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
           </div>
         </div>
         <div className="grid  grid-cols-2 mt-10">
-          <div className=" border-[#707070] border rounded-lg">
+          <div className=" border-[#707070] border  rounded-xl">
             <div className="ms-2 me-6">
               <h1 className="text-[#000000] font-bold text-lg text-center opacity-100">
                 About me
@@ -93,41 +93,202 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
                 pets I really love to spend my time in nature Love to travel and
                 visit Different places
               </p>
-               <div className="flex flex-row justify-between mt-4 mb-8">
-                    <ul>
-                      <li className="text-[#000000] font-semibold text-sm opacity-100" >Religon</li>
-                      <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">Cast</li>
-                      <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">Live</li>
-                      <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">Education</li>
-                      <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">Job</li>
-                      <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">Salary</li>
-                      <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">Living arrangement</li>
-                      <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">Martial Status</li>
-                      <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">Smoke</li>
-                      <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">Keep halal</li>
-                      <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">Do you want Kids</li>
-                      <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">Willing to relocate</li>
-                      <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">Pray Salah</li>
-                    </ul>
-                    <ul className="text-center">
-                      <li className="text-[#000000] font-bold text-sm opacity-100 ">Islam</li>
-                      <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">Jutt</li>
-                      <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">Pakistan</li>
-                      <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">BS English</li>
-                      <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">Teacher</li>
-                      <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">Rs 30,000/-</li>
-                      <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">With Parents</li>
-                      <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">Single</li>
-                      <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">No</li>
-                      <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">Yes</li>
-                      <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">Yes</li>
-                      <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">Yes</li>
-                      <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">Always</li>
-                    </ul>
-               </div>
+              <div className="flex flex-row justify-between mt-4 mb-8">
+                <ul>
+                  <li className="text-[#000000] font-semibold text-sm opacity-100">
+                    Religon
+                  </li>
+                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                    Cast
+                  </li>
+                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                    Live
+                  </li>
+                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                    Education
+                  </li>
+                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                    Job
+                  </li>
+                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                    Salary
+                  </li>
+                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                    Living arrangement
+                  </li>
+                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                    Martial Status
+                  </li>
+                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                    Smoke
+                  </li>
+                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                    Keep halal
+                  </li>
+                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                    Do you want Kids
+                  </li>
+                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                    Willing to relocate
+                  </li>
+                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                    Pray Salah
+                  </li>
+                </ul>
+                <ul className="text-center">
+                  <li className="text-[#000000] font-bold text-sm opacity-100 ">
+                    Islam
+                  </li>
+                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                    Jutt
+                  </li>
+                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                    Pakistan
+                  </li>
+                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                    BS English
+                  </li>
+                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                    Teacher
+                  </li>
+                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                    Rs 30,000/-
+                  </li>
+                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                    With Parents
+                  </li>
+                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                    Single
+                  </li>
+                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                    No
+                  </li>
+                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                    Yes
+                  </li>
+                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                    Yes
+                  </li>
+                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                    Yes
+                  </li>
+                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                    Always
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-          <div className=""></div>
+          <div className="">
+            <div className=" border-[#707070] border  rounded-xl">
+              <div className="ms-2 me-6">
+                <h1 className="text-[#000000] font-bold text-lg text-center opacity-100">
+                  Body Type
+                </h1>
+                <div className="flex flex-row justify-between mt-4 mb-8">
+                  <ul>
+                    <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                      Hair Color
+                    </li>
+                    <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                      Height
+                    </li>
+                    <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                      Body Build
+                    </li>
+                    <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                      Eyes Color
+                    </li>
+                    <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                      Prefer Hijab
+                    </li>
+                    <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                      Any Disability
+                    </li>
+                  </ul>
+                  <ul className="text-center">
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      Black
+                    </li>
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      5'11"
+                    </li>
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      Slim
+                    </li>
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      Brown
+                    </li>
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      Yes
+                    </li>
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      No
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className=" border-[#707070] border  rounded-xl">
+              <div className="ms-2 me-6">
+                <h1 className="text-[#000000] font-bold text-lg text-center opacity-100">
+                  Looking For
+                </h1>
+                <p className="mt-2 text-center text-[#000000] font-bold text-sm opacity-100 mb-5">
+                  I’m looking for a Boy who is cultural love to travel Should be
+                  kind and caring respect elders.no skin color preferences just
+                  a nice boy form a nice Family……
+                </p>
+              </div>
+            </div>
+            <div className=" border-[#707070] border  rounded-xl">
+              <div className="ms-2 me-6">
+                <h1 className="text-[rgb(0,0,0)] font-bold text-lg text-center opacity-100">
+                  Type of Partner
+                </h1>
+                <div className="flex flex-row justify-between mt-4 mb-8">
+                  <ul>
+                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                    Partner Live
+                  </li>   
+                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                    Partner Religion 
+                 </li>   
+                 <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                    Partner Cast 
+                 </li>   
+                 <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                    Partner Education
+                 </li>   
+                 <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                    Partner Profession
+                 </li>   
+                  </ul>
+                  <ul className="text-center">
+                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                       USA
+                    </li>
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      Muslim
+                    </li>
+
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      Doesn't Matter
+                    </li>
+
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      Master
+                    </li>
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      Doctor
+                    </li>
+
+
+                  </ul>
+                </div>  
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </Layout>
