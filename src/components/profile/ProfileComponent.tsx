@@ -21,6 +21,8 @@ import {
   bodyTypeFields,
   religiousInfoFields,
 } from './profilefieldsData';
+import { updateUser, uploadImageToFirestore } from "@/sharedService/auth/auth";
+import { getLoggedInUserInfo } from "@/utils/userProfile/loggedInUserInfo";
 
 
 export default function ProfileComponent() {
@@ -153,17 +155,64 @@ export default function ProfileComponent() {
   };
 
   const next = () => {
+    setStep((prevStep) => prevStep + 1);
     if (isStepValid()) {
-      setStep((prevStep) => prevStep + 1);
     } else {
       alert("Please fill out all fields before proceeding.");
     }
   };
-  const onSubmit = (data: any) => {
-    console.log(data);
-    router.push("/dashboard");
-  };
+  const onSubmit = async (data: any) => {
+    try {
+        const uploadPromises: Promise<any>[] = [];
+        const dataWithUrls = { ...data };
 
+        // Rename fields as per the database naming convention
+        dataWithUrls.maritalStatus = dataWithUrls.martialStatus;
+        dataWithUrls.children = dataWithUrls.haveChildren;
+        delete dataWithUrls.martialStatus;
+        delete dataWithUrls.haveChildren;
+
+        // Reorder image URLs with profile picture first
+        const imageFields = ['profilePicture', 'gallery1', 'gallery2', 'gallery3', 'gallery4', 'gallery5', 'gallery6'];
+        const imageUrls: string[] = [];
+
+        for (const field of imageFields) {
+            if (dataWithUrls[field] instanceof File) {
+                uploadPromises.push(
+                    new Promise((resolve, reject) => {
+                        uploadImageToFirestore(dataWithUrls[field], (url: any) => {
+                            if (field === 'profilePicture') {
+                                imageUrls.unshift(url);
+                            } else {
+                                imageUrls.push(url);
+                            }
+                            resolve(undefined);
+                        }).catch(reject);
+                    })
+                );
+            }
+        }
+
+        await Promise.all(uploadPromises);
+
+        const user = getLoggedInUserInfo();
+        const userId = user.id;
+        dataWithUrls.imageUrls = imageUrls;
+        const excludedFields = ['profilePicture', 'gallery1', 'gallery2', 'gallery3', 'gallery4', 'gallery5', 'gallery6'];
+        excludedFields.forEach(field => delete dataWithUrls[field]);
+        const updateSuccess = await updateUser(userId, dataWithUrls);
+        if (updateSuccess) {
+          router.push("/dashboard");
+            console.log('User updated successfully.');
+        } else {
+            window.alert('Failed to update user.');
+        }
+    } catch (error) {
+        console.error('Error uploading images or updating user:', error);
+    }
+};
+
+  
   return (
     <>
       <div className={styles.backgroundImg}>

@@ -2,7 +2,7 @@ import { initializeApp,getApps } from "firebase/app";
 import { getAnalytics, isSupported } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-
+import { getStorage } from "firebase/storage";
 const firebaseConfig = {
     apiKey: "AIzaSyBkpCaz5NwMego6CNtV_KbDpdhJSNJLHuk",
     authDomain: "muslimmatt-270d5.firebaseapp.com",
@@ -19,7 +19,8 @@ const initializeFirebase = async () => {
         // const analytics = getAnalytics(app);
         const auth = getAuth(app);
         const db = getFirestore(app);
-        return { app, auth, db };
+         const storage = getStorage(app);
+        return { app, auth, db,storage };
     } else {
         console.warn('Firebase Analytics is not supported in this environment.');
       

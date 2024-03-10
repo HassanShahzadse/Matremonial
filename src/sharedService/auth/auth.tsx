@@ -1,12 +1,83 @@
 import { FacebookAuthProvider, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword as createUserWithEmailAndPasswordFirebase } from 'firebase/auth';
 import initializeFirebase from '../fireBase/firebase';
-import { addDoc, collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
+import { addDoc, collection, getDocs, getFirestore, query, where,updateDoc, doc } from 'firebase/firestore';
 import { getAuth, signInWithEmailAndPassword as signInWithEmailAndPasswordFirebase } from 'firebase/auth';
 import {  signOut } from 'firebase/auth';
 import { firebase_app } from "./../fireBase/firebase"
 import router, { useRouter } from 'next/router';
+import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 
 
+export const updateUser = async (userId: any, updatedData: any) => {
+  try {
+    console.log(userId,updatedData)
+    const firebaseInstance = await initializeFirebase();
+    if (!firebaseInstance) {
+      console.error('Firebase is not supported.');
+      return false;
+    }
+
+    const { db } = firebaseInstance;
+    if (!db) {
+      console.error('Firestore database instance is not available.');
+      return false;
+    }
+
+    const userRef = doc(db, 'users', userId);
+    if (!userRef) {
+      console.error('User reference is undefined.');
+      return false;
+    }
+
+    await updateDoc(userRef, updatedData);
+    console.log('User updated successfully');
+    return true;
+  } catch (error) {
+    console.error('Error updating user:', error);
+    return false;
+  }
+};
+
+export const uploadImageToFirestore = async (file:any, setData:any) => {
+  try {
+    const firebaseInstance = await initializeFirebase();
+    if (!firebaseInstance) {
+      console.error('Firebase is not supported.');
+      return false;
+    }
+    const { storage } = firebaseInstance;
+    const storageRef = ref(storage, `profile_images/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+        switch (snapshot.state) {
+          case 'paused':
+            console.log('Upload paused');
+            break;
+          case 'running':
+            console.log('Upload running');
+            break;
+          default:
+            break;
+        }
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadedURL) => {
+          console.log("Download URL:", downloadedURL);
+          setData(downloadedURL); // Assuming setData now directly takes the URL string
+        });
+      }
+    );
+  } catch (error) {
+    console.error('Error uploading image to Firestore:', error);
+  }
+};
 
 export const loginUser = async (email: any, password: any) => {
   try {
@@ -32,23 +103,6 @@ export const loginUser = async (email: any, password: any) => {
     console.error('Login failed:', error.message);
   }
 };
-
-// export const signInWithEmailAndPassword = async (email: any, password: any) => {
-//   const auth = getAuth();
-
-//   try {
-//     const userCredential = await signInWithEmailAndPasswordFirebase(auth, email, password);
-//     const user = userCredential.user;
-//     return user;
-//   } catch (error: any) {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     console.error('Sign-in error code:', errorCode, errorMessage);
-//     console.error('Sign-in error Message:', errorMessage);
-//     // throw error;
-//   }
-// };
-
 
 export const loginWithGoogle = async () => {
   try {
@@ -119,32 +173,6 @@ export const signupWithFacebook = async () => {
     throw error;
   }
 };
-// export const createUserWithEmailAndPassword = async (formData: any) => {
-//   const { email, password,
-//     name,
-//     phone_number,
-//     country,
-//     birth_date,
-//     gender } = formData;
-
-//   try {
-//     // Create user in Firebase Authentication
-//     const userCredential = await createUserWithEmailAndPasswordFirebase(auth, email, password);
-//     const user = userCredential.user;
-
-//     await addDoc(collection(db, 'users'), {
-//       uid: user.uid,
-//       name, phone_number
-//     });
-//     console.log('User created successfully');
-//     return user;
-//   } catch (error: any) {
-//     console.error('User creation failed error.code:', error.code);
-//     console.error('User creation failed error.message:', error.message);
-
-//     // throw error;
-//   }
-// };
 
 export const createUser = async (formData: any) => {
   try {
