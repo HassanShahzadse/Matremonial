@@ -1,6 +1,6 @@
 import { FacebookAuthProvider, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword as createUserWithEmailAndPasswordFirebase } from 'firebase/auth';
 import initializeFirebase from '../fireBase/firebase';
-import { addDoc, collection, getDocs, getFirestore, query, where,updateDoc, doc } from 'firebase/firestore';
+import { addDoc, collection, getDocs, getFirestore, query, where,updateDoc, doc, getDoc } from 'firebase/firestore';
 import { getAuth, signInWithEmailAndPassword as signInWithEmailAndPasswordFirebase } from 'firebase/auth';
 import {  signOut } from 'firebase/auth';
 import { firebase_app } from "./../fireBase/firebase"
@@ -31,6 +31,13 @@ export const updateUser = async (userId: any, updatedData: any) => {
 
     await updateDoc(userRef, updatedData);
     console.log('User updated successfully');
+    const updatedUserSnapshot = await getDoc(userRef);
+    if (updatedUserSnapshot.exists()) {
+      const updatedUserData = { id: updatedUserSnapshot.id, ...updatedUserSnapshot.data() };
+      // Save the updated user data to local storage
+      localStorage.setItem('user', JSON.stringify(updatedUserData));
+    }
+
     return true;
   } catch (error) {
     console.error('Error updating user:', error);

@@ -117,18 +117,7 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
       <Layout show={show} setShow={setShow}>
         {/* ******* Header ******* */}
         <div className="h-[100vh] overflow-hidden md:mt-0">
-          {/* ***** Header Message ******* */}
-          <Navbar />
-
-          {/* ******* Section 2 Card **** */}
           <div className=" mx-4 flex space-x-5 items-center mt-20">
-            {/* <div className="flex md:w-[32vw] xsm:w-full justify-between pt-3 font-semibold">
-              <div className="underline underline-offset-4 decoration-[#f10086] 	">
-                All Chats
-              </div>
-              <div className="">Read</div>
-              <div className="">Unread</div>
-            </div> */}
             <div className="right w-full flex justify-between xsm:hidden md:flex py-2">
               <div className="img-name flex ml-3 items-center space-x-3">
                 <Image
