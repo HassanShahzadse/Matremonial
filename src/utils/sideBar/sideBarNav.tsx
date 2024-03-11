@@ -19,7 +19,7 @@ export default function SideBarNav(){
       };
     return(
         <>
-                <nav className="nav  overflow-y-scroll ">
+                <nav className="nav  overflow-y-scroll  bg-[#F05F93]">
           <div className="text-white">
             <div className="img-name flex ml-3 my-5 items-center space-x-3 ">
               <Image

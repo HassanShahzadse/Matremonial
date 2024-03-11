@@ -132,6 +132,9 @@ main {
   padding-top: 1rem;
   transition: 0.5s;
 }
+.isActiveChatTab{
+  border-bottom:2px solid #f10086;
+}
 
 .nav {
   display: flex;
@@ -222,7 +225,7 @@ main {
   }
 
   .show {
-    width: calc(var(--header-height) + 156px);
+    width: calc(var(--header-height) + 184px);
   }
 
   .space-toggle {

@@ -5,28 +5,23 @@ export const ChatWindow: React.FC<any> = ({ selectedChat, onSendMessage }) => {
   const [inputText, setInputText] = useState("");
   const [localUser, setLocalUser] = useState<any>([]);
   const [chatData, setChatData] = useState<any>([]);
+
   useEffect(() => {
     const localuser: any = localStorage.getItem("user");
     const user = JSON.parse(localuser);
     setLocalUser(user);
     fetchChats();
   }, [selectedChat]);
+
   const fetchChats = async () => {
-    const chat: any = await getChatsByUserIds(
-      selectedChat.userId,
-      localUser.id
-    );
+    if (!selectedChat) return;
+
+    const chat: any = await getChatsByUserIds(selectedChat.userId, localUser.id);
     console.log(chat);
     setChatData(chat);
   };
-  if (!selectedChat || !selectedChat.userInfo) {
-    // Handle the case where selectedChat or userInfo is null
-    return null; // or render a loading state or an error message
-  }
 
   const handleKeyPress = async (e: any) => {
-    console.log("mehrab");
-
     if (e.key === "Enter" && inputText.trim() !== "") {
       handleSendMessage();
     }
@@ -38,6 +33,10 @@ export const ChatWindow: React.FC<any> = ({ selectedChat, onSendMessage }) => {
     fetchChats();
   };
 
+  if (!selectedChat || !selectedChat.userInfo) {
+    return <div className="fs-1 fw-bold text-center">No chat to display</div>;
+  }
+
   const { userId, userInfo } = selectedChat || { userId: null, userInfo: null };
   const sortedChats =
     chatData.length >= 0
@@ -45,10 +44,11 @@ export const ChatWindow: React.FC<any> = ({ selectedChat, onSendMessage }) => {
           ?.slice()
           .sort((a: any, b: any) => a.timestamp.seconds - b.timestamp.seconds)
       : [];
+
   return (
     <>
-      <div className=" flex-1 flex col-span-2 h-[75.5vh] ">
-        <div className="flex-1 overflow-x-hidden overflow-y-auto w-[85vw] p-4 xsm:mb-20 xl:mb-16 ">
+      <div className="flex-1 flex col-span-2 h-[75.5vh]">
+        <div className="flex-1 overflow-x-hidden overflow-y-auto w-[85vw] p-4 xsm:mb-20 xl:mb-16">
           {/* Render user information */}
           <div className="mb-4"></div>
 
@@ -85,14 +85,14 @@ export const ChatWindow: React.FC<any> = ({ selectedChat, onSendMessage }) => {
 
           {/* Input area for sending messages */}
         </div>
-        <div className=" p-4 -ml-8 xsm:mb-6 lg:mb-5 xsm:fixed bottom-0 lg:w-[83vw] xsm:w-[76vw] flex">
+        <div className="p-4 -ml-8 xsm:mb-6 lg:mb-5 xsm:fixed bottom-0 lg:w-[83vw] xsm:w-[76vw] flex">
           <input
             type="text"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Type a message"
-            className=" border w-full rounded-full pl-4 p-2 outline-none"
+            className="border w-full rounded-full pl-4 p-2 outline-none"
           />
           {userId !== null && (
             <button

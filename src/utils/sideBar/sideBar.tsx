@@ -4,27 +4,35 @@ import Navbar from "@/components/navbar/Navbar";
 import SideBarNav from "./sideBarNav";
 import SideBarFilter from "./sideBarFilter";
 import { useState } from "react";
+import { usePathname } from 'next/navigation'
+import { UserList } from "../messages/userList";
 
-const SideBar = ({ show, updateFilters,filters,searchText,setSearchText }: any) => {
+const SideBar = ({ show, updateFilters, filters, searchText, setSearchText }: any) => {
   const [filterVisible, setFilterVisible] = useState(false);
   const toggleFilter = () => {
     setFilterVisible(!filterVisible);
   };
+  
+  // Get the current location using useLocation hook
+  const pathname = usePathname()
   return (
     <aside
-      className={`sidebar  mt-[10vh]  ${show ? "show" : "show"}`}
-      style={{ height: "88vh", backgroundColor: "#F05F93" }}
+      className={`sidebar mt-[8vh] ${show ? "show" : "show"}`}
+      style={{ height: "90vh", backgroundColor: "#F05F93" }}
     >
-      <Navbar toggleFilter={toggleFilter} searchText={searchText} setSearchText={setSearchText}/>
+      <Navbar toggleFilter={toggleFilter} searchText={searchText} setSearchText={setSearchText} />
       {!filterVisible ? (
-        <SideBarNav/>
+        <SideBarNav />
       ) : (
-        <SideBarFilter
-        filters={filters}
-        updateFilters={updateFilters}
-        />
+        // Use ternary operator to conditionally render either SideBarFilter or ChatWindow based on the pathname
+        pathname !== "/dashboard/messages" ? (
+          <SideBarFilter filters={filters} updateFilters={updateFilters} />
+        ) : (
+          <UserList />
+        )
       )}
     </aside>
   );
 };
+
 export default SideBar;
