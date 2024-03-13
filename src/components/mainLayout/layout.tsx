@@ -13,6 +13,7 @@ export default function Layout({ children, show, filters, updateFilters ,filterO
           <div className="mt-5">
             {children}
             </div>
+            <div className="bg-[#FD307A] h-[5vh] fixed left-0 w-full bottom-0 z-10 "></div>
         </main>
       </div>
     </ProtectedRouteWrapper>

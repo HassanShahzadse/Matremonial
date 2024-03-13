@@ -4,6 +4,7 @@ import Layout from "../mainLayout/layout";
 import Image from "next/image";
 import Soulmate from "/public/icons/LOGO-soulmate.png";
 import useDashboardEffects from "@/utils/hooks/dashboardEffects";
+import Link from "next/link";
 
 export default function DashboardComponent() {
   const [filters, setFilters] = useState<any>({
@@ -39,6 +40,7 @@ export default function DashboardComponent() {
           <div className="card-body mt-5 p-2">
             <div className="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-1 mx-5 gap-7 ">
               {filterCards.map((card) => (
+                <Link href={`/dashboard/viewProfile/${card.id}`} key={card.id}>
                 <div
                   key={card.id}
                   className=" bg-[#ffff] w-full"
@@ -64,6 +66,7 @@ export default function DashboardComponent() {
                     <span className="text-xs">{card.age}</span>
                   </div>
                 </div>
+                </Link>
               ))}
             </div>
           </div>

@@ -225,7 +225,7 @@ main {
   }
 
   .show {
-    width: calc(var(--header-height) + 184px);
+    width: calc(var(--header-height) + 160px);
   }
 
   .space-toggle {
