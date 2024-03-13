@@ -11,6 +11,7 @@ import { ChatWindow } from "@/utils/messages/chatWindow";
 import { UserList } from "@/utils/messages/userList";
 import { getAllChats } from "@/sharedService/users/chat";
 import { fetchUserInfoFromFirebase } from "@/sharedService/users/user";
+import styles from "./messagesComponent.module.css";
 
 // ... (previous imports)
 
@@ -88,91 +89,91 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
               <h1 className="text-[#000000] font-bold text-lg text-center opacity-100">
                 About me
               </h1>
-              <p className="mt-2 text-[#000000] font-bold text-sm opacity-100">
+              <p className="mt-4 text-[#000000] font-bold text-sm opacity-100">
                 My name is Halal a young man from Pakistan I am a Teacher I love
                 pets I really love to spend my time in nature Love to travel and
                 visit Different places
               </p>
-              <div className="flex flex-row justify-between mt-4 mb-8">
+              <div className="flex flex-row justify-between mt-4 mb-2">
                 <ul>
-                  <li className="text-[#000000] font-semibold text-sm opacity-100">
+                  <li className="text-[#000000] font-semibold text-md opacity-100">
                     Religon
                   </li>
-                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
                     Cast
                   </li>
-                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
                     Live
                   </li>
-                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
                     Education
                   </li>
-                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
                     Job
                   </li>
-                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
                     Salary
                   </li>
-                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
                     Living arrangement
                   </li>
-                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
                     Martial Status
                   </li>
-                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
                     Smoke
                   </li>
-                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
                     Keep halal
                   </li>
-                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
                     Do you want Kids
                   </li>
-                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
                     Willing to relocate
                   </li>
-                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
                     Pray Salah
                   </li>
                 </ul>
                 <ul className="text-center">
-                  <li className="text-[#000000] font-bold text-sm opacity-100 ">
+                  <li className="text-[#000000] font-bold text-md opacity-100 ">
                     Islam
                   </li>
-                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
                     Jutt
                   </li>
-                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
                     Pakistan
                   </li>
-                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
                     BS English
                   </li>
-                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
                     Teacher
                   </li>
-                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
                     Rs 30,000/-
                   </li>
-                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
                     With Parents
                   </li>
-                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
                     Single
                   </li>
-                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
                     No
                   </li>
-                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
                     Yes
                   </li>
-                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
                     Yes
                   </li>
-                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
                     Yes
                   </li>
-                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
                     Always
                   </li>
                 </ul>
@@ -180,12 +181,12 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
             </div>
           </div>
           <div className="">
-            <div className=" border-[#707070] border  rounded-xl">
+            <div className=" border-[#707070] border  ms-12 rounded-xl">
               <div className="ms-2 me-6">
                 <h1 className="text-[#000000] font-bold text-lg text-center opacity-100">
                   Body Type
                 </h1>
-                <div className="flex flex-row justify-between mt-4 mb-8">
+                <div className="flex flex-row justify-between mt-0 mb-6">
                   <ul>
                     <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
                       Hair Color
@@ -229,7 +230,7 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
                 </div>
               </div>
             </div>
-            <div className=" border-[#707070] border  rounded-xl">
+            <div className=" border-[#707070] border mt-5 ms-12 rounded-xl">
               <div className="ms-2 me-6">
                 <h1 className="text-[#000000] font-bold text-lg text-center opacity-100">
                   Looking For
@@ -241,12 +242,12 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
                 </p>
               </div>
             </div>
-            <div className=" border-[#707070] border  rounded-xl">
+            <div className=" border-[#707070] border mt-5 ms-12 rounded-xl">
               <div className="ms-2 me-6">
                 <h1 className="text-[rgb(0,0,0)] font-bold text-lg text-center opacity-100">
                   Type of Partner
                 </h1>
-                <div className="flex flex-row justify-between mt-4 mb-8">
+                <div className="flex flex-row justify-between mt-0 mb-6">
                   <ul>
                   <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
                     Partner Live
@@ -282,8 +283,6 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
                     <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
                       Doctor
                     </li>
-
-
                   </ul>
                 </div>  
               </div>
@@ -291,6 +290,19 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
           </div>
         </div>
       </div>
+     <div className="absolute   -mt-[1.6rem]   -z-50 top-0  right-0  w-[250px] h-[100px]">
+        <div className="bg-[#707070] pt-8 pb-5">
+            <h1 className="text-center text-[#FFFFFF]  text-lg ps-[5rem] pe-[5rem]">All Profile</h1>
+            <h1 className="text-center text-[#FFFFFF] text-lg">Used To Connect</h1>
+        </div>
+        <div className="bg-black h-[3.5rem]">
+        </div>
+        <div className={styles.bgBanner}>
+
+
+        </div>
+
+     </div>
     </Layout>
   );
 }
