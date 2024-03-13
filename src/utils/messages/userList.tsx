@@ -11,7 +11,7 @@ export const UserList = ({
 
   return (
     <div className="bg-white h-[90vh] border-right-gray">
-      <div className="flex justify-between p-4 py-6">
+      <div className="flex flex-col md:flex-row justify-between p-4 py-6">
         <div className="isActiveChatTab">All Chats</div>
         <div className="">Read</div>
         <div className="">Unread</div>
@@ -29,11 +29,11 @@ export const UserList = ({
         return (
           <div
             key={user.userId}
-            className="card1 mx-2 rounded-full active:bg-green-200 cursor-pointer  bg-white my-3 shadow-md py-3 px-2 border-black"
+            className="card1 mx-2 rounded-full active:bg-green-200 cursor-pointer  bg-white my-3 shadow-md p-0 md:py-3 md:px-2 border-black"
             onClick={() => onCardClick(user)}
           >
             <div className="flex">
-              <div className="img me-3">
+              <div className="img me-md-3">
                 <Image
                   src={
                     user?.userInfo?.imageUrls &&
@@ -49,12 +49,12 @@ export const UserList = ({
               </div>
 
               <div>
-                <h2 className="font-semibold text-gray-400">
+                <h2 className="font-semibold text-gray-400 hidden md:block">
                   {user?.userInfo?.username}
                 </h2>
                 {latestMessage && (
                   <>
-                    <p className="text-sm my-1">{latestMessage.text}</p>
+                    <p className="text-sm my-1 hidden md:block">{latestMessage.text}</p>
                     {/* <div className="flex divide-x-2 divide-black mt-4">
                       <div className="mr-3">
                         {new Date(
