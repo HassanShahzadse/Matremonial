@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { getAllChats } from "@/sharedService/users/chat";
-import { fetchUserInfoFromFirebase } from "@/sharedService/users/user";
 
 export const UserList = ({
   onCardClick,
@@ -12,7 +10,7 @@ export const UserList = ({
 }) => {
 
   return (
-    <div className="bg-white h-[90vh]">
+    <div className="bg-white h-[90vh] border-right-gray">
       <div className="flex justify-between p-4 py-6">
         <div className="isActiveChatTab">All Chats</div>
         <div className="">Read</div>
@@ -31,7 +29,7 @@ export const UserList = ({
         return (
           <div
             key={user.userId}
-            className="card1 rounded-full active:bg-green-200 cursor-pointer  bg-white my-3 shadow-md py-3 px-2 border-black"
+            className="card1 mx-2 rounded-full active:bg-green-200 cursor-pointer  bg-white my-3 shadow-md py-3 px-2 border-black"
             onClick={() => onCardClick(user)}
           >
             <div className="flex">
