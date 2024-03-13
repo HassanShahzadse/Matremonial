@@ -3,21 +3,9 @@ import React, { useEffect } from "react";
 import Image from "next/image";
 import { useState } from "react";
 import Layout from "../mainLayout/layout";
-import { RiArrowDropDownLine } from "react-icons/ri";
-import { CgSize } from "react-icons/cg";
-import { FaEllipsisV } from "react-icons/fa";
-import Woman from "/public/member3.png";
-import Message from "/public/icons/message.png";
-import Filter from "/public/icons/filter.png";
-import Batch from "/public/icons/batch.png";
-import SearchLove from "/public/icons/search-love.png";
-import { FaSearch } from "react-icons/fa";
 import { ChatWindow } from "@/utils/messages/chatWindow";
-import { UserList } from "@/utils/messages/userList";
 import { getAllChats } from "@/sharedService/users/chat";
 import { fetchUserInfoFromFirebase } from "@/sharedService/users/user";
-import Link from "next/link";
-import Navbar from "../navbar/Navbar";
 interface MessagesComponentProps {
   userId: any | any[] | undefined; // Adjust the type based on your use case
 }
@@ -67,7 +55,7 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
 
       const usersData: any = await Promise.all(usersPromises);
       const sortedUsersData = sortUsersData(usersData, userId);
-
+      console.log(sortedUsersData)
       setSelectedChat(sortedUsersData[0]);
       setSelectedUser(sortedUsersData[0].userInfo);
       setFilteredChats(sortedUsersData);
@@ -108,13 +96,12 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
   };
   const handleCardClick = (chat: any) => {
     setSelectedChat(chat);
-    console.log(chat.userInfo, "---------------------");
     setSelectedUser(chat.userInfo);
     setShow(true);
   };
   return (
     <>
-      <Layout show={show} setShow={setShow}>
+      <Layout show={show} setShow={setShow} handleCardClick={handleCardClick} filteredChats={filteredChats}>
         {/* ******* Header ******* */}
         <div className="h-[100vh] overflow-hidden md:mt-0">
           <div className=" mx-4 flex space-x-5 items-center mt-20">
@@ -122,12 +109,14 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
               <div className="img-name flex ml-3 items-center space-x-3">
                 <Image
                   className="rounded-full h-12 w-12"
-                  src={"https://www.w3schools.com/w3images/avatar2.png"}
+                  src={selectedUser?.imageUrls && selectedUser.imageUrls[0]?.startsWith("https")
+                  ? selectedUser.imageUrls[0]
+                  : "https://www.w3schools.com/w3images/avatar2.png"}
                   alt=""
                   width={30}
                   height={30}
                 />
-                <h3>username</h3>
+                <h3>{selectedUser.username}</h3>
               </div>
               <div className="star shadow-md text-3xl items-center text-center p-2">
                 ...
@@ -136,9 +125,6 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
           </div>
           <hr />
           <div className="h-[83vh] mt-1 grid lg:grid-cols-2 md:grid-cols-1 xsm:grid-cols-1 ">
-            {/* <div className="flex-col shadow-md p-5 h-[88vh] overflow-y-auto">
-              <UserList chat={filteredChats} onCardClick={handleCardClick} />
-            </div> */}
             <ChatWindow
               selectedChat={selectedChat}
               onSendMessage={fetchDataAgain}

@@ -3,13 +3,13 @@
 import SideBar from "@/utils/sideBar/sideBar";
 import { ProtectedRouteWrapper } from "../settings/protectedRoute";
 
-export default function Layout({ children, show, filters, updateFilters ,filterOpen,searchText,setSearchText }: any) {
+export default function Layout({ children, show, filters, updateFilters ,filterOpen,searchText,setSearchText,handleCardClick,filteredChats }: any) {
 
   return (
     <ProtectedRouteWrapper>
       <div className="">
         <main className="space-toggle">
-          <SideBar show={show}  filters={filters} updateFilters={updateFilters} filterOpen={filterOpen} searchText={searchText} setSearchText={setSearchText}/>
+          <SideBar show={show}  filters={filters} updateFilters={updateFilters} filterOpen={filterOpen} searchText={searchText} setSearchText={setSearchText} filteredChats={filteredChats} handleCardClick={handleCardClick}/>
           <div className="mt-5">
             {children}
             </div>

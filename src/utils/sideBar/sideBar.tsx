@@ -7,7 +7,7 @@ import { useState } from "react";
 import { usePathname } from 'next/navigation'
 import { UserList } from "../messages/userList";
 
-const SideBar = ({ show, updateFilters, filters, searchText, setSearchText }: any) => {
+const SideBar = ({ show, updateFilters, filters, searchText, setSearchText,handleCardClick,filteredChats }: any) => {
   const [filterVisible, setFilterVisible] = useState(false);
   const toggleFilter = () => {
     setFilterVisible(!filterVisible);
@@ -25,10 +25,10 @@ const SideBar = ({ show, updateFilters, filters, searchText, setSearchText }: an
         <SideBarNav />
       ) : (
         // Use ternary operator to conditionally render either SideBarFilter or ChatWindow based on the pathname
-        pathname !== "/dashboard/messages" ? (
+        !pathname.includes("messages") ? (
           <SideBarFilter filters={filters} updateFilters={updateFilters} />
         ) : (
-          <UserList />
+          <UserList filteredChats={filteredChats} onCardClick={handleCardClick}/>
         )
       )}
     </aside>

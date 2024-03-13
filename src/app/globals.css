@@ -240,7 +240,14 @@ main {
 
 /* -------------------Chat------------------ */
 
-
+.rounded-full-image{
+  border-radius: 50%;
+  height: 50px !important;
+  width: 50px !important;
+}
+.border-black{
+  border: 1px solid black;
+}
 .body-content-overlay {
   top: 0;
   left: 0;

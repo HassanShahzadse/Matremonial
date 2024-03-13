@@ -4,63 +4,12 @@ import { getAllChats } from "@/sharedService/users/chat";
 import { fetchUserInfoFromFirebase } from "@/sharedService/users/user";
 
 export const UserList = ({
-  // onCardClick,
+  onCardClick,
+  filteredChats
 }: {
-  // onCardClick: (chat: any) => void;
+  onCardClick: (chat: any) => void;
+  filteredChats:any;
 }) => {
-  const [filteredChats, setFilteredChats] = useState<any>([]);
-  const fetchData = async () => {
-    try {
-      const chatData: any = await getAllChats();
-      const localuser: any = localStorage.getItem("user");
-      const user = JSON.parse(localuser);
-      const filteredData = chatData.filter(
-        (chat: { sender: any; receiver: any }) =>
-          chat.sender === user.id || chat.receiver === user.id
-      );
-      const combinedRecords: any = {};
-      filteredData.forEach((chat: any) => {
-        const otherUserId =
-          chat.sender === user.id ? chat.receiver : chat.sender;
-        if (combinedRecords[otherUserId]) {
-          combinedRecords[otherUserId].push(chat);
-        } else {
-          combinedRecords[otherUserId] = [chat];
-        }
-      });
-
-      // Check if the userId from props is not found in existing chats
-      if (localuser.id && !combinedRecords[localuser.id]) {
-        const newChatData = await fetchUserInfoFromFirebase(localuser.id);
-        if (newChatData) {
-          combinedRecords[localuser.id] = [];
-        }
-      }
-
-      const usersArray = Object.keys(combinedRecords);
-      const usersPromises = usersArray.map(async (userId) => {
-        const userInfo = await fetchUserInfoFromFirebase(userId);
-        return {
-          userId,
-          userInfo,
-          chats: combinedRecords[userId],
-        };
-      });
-
-      const usersData: any = await Promise.all(usersPromises);
-      // const sortedUsersData = sortUsersData(usersData, userId);
-
-      // setSelectedChat(sortedUsersData[0]);
-      // setSelectedUser(sortedUsersData[0].userInfo);
-      console.log(usersData)
-      setFilteredChats(usersData);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   return (
     <div className="bg-white h-[90vh]">
@@ -82,11 +31,11 @@ export const UserList = ({
         return (
           <div
             key={user.userId}
-            className="card1 rounded-full active:bg-green-200 cursor-pointer  bg-white my-3 shadow-md p-3"
-            // onClick={() => onCardClick(user)}
+            className="card1 rounded-full active:bg-green-200 cursor-pointer  bg-white my-3 shadow-md py-3 px-2 border-black"
+            onClick={() => onCardClick(user)}
           >
-            <div className="flex space-x-10">
-              <div className="img">
+            <div className="flex">
+              <div className="img me-3">
                 <Image
                   src={
                     user?.userInfo?.imageUrls &&
@@ -95,14 +44,14 @@ export const UserList = ({
                       : "https://www.w3schools.com/w3images/avatar2.png"
                   }
                   alt="My Image"
-                  height={60}
-                  width={60}
-                  className="rounded-full"
+                  height={40}
+                  width={40}
+                  className="rounded-full-image"
                 />
               </div>
 
               <div>
-                <h2 className="font-semibold text-gray-400 mb-2">
+                <h2 className="font-semibold text-gray-400">
                   {user?.userInfo?.username}
                 </h2>
                 {latestMessage && (

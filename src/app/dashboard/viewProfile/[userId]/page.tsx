@@ -1,5 +1,5 @@
 "use client"
-import ViewProfile from '@/components/viewprofile/messagesComponent';
+import ViewProfile from '@/components/viewprofile/viewProfileComponent';
 import React from 'react'
 import { useEffect } from 'react';
 export default function Page({ params }: { params: { userId: string } }) {

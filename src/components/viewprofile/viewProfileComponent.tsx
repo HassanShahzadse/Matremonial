@@ -12,6 +12,7 @@ import { UserList } from "@/utils/messages/userList";
 import { getAllChats } from "@/sharedService/users/chat";
 import { fetchUserInfoFromFirebase } from "@/sharedService/users/user";
 import styles from "./messagesComponent.module.css";
+import Link from "next/link";
 
 // ... (previous imports)
 
@@ -74,12 +75,14 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
               >
                 Add friend
               </button>
+              <Link href={`/dashboard/messages/${userId}`}>
               <button
                 type="button"
                 className=" bg-[#F45F93] text-sm ms-1 ps-2 pe-2 text-[#ffffff] rounded-s-xl rounded-e-xl border border-[#707070]"
               >
                 Message
               </button>
+              </Link>
             </div>
           </div>
         </div>
