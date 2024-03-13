@@ -11,6 +11,7 @@ import { ChatWindow } from "@/utils/messages/chatWindow";
 import { UserList } from "@/utils/messages/userList";
 import { getAllChats } from "@/sharedService/users/chat";
 import { fetchUserInfoFromFirebase } from "@/sharedService/users/user";
+import styles from "./messagesComponent.module.css";
 
 // ... (previous imports)
 
@@ -26,7 +27,7 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
       const user: any | undefined = await fetchUserInfoFromFirebase(userId);
       setUserProfile(user);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     }
   };
 
@@ -39,13 +40,275 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
       await fetchData();
       console.log("----------------");
     } catch (error) {
-      console.error('Error fetching data again:', error);
+      console.error("Error fetching data again:", error);
     }
   };
 
   return (
     <Layout>
-      {userProfile && (
+      <div className="mx-auto mt-24 mb-32 me-72">
+        <div className="flex  flex-row">
+          <div className="image-wrapper ">
+            <Image
+              src="/member4.png"
+              alt="Preview"
+              width={130}
+              height={130}
+              className="rounded-full  border border-2  border-[#FF2271] "
+            />
+          </div>
+          <div className="flex flex-col ms-4 ">
+            <h1 className="text-[#000000] text-2xl font-bold">Ayesha</h1>
+            <div className="flex flex-row mt-1">
+              <h2 className="text-sm text-[#000000] font-semibold opacity-100">
+                Profile
+              </h2>
+              <span className="ms-3 textt-lg text-[#000000] font-semibold opacity-100">
+                Lahore,Pakistan
+              </span>
+            </div>
+            <div className="d-flex flex-row mt-8">
+              <button
+                type="button"
+                className="bg-[#F45F93] text-sm ps-2 pe-2 text-[#ffffff] rounded-s-xl rounded-e-xl border border-[#707070]"
+              >
+                Add friend
+              </button>
+              <button
+                type="button"
+                className=" bg-[#F45F93] text-sm ms-1 ps-2 pe-2 text-[#ffffff] rounded-s-xl rounded-e-xl border border-[#707070]"
+              >
+                Message
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="grid  grid-cols-2 mt-10">
+          <div className=" border-[#707070] border  rounded-xl">
+            <div className="ms-2 me-6">
+              <h1 className="text-[#000000] font-bold text-lg text-center opacity-100">
+                About me
+              </h1>
+              <p className="mt-4 text-[#000000] font-bold text-sm opacity-100">
+                My name is Halal a young man from Pakistan I am a Teacher I love
+                pets I really love to spend my time in nature Love to travel and
+                visit Different places
+              </p>
+              <div className="flex flex-row justify-between mt-4 mb-2">
+                <ul>
+                  <li className="text-[#000000] font-semibold text-md opacity-100">
+                    Religon
+                  </li>
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
+                    Cast
+                  </li>
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
+                    Live
+                  </li>
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
+                    Education
+                  </li>
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
+                    Job
+                  </li>
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
+                    Salary
+                  </li>
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
+                    Living arrangement
+                  </li>
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
+                    Martial Status
+                  </li>
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
+                    Smoke
+                  </li>
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
+                    Keep halal
+                  </li>
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
+                    Do you want Kids
+                  </li>
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
+                    Willing to relocate
+                  </li>
+                  <li className="text-[#000000] font-semibold text-md opacity-100 mt-2">
+                    Pray Salah
+                  </li>
+                </ul>
+                <ul className="text-center">
+                  <li className="text-[#000000] font-bold text-md opacity-100 ">
+                    Islam
+                  </li>
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
+                    Jutt
+                  </li>
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
+                    Pakistan
+                  </li>
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
+                    BS English
+                  </li>
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
+                    Teacher
+                  </li>
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
+                    Rs 30,000/-
+                  </li>
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
+                    With Parents
+                  </li>
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
+                    Single
+                  </li>
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
+                    No
+                  </li>
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
+                    Yes
+                  </li>
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
+                    Yes
+                  </li>
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
+                    Yes
+                  </li>
+                  <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
+                    Always
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className="">
+            <div className=" border-[#707070] border  ms-12 rounded-xl">
+              <div className="ms-2 me-6">
+                <h1 className="text-[#000000] font-bold text-lg text-center opacity-100">
+                  Body Type
+                </h1>
+                <div className="flex flex-row justify-between mt-0 mb-6">
+                  <ul>
+                    <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                      Hair Color
+                    </li>
+                    <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                      Height
+                    </li>
+                    <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                      Body Build
+                    </li>
+                    <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                      Eyes Color
+                    </li>
+                    <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                      Prefer Hijab
+                    </li>
+                    <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                      Any Disability
+                    </li>
+                  </ul>
+                  <ul className="text-center">
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      Black
+                    </li>
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      5'11"
+                    </li>
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      Slim
+                    </li>
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      Brown
+                    </li>
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      Yes
+                    </li>
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      No
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className=" border-[#707070] border mt-5 ms-12 rounded-xl">
+              <div className="ms-2 me-6">
+                <h1 className="text-[#000000] font-bold text-lg text-center opacity-100">
+                  Looking For
+                </h1>
+                <p className="mt-2 text-center text-[#000000] font-bold text-sm opacity-100 mb-5">
+                  I’m looking for a Boy who is cultural love to travel Should be
+                  kind and caring respect elders.no skin color preferences just
+                  a nice boy form a nice Family……
+                </p>
+              </div>
+            </div>
+            <div className=" border-[#707070] border mt-5 ms-12 rounded-xl">
+              <div className="ms-2 me-6">
+                <h1 className="text-[rgb(0,0,0)] font-bold text-lg text-center opacity-100">
+                  Type of Partner
+                </h1>
+                <div className="flex flex-row justify-between mt-0 mb-6">
+                  <ul>
+                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                    Partner Live
+                  </li>   
+                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                    Partner Religion 
+                 </li>   
+                 <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                    Partner Cast 
+                 </li>   
+                 <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                    Partner Education
+                 </li>   
+                 <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                    Partner Profession
+                 </li>   
+                  </ul>
+                  <ul className="text-center">
+                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                       USA
+                    </li>
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      Muslim
+                    </li>
+
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      Doesn't Matter
+                    </li>
+
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      Master
+                    </li>
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      Doctor
+                    </li>
+                  </ul>
+                </div>  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     <div className="absolute   -mt-[1.6rem]   -z-50 top-0  right-0  w-[250px] h-[100px]">
+        <div className="bg-[#707070] pt-8 pb-5">
+            <h1 className="text-center text-[#FFFFFF]  text-lg ps-[5rem] pe-[5rem]">All Profile</h1>
+            <h1 className="text-center text-[#FFFFFF] text-lg">Used To Connect</h1>
+        </div>
+        <div className="bg-black h-[3.5rem]">
+        </div>
+        <div className={styles.bgBanner}>
+
+
+        </div>
+
+     </div>
+    </Layout>
+  );
+}
+
+{
+  /* {userProfile && (
         <div className="mt-14">
           <h1>User Profile Page</h1>
         <p>Hijab: {userProfile.hijab}</p>
@@ -82,7 +345,7 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
         <p>Reason for Registering: {userProfile.reason_for_registering}</p>
         <p>Heard About Us: {userProfile.heard_about_us}</p>
         <p>Job: {userProfile.job}</p>
-        {/* Displaying imageUrls */}
+     
         <p>Image URLs:</p>
         {userProfile.imageUrls.map((url: string, index: number) => (
           <p key={index}>{url}</p>
@@ -99,10 +362,8 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
         <p>Gender: {userProfile.gender}</p>
         <p>Bio: {userProfile.bio}</p>
         <p>Marital Time: {userProfile.maritalTime}</p>
-        {/* Add more details based on your actual data */}
+      
         <button className="p-5 bg-[#fb1086] hover:bg-pink-700 text-[#ffff]  p-1 rounded-2xl my-4 text-sm  ">Add friend</button>
       </div>
-      )}
-    </Layout>
-  );
+      )} */
 }
