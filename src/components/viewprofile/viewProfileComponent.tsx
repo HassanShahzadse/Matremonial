@@ -59,7 +59,7 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
             />
           </div>
           <div className="flex flex-col ms-4 ">
-            <h1 className="text-[#000000] text-2xl font-bold">Ayesha</h1>
+            <h1 className="text-[#000000] text-2xl font-bold">{userProfile.username}</h1>
             <div className="flex flex-row mt-1">
               <h2 className="text-sm text-[#000000] font-semibold opacity-100">
                 Profile
@@ -93,9 +93,7 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
                 About me
               </h1>
               <p className="mt-4 text-[#000000] font-bold text-sm opacity-100">
-                My name is Halal a young man from Pakistan I am a Teacher I love
-                pets I really love to spend my time in nature Love to travel and
-                visit Different places
+               {userProfile.bio}
               </p>
               <div className="flex flex-row justify-between mt-4 mb-2">
                 <ul>
@@ -141,43 +139,49 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
                 </ul>
                 <ul className="text-center">
                   <li className="text-[#000000] font-bold text-md opacity-100 ">
-                    Islam
+                  {userProfile.religion ? `${userProfile.religion} ` : "NA"}
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
                     Jutt
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
-                    Pakistan
+                  {userProfile.country ? `${userProfile.country} ` : "NA"}
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
-                    BS English
+                  {userProfile.education ? `${userProfile.education} ` : "NA"}
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
-                    Teacher
+                  {userProfile.profession ? `${userProfile.profession} ` : "NA"}
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
-                    Rs 30,000/-
+                    {userProfile.income ? `${userProfile.income} ` : "NA"}
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
-                    With Parents
+                  {userProfile.livingArrange ? `${userProfile.livingArrange} ` : "NA"}
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
-                    Single
+                  {userProfile.maritalStatus ? `${userProfile.maritalStatus} ` : "NA"}
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
-                    No
+                  
+                    {userProfile.smokeFreq ? `${userProfile.smokeFreq} ` : "NA"}
+                    
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
-                    Yes
+                  {userProfile.smokeFreq ? `${userProfile.smokeFreq} ` : "NA"}
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
-                    Yes
+                    
+                    {userProfile.halal ? `${userProfile.halal} ` : "NA"}
+                    
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
-                    Yes
+                    
+                    {userProfile.relocate ? `${userProfile.relocate} ` : "NA"}
+                    
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
-                    Always
+                  {userProfile.salah ? `${userProfile.salah} ` : "NA"}
                   </li>
                 </ul>
               </div>
@@ -212,22 +216,27 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
                   </ul>
                   <ul className="text-center">
                     <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
-                      Black
+                    {userProfile. hair ? `${userProfile. hair} ` : "NA"}
+                     
                     </li>
                     <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
-                      5'11"
+                    {userProfile. height ? `${userProfile. height} ` : "NA"}
+                      
                     </li>
                     <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
-                      Slim
+                    {userProfile. buildCont ? `${userProfile. buildCont} ` : "NA"}
+                      
+                    
                     </li>
                     <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
-                      Brown
+                    {userProfile.eyes ? `${userProfile.eyes} ` : "NA"}
+
                     </li>
                     <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
-                      Yes
+                    {userProfile.eyes ? `${userProfile.eyes} ` : "NA"}
                     </li>
                     <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
-                      No
+                      {userProfile.hijab ? `${userProfile.hijab} ` : "NA"}
                     </li>
                   </ul>
                 </div>
@@ -270,10 +279,11 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
                   </ul>
                   <ul className="text-center">
                   <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
-                       USA
+                  {userProfile.partnerLocation ? `${userProfile.partnerLocation} ` : "NA"}
                     </li>
                     <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
-                      Muslim
+                    {userProfile.religion ? `${userProfile.religion} ` : "NA"}
+
                     </li>
 
                     <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
@@ -281,10 +291,12 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
                     </li>
 
                     <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
-                      Master
+                    {userProfile.partnerEducation ? `${userProfile.partnerEducation} ` : "NA"}
+
                     </li>
                     <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
-                      Doctor
+                    {userProfile.partnerProfession ? `${userProfile.partnerProfession} ` : "NA"}
+                                                            
                     </li>
                   </ul>
                 </div>  
