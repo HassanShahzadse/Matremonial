@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation'
 import { UserList } from "../messages/userList";
 
 const SideBar = ({ show, updateFilters, filters, searchText, setSearchText,handleCardClick,filteredChats }: any) => {
-  const [filterVisible, setFilterVisible] = useState(false);
+  const [filterVisible, setFilterVisible] = useState(true);
   const toggleFilter = () => {
     setFilterVisible(!filterVisible);
   };

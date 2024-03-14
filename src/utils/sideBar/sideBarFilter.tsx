@@ -6,7 +6,7 @@ export default function SideBarFilter({ filters, updateFilters }:any) {
   const isGenderSelected = (gender: string) => genderFilter === gender;
   return (
     <>
-      <div className="filter bg-white h-[90vh] mt-0">
+      <div className="filter bg-white h-[90vh] mt-0 border-right-gray">
         <h1 className="py-10 ml-12 font-bold text-xl">Filters</h1>
         {/* Location */}
         <div className="ml-3 my-10">

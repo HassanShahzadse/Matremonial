@@ -116,7 +116,7 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
                   width={30}
                   height={30}
                 />
-                <h3>{selectedUser.username}</h3>
+                <h3>{selectedUser?.username}</h3>
               </div>
               <div className="star shadow-md text-3xl items-center text-center p-2">
                 ...
