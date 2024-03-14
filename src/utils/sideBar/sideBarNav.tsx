@@ -36,7 +36,7 @@ export default function SideBarNav(){
                 <i className="fas fa-tachometer-alt nav-link-icon"></i>
                 <span className="nav-link-name">Home </span>
               </Link>
-              <Link href="/viewProfile" className="nav-link">
+              <Link href={`/dashboard/viewProfile/${user.id}`} className="nav-link">
                 <i className="fas fa-tachometer-alt nav-link-icon"></i>
                 <span className="nav-link-name">Profile</span>
               </Link>
