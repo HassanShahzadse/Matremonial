@@ -44,6 +44,7 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
       console.error("Error fetching data again:", error);
     }
   };
+  if(!userProfile) return <Layout><h1>Please Wait...</h1></Layout>
 
   return (
     <Layout>
@@ -51,11 +52,14 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
         <div className="flex  flex-row">
           <div className="image-wrapper ">
             <Image
-              src="/member4.png"
+              src={ userProfile?.imageUrls &&
+                userProfile?.imageUrls[0]?.startsWith("https")
+                  ? userProfile?.imageUrls[0]
+                  : "https://www.w3schools.com/w3images/avatar2.png"}
               alt="Preview"
               width={130}
               height={130}
-              className="rounded-full  border border-2  border-[#FF2271] "
+              className="rounded-full h-[130px] border border-2  border-[#FF2271] "
             />
           </div>
           <div className="flex flex-col ms-4 ">
