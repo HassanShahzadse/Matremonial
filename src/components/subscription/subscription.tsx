@@ -16,16 +16,17 @@ const SubscriptionComponents = () => {
   return (
     <>
       <Navbar/>
-      <div className="container mx-auto grid lg:grid-cols-3 gap-10 mt-20 py-10">
-        <div className="flex flex-col items-center">
+     <div className="mx-auto max-w-7xl  ps-2 pe-4 sm:px-6 lg:px-8 mt-[8vh] lg:mt-[15vh] ">
+      <div className=" flex lg:flex-row flex-col  lg:justify-between  justify-center  items-center  my-10">
+        <div className="flex flex-col items-center mt-14   lg:-mt-16">
           <Image src={Logo} alt="Logo" width={100} height={100} />
-          <h3>Muslim Marriage Online</h3>
+          <h3 className=" font-bold -mt-10  font-sm">Muslim Marriage Online</h3>
         </div>
-        <div className="heading text-center space-y-4">
-          <h1 className="text-4xl font-bold">Find Your Soulmate</h1>
-          <h1 className="text-2xl font-bold">Subscription Plan</h1>
+        <div className="heading text-center space-y-4 mt-6 lg:mt-0">
+          <h1 className="text-4xl font-bold mb-0">Find Your Soulmate</h1>
+          <span className="text-3xl font-semibold mt-0">Subscription Plan</span>
         </div>
-        <div className="btn mx-auto ">
+        <div className="btn  mt-6 lg:mt-0">
           <ToggleButton
             activeButton={activeButton}
             setActiveButton={setActiveButton}
@@ -33,11 +34,12 @@ const SubscriptionComponents = () => {
         </div>
       </div>
 
-      <div className="mt-14">
+     <div className="mt-14">
         <CardsContainer activeButton={activeButton} />
-      </div>
+      </div> 
 
       <div className="bg-[#FD307A] h-[5vh] fixed left-0 w-full bottom-0 z-10 "></div>
+      </div> 
     </>
   );
 };
@@ -85,7 +87,7 @@ const ToggleButton: React.FC<any> = ({ setActiveButton, activeButton }) => {
         Subscription
       </button>
       <button
-        className={`px-5 py-1 rounded-full ${
+        className={`px-5 py-1 rounded-full / font-bold ${
           activeButton === "Boost"
             ? "bg-[#FD307A] text-white"
             : "bg-transparent text-black"
@@ -100,15 +102,17 @@ const ToggleButton: React.FC<any> = ({ setActiveButton, activeButton }) => {
 
 const Card: React.FC<any> = ({ title, days, price }) => {
   return (
-    <div className="bg-gray-100 p-6 px-10 m-2 h-72 rounded-3xl shadow-xl ">
+    <div className="p-4">
+    <div className="bg-[#ffffff] p-6  m-2  rounded-3xl  border-[#707070]  drop-shadow-3xl border-2 ">
       <h3 className="text-2xl font-bold text-center">{title}</h3>
       <p className="text-gray-600 text-center py-3">{days}</p>
-      <div className="mt-24 text-center flex flex-col ">
+      <div className="mt-16 text-center flex flex-col ">
         <span className="py-3">{price}</span>
-        <button className="border-2 border-gray-500 px-5 w-3/2 rounded-md mx-auto">
+        <button className="border-2 border-gray-500 px-5  rounded-md mx-auto">
           Buy now
         </button>
       </div>
+    </div>
     </div>
   );
 };
@@ -155,7 +159,7 @@ const CardsContainer: React.FC<any> = ({ activeButton }) => {
     activeButton === "Subscription" ? subscriptionCards : bootsCards;
 
   return (
-    <div className="container mx-auto grid lg:grid-cols-4 md:grid-cols-2 gap-7 w-screen">
+    <div className=" grid lg:grid-cols-4 md:grid-cols-2 ">
       {cards.map((data: any, index) => (
         <Card
           key={index}

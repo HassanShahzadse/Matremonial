@@ -463,7 +463,15 @@ function Hero() {
           <h1 className="text-xl  font-semibold py-6">NEED HELP?</h1>
 
           <ul>
-            <FooterList footerData={footerData} />
+            {/* <FooterList footerData={footerData} /> */}
+            <Link href="/login" className="py-2 cursor-pointer">
+              Member Login
+            </Link>
+            <li className="py-2 cursor-pointer">Muslim Marriage Online</li>
+            <Link href="/signup" className="py-2 cursor-pointer">
+              Signed Up
+            </Link>
+            <li className="py-2 cursor-pointer">Member Support</li>
           </ul>
         </div>
         <div className="">
@@ -475,7 +483,24 @@ function Hero() {
         <div className="">
           <h1 className="text-xl font-semibold py-6 -mt-10">PRIVACY & YOU</h1>
           <ul>
-            <FooterList footerData={footerPrivacy} />
+            {/* <FooterList footerData={footerPrivacy} /> */}
+            <li className="py-2 cursor-pointer">
+              <Link href="/termsAndConditions" >
+                Terms of Use
+              </Link>
+            </li>
+
+            <li className="py-2 cursor-pointer">
+              <Link href="/privacyPolicy" >
+                Privacy Policy
+              </Link>
+            </li>
+
+            <li className="py-2 cursor-pointer">
+              <Link href="/Contactus" >
+                Contact Us
+              </Link>
+            </li>
           </ul>
         </div>
         <div className="">
@@ -538,7 +563,7 @@ function FooterList({ footerData }: { footerData: any[] }) {
   return (
     <>
       {footerData.map((item) => (
-        <li className="py-2" key={item.label}>
+        <li className="py-2 cursor-pointer" key={item.label}>
           {item.label}
         </li>
       ))}
