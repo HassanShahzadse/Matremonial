@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-export default function SideBarFilter({ filters, updateFilters }:any) {
+export default function SideBarFilter({ filters, updateFilters,setFilterVisible }:any) {
+  if(!filters) setFilterVisible(false)
   if(!filters) return <h1>Nothing to display Here</h1>
   const { locationFilter, ageRangeFilter, genderFilter, professionFilter } = filters;
   const isGenderSelected = (gender: string) => genderFilter === gender;
