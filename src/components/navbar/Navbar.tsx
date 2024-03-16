@@ -10,14 +10,21 @@ import Link from "next/link";
 import { getLoggedInUserInfo } from "@/utils/userProfile/loggedInUserInfo";
 import NotificationPopup from "../notification/notificationPopup";
 import useNotifications from "@/sharedService/users/customNotificationHook";
+
 export default function Navbar({
   toggleFilter,
   searchText,
   setSearchText,
 }: any) {
   const user = getLoggedInUserInfo();
-  const [showNotification,setShowNotification]=useState(false)
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const handleFilterClick = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
   const { newProfileViews, newFriendRequests } = useNotifications();
+
+
   return (
     <>
       <div className="flex bg-[#FD307A] fixed left-0 w-full top-0 h-[10vh] items-center z-10 justify-between px-5">
@@ -63,7 +70,10 @@ export default function Navbar({
             </div>
           </Link>
           <div>
-            <button className=" text-slate-600 text-xl rounded-md p-2" onClick={() => setShowNotification(true)}>
+            <button
+              onClick={handleFilterClick}
+              className="text-slate-600 text-xl rounded-md p-2 relative"
+            >
               {/* <FaFilter /> */}
               <div className="icon">
                 <Image
@@ -74,8 +84,10 @@ export default function Navbar({
                   height={30}
                 />
               </div>
+              {dropdownOpen && (
+                <NotificationPopup newProfileViews={newProfileViews} newFriendRequests={newFriendRequests} />
+              )}
             </button>
-            {showNotification && <NotificationPopup profileViews={newProfileViews} friendRequests={newFriendRequests} />}
           </div>
           <Link href="/dashboard/messages">
             <div className="icon">

@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { getLoggedInUserInfo } from '@/utils/userProfile/loggedInUserInfo';
 import initializeFirebase from '../fireBase/firebase';
-import { collection, onSnapshot } from 'firebase/firestore';
+import { doc, onSnapshot } from 'firebase/firestore';
 
 const useNotifications = () => {
   const [newProfileViews, setNewProfileViews] = useState(0);
@@ -18,13 +18,14 @@ const useNotifications = () => {
           return;
         }
         const { db } = firebaseInstance;
-        const userCollection = collection(db, 'users');
-        // Subscribe to real-time updates for the logged-in user's document
-        const unsubscribe = onSnapshot(userCollection, (snapshot) => {
-          const userData:any = snapshot.docs.map(doc => doc.data());
-          const newProfileViewsCount = userData.viewed.filter((view: any) => !loggedInUser.viewed.includes(view)).length;
-          const newFriendRequestsCount = userData.friendRequests.filter((request: any) => !loggedInUser.friendRequests.includes(request)).length;
-  
+        const userDocRef = doc(db, 'users', loggedInUser.id);
+        const unsubscribe = onSnapshot(userDocRef, (docSnapshot) => {
+          const userData:any = docSnapshot.data();
+          console.log(userData, loggedInUser);
+          const viewedArray = loggedInUser.viewed || [];
+          const newProfileViewsCount = userData?.viewed?.filter((view: any) => !viewedArray.includes(view));
+          const newFriendRequestsCount = userData?.friendRequests
+
           setNewProfileViews(newProfileViewsCount);
           setNewFriendRequests(newFriendRequestsCount);
         });
@@ -40,7 +41,7 @@ const useNotifications = () => {
 
     fetchData();
   }, []);
-
+  console.log(newProfileViews, newFriendRequests)
   return { newProfileViews, newFriendRequests };
 };
 

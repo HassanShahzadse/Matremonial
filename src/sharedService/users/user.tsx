@@ -116,6 +116,30 @@ export const fetchUserInfoFromFirebase = async (userId:any) => {
     return false;
   }
 };
+export const checkFriendRequest = async (loggedInUserId: any, user2: any) => {
+  try {
+    const loggedInUserData =  await fetchUserInfoFromFirebase(loggedInUserId);
+  
+    if (!loggedInUserData || !user2) {
+      console.error('One or both users not found.');
+      return false;
+    }
+    console.log(loggedInUserData,user2.userId)
+
+    const LoggedInUserHasFriendRequestFromUser2 = loggedInUserData.friendRequests.includes(user2.userId);
+    const LoggedInUserIsFriendWithUser2 = loggedInUserData.friends.includes(user2.userId);
+    // Check if userId1 is in user2's friend requests
+    const user2HasFriendRequestFromLoggedInUser = user2.friendRequests?.includes(loggedInUserId);
+    return {
+      LoggedInUserHasFriendRequestFromUser2,
+      user2HasFriendRequestFromLoggedInUser,
+      LoggedInUserIsFriendWithUser2
+    };
+  } catch (error) {
+    console.error('Error checking friend request:', error);
+    return false;
+  }
+};
 export const fetchFriendRequests = async (userId: any) => {
   const firebaseInstance = await initializeFirebase();
 
@@ -243,6 +267,29 @@ export const acceptFriendRequest = async (loggedInUserId: string, friendUserId: 
     return false;
   }
 };
+export const sendFriendRequest = async (loggedInUserId: string, friendUserId: string) => {
+  try {
+    const firebaseInstance = await initializeFirebase();
+    if (!firebaseInstance) {
+      console.error('Firebase is not supported.');
+      return false;
+    }
+
+    const { db } = firebaseInstance;
+    const friendUserDocRef = doc(db, 'users', friendUserId);
+
+    // Add loggedInUserId to the friendUserId's friendRequests array
+    await updateDoc(friendUserDocRef, {
+      friendRequests: arrayUnion(loggedInUserId),
+    });
+
+    console.log('Friend request sent successfully.');
+    return true;
+  } catch (error) {
+    console.error('Error sending friend request:', error);
+    return false;
+  }
+};
 
 // Function to reject a friend request
 export const rejectFriendRequest = async (loggedInUserId: string, friendUserId: string) => {
@@ -270,3 +317,32 @@ export const rejectFriendRequest = async (loggedInUserId: string, friendUserId: 
     return false;
   }
 };
+export const unfriend = async (loggedInUserId: string, friendUserId: string) => {
+  try {
+    const firebaseInstance = await initializeFirebase();
+    if (!firebaseInstance) {
+      console.error('Firebase is not supported.');
+      return false;
+    }
+
+    const { db } = firebaseInstance;
+    const loggedInUserDocRef = doc(db, 'users', loggedInUserId);
+    const friendUserDocRef = doc(db, 'users', friendUserId);
+
+    // Remove friendUserId from loggedInUserId's friends array and vice versa
+    await updateDoc(loggedInUserDocRef, {
+      friends: arrayRemove(friendUserId),
+    });
+
+    await updateDoc(friendUserDocRef, {
+      friends: arrayRemove(loggedInUserId),
+    });
+
+    console.log('Unfriended successfully.');
+    return true;
+  } catch (error) {
+    console.error('Error unfriending:', error);
+    return false;
+  }
+};
+

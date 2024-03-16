@@ -3,9 +3,10 @@ import React, { useEffect } from "react";
 import Image from "next/image";
 import { useState } from "react";
 import Layout from "../mainLayout/layout";
-import { fetchUserInfoFromFirebase } from "@/sharedService/users/user";
+import { acceptFriendRequest, checkFriendRequest, fetchUserInfoFromFirebase, rejectFriendRequest, sendFriendRequest, unfriend } from "@/sharedService/users/user";
 import styles from "./messagesComponent.module.css";
 import Link from "next/link";
+import { getLoggedInUserInfo } from "@/utils/userProfile/loggedInUserInfo";
 
 // ... (previous imports)
 
@@ -15,11 +16,33 @@ interface ViewProfileProps {
 
 export default function ViewProfile({ userId }: ViewProfileProps) {
   const [userProfile, setUserProfile] = useState<any | undefined>();
+  const [RequestStatus,setRequestStatus] = useState<any>('Add Friend')
 
+  const user = getLoggedInUserInfo()
+  const handleFriendRequest = async () =>{
+    if(RequestStatus === 'Add Friend') await sendFriendRequest(user.id,userId)
+    if(RequestStatus === 'Accept Request') await acceptFriendRequest(user.id,userId)
+    if(RequestStatus === 'UnFrined') await unfriend(user.id,userId)
+    fetchData()
+  }
+  const handleRejectFriendRequest = async () =>{
+        await rejectFriendRequest(user.id,userId)
+        fetchData()
+  }
+  const checkFriendReq = async (user2:any) =>{
+    const check:any = await checkFriendRequest(user.id,user2)
+    console.log(check)
+   const { LoggedInUserHasFriendRequestFromUser2,user2HasFriendRequestFromLoggedInUser,LoggedInUserIsFriendWithUser2} = check
+   if(LoggedInUserHasFriendRequestFromUser2) setRequestStatus('Accept Request')
+  else if(user2HasFriendRequestFromLoggedInUser) setRequestStatus('Request Sent')
+  else if(LoggedInUserIsFriendWithUser2) setRequestStatus('UnFrined')
+   else setRequestStatus('Add Friend')
+  }
   const fetchData = async () => {
     try {
       const user: any | undefined = await fetchUserInfoFromFirebase(userId);
       setUserProfile(user);
+      checkFriendReq({...user,userId})
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -29,14 +52,6 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
     fetchData();
   }, [userId]);
 
-  const fetchDataAgain = async () => {
-    try {
-      await fetchData();
-      console.log("----------------");
-    } catch (error) {
-      console.error("Error fetching data again:", error);
-    }
-  };
   if(!userProfile) return <Layout><h1>Please Wait...</h1></Layout>
 
   return (
@@ -69,9 +84,17 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
               <button
                 type="button"
                 className="bg-[#F45F93] text-sm ps-2 pe-2 text-[#ffffff] rounded-s-xl rounded-e-xl border border-[#707070]"
+                onClick={handleFriendRequest}
               >
-                Add friend
+                {RequestStatus}
               </button>
+             {RequestStatus === 'Accept Request' && <button
+                type="button"
+                className="bg-[#F45F93] text-sm ps-2 pe-2 text-[#ffffff] rounded-s-xl rounded-e-xl ms-2 border border-[#707070]"
+                onClick={handleRejectFriendRequest}
+              >
+                Reject Request
+              </button>}
               <Link href={`/dashboard/messages/${userId}`}>
               <button
                 type="button"
