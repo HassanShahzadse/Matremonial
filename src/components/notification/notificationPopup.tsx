@@ -55,7 +55,7 @@ const NotificationPopup: React.FC<any>  = ({ newProfileViews, newFriendRequests 
         </div>}
         {newFriendRequests?.length !== 0  &&<div className="notification-item">
         {friendRequestsInfo.map(({ userId, userInfo }) => (
-          <Link href={`/dashboard/viewProfile/${userId}`} >
+          <Link href={`/dashboard/viewProfile/${userId}`}  key={userId}>
           <div key={userId} className="notification-item flex">
             <Image
               className="rounded-full h-8 w-8 border border-2  border-[#FF2271]"
