@@ -12,6 +12,7 @@ export const ChatWindow: React.FC<any> = ({ selectedChat, onSendMessage }) => {
     const user = JSON.parse(localuser);
     setLocalUser(user);
     setChatData(selectedChat?.chats)
+    console.log(selectedChat)
   }, [selectedChat]);
 
 

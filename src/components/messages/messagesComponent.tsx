@@ -5,9 +5,9 @@ import { useState } from "react";
 import Layout from "../mainLayout/layout";
 import { ChatWindow } from "@/utils/messages/chatWindow";
 import { fetchUserInfoFromFirebase } from "@/sharedService/users/user";
-import useChats from "@/sharedService/users/chatss";
+import useChats from "@/sharedService/users/customChatHook";
 interface MessagesComponentProps {
-  userId: any | any[] | undefined; // Adjust the type based on your use case
+  userId: any | any[] | undefined;
 }
 
 export default function MessagesComponent({ userId }: MessagesComponentProps) {
