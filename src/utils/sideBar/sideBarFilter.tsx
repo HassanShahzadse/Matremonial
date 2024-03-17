@@ -67,7 +67,7 @@ export default function SideBarFilter({ filters, updateFilters, setFilterVisible
               transition: "opacity .2s",
             }}
             min={18}
-            max={60}
+            max={100}
             value={tempFilters.ageRangeFilter || 18}
             onChange={handleAgeChange}
           />

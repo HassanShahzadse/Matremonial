@@ -4,7 +4,7 @@ export const getLoggedInUserInfo = (): any => {
 
     const userInfo = {
         ...user,
-        username:user.userName || 'User',
+        userName:user?.userName ? user?.userName :  user.name,
         image: user?.imageUrls && user.imageUrls[0]?.startsWith("https")
             ? user.imageUrls[0]
             : "https://www.w3schools.com/w3images/avatar2.png"
