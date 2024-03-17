@@ -2,7 +2,7 @@
 import React from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm, useFieldArray, Control } from "react-hook-form";
 import ChooseProfilePicture from "@/utils/addProfile/profile";
 import GalleryPicture from "@/utils/addProfile/galleryPicture";
 import { useEffect } from "react";
@@ -295,7 +295,7 @@ export default function ProfileComponent() {
                   {galleryFields.map((field) => (
                     <div key={field}>
                       <GalleryPicture
-                        control={control}
+                        control={control as unknown as Control}
                         previewImage={previewImages[field]}
                         setPreviewImage={(file) =>
                           handleFileChange(field, file)
