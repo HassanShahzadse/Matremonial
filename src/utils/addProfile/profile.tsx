@@ -61,7 +61,7 @@ const ChooseProfilePicture: React.FC<ChooseProfilePictureProps> = ({
           />
           <label
             htmlFor="profilePictureInput"
-            className=" text-2xl  font-bold p-0 rounded-lg text-center  cursor-pointer  "
+            className=" text-2xl  font-bold p-0 rounded-lg text-center  cursor-pointer   "
           >
             +
           </label>

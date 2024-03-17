@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React,{useState,useEffect} from "react";
+import axios from "axios";
 import {
   createUser,
   signupWithFacebook,
@@ -16,6 +17,11 @@ import Input from "@/utils/shared/Input";
 import Radio from "@/utils/shared/Radio";
 import Select from "@/utils/shared/Select";
 import Password from "@/utils/shared/Password";
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
+import {CountryCode} from "./CountryCode"
+
+
 type Props = {};
 
 const countryOption = [
@@ -47,6 +53,31 @@ const radioGenderOptions = [
 ];
 
 const SignUp = (props: Props) => {
+  const [locationOptions, setLocationOptions] = useState([]);
+
+  const [value, setValue] = useState()
+  useEffect(() => {
+    
+    fetchCountries();
+  }, []);
+
+   const fetchCountries = async () => {
+      try {
+        const response = await axios.get("https://restcountries.com/v3.1/all");
+        const countryData = response.data.map((country: any) => ({
+          label: country.name.common,
+          value: country.name.common,
+        }));
+
+        console.log(" name of country", countryData);
+        setLocationOptions(countryData);
+      } catch (error) {
+        console.error("Error fetching countries:", error);
+      }
+    };
+
+    
+
   const router = useRouter();
   const {
     register,
@@ -156,7 +187,7 @@ const SignUp = (props: Props) => {
                         label="Select Option"
                         register={register("country")}
                         error={errors.country}
-                        options={countryOption}
+                        options={locationOptions}
                         placeholder="Where do you Live?"
                       />
                     </div>
@@ -166,7 +197,7 @@ const SignUp = (props: Props) => {
                     <div className="flex items-center">
                       <div className="w-2/4">
                         <Select
-                          options={countryCodeOptions}
+                          options={CountryCode}
                           placeholder="Select Country"
                         />
                       </div>

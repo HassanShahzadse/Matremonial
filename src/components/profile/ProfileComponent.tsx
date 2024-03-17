@@ -248,7 +248,7 @@ export default function ProfileComponent() {
   return (
     <>
       <div className={styles.backgroundImg}>
-        <div className="h-[8vh] bg-[#fb1086] fixed top-0  left-0 right-0 "></div>
+        <div className="h-[8vh] bg-[#fb1086] fixed top-0 z-20 left-0 right-0 "></div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="sm:container mx-auto  rounded-[3rem] bg-white bg-opacity-70 p-8  mt-20 mb-5 ">
             <div className="card flex justify-center p-1 ">

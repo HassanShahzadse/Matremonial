@@ -59,7 +59,7 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
 
   return (
     <Layout>
-      <div className="mx-auto mt-24 mb-32 me-72">
+      <div className="mx-auto mt-32 mb-32 lg:me-72">
         <div className="flex  flex-row">
           <div className="image-wrapper ">
             <Image
@@ -114,7 +114,7 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
             </div>
           </div>
         </div>
-        <div className="grid  grid-cols-2 mt-10">
+        <div className="grid  sm:grid-cols-2 mt-10">
           <div className=" border-[#707070] border  rounded-xl">
             <div className="ms-2 me-6">
               <h1 className="text-[#000000] font-bold text-lg text-center opacity-100">
@@ -216,7 +216,7 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
             </div>
           </div>
           <div className="">
-            <div className=" border-[#707070] border  ms-12 rounded-xl">
+            <div className=" border-[#707070] border mt-6 sm:mt-0 sm:ms-12 rounded-xl">
               <div className="ms-2 me-6">
                 <h1 className="text-[#000000] font-bold text-lg text-center opacity-100">
                   Body Type
@@ -270,7 +270,7 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
                 </div>
               </div>
             </div>
-            <div className=" border-[#707070] border mt-5 ms-12 rounded-xl">
+            <div className=" border-[#707070] border mt-5 sm:ms-12 rounded-xl">
               <div className="ms-2 me-6">
                 <h1 className="text-[#000000] font-bold text-lg text-center opacity-100">
                   Looking For
@@ -282,7 +282,7 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
                 </p>
               </div>
             </div>
-            <div className=" border-[#707070] border mt-5 ms-12 rounded-xl">
+            <div className=" border-[#707070] border mt-5 sm:ms-12 rounded-xl">
               <div className="ms-2 me-6">
                 <h1 className="text-[rgb(0,0,0)] font-bold text-lg text-center opacity-100">
                   Type of Partner
@@ -333,18 +333,15 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
           </div>
         </div>
       </div>
-     <div className="absolute   -mt-[1.6rem]   -z-50 top-0  right-0  w-[250px] h-[100px]">
-        <div className="bg-[#707070] pt-8 pb-5">
+     <div className="absolute  invisible lg:visible   -mt-[5rem]   -z-50 top-0  right-0  w-[250px] h-[100px]">
+        <div className="bg-[#707070] / pt-36 pb-5">
             <h1 className="text-center text-[#FFFFFF]  text-lg ps-[5rem] pe-[5rem]">All Profile</h1>
             <h1 className="text-center text-[#FFFFFF] text-lg">Used To Connect</h1>
         </div>
         <div className="bg-black h-[3.5rem]">
         </div>
         <div className={styles.bgBanner}>
-
-
         </div>
-
      </div>
     </Layout>
   );
