@@ -5,8 +5,9 @@ import SelectField from "@/utils/addProfile/selectField";
 interface BodyTypeProps {
   bodyTypeFields: Array<{ label: string; name: string; type: string; placeholder?: string; options?: Array<{ label: string; value: string }> }>;
   register: any;
+  errors:any;
 }
-const BodyType: React.FC<BodyTypeProps> = ({ bodyTypeFields, register }) => {
+const BodyType: React.FC<BodyTypeProps> = ({ bodyTypeFields, register ,errors}) => {
   return (
     <div className="w-full  p-5 mt-5">
       <h1 className="text-xl font-bold text-center ">Body Type</h1>
@@ -19,6 +20,7 @@ const BodyType: React.FC<BodyTypeProps> = ({ bodyTypeFields, register }) => {
                 name={field.name}
                 placeholder={field.placeholder}
                 register={register}
+                errors={errors}
               />
             )}
             {field.type === "select" && (
@@ -27,6 +29,7 @@ const BodyType: React.FC<BodyTypeProps> = ({ bodyTypeFields, register }) => {
                 name={field.name}
                 options={field.options || []}
                 register={register}
+                errors={errors}
               />
             )}
           </React.Fragment>

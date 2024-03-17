@@ -5,12 +5,14 @@ import { UseFormRegister } from 'react-hook-form';
 interface RadioButtonGroupProps {
   label: string;
   name: string;
+  errors:any;
   options?: { label: string; value: string }[];
   register: UseFormRegister<any>;
 }
 
-const RadioButtonGroup: React.FC<RadioButtonGroupProps> = ({ label, name, options=[], register }) => {
+const RadioButtonGroup: React.FC<RadioButtonGroupProps> = ({ label, name, options=[], register,errors }) => {
   return (
+    <>
     <div className="mb-1 md:flex items-center md:space-x-20">
       <label className="block text-sm font-medium text-gray-600">{label}</label>
       <div className="flex items-center space-x-4 mt-1">
@@ -30,6 +32,10 @@ const RadioButtonGroup: React.FC<RadioButtonGroupProps> = ({ label, name, option
         ))}
       </div>
     </div>
+    {errors?.[name] && (
+        <p className="text-red-500 text-sm mt-1">{errors[name]?.message || 'This field is required'}</p>
+      )}
+    </>
   );
 };
 

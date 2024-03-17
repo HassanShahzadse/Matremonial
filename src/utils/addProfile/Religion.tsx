@@ -7,9 +7,10 @@ import RadioButtonGroup from "@/utils/addProfile/radioButtonGroup";
 interface ReligionProps {
   religiousInfoFields: Array<{ label: string; name: string; type: string; placeholder?: string; options?: Array<{ label: string; value: string }> }>;
   register: any; // Adjust the type as per your register function
+  errors:any;
 }
 
-const Religion: React.FC<ReligionProps> = ({ religiousInfoFields, register }) => {
+const Religion: React.FC<ReligionProps> = ({ religiousInfoFields, register, errors}) => {
   return (
     <div className="w-full  p-5 mt-5">
       <h1 className="text-xl font-bold  text-center ">Religion</h1>
@@ -24,6 +25,7 @@ const Religion: React.FC<ReligionProps> = ({ religiousInfoFields, register }) =>
                   name={field.name}
                   placeholder={field.placeholder}
                   register={register}
+                  errors={errors}
                 />
               );
             case "select":
@@ -34,6 +36,7 @@ const Religion: React.FC<ReligionProps> = ({ religiousInfoFields, register }) =>
                   name={field.name}
                   options={field.options || []}
                   register={register}
+                  errors={errors}
                 />
               );
             case "radio":
@@ -44,6 +47,7 @@ const Religion: React.FC<ReligionProps> = ({ religiousInfoFields, register }) =>
                   name={field.name}
                   options={field.options || []}
                   register={register}
+                  errors={errors}
                 />
               );
             default:

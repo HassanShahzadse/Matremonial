@@ -6,9 +6,10 @@ import SelectField from "@/utils/addProfile/selectField";
 interface PartnerProps {
   partnerFields: Array<{ label: string; name: string; type: string; placeholder?: string; options?: Array<{ label: string; value: string }> }>;
   register: any; 
+  errors:any;
 }
 
-const Partner: React.FC<PartnerProps> = ({ partnerFields, register }) => {
+const Partner: React.FC<PartnerProps> = ({ partnerFields, register ,errors }) => {
   return (
     <div className="w-full  p-5 mt-5">
       <h1 className="text-xl font-bold text-center ">
@@ -23,6 +24,7 @@ const Partner: React.FC<PartnerProps> = ({ partnerFields, register }) => {
                 name={field.name}
                 placeholder={field.placeholder}
                 register={register}
+                errors={errors}
               />
             )}
             {field.type === "select" && (
@@ -31,6 +33,7 @@ const Partner: React.FC<PartnerProps> = ({ partnerFields, register }) => {
                 name={field.name}
                 options={field.options || []}
                 register={register}
+                errors={errors}
               />
             )}
           </React.Fragment>

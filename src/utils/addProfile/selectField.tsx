@@ -13,6 +13,7 @@ interface SelectFieldProps {
 
 const SelectField: React.FC<SelectFieldProps> = ({ label, name, options=[], register, errors, required }) => {
   return (
+    <>
     <div className=" mb-4 md:flex items-center ">
       <label htmlFor={name} className="block text-xl font-medium text-gray-600">
         {label} {required && <span className="text-red-500">*</span>}
@@ -31,10 +32,12 @@ const SelectField: React.FC<SelectFieldProps> = ({ label, name, options=[], regi
           </option>
         ))}
       </select>
-      {errors?.[name] && (
+     
+    </div>
+    {errors?.[name] && (
         <p className="text-red-500 text-sm mt-1">{errors[name]?.message || 'This field is required'}</p>
       )}
-    </div>
+    </>
   );
 };
 

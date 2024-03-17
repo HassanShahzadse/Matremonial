@@ -7,9 +7,10 @@ import RadioButtonGroup from "@/utils/addProfile/radioButtonGroup";
 interface ProfileInfoProps {
   profileInfoFields: Array<{ label: string; name: string; type: string; placeholder?: string; options?: Array<{ label: string; value: string }> }>;
   register: any; 
+  errors:any;
 }
 
-const ProfileInfo: React.FC<ProfileInfoProps> = ({ profileInfoFields, register }) => {
+const ProfileInfo: React.FC<ProfileInfoProps> = ({ profileInfoFields, register , errors }) => {
   return (
     <div className="w-full p-5 mt-5">
       <h1 className="text-xl text-center font-bold ">Profile Info</h1>
@@ -24,6 +25,7 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({ profileInfoFields, register }
                   name={field.name}
                   placeholder={field.placeholder}
                   register={register}
+                  errors={errors}
                 />
               );
             case "select":
@@ -34,6 +36,7 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({ profileInfoFields, register }
                   name={field.name}
                   options={field.options || []}
                   register={register}
+                  errors={errors}
                 />
               );
             case "radio":
@@ -44,6 +47,7 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({ profileInfoFields, register }
                   name={field.name}
                   options={field.options || []}
                   register={register}
+                  errors={errors}
                 />
               );
             default:

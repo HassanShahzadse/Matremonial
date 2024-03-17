@@ -48,7 +48,6 @@ const radioGenderOptions = [
 
 const SignUp = (props: Props) => {
   const router = useRouter();
-
   const {
     register,
     handleSubmit,
@@ -96,7 +95,7 @@ const SignUp = (props: Props) => {
 
   return (
     <>
-      <div className="md:fixed md:top-0 md:left-0 md:right-0  h-[5vh] bg-[#fb1086] "></div>
+    <div className="md:fixed md:top-0 md:left-0 md:right-0  h-[5vh] bg-[#fb1086] "></div>
       <div className="md:mt-[5vh] lg:h-[90vh] ">
         <div className=" container-fluid">
           <div className="grid lg:grid-cols-2">
@@ -292,4 +291,5 @@ const SignUp = (props: Props) => {
     </>
   );
 };
+
 export default SignUp;

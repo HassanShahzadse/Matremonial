@@ -20,10 +20,11 @@ import {
   personalInfoFields,
   bodyTypeFields,
   religiousInfoFields,
-} from './profilefieldsData';
+} from "./profilefieldsData";
 import { updateUser, uploadImageToFirestore } from "@/sharedService/auth/auth";
 import { getLoggedInUserInfo } from "@/utils/userProfile/loggedInUserInfo";
-
+import { addprofileSchema } from "@/utils/validations/Validations";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export default function ProfileComponent() {
   const router = useRouter();
@@ -34,7 +35,12 @@ export default function ProfileComponent() {
     control,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(addprofileSchema),
+  });
+
+  const errorKeys = Object.keys(errors);
+  const errorCount = errorKeys.length;
 
   const galleryFields = [
     "gallery1",
@@ -64,7 +70,7 @@ export default function ProfileComponent() {
   });
 
   const [locationOptions, setLocationOptions] = useState([]);
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -136,138 +142,152 @@ export default function ProfileComponent() {
   const previous = () => {
     setStep((step) => step - 1);
   };
-  const watchFields = watch();
-  const isStepValid = () => {
-    switch (step) {
-      case 1:
-        return profileInfoFields.every((field) => !!watchFields[field.name]);
-      case 2:
-        return personalInfoFields.every((field) => !!watchFields[field.name]);
-      case 3:
-        return bodyTypeFields.every((field) => !!watchFields[field.name]);
-      case 4:
-        return religiousInfoFields.every((field) => !!watchFields[field.name]);
-      case 5:
-        return partnerFields.every((field) => !!watchFields[field.name]);
-      default:
-        return true;
-    }
-  };
 
   const next = () => {
+
+    if(step===0 && errorCount===15)
+    {
     setStep((prevStep) => prevStep + 1);
-    if (isStepValid()) {
-    } else {
-      alert("Please fill out all fields before proceeding.");
     }
+    else if(step===1 && errorCount===10)
+    {
+      setStep((prevStep) => prevStep + 1);
+    }
+    else if(step===2 && errorCount===7)
+    {
+      setStep((prevStep) => prevStep + 1);
+    }
+    else if(step===3 && errorCount===3)
+    {
+      setStep((prevStep) => prevStep + 1);
+    }
+
+
   };
   const onSubmit = async (data: any) => {
     try {
-        const uploadPromises: Promise<any>[] = [];
-        const dataWithUrls = { ...data };
+      const uploadPromises: Promise<any>[] = [];
+      const dataWithUrls = { ...data };
 
-        // Rename fields as per the database naming convention
-        dataWithUrls.maritalStatus = dataWithUrls.martialStatus;
-        dataWithUrls.children = dataWithUrls.haveChildren;
-        delete dataWithUrls.martialStatus;
-        delete dataWithUrls.haveChildren;
+      // Rename fields as per the database naming convention
+      dataWithUrls.maritalStatus = dataWithUrls.martialStatus;
+      dataWithUrls.children = dataWithUrls.haveChildren;
+      delete dataWithUrls.martialStatus;
+      delete dataWithUrls.haveChildren;
 
-        // Reorder image URLs with profile picture first
-        const imageFields = ['profilePicture', 'gallery1', 'gallery2', 'gallery3', 'gallery4', 'gallery5', 'gallery6'];
-        const imageUrls: string[] = [];
+      // Reorder image URLs with profile picture first
+      const imageFields = [
+        "profilePicture",
+        "gallery1",
+        "gallery2",
+        "gallery3",
+        "gallery4",
+        "gallery5",
+        "gallery6",
+      ];
+      const imageUrls: string[] = [];
 
-        for (const field of imageFields) {
-            if (dataWithUrls[field] instanceof File) {
-                uploadPromises.push(
-                    new Promise((resolve, reject) => {
-                        uploadImageToFirestore(dataWithUrls[field], (url: any) => {
-                            if (field === 'profilePicture') {
-                                imageUrls.unshift(url);
-                            } else {
-                                imageUrls.push(url);
-                            }
-                            resolve(undefined);
-                        }).catch(reject);
-                    })
-                );
-            }
+      for (const field of imageFields) {
+        if (dataWithUrls[field] instanceof File) {
+          uploadPromises.push(
+            new Promise((resolve, reject) => {
+              uploadImageToFirestore(dataWithUrls[field], (url: any) => {
+                if (field === "profilePicture") {
+                  imageUrls.unshift(url);
+                } else {
+                  imageUrls.push(url);
+                }
+                resolve(undefined);
+              }).catch(reject);
+            })
+          );
         }
+      }
 
-        await Promise.all(uploadPromises);
+      await Promise.all(uploadPromises);
 
-        const user = getLoggedInUserInfo();
-        const userId = user.id;
-        dataWithUrls.imageUrls = imageUrls;
-        const excludedFields = ['profilePicture', 'gallery1', 'gallery2', 'gallery3', 'gallery4', 'gallery5', 'gallery6'];
-        excludedFields.forEach(field => delete dataWithUrls[field]);
-        const updateSuccess = await updateUser(userId, dataWithUrls);
-        if (updateSuccess) {
-          router.push("/dashboard");
-            console.log('User updated successfully.');
-        } else {
-            window.alert('Failed to update user.');
-        }
+      const user = getLoggedInUserInfo();
+      const userId = user.id;
+      dataWithUrls.imageUrls = imageUrls;
+      const excludedFields = [
+        "profilePicture",
+        "gallery1",
+        "gallery2",
+        "gallery3",
+        "gallery4",
+        "gallery5",
+        "gallery6",
+      ];
+      excludedFields.forEach((field) => delete dataWithUrls[field]);
+      const updateSuccess = await updateUser(userId, dataWithUrls);
+      if (updateSuccess) {
+        router.push("/dashboard");
+        console.log("User updated successfully.");
+      } else {
+        window.alert("Failed to update user.");
+      }
     } catch (error) {
-        console.error('Error uploading images or updating user:', error);
+      console.error("Error uploading images or updating user:", error);
     }
-};
+  };
 
-  
   return (
     <>
       <div className={styles.backgroundImg}>
         <div className="h-[8vh] bg-[#fb1086] fixed top-0  left-0 right-0 "></div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-         
           <div className="sm:container mx-auto  rounded-[3rem] bg-white bg-opacity-70 p-8  mt-20 mb-5 ">
             <div className="card flex justify-center p-1 ">
               <ChooseProfilePicture control={control} />
             </div>
-
             {(() => {
-              switch (step) {
-                case 1:
-                  return (
-                    <ProfileInfo
-                      profileInfoFields={profileInfoFields}
-                      register={register}
-                    />
-                  );
-                case 2:
-                  return (
-                    <PersonalInfo
-                      personalInfoFields={personalInfoFields}
-                      register={register}
-                    />
-                  );
-                case 3:
-                  return (
-                    <BodyType
-                      bodyTypeFields={bodyTypeFields}
-                      register={register}
-                    />
-                  );
-                case 4:
-                  return (
-                    <Religion
-                      religiousInfoFields={religiousInfoFields}
-                      register={register}
-                    />
-                  );
-                case 5:
-                  return (
-                    <Partner
-                      partnerFields={partnerFields}
-                      register={register}
-                    />
-                  );
-                default:
-                  return null;
+              if (step === 0) {
+                return (
+                  <ProfileInfo
+                    profileInfoFields={profileInfoFields}
+                    register={register}
+                    errors={errors}
+                  />
+                );
+              } else if (step === 1 ) {
+                return (
+                  <PersonalInfo
+                    personalInfoFields={personalInfoFields}
+                    register={register}
+                    errors={errors}
+                  />
+                );
+              } else if (step === 2) {
+                return (
+                  <BodyType
+                    bodyTypeFields={bodyTypeFields}
+                    register={register}
+                    errors={errors}
+                  />
+                );
+              } else if (step === 3) {
+                return (
+                  <Religion
+                    religiousInfoFields={religiousInfoFields}
+                    register={register}
+                    errors={errors}
+                  />
+                );
+              } else if (step === 4) {
+                return (
+                  <Partner
+                    partnerFields={partnerFields}
+                    register={register}
+                    errors={errors}
+                  />
+                );
+              } else {
+                return null;
               }
             })()}
 
-            {step == 5 && (
+            {step == 4 && (
               <div className="w-full  p-5 mt-5">
                 <h1 className="text-xl font-semibold  ">Photos</h1>
 
@@ -291,25 +311,27 @@ export default function ProfileComponent() {
           </div>
 
           <div className="btn text-center mx-auto space-x-3 mb-20 ">
-            {step != 1 && (
-              <span
+            {step != 0 && (
+              <button
+                type="button"
                 className="bg-[#fb1086]  rounded-md px-4 p-2 mt-10 cursor-pointer text-white"
                 onClick={previous}
               >
                 Previous
-              </span>
+              </button>
             )}
 
-            {step != 5 && (
-              <span
+            {step != 4 && (
+              <button
+                type="submit"
                 className="bg-[#fb1086]  rounded-md px-4 p-2  cursor-pointer text-white"
                 onClick={next}
               >
                 Next
-              </span>
+              </button>
             )}
 
-            {step == 5 && (
+            {step == 4 && (
               <button
                 type="submit"
                 className="bg-[#fb1086] text-white p-2 rounded-md px-5"

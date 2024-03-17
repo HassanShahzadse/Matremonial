@@ -45,3 +45,64 @@ export const signupSchema =yup.object({
     .min(9)
     .required("Phone number is required"),
 });
+
+export const  addprofileSchema = yup.object({
+    gender:yup     
+    .string()
+    .required("Gender is required"),
+    education:yup
+    .string()
+    .required("Education is required"),
+    job:yup
+    .string()
+    .required("Education is required"),
+    tongue:yup
+    .string()
+    .required("Mother tongue is required"),
+    citizenship:yup
+    .string()
+    .required("Citizenship is required"),
+    income:yup
+    .string()
+    .required("Income is required"),
+    martialStatus:yup
+    .string()
+    .required("Martlal Status is required"),
+    children:yup
+    .string()
+    .required("Children is required"),
+    livingArrange:yup
+    .string()
+    .required("Living Arrangement is required"),
+    buildCont:yup
+    .string()
+    .required("Body Ttpe is required"),
+    smokeFreq:yup
+    .string()
+    .required("Field is required"),
+    disability:yup
+    .string()
+    .required("Field is required"), 
+    religion:yup
+    .string()
+    .required("Field is required"),
+    sect:yup
+    .string()
+    .required("Field is required"),
+    halal:yup
+    .string()
+    .required("Education is required"),
+    salah:yup
+    .string()
+    .required("Field is required"),
+    partnerReligion:yup
+    .string()
+    .required("Field is required"),
+    partnerSect:yup
+    .string()
+    .required("Field is required"),
+    partnerType:yup
+    .string()
+    .required("Field is required"),
+
+})
