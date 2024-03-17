@@ -6,7 +6,8 @@ const useChats = () => {
   const [chats, setChats] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  const localuser: any = localStorage.getItem("user");
+  const user = JSON.parse(localuser);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -20,8 +21,8 @@ const useChats = () => {
         const { db } = firebaseInstance;
         const messagesCollection = collection(db, 'messages');
         const q = query(messagesCollection, or(
-            where('receiver', '==', 'kdinpQBy8CCP3e2cWScf'),
-            where('sender', '==', 'kdinpQBy8CCP3e2cWScf')
+            where('receiver', '==', user.id),
+            where('sender', '==', user.id)
           ));
 
         // Subscribe to real-time updates

@@ -38,7 +38,7 @@ export const ChatWindow: React.FC<any> = ({ selectedChat, onSendMessage }) => {
           ?.slice()
           .sort((a: any, b: any) => a.timestamp.seconds - b.timestamp.seconds)
       : [];
-
+      const isInputEmptyOrSpaces = inputText.trim() === "";
   return (
     <>
       <div className="flex-1 my-4 flex col-span-2 h-[75.5vh]">
@@ -93,6 +93,7 @@ export const ChatWindow: React.FC<any> = ({ selectedChat, onSendMessage }) => {
             <button
               onClick={handleSendMessage}
               className="bg-[#f10086] text-white rounded-full p-3"
+              disabled={isInputEmptyOrSpaces}
             >
               Send
             </button>
