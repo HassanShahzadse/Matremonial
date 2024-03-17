@@ -1,22 +1,24 @@
-"use client"
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import Select from 'react-select';
-import RadioButtons from '../../utils/shared/radioBtn';
-import DateOfBirthInput from '../../utils/dateOfBirth/dateOfBirth';
-import { createUser, signupWithFacebook, signupWithGoogle } from '@/sharedService/auth/auth';
+"use client";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import React from "react";
+import {
+  createUser,
+  signupWithFacebook,
+  signupWithGoogle,
+} from "@/sharedService/auth/auth";
 import Marrage from "/public/pngwing.png";
-import { loginUser } from '@/sharedService/auth/auth';
-
-type Props = {}
-
-
+import { loginUser } from "@/sharedService/auth/auth";
+import { signupSchema } from "../../utils/validations/Validations";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import Input from "@/utils/shared/Input";
+import Radio from "@/utils/shared/Radio";
+import Select from "@/utils/shared/Select";
+import Password from "@/utils/shared/Password";
+type Props = {};
 
 const countryOption = [
-  { value: "", label: "Select Option" },
   { value: "option1", label: "Pakistan" },
   { value: "option2", label: "Afghanistan" },
   { value: "option3", label: "India" },
@@ -24,342 +26,270 @@ const countryOption = [
   { value: "option5", label: "Australia" },
 ];
 const registeringOptions = [
-  { value: "", label: "Select Option" },
   { value: "option1", label: "I am registering to find best partner" },
   { value: "option2", label: "I am registering to find my friend a partner" },
   { value: "option3", label: "I am registering to find my son a partner" },
   { value: "option4", label: "I am registering to find my daughter a partner" },
 ];
 const hearAboutOptions = [
-  { value: "", label: "Select Option" },
   { value: "option1", label: "From Internet" },
   { value: "option2", label: "From Facebook" },
   { value: "option3", label: "From Linkdin" },
   { value: "option4", label: "From Youtube" },
 ];
 const countryCodeOptions = [
-  { value: '+1', label: 'United States (+1)' },
-  { value: '+44', label: 'United Kingdom (+44)' },
+  { value: "+1", label: "United States (+1)" },
+  { value: "+44", label: "United Kingdom (+44)" },
 ];
+const radioGenderOptions = [
+  { value: "Male", label: "Male" },
+  { value: "Female", label: "Female" },
+];
+
 const SignUp = (props: Props) => {
   const router = useRouter();
-  const [selectedCountryCode, setSelectedCountryCode] = useState();
-  const [step, setStep] = useState(1);
-  const [showPassword, setShowPassword] = useState(false); 
-  const [formValues, setFormValues] = useState({
-    email: '',
-    userName: '',
-    confirmEmail: '',
-    password: '',
-    phone: '',
-    selectedCountryCode: '',
-    country: '',
-    dateOfBirth: '',
-    reason: '',
-    hearAbout: '',
-    gender: '',
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(signupSchema),
   });
 
-  const handleFormChange = (fieldName: string, value: any) => {
-    console.log(formValues)
-    setFormValues((prevFormValues) => {
-      const updatedFormValues = { ...prevFormValues, [fieldName]: value };
-      return updatedFormValues;
-    });
-  };
-
-  const handleSubmit = async () => {
-
-    console.log('--------------------------------')
-
-    let data = {
-      email: formValues.email,
-      name: formValues.userName,
-      password: formValues.password,
-      phone_number: formValues.phone,
-      country: formValues.country,
-      birth_date: formValues.dateOfBirth,
-      reason_for_registering: formValues.reason,
-      heard_about_us: formValues.hearAbout,
-      gender: formValues.gender
-    }
+  const onSubmit = async (data: any) => {
     try {
       const users = await createUser(data);
-      if(!users) return
-      let user = await loginUser(data.email,data.password);
-      console.log('Logged in user:', user);
-      if(user && user.id){
-        const userId = user.id
-        router.push('/dashboard');
-      }
-      else {
-        console.error('User object or user.id is undefined');
+      if (!users) return;
+      let user = await loginUser(data.email, data.password);
+      console.log("Logged in user:", user);
+      if (user && user.id) {
+        const userId = user.id;
+        router.push("/dashboard");
+      } else {
+        console.error("User object or user.id is undefined");
       }
 
-
-      router.push('/addprofile'); 
+      router.push("/addprofile");
     } catch (error) {
-      console.error('Login failed in login file', error);
+      console.error("Login failed in login file", error);
     }
   };
-  useEffect(() => {
-  }, [formValues]);
   const handleGoogleSignup = async () => {
     try {
       const user = await signupWithGoogle();
-      console.log('Signed up with Google:', user);
-      router.push('/addprofile'); 
+      console.log("Signed up with Google:", user);
+      router.push("/addprofile");
     } catch (error) {
-      console.error('Google signup error:', error);
+      console.error("Google signup error:", error);
     }
   };
   const handleFacebookSignup = async () => {
     try {
       const user = await signupWithFacebook();
-      console.log('Signed up with Facebook:', user);
-      router.push(''); 
+      console.log("Signed up with Facebook:", user);
+      router.push("");
     } catch (error) {
-      console.error('Facebook signup error:', error);
+      console.error("Facebook signup error:", error);
     }
   };
-  const validationSchema = Yup.object().shape({
-    userName: Yup.string().required('Username is required'),
-    email: Yup.string().email("Invalid email address").required('Email is required'),
-    confirmEmail: Yup.string().oneOf([Yup.ref("email"), ''], "Emails must match").required('Confirm email is required'),
-    password: Yup.string().min(8).required('Password is required'),
-    phone: Yup.string().min(9).required('Phone number is required'),
-    // country: Yup.string().required('Country is required'),
-    // dateOfBirth: Yup.string().required('Date of birth is required'),
-  });  
-  
-  const radioGenderOptions = ['Male', 'Female',]; 
+
   return (
     <>
-    <div className="md:fixed md:top-0 md:left-0 md:right-0  h-[5vh] bg-[#fb1086] "></div>
-    <div className="md:mt-[5vh] lg:h-[90vh] ">
-      <div className=" container-fluid">
-    <div className="grid lg:grid-cols-2">
-    <div className="lg:order-1 order-2    xsm:mt-2 lg:mt-0 bg-white p-7 rounded-lg shadow-md  md:h-[45vh] lg:h-[90vh]   overflow-auto ">
-      
-        <h1 className="text-2xl font-bold text-center">LOOKING FOR SOULMATE</h1>
-   
-     
-      <div className=''>
-        <Formik
-          initialValues={formValues}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}> 
-          {({ setFieldValue }) => (
-            <Form>
-                <div className='2xl:px-16 2xl:py-4 '> 
-                  <div className='form-group mb-3'>
-                    <label className='mb-2'>User Name</label>
-                    <Field type="text" name="userName" className="w-full border-b-2 outline-none border-gray-300 rounded p-2" placeholder="Enter your Name"
-                      onChange={(e: any) => {
-                        setFieldValue('userName', e.target.value)
-                        handleFormChange('userName', e.target.value);
-                      }}
+      <div className="md:fixed md:top-0 md:left-0 md:right-0  h-[5vh] bg-[#fb1086] "></div>
+      <div className="md:mt-[5vh] lg:h-[90vh] ">
+        <div className=" container-fluid">
+          <div className="grid lg:grid-cols-2">
+            <div className="lg:order-1 order-2    xsm:mt-2 lg:mt-0 bg-white p-7 rounded-lg shadow-md  md:h-[45vh] lg:h-[90vh]   overflow-auto ">
+              <h1 className="text-2xl font-bold text-center">
+                LOOKING FOR SOULMATE
+              </h1>
+              <div className="">
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <div className="2xl:px-16 2xl:py-4 mb-3">
+                    <Input
+                      label="User Name"
+                      type="text"
+                      placeholder="Enter your Name"
+                      register={register("userName")}
+                      error={errors.userName}
                     />
-                    <ErrorMessage name="userName" component="div" className="text-red-500" />
                   </div>
-
-          <div className="grid lg:grid-cols-2 md:grid-cols-2 gap-2 ">
-                  <div className='form-group mb-3'>
-                    <label className='mb-2'>Email</label>
-                    <Field type="text" name="email" className="w-full border-b-2 outline-none border-gray-300 rounded p-2" placeholder="Enter your email"
-                      onChange={(e: any) => {
-                        setFieldValue('email', e.target.value)
-                        handleFormChange('email', e.target.value);
-                      }} />
-                    <ErrorMessage name="email" component="div" className="text-red-500" />
+                  <div className="grid lg:grid-cols-2 md:grid-cols-2 gap-2 ">
+                    <div className="mb-3">
+                      <Input
+                        label="Email"
+                        type="email"
+                        placeholder="Enter your email"
+                        register={register("email")}
+                        error={errors.email}
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <Input
+                        label="Confirm Email"
+                        type="email"
+                        placeholder="Re-enter your Email"
+                        register={register("confirmEmail")}
+                        error={errors.confirmEmail}
+                      />
+                    </div>
                   </div>
-
-                  <div className='form-group mb-3'>
-                    <label className='mb-2'>Confirm Email</label>
-                    <Field type="text" name="confirmEmail" className="w-full border-b-2 outline-none border-gray-300 rounded p-2" placeholder="Re-enter your Email "
-                      onChange={(e: any) => {
-                        setFieldValue('confirmEmail', e.target.value)
-                        handleFormChange('confirmEmail', e.target.value);
-                      }} />
-                    <ErrorMessage name="confirmEmail" component="div" className="text-red-500" />
+                  <div className="mb-3">
+                    <Password
+                       label="Password"
+                       placeholder="Enter your password"
+                       register={register("password")}
+                       error={errors.password}
+                    />
                   </div>
+                  <div>
+                    <Radio
+                      label="Gender"
+                      options={radioGenderOptions}
+                      register={register("gender")}
+                      error={errors.gender}
+                    />
                   </div>
-                  <div className="form-group">
-                          <label className="mb-2">Password</label>
-                          <div className="relative">
-                            <Field
-                              type={showPassword ? "text" : "password"}
-                              name="password"
-                              className="w-full  border-b-2 border-gray-300 outline-none rounded p-2 "
-                              placeholder="Enter your password"
-                              onChange={(e: any) => {
-                                setFieldValue('password', e.target.value)
-                                handleFormChange('password', e.target.value);
-                              }} 
-                            />
-                            <button
-                              type="button"
-                              className="absolute right-3 top-1/2 transform -translate-y-1/2"
-                              onClick={() => setShowPassword(!showPassword)}
-                            >
-                              {showPassword ? (
-                                <i className="fas fa-eye-slash text-gray-400"></i>
-                              ) : (
-                                <i className="fas fa-eye text-gray-400"></i>
-                              )}
-                            </button>
-                          </div>
-                          <ErrorMessage
-                            name="password"
-                            component="div"
-                            className="text-red-500"
-                          />
-                        </div>
-
-                  <div className='form-group mb-3'>
-                    <label className='mb-2'>Phone Number</label>
-                    <div className='flex items-center'>
-                      <div className='w-2/4'>
-                        
+                  <div className="2xl:px-16 2xl:py-4">
+                    <div className="form-group xl:mb-3">
+                      <Select
+                        label="Select Option"
+                        register={register("country")}
+                        error={errors.country}
+                        options={countryOption}
+                        placeholder="Where do you Live?"
+                      />
+                    </div>
+                  </div>
+                  <div className="form-group mb-3">
+                    <label className="mb-2">Phone Number</label>
+                    <div className="flex items-center">
+                      <div className="w-2/4">
                         <Select
                           options={countryCodeOptions}
-                          value={selectedCountryCode}
-                          onChange={(option: any) =>  handleFormChange('selectedCountryCode', option.label)}
-                          placeholder="Country Code"
+                          placeholder="Select Country"
                         />
                       </div>
-                      <div className='w-2/4'>
-                        <Field
+                      <div className="ms-2 w-2/4">
+                        <Input
                           type="text"
-                          name="phone"
-                          className="w-full border-b-2 outline-none border-gray-300 rounded p-2"
+                          register={register("phone")}
                           placeholder="Enter your Phone Number"
-                          onChange={(e: any) => {
-                            setFieldValue('phone', e.target.value)
-                            handleFormChange('phone', e.target.value);
-                          }}
+                          error={errors.phone}
                         />
                       </div>
                     </div>
-                    <ErrorMessage name="phone" component="div" className="text-red-500" />
                   </div>
-
-                  <div className='form-group mb-3'>
-                    <label className='mb-2'>Gender</label>
-                    <RadioButtons
-                     options={radioGenderOptions}
-                      selectedOption={formValues.gender}
-                      onOptionChange={(value: any) => handleFormChange('gender', value)}
+                  <div className="mb-3">
+                    <Input
+                      label="Date Of Birth"
+                      type="date"
+                      register={register("dateOfBirth")}
+                      error={errors.dateOfBirth}
                     />
                   </div>
-                </div>
-                <div className='2xl:px-16 2xl:py-4'>
-                  <div className="form-group xl:mb-3">
-                    <label className="block mb-2">Where do you Live?</label>
-                    <select
-                      className="w-full border border-gray-300 rounded p-2"
-                      value={formValues.country}
-                      onChange={(e) => {
-                        handleFormChange('country', e.target.value)
-                      }}>
-                      {countryOption.map((option) => (
-                        <option key={option.value} value={option.label}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </select>
+                  <div className="grid lg:grid-cols-2 gap-2">
+                    <div className="mb-3">
+                      <Select
+                        label="Reason of Registering"
+                        placeholder="Select Option"
+                        error={errors.reason_for_registering}
+                        register={register("reason_for_registering")}
+                        options={registeringOptions}
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <Select
+                        label="Where did you hear about us?"
+                        placeholder="Select Option"
+                        error={errors.heard_about_us}
+                        register={register("heard_about_us")}
+                        options={hearAboutOptions}
+                      />
+                    </div>
                   </div>
-                  <div className='form-group mb-3'>
-                    <label>Date Of Birth</label>
-                    <DateOfBirthInput
-                      dateOfBirth={formValues.dateOfBirth}
-                      onDateOfBirthChange={(dateOfBirth) => handleFormChange('dateOfBirth', dateOfBirth)}
-                    />
+                  <div className="text-center xl:mt-5">
+                    <button
+                      type="submit"
+                      className="login-btn border border-gray-300 rounded-full active:scale-95 bg-[#fb1086] hover:bg-pink-700 text-white"
+                    >
+                      Sign up
+                    </button>
                   </div>
-
-                <div className="grid lg:grid-cols-2 gap-2">
-                  <div className="form-group mb-3">
-                    <label className="block mb-2">Reason of Registering</label>
-                    <select className="w-full border border-gray-300 rounded p-2"
-                      value={formValues.reason}
-                      onChange={(e) => {
-                        handleFormChange('reason', e.target.value)
-                      }}>
-                      {registeringOptions.map((option) => (
-                        <option key={option.value} value={option.label}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </select>
+                </form>
+                <>
+                  <div className="flex items-center xl:mt-2">
+                    <hr className="flex-1 border-t border-black" />
+                    <span className="px-2">OR</span>
+                    <hr className="flex-1 border-t border-black" />
                   </div>
-
-                  <div className="form-group mb-3">
-                    <label className="block mb-2">Where did you hear about us?</label>
-                    <select className="w-full border border-gray-300 rounded p-2"
-                      value={formValues.hearAbout}
-                      onChange={(e) => handleFormChange('hearAbout', e.target.value)}>
-                      {hearAboutOptions.map((option) => (
-                        <option key={option.value} value={option.label}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </select>
+                  <div className="grid md:grid-cols-2 gap-2">
+                    <div className="text-center mt-2">
+                      <button
+                        className="px-8 py-2 border border-gray-300 rounded-full"
+                        onClick={handleGoogleSignup}
+                      >
+                        <i
+                          className="fa-brands fa-google me-1"
+                          style={{ color: " #c61010" }}
+                        ></i>
+                        Sign up with Google
+                      </button>
+                    </div>
+                    <div className="text-center mt-2">
+                      <button
+                        className="px-5 py-2  border border-gray-300 rounded-full"
+                        onClick={handleFacebookSignup}
+                      >
+                        <i
+                          className="fa-brands fa-facebook me-1"
+                          style={{ color: "rgb(19 16 198)" }}
+                        ></i>
+                        Sign up with Facebook
+                      </button>
+                    </div>
                   </div>
+                  <div className="text-center mt-2">
+                    <button className="px-8 py-2 border border-gray-300 rounded-full">
+                      <i
+                        className="fa-brands fa-apple me-1"
+                        style={{ color: "rgb(28 27 27)" }}
+                      ></i>
+                      Sign up with Apple ID
+                    </button>
                   </div>
-
-                  <div className='text-center xl:mt-5'>
-                    <button type="submit" className="login-btn border border-gray-300 rounded-full active:scale-95 bg-[#fb1086] hover:bg-pink-700 text-white"
-                    >Sign up</button>
-                  </div>
-                </div>
-            </Form>
-          )}
-        </Formik>
-
-
-       
-          <>
-            <div className="flex items-center xl:mt-2">
-              <hr className="flex-1 border-t border-black" />
-              <span className="px-2">OR</span>
-              <hr className="flex-1 border-t border-black" />
+                </>
+              </div>
+              <div className="text-center mt-5">
+                <span>
+                  Already have an account?
+                  <a
+                    className="cursor-pointer text-red-500"
+                    onClick={() => router.push("/login")}
+                  >
+                    Log In
+                  </a>
+                </span>
+              </div>
             </div>
-            <div className="grid md:grid-cols-2 gap-2">
-            <div className='text-center mt-2'>
-              <button className="px-8 py-2 border border-gray-300 rounded-full" onClick={handleGoogleSignup}>
-                <i className="fa-brands fa-google me-1" style={{ color: ' #c61010' }}></i>
-                Sign up with Google</button>
+            <div className="lg:order-2 order-1   lg:h-[85vh] flex  items-center justify-center  md:h-[45vh] lg:h-[90vh]  flex-col bg-[#ffe8ea]  ">
+              <h1 className="font-bold  lg:text-4xl text-5xl  xl:text-5xl  text-[#f46194] text-center md:-mb-3">
+                Muslim Marriage online{" "}
+              </h1>
+              <Image
+                src={Marrage}
+                className="rounded-md "
+                alt="marriage"
+                width={325}
+                height={325}
+              />
             </div>
-            <div className='text-center mt-2'>
-              <button className="px-5 py-2  border border-gray-300 rounded-full" onClick={handleFacebookSignup}>
-                <i className="fa-brands fa-facebook me-1" style={{ color: 'rgb(19 16 198)' }}></i>
-                Sign up with Facebook</button>
-            </div>
-            </div>
-            <div className='text-center mt-2'>
-              <button className="px-8 py-2 border border-gray-300 rounded-full" >
-                <i className="fa-brands fa-apple me-1" style={{ color: 'rgb(28 27 27)' }}></i>
-                Sign up with Apple ID</button>
-            </div>
-          </>
-       
+          </div>
+        </div>
       </div>
-
-      <div className='text-center mt-5'>
-        <span>Already have an account?<a className='cursor-pointer text-red-500' onClick={() => router.push('/login')}>Log In</a></span>
-      </div>
-    </div>
-
-
-    <div className="lg:order-2 order-1   lg:h-[85vh] flex  items-center justify-center  md:h-[45vh] lg:h-[90vh]  flex-col bg-[#ffe8ea]  ">
-    <h1 className="font-bold  lg:text-4xl text-5xl  xl:text-5xl  text-[#f46194] text-center md:-mb-3">Muslim Marriage online </h1>
-    <Image src={Marrage} className='rounded-md ' alt='marriage' width={325} height={325} />
-      </div>
-    </div> 
-    </div> 
-    </div>
-    <div className="md:fixed md:bottom-0 md:left-0 md:right-0   h-[5vh] rounded-l-xl bg-[#fb1086]"></div>
+      <div className="md:fixed md:bottom-0 md:left-0 md:right-0   h-[5vh] rounded-l-xl bg-[#fb1086]"></div>
     </>
-  )
-}
-export default SignUp
+  );
+};
+export default SignUp;

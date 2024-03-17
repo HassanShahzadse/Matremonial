@@ -34,8 +34,6 @@ const SelectField: React.FC<SelectFieldProps> = ({ label, name, options=[], regi
       {errors?.[name] && (
         <p className="text-red-500 text-sm mt-1">{errors[name]?.message || 'This field is required'}</p>
       )}
-    
-
     </div>
   );
 };
