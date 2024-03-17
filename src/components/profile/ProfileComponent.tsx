@@ -29,6 +29,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 export default function ProfileComponent() {
   const router = useRouter();
   const [show, setShow] = useState(false);
+  const [showError, setShowError] = useState(0);
+
   const {
     register,
     handleSubmit,
@@ -143,28 +145,40 @@ export default function ProfileComponent() {
     setStep((step) => step - 1);
   };
 
-  const next = () => {
-
-    if(step===0 && errorCount===15)
-    {
-    setStep((prevStep) => prevStep + 1);
-    }
-    else if(step===1 && errorCount===10)
-    {
+  const nextStep0 = () => {
+    setShowError(0)
+    if (step === 0 && errorCount === 15) {
       setStep((prevStep) => prevStep + 1);
     }
-    else if(step===2 && errorCount===7)
-    {
-      setStep((prevStep) => prevStep + 1);
-    }
-    else if(step===3 && errorCount===3)
-    {
-      setStep((prevStep) => prevStep + 1);
-    }
-
-
   };
+
+  const nextStep1 = () => {
+    setShowError(1)
+    if (step === 1 && errorCount === 10) {
+      setStep((prevStep) => prevStep + 1);
+    }
+  };
+
+  const nextStep2 = () => {
+    setShowError(2)
+    if (step === 2 && errorCount === 7) {
+      setStep((prevStep) => prevStep + 1);
+    }
+  };
+
+  const nextStep3 = () => {
+    setShowError(3)
+    if (step === 3 && errorCount === 3) {
+      setStep((prevStep) => prevStep + 1);
+    }
+  };
+
+  const nextStep4 = () => {
+    setShowError(4)
+  }; 
+
   const onSubmit = async (data: any) => {
+  
     try {
       const uploadPromises: Promise<any>[] = [];
       const dataWithUrls = { ...data };
@@ -235,7 +249,6 @@ export default function ProfileComponent() {
     <>
       <div className={styles.backgroundImg}>
         <div className="h-[8vh] bg-[#fb1086] fixed top-0  left-0 right-0 "></div>
-
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="sm:container mx-auto  rounded-[3rem] bg-white bg-opacity-70 p-8  mt-20 mb-5 ">
             <div className="card flex justify-center p-1 ">
@@ -247,15 +260,15 @@ export default function ProfileComponent() {
                   <ProfileInfo
                     profileInfoFields={profileInfoFields}
                     register={register}
-                    errors={errors}
+                    errors={showError===0 ? errors : {}}
                   />
                 );
-              } else if (step === 1 ) {
+              } else if (step === 1) {
                 return (
                   <PersonalInfo
                     personalInfoFields={personalInfoFields}
                     register={register}
-                    errors={errors}
+                    errors={showError===1 ? errors : {}}
                   />
                 );
               } else if (step === 2) {
@@ -263,7 +276,7 @@ export default function ProfileComponent() {
                   <BodyType
                     bodyTypeFields={bodyTypeFields}
                     register={register}
-                    errors={errors}
+                    errors={showError===2 ? errors : {}}
                   />
                 );
               } else if (step === 3) {
@@ -271,7 +284,7 @@ export default function ProfileComponent() {
                   <Religion
                     religiousInfoFields={religiousInfoFields}
                     register={register}
-                    errors={errors}
+                    errors={showError===3 ? errors : {}}
                   />
                 );
               } else if (step === 4) {
@@ -279,7 +292,7 @@ export default function ProfileComponent() {
                   <Partner
                     partnerFields={partnerFields}
                     register={register}
-                    errors={errors}
+                    errors={showError===4 ? errors : {}}
                   />
                 );
               } else {
@@ -321,11 +334,38 @@ export default function ProfileComponent() {
               </button>
             )}
 
-            {step != 4 && (
+            {step == 0 && (
               <button
                 type="submit"
                 className="bg-[#fb1086]  rounded-md px-4 p-2  cursor-pointer text-white"
-                onClick={next}
+                onClick={nextStep0}
+              >
+                Next
+              </button>
+            )}
+            {step == 1 && (
+              <button
+                type="submit"
+                className="bg-[#fb1086]  rounded-md px-4 p-2  cursor-pointer text-white"
+                onClick={nextStep1}
+              >
+                Next
+              </button>
+            )}
+            {step == 2 && (
+              <button
+                type="submit"
+                className="bg-[#fb1086]  rounded-md px-4 p-2  cursor-pointer text-white"
+                onClick={nextStep2}
+              >
+                Next
+              </button>
+            )}
+            {step == 3 && (
+              <button
+                type="submit"
+                className="bg-[#fb1086]  rounded-md px-4 p-2  cursor-pointer text-white"
+                onClick={nextStep3}
               >
                 Next
               </button>
@@ -335,6 +375,7 @@ export default function ProfileComponent() {
               <button
                 type="submit"
                 className="bg-[#fb1086] text-white p-2 rounded-md px-5"
+                onClick={nextStep4}
               >
                 Submit
               </button>
