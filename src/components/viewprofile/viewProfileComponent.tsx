@@ -30,8 +30,11 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
         fetchData()
   }
   const checkFriendReq = async (user2:any) =>{
+    if (user.id ===user2.userId ){
+      setRequestStatus('OwnProfile')
+      return
+    }
     const check:any = await checkFriendRequest(user.id,user2)
-    console.log(check)
    const { LoggedInUserHasFriendRequestFromUser2,user2HasFriendRequestFromLoggedInUser,LoggedInUserIsFriendWithUser2} = check
    if(LoggedInUserHasFriendRequestFromUser2) setRequestStatus('Accept Request')
   else if(user2HasFriendRequestFromLoggedInUser) setRequestStatus('Request Sent')
@@ -71,23 +74,28 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
             />
           </div>
           <div className="flex flex-col ms-4 ">
-            <h1 className="text-[#000000] text-2xl font-bold">{userProfile.username}</h1>
+            <h1 className="text-[#000000] text-2xl font-bold">{userProfile.userName}</h1>
             <div className="flex flex-row mt-1">
               <h2 className="text-sm text-[#000000] font-semibold opacity-100">
                 Profile
               </h2>
+              <i className="text-lg mx-3">
+                  {user.gender === "Male" && <i className="fas fa-mars text-blue" />}
+                  {user.gender === "Female" && <i className="fas fa-venus text-[#FF2271]" />}
+                  {user.gender !== "Male" && user.gender !== "Female" && <i className="fas fa-transgender-alt" />}
+                </i>
               <span className="ms-3 textt-lg text-[#000000] font-semibold opacity-100">
-                Lahore,Pakistan
+                {user.location && user.country ? `${user.location}, ${user.country}` : "Location not available"}
               </span>
             </div>
             <div className="d-flex flex-row mt-8">
-              <button
+             {RequestStatus !== 'OwnProfile' && <button
                 type="button"
                 className="bg-[#F45F93] text-sm ps-2 pe-2 text-[#ffffff] rounded-s-xl rounded-e-xl border border-[#707070]"
                 onClick={handleFriendRequest}
               >
                 {RequestStatus}
-              </button>
+              </button>}
              {RequestStatus === 'Accept Request' && <button
                 type="button"
                 className="bg-[#F45F93] text-sm ps-2 pe-2 text-[#ffffff] rounded-s-xl rounded-e-xl ms-2 border border-[#707070]"
@@ -96,12 +104,12 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
                 Reject Request
               </button>}
               <Link href={`/dashboard/messages/${userId}`}>
-              <button
+              {RequestStatus !== 'OwnProfile' && <button
                 type="button"
                 className=" bg-[#F45F93] text-sm ms-1 ps-2 pe-2 text-[#ffffff] rounded-s-xl rounded-e-xl border border-[#707070]"
               >
                 Message
-              </button>
+              </button>}
               </Link>
             </div>
           </div>

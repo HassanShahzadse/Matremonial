@@ -50,7 +50,7 @@ export const UserList = ({
 
               <div>
                 <h2 className="font-semibold text-gray-400 hidden md:block">
-                  {user?.userInfo?.username}
+                  {user?.userInfo?.userName}
                 </h2>
                 {latestMessage && (
                   <>

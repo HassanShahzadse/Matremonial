@@ -61,7 +61,7 @@ export const ChatWindow: React.FC<any> = ({ selectedChat, onSendMessage }) => {
               )}
               <div className="ml-3">
                 <div className="font-semibold">
-                  {message.sender === userId ? userInfo.username : "You"}
+                  {message.sender === userId ? userInfo.userName : "You"}
                 </div>
                 <div
                   className={`text-white p-5 rounded-lg ${

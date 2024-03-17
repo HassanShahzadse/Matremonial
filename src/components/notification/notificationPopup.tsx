@@ -66,7 +66,7 @@ const NotificationPopup: React.FC<any>  = ({ newProfileViews, newFriendRequests 
               width={20}
               height={20}
             />
-            <p className='ms-1'>{userInfo?.username ? userInfo.username :userInfo.name} sent you a Friend request</p>
+            <p className='ms-1'>{userInfo?.userName ? userInfo.userName :userInfo.name} sent you a Friend request</p>
           </div>
           </Link>
         ))}

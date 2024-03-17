@@ -19,7 +19,7 @@ const useDashboardEffects = (filters: any,searchText:any) => {
       const cards = usersData.map(
         (user: {
           userId: any;
-          username: any;
+          userName: any;
           bio: any;
           age: any;
           country: any;
@@ -28,8 +28,8 @@ const useDashboardEffects = (filters: any,searchText:any) => {
           imageUrls: any[];
         }) => ({
           id: user.userId || generateUniqueId(),
-          title: user.username,
-          name: user.username,
+          title: user.userName,
+          name: user.userName,
           content: user.bio,
           age: user.age,
           profession: user.profession,
@@ -52,6 +52,7 @@ const useDashboardEffects = (filters: any,searchText:any) => {
 
   useEffect(() => {
     if (!filters) return;
+    console.log(filters)
     const filteredCards = userCards.filter((user) => {
       if (
         filters.locationFilter &&
@@ -61,7 +62,7 @@ const useDashboardEffects = (filters: any,searchText:any) => {
         return false;
       }
       const userAge = user.age;
-      if (userAge < filters.ageRangeFilter[0] || userAge > filters.ageRangeFilter[1]) {
+      if (userAge < filters.ageRangeFilter) {
         return false;
       }
       if (filters.genderFilter && user.gender !== filters.genderFilter) {

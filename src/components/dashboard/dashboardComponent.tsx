@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function DashboardComponent() {
   const [filters, setFilters] = useState<any>({
     locationFilter: null,
-    ageRangeFilter: [18, 30],
+    ageRangeFilter: 0,
     genderFilter: null,
     professionFilter: null
   });
@@ -30,8 +30,8 @@ export default function DashboardComponent() {
             className="text-center"
             src={Soulmate}
             alt=""
-            width={80}
-            height={80}
+            width={120}
+            height={120}
           />
           <h2 className="text-center text-2xl font-bold">Find Your Soulmate</h2>
           <p className="text-center">Find Your Perfect Match</p>

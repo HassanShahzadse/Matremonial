@@ -100,7 +100,8 @@ export default function Navbar({
               />
             </div>
           </Link>
-          <div className=" flex-col py-2 items-center">
+          <Link href={`/dashboard/viewProfile/${user.id}`}>
+          <div className="flex flex-col py-2 items-center">
             <Image
               className="rounded-full h-12 w-12"
               src={user.image}
@@ -109,9 +110,10 @@ export default function Navbar({
               height={40}
             />
             <h3 className="font-semibold text-sm text-white">
-              {user.username}
+              {user.userName ? user.userName : user.name}
             </h3>
           </div>
+            </Link>
         </div>
       </div>
     </>
