@@ -26,7 +26,7 @@ const SideBar = ({ show, updateFilters, filters, searchText, setSearchText,handl
       ) : (
         // Use ternary operator to conditionally render either SideBarFilter or ChatWindow based on the pathname
         !pathname.includes("messages") ? (
-          <SideBarFilter filters={filters} updateFilters={updateFilters} />
+          <SideBarFilter filters={filters} updateFilters={updateFilters} setFilterVisible={setFilterVisible}/>
         ) : (
           <UserList filteredChats={filteredChats} onCardClick={handleCardClick}/>
         )

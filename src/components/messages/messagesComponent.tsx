@@ -4,26 +4,23 @@ import Image from "next/image";
 import { useState } from "react";
 import Layout from "../mainLayout/layout";
 import { ChatWindow } from "@/utils/messages/chatWindow";
-import { getAllChats } from "@/sharedService/users/chat";
 import { fetchUserInfoFromFirebase } from "@/sharedService/users/user";
+import useChats from "@/sharedService/users/customChatHook";
 interface MessagesComponentProps {
-  userId: any | any[] | undefined; // Adjust the type based on your use case
+  userId: any | any[] | undefined;
 }
 
 export default function MessagesComponent({ userId }: MessagesComponentProps) {
   const [show, setShow] = useState(false);
+  const { chats, loading, error } = useChats();
   const [filteredChats, setFilteredChats] = useState<any>([]);
-  const [selectedChat, setSelectedChat] = useState(null);
-  const [selectedUser, setSelectedUser] = useState<any>({});
+  const [selectedChat, setSelectedChat] = useState<any>();
   const fetchData = async () => {
+    console.log(chats)
     try {
-      const chatData: any = await getAllChats();
       const localuser: any = localStorage.getItem("user");
       const user = JSON.parse(localuser);
-      const filteredData = chatData.filter(
-        (chat: { sender: any; receiver: any }) =>
-          chat.sender === user.id || chat.receiver === user.id
-      );
+      const filteredData = chats
       const combinedRecords: any = {};
       filteredData.forEach((chat: any) => {
         const otherUserId =
@@ -55,9 +52,9 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
 
       const usersData: any = await Promise.all(usersPromises);
       const sortedUsersData = sortUsersData(usersData, userId);
-      console.log(sortedUsersData)
-      setSelectedChat(sortedUsersData[0]);
-      setSelectedUser(sortedUsersData[0].userInfo);
+
+      setSelectedChat(selectedChat ?  sortedUsersData.find(user => user.userId === selectedChat.userId) :sortedUsersData[0]);
+      console.log(selectedChat)
       setFilteredChats(sortedUsersData);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -85,18 +82,10 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
 
   useEffect(() => {
     fetchData();
-  }, [userId]);
-  const fetchDataAgain = async () => {
-    try {
-      await fetchData();
-      console.log("----------------");
-    } catch (error) {
-      console.error("Error fetching data again:", error);
-    }
-  };
+  }, [chats]);
+
   const handleCardClick = (chat: any) => {
     setSelectedChat(chat);
-    setSelectedUser(chat.userInfo);
     setShow(true);
   };
   return (
@@ -109,14 +98,14 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
               <div className="img-name flex ml-3 items-center space-x-3">
                 <Image
                   className="rounded-full h-12 w-12"
-                  src={selectedUser?.imageUrls && selectedUser.imageUrls[0]?.startsWith("https")
-                  ? selectedUser.imageUrls[0]
+                  src={selectedChat?.userInfo?.imageUrls && selectedChat?.userInfo?.imageUrls[0]?.startsWith("https")
+                  ? selectedChat.userInfo.imageUrls[0]
                   : "https://www.w3schools.com/w3images/avatar2.png"}
                   alt=""
                   width={30}
                   height={30}
                 />
-                <h3>{selectedUser?.username}</h3>
+                <h3>{selectedChat?.userInfo?.username}</h3>
               </div>
               <div className="star shadow-md text-3xl items-center text-center p-2">
                 ...
@@ -127,7 +116,6 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
           <div className="h-[83vh] mt-1 grid lg:grid-cols-2 md:grid-cols-1 xsm:grid-cols-1 ">
             <ChatWindow
               selectedChat={selectedChat}
-              onSendMessage={fetchDataAgain}
             />
           </div>
         </div>

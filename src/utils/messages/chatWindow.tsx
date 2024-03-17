@@ -11,16 +11,10 @@ export const ChatWindow: React.FC<any> = ({ selectedChat, onSendMessage }) => {
     const localuser: any = localStorage.getItem("user");
     const user = JSON.parse(localuser);
     setLocalUser(user);
-    fetchChats();
+    setChatData(selectedChat?.chats)
+    console.log(selectedChat)
   }, [selectedChat]);
 
-  const fetchChats = async () => {
-    if (!selectedChat) return;
-
-    const chat: any = await getChatsByUserIds(selectedChat.userId, localUser.id);
-    console.log(chat);
-    setChatData(chat);
-  };
 
   const handleKeyPress = async (e: any) => {
     if (e.key === "Enter" && inputText.trim() !== "") {
@@ -31,7 +25,6 @@ export const ChatWindow: React.FC<any> = ({ selectedChat, onSendMessage }) => {
   const handleSendMessage = async () => {
     await createMessage(selectedChat.userId, localUser.id, inputText);
     setInputText("");
-    fetchChats();
   };
 
   if (!selectedChat || !selectedChat.userInfo) {
@@ -40,7 +33,7 @@ export const ChatWindow: React.FC<any> = ({ selectedChat, onSendMessage }) => {
 
   const { userId, userInfo } = selectedChat || { userId: null, userInfo: null };
   const sortedChats =
-    chatData.length >= 0
+    chatData?.length >= 0
       ? chatData
           ?.slice()
           .sort((a: any, b: any) => a.timestamp.seconds - b.timestamp.seconds)
