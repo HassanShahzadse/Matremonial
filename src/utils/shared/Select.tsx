@@ -23,16 +23,16 @@ const Select: React.FC<SelectProps> = ({
   return (
     <div className="mb-4">
       {label && (
-        <label className="block text-sm font-bold mb-1">
+        <label className="block text-[#000000] text-sm font-bold ">
           {label} <span className="text-red-500">*</span>
         </label>
       )}
       <select
-        className="block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+        className="w-full border-2 border-[#707070]  placeholder-[#707070] rounded-s-2xl rounded-e-2xl "
         {...register}
       >
         {placeholder && ( 
-          <option value="" disabled={placeholder === undefined}>
+          <option value="" className="placeholder-[#707070]" disabled={placeholder === undefined}>
             {placeholder}
           </option>
         )}

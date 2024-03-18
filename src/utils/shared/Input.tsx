@@ -17,11 +17,11 @@ const Input: React.FC<InputProps> = ({
 }) => {
   return (
     <>
-    {label && <label>
+    {label && <label className="text-[#000000] text-sm font-bold">
         {label} <span className="text-red-500">*</span>
       </label>}
       <input 
-        className="w-full border-b-2 outline-none border-gray-300 rounded "
+        className="w-full border-2 border-[#707070] placeholder-[#707070]  rounded-s-2xl rounded-e-2xl "
         type={type} 
         placeholder={placeholder} 
         {...register} 

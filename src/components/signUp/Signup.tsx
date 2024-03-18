@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
+import "./Signup.css"
 import axios from "axios";
 import {
   createUser,
@@ -17,10 +18,9 @@ import Input from "@/utils/shared/Input";
 import Radio from "@/utils/shared/Radio";
 import Select from "@/utils/shared/Select";
 import Password from "@/utils/shared/Password";
-import 'react-phone-number-input/style.css'
-import PhoneInput from 'react-phone-number-input'
-import {CountryCode} from "./CountryCode"
-
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
+import { CountryCode } from "./CountryCode";
 
 type Props = {};
 
@@ -55,28 +55,25 @@ const radioGenderOptions = [
 const SignUp = (props: Props) => {
   const [locationOptions, setLocationOptions] = useState([]);
 
-  const [value, setValue] = useState()
+  const [value, setValue] = useState();
   useEffect(() => {
-    
     fetchCountries();
   }, []);
 
-   const fetchCountries = async () => {
-      try {
-        const response = await axios.get("https://restcountries.com/v3.1/all");
-        const countryData = response.data.map((country: any) => ({
-          label: country.name.common,
-          value: country.name.common,
-        }));
+  const fetchCountries = async () => {
+    try {
+      const response = await axios.get("https://restcountries.com/v3.1/all");
+      const countryData = response.data.map((country: any) => ({
+        label: country.name.common,
+        value: country.name.common,
+      }));
 
-        console.log(" name of country", countryData);
-        setLocationOptions(countryData);
-      } catch (error) {
-        console.error("Error fetching countries:", error);
-      }
-    };
-
-    
+      console.log(" name of country", countryData);
+      setLocationOptions(countryData);
+    } catch (error) {
+      console.error("Error fetching countries:", error);
+    }
+  };
 
   const router = useRouter();
   const {
@@ -126,17 +123,20 @@ const SignUp = (props: Props) => {
 
   return (
     <>
-    <div className="md:fixed md:top-0 md:left-0 md:right-0  h-[5vh] bg-[#fb1086] "></div>
+      <div className="md:fixed md:top-0 md:left-0 md:right-0  h-[5vh] bg-[#fb1086] "></div>
       <div className="md:mt-[5vh] lg:h-[90vh] ">
         <div className=" container-fluid">
           <div className="grid lg:grid-cols-2">
-            <div className="lg:order-1 order-2    xsm:mt-2 lg:mt-0 bg-white p-7 rounded-lg shadow-md  md:h-[45vh] lg:h-[90vh]   overflow-auto ">
+            <div className="lg:order-1 order-2  ps-12 pe-14  pe-14 xsm:mt-2 lg:mt-0 bg-white p-7 rounded-lg shadow-md  md:h-[45vh] lg:h-[90vh]   overflow-auto ">
               <h1 className="text-2xl font-bold text-center">
                 LOOKING FOR SOULMATE
               </h1>
+              <p className="text-center text-sm opacity-75   text-[#4D4F5C]">
+                Lets Create Your Account Today
+              </p>
               <div className="">
                 <form onSubmit={handleSubmit(onSubmit)}>
-                  <div className="2xl:px-16 2xl:py-4 mb-3">
+                  <div>
                     <Input
                       label="User Name"
                       type="text"
@@ -145,35 +145,33 @@ const SignUp = (props: Props) => {
                       error={errors.userName}
                     />
                   </div>
-                  <div className="grid lg:grid-cols-2 md:grid-cols-2 gap-2 ">
-                    <div className="mb-3">
-                      <Input
-                        label="Email"
-                        type="email"
-                        placeholder="Enter your email"
-                        register={register("email")}
-                        error={errors.email}
-                      />
-                    </div>
-                    <div className="mb-3">
-                      <Input
-                        label="Confirm Email"
-                        type="email"
-                        placeholder="Re-enter your Email"
-                        register={register("confirmEmail")}
-                        error={errors.confirmEmail}
-                      />
-                    </div>
-                  </div>
-                  <div className="mb-3">
-                    <Password
-                       label="Password"
-                       placeholder="Enter your password"
-                       register={register("password")}
-                       error={errors.password}
+                  <div className="mt-1">
+                    <Input
+                      label="Email"
+                      type="email"
+                      placeholder="Enter your email"
+                      register={register("email")}
+                      error={errors.email}
                     />
                   </div>
-                  <div>
+                  <div className="mt-1" >
+                    <Input
+                      label="Confirm Email"
+                      type="email"
+                      placeholder="Re-enter your Email"
+                      register={register("confirmEmail")}
+                      error={errors.confirmEmail}
+                    />
+                  </div>
+                  <div className="mt-1">
+                    <Password
+                      label="Password"
+                      placeholder="Enter your password"
+                      register={register("password")}
+                      error={errors.password}
+                    />
+                  </div>
+                  <div className="mt-1">
                     <Radio
                       label="Gender"
                       options={radioGenderOptions}
@@ -181,37 +179,37 @@ const SignUp = (props: Props) => {
                       error={errors.gender}
                     />
                   </div>
-                  <div className="2xl:px-16 2xl:py-4">
-                    <div className="form-group xl:mb-3">
-                      <Select
-                        label="Select Option"
-                        register={register("country")}
-                        error={errors.country}
-                        options={locationOptions}
-                        placeholder="Where do you Live?"
-                      />
-                    </div>
+                  <div className="mt-1">
+                    <Select
+                      label="Select Option"
+                      register={register("country")}
+                      error={errors.country}
+                      options={locationOptions}
+                      placeholder="Where do you Live?"
+                    />
                   </div>
-                  <div className="form-group mb-3">
-                    <label className="mb-2">Phone Number</label>
+                   <div className="form-group mt-1">
+                    <label className="text-[#000000] text-sm font-bold">Phone Number</label>
                     <div className="flex items-center">
                       <div className="w-2/4">
                         <Select
                           options={CountryCode}
-                          placeholder="Select Country"
+                          placeholder="Select Country Code"
                         />
                       </div>
-                      <div className="ms-2 w-2/4">
+                      <div className="ms-2 w-2/4 pb-[16px]">
                         <Input
                           type="text"
+                         
                           register={register("phone")}
                           placeholder="Enter your Phone Number"
                           error={errors.phone}
+                         
                         />
                       </div>
                     </div>
-                  </div>
-                  <div className="mb-3">
+                  </div> 
+                  <div className="mt-1">
                     <Input
                       label="Date Of Birth"
                       type="date"
@@ -219,25 +217,23 @@ const SignUp = (props: Props) => {
                       error={errors.dateOfBirth}
                     />
                   </div>
-                  <div className="grid lg:grid-cols-2 gap-2">
-                    <div className="mb-3">
-                      <Select
-                        label="Reason of Registering"
-                        placeholder="Select Option"
-                        error={errors.reason_for_registering}
-                        register={register("reason_for_registering")}
-                        options={registeringOptions}
-                      />
-                    </div>
-                    <div className="mb-3">
-                      <Select
-                        label="Where did you hear about us?"
-                        placeholder="Select Option"
-                        error={errors.heard_about_us}
-                        register={register("heard_about_us")}
-                        options={hearAboutOptions}
-                      />
-                    </div>
+                  <div className="mt-1">
+                    <Select
+                      label="Reason of Registering"
+                      placeholder="Select Option"
+                      error={errors.reason_for_registering}
+                      register={register("reason_for_registering")}
+                      options={registeringOptions}
+                    />
+                  </div>
+                  <div className="mt-1">
+                    <Select
+                      label="Where did you hear about us?"
+                      placeholder="Select Option"
+                      error={errors.heard_about_us}
+                      register={register("heard_about_us")}
+                      options={hearAboutOptions}
+                    />
                   </div>
                   <div className="text-center xl:mt-5">
                     <button

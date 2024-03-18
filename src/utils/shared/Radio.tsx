@@ -10,7 +10,7 @@ interface RadioProps {
 const Radio: React.FC<RadioProps> = ({ label, options, register, error }) => {
   return (
     <div>
-      <label>
+      <label className="text-[#000000] text-sm font-bold">
         {label} <span className="text-red-500">*</span>
       </label>
       <div className="flex flex-row"> 
@@ -21,7 +21,7 @@ const Radio: React.FC<RadioProps> = ({ label, options, register, error }) => {
               id={option.value}
               value={option.value}
               {...register}
-              className="mr-1"
+              className="mr-1 placeholder-[#707070]"
             />
             <label htmlFor={option.value}>
               {option.label}

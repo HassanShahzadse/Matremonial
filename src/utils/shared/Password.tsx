@@ -19,12 +19,12 @@ const Password:React.FC<InputProps>  = ({
   return (
     <>
     <div className="form-group">
-    <label className="mb-2">{label}</label>
+    <label className="text-[#000000] text-sm font-bold">{label}</label>
     <div className="relative">
       <input
         type={showPassword ? "text" : "password"}
         name="password"
-        className="w-full  border-b-2 border-gray-300 outline-none rounded p-2 "
+        className="w-full border-2 border-[#707070] placeholder-[#707070]  rounded-s-2xl rounded-e-2xl  "
         placeholder={placeholder}
         {...register}
       />
