@@ -32,7 +32,7 @@ export default function Navbar({
           <div>
             <p
               onClick={toggleFilter}
-              className="text-2xl text-white cursor-pointer"
+              className="text-3xl text-white cursor-pointer"
             >
               ☰
             </p>

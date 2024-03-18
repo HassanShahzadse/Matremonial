@@ -334,13 +334,20 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
         </div>
       </div>
      <div className="absolute  invisible lg:visible   -mt-[5rem]   -z-50 top-0  right-0  w-[250px] h-[100px]">
-        <div className="bg-[#707070] / pt-36 pb-5">
+        <div className="bg-[#707070]  pt-16 pb-5">
             <h1 className="text-center text-[#FFFFFF]  text-lg ps-[5rem] pe-[5rem]">All Profile</h1>
             <h1 className="text-center text-[#FFFFFF] text-lg">Used To Connect</h1>
         </div>
-        <div className="bg-black h-[3.5rem]">
+        <div className="bg-black h-[3.5rem] text-[#FFFFFF] font-semibold text-md  flex items-center ps-3">
+           Learn More
         </div>
         <div className={styles.bgBanner}>
+          <div className="text-center">
+             <h1 className="text-5xl text-[#FFFFFF] pt-6 ">You’re</h1>
+             <h1 className="text-5xl text-[#FFFFFF] font-bold">invisible</h1>
+             <p className="text-center text-[#FFFFFF] pt-8  pe-12  leading-7 ps-12 font-semibold ">Inorder to increase Your visibility and Get promoted You need to become our supporter.</p>
+             <Link href="/dashboard/subscription"><button className=" text-[#FE2673] rounded-lg font-extrabold ps-7 pe-7 pt-3 cursor-pointer pb-3 bg-[#ffffff] mt-8">Go Premium</button></Link>
+          </div>
         </div>
      </div>
     </Layout>
