@@ -1,3 +1,4 @@
+// Import necessary libraries
 import React, { useEffect, useState } from "react";
 import { createMessage, getChatsByUserIds } from "@/sharedService/users/chat";
 import EmojiSelector from "../EmojiSelector";
@@ -14,7 +15,6 @@ export const ChatWindow: React.FC<any> = ({ selectedChat, onSendMessage }) => {
     setChatData(selectedChat?.chats)
     console.log(selectedChat)
   }, [selectedChat]);
-
 
   const handleKeyPress = async (e: any) => {
     if (e.key === "Enter" && inputText.trim() !== "") {
@@ -38,7 +38,8 @@ export const ChatWindow: React.FC<any> = ({ selectedChat, onSendMessage }) => {
           ?.slice()
           .sort((a: any, b: any) => a.timestamp.seconds - b.timestamp.seconds)
       : [];
-      const isInputEmptyOrSpaces = inputText.trim() === "";
+  const isInputEmptyOrSpaces = inputText.trim() === "";
+  
   return (
     <>
       <div className="flex-1 my-4 flex col-span-2 h-[75.5vh]">
@@ -70,6 +71,7 @@ export const ChatWindow: React.FC<any> = ({ selectedChat, onSendMessage }) => {
                 >
                   {message.text}
                 </div>
+                <div className="text-xs text-gray-500">  {new Date(message.timestamp.seconds * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
               </div>
               {message.sender !== userId && (
                 <div className="flex-shrink-0 w-8 h-8 rounded-full ml-2"></div>
