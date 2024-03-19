@@ -1,7 +1,21 @@
-import { useState } from "react";
+
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+
 
 export default function SideBarFilter({ filters, updateFilters, setFilterVisible }: any) {
   const [tempFilters, setTempFilters] = useState(filters || {});
+  const [locationOptions, setLocationOptions] = useState<locationOption[]>([]);
+
+  interface locationOption {
+    value: string;
+    label: string;
+  }
+
+  useEffect(() => {
+    fetchCountries();
+  }, []);
+
   if (!filters) {
     setFilterVisible(false);
     return <h1>Nothing to display Here</h1>;
@@ -18,6 +32,21 @@ export default function SideBarFilter({ filters, updateFilters, setFilterVisible
   // Handle applying filters
   const applyFilters = () => {
     updateFilters(tempFilters);
+  };
+
+  const fetchCountries = async () => {
+    try {
+      const response = await axios.get("https://restcountries.com/v3.1/all");
+      const countryData = response.data.map((country: any) => ({
+        label: country.name.common,
+        value: country.name.common,
+      }));
+
+      console.log(" name of country", countryData);
+      setLocationOptions(countryData);
+    } catch (error) {
+      console.error("Error fetching countries:", error);
+    }
   };
 
 
@@ -43,10 +72,12 @@ export default function SideBarFilter({ filters, updateFilters, setFilterVisible
             <option value="" disabled>
               Choose Location
             </option>
-            <option value="Pakistan">Pakistan</option>
-            <option value="New York">New York</option>
-            <option value="England">England</option>
-            <option value="UK">UK</option>
+          
+
+            {locationOptions.map((option, index) => (
+                  <option key={index} value={option.value}>{option.label}</option>
+            ))}
+            
           </select>
         </div>
         {/* Age Range */}

@@ -13,6 +13,8 @@ const SubscriptionComponents = () => {
   const handleClick = () => {
     setActiveButton(activeButton === "Subscription" ? "Boost" : "Subscription");
   };
+
+  
   return (
     <>
       <Navbar/>
@@ -70,6 +72,8 @@ export default SubscriptionComponents;
 const ToggleButton: React.FC<any> = ({ setActiveButton, activeButton }) => {
   // const [activeButton, setActiveButton] = useState("Subscription");
 
+
+
   const handleClick = (button:any) => {
     setActiveButton(button);
   };
@@ -101,14 +105,21 @@ const ToggleButton: React.FC<any> = ({ setActiveButton, activeButton }) => {
 };
 
 const Card: React.FC<any> = ({ title, days, price }) => {
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+
+  const expandCard = () => {
+    setIsExpanded(!isExpanded);
+  };
   return (
     <div className="p-4">
-    <div className="bg-[#ffffff] p-6  m-2  rounded-3xl  border-[#707070]  drop-shadow-3xl border-2 ">
+    <div className={`bg-[#ffffff] p-6  ${isExpanded ? 'scale-125' : ''}    m-2  rounded-3xl  border-[#707070]  drop-shadow-3xl border-2 `}
+      onClick={expandCard}
+    >
       <h3 className="text-2xl font-bold text-center">{title}</h3>
       <p className="text-gray-600 text-center py-3">{days}</p>
       <div className="mt-16 text-center flex flex-col ">
         <span className="py-3">{price}</span>
-        <button className="border-2 border-gray-500 px-5  rounded-md mx-auto">
+        <button className={`border-2 border-gray-500 px-5    ${isExpanded ? 'bg-[#FE035C] text-[#ffffff]' : 'bg-[#ffffff] '}          rounded-md mx-auto`}>
           Buy now
         </button>
       </div>
