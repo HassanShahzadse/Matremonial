@@ -1,8 +1,8 @@
 import { FacebookAuthProvider, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword as createUserWithEmailAndPasswordFirebase } from 'firebase/auth';
 import initializeFirebase from '../fireBase/firebase';
-import { addDoc, collection, getDocs, getFirestore, query, where,updateDoc, doc, getDoc } from 'firebase/firestore';
+import { addDoc, collection, getDocs, getFirestore, query, where, updateDoc, doc, getDoc } from 'firebase/firestore';
 import { getAuth, signInWithEmailAndPassword as signInWithEmailAndPasswordFirebase } from 'firebase/auth';
-import {  signOut } from 'firebase/auth';
+import { signOut } from 'firebase/auth';
 import { firebase_app } from "./../fireBase/firebase"
 import router, { useRouter } from 'next/router';
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
@@ -10,7 +10,7 @@ import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 
 export const updateUser = async (userId: any, updatedData: any) => {
   try {
-    console.log(userId,updatedData)
+    console.log(userId, updatedData)
     const firebaseInstance = await initializeFirebase();
     if (!firebaseInstance) {
       console.error('Firebase is not supported.');
@@ -45,7 +45,7 @@ export const updateUser = async (userId: any, updatedData: any) => {
   }
 };
 
-export const uploadImageToFirestore = async (file:any, setData:any) => {
+export const uploadImageToFirestore = async (file: any, setData: any) => {
   try {
     const firebaseInstance = await initializeFirebase();
     if (!firebaseInstance) {
@@ -100,7 +100,7 @@ export const loginUser = async (email: any, password: any) => {
     if (querySnapshot.size > 0) {
       // const userData = querySnapshot.docs[0].data();
       const userData = { id: querySnapshot.docs[0].id, ...querySnapshot.docs[0].data() };
-      console.log(userData,"-------------------------------------------")
+      console.log(userData, "-------------------------------------------")
       localStorage.setItem('user', JSON.stringify(userData));
       return userData;
     } else {
@@ -189,8 +189,8 @@ export const createUser = async (formData: any) => {
       return false;
     }
     const { db } = firebaseInstance;
-    const userQuery = query(collection(db, 'users'), 
-                            where('email', '==', formData.email));
+    const userQuery = query(collection(db, 'users'),
+      where('email', '==', formData.email));
     const userQuerySnapshot = await getDocs(userQuery);
     if (!userQuerySnapshot.empty) {
       window.alert('User with same email already exists.');
