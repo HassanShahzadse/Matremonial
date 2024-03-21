@@ -106,31 +106,18 @@ const peopleData = [
     imageUrl: "/avatar1.jpg",
   },
 ];
-const footerData = [
-  { label: " Member Login" },
-  { label: " Muslim Marriage Online" },
-  { label: " Signed Up" },
-  { label: " Member Support" },
-];
 
 const footerCompany = [
-  { label: " About Us" },
-  { label: " Blog" },
-  { label: " Helpful Tips" },
-  { label: " Submit story" },
+  { label: " About Us",link:'/aboutus' },
+  { label: " Blog",link:'/blog' },
+  { label: " Submit story",link:'/submitstory' },
 ];
 
-const footerPrivacy = [
-  { label: " Terms of Use" },
-  { label: " Privacy Policy" },
-  { label: " Contact Us" },
-  // { label: " Contact Us" },
-];
 const footerMore = [
-  { label: " Top Ranking Cities" },
-  { label: " Parent Involved" },
-  { label: " Intimate Cozy Wadding" },
-  { label: " Site Map" },
+  { label: " Top Ranking Cities",link:'' },
+  { label: " Parent Involved",link:'' },
+  { label: " Intimate Cozy Wadding",link:'' },
+  { label: " Site Map",link:'' },
 ];
 const navLinks = [
   { href: "/", text: "Home" },
@@ -465,11 +452,10 @@ function Hero() {
           <ul>
             {/* <FooterList footerData={footerData} /> */}
             <Link href="/login" className="py-2 cursor-pointer">
-              Member Login
+            <li className="py-2 cursor-pointer"> Member Login</li>
             </Link>
-            <li className="py-2 cursor-pointer">Muslim Marriage Online</li>
             <Link href="/signup" className="py-2 cursor-pointer">
-              Signed Up
+            <li className="py-2 cursor-pointer">Signed Up</li>
             </Link>
             <li className="py-2 cursor-pointer">Member Support</li>
           </ul>
@@ -493,12 +479,6 @@ function Hero() {
             <li className="py-2 cursor-pointer">
               <Link href="/privacyPolicy" >
                 Privacy Policy
-              </Link>
-            </li>
-
-            <li className="py-2 cursor-pointer">
-              <Link href="/Contactus" >
-                Contact Us
               </Link>
             </li>
           </ul>
@@ -563,9 +543,11 @@ function FooterList({ footerData }: { footerData: any[] }) {
   return (
     <>
       {footerData.map((item) => (
+        <Link href={item.link}>
         <li className="py-2 cursor-pointer" key={item.label}>
           {item.label}
         </li>
+        </Link>
       ))}
     </>
   );
