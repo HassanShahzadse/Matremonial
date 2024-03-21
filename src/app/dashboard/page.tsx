@@ -5,6 +5,5 @@ export default function Dashboard() {
     <div>
         <DashboardComponent />
     </div>
-)
-
+   )
 }

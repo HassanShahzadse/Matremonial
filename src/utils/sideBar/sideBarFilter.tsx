@@ -2,7 +2,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
-
 export default function SideBarFilter({ filters, updateFilters, setFilterVisible }: any) {
   const [tempFilters, setTempFilters] = useState(filters || {});
   const [locationOptions, setLocationOptions] = useState<locationOption[]>([]);
@@ -49,9 +48,7 @@ export default function SideBarFilter({ filters, updateFilters, setFilterVisible
     }
   };
 
-
   const { locationFilter, ageRangeFilter, genderFilter, professionFilter } = tempFilters;
-
   const isGenderSelected = (gender: string) => genderFilter === gender;
 
   return (
@@ -72,8 +69,6 @@ export default function SideBarFilter({ filters, updateFilters, setFilterVisible
             <option value="" disabled>
               Choose Location
             </option>
-          
-
             {locationOptions.map((option, index) => (
                   <option key={index} value={option.value}>{option.label}</option>
             ))}
