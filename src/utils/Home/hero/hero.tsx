@@ -106,18 +106,30 @@ const peopleData = [
     imageUrl: "/avatar1.jpg",
   },
 ];
-
-const footerCompany = [
-  { label: " About Us",link:'/aboutus' },
-  { label: " Blog",link:'/blog' },
-  { label: " Submit story",link:'/submitstory' },
+const footerData = [
+  { label: " Member Login" },
+  { label: " Muslim Marriage Online" },
+  { label: " Signed Up" },
+  { label: " Member Support" },
 ];
 
+const footerCompany = [
+  { label: " About Us" },
+  { label: " Blog" },
+  
+];
+
+const footerPrivacy = [
+  { label: " Terms of Use" },
+  { label: " Privacy Policy" },
+  { label: " Contact Us" },
+  // { label: " Contact Us" },
+];
 const footerMore = [
-  { label: " Top Ranking Cities",link:'' },
-  { label: " Parent Involved",link:'' },
-  { label: " Intimate Cozy Wadding",link:'' },
-  { label: " Site Map",link:'' },
+  { label: " Top Ranking Cities" },
+  { label: " Parent Involved" },
+  { label: " Intimate Cozy Wadding" },
+  { label: " Site Map" },
 ];
 const navLinks = [
   { href: "/", text: "Home" },
@@ -451,35 +463,49 @@ function Hero() {
 
           <ul>
             {/* <FooterList footerData={footerData} /> */}
-            <Link href="/login" className="py-2 cursor-pointer">
-            <li className="py-2 cursor-pointer"> Member Login</li>
+            <li className="py-2 cursor-pointer">
+              <Link href="/login" className="py-2 cursor-pointer">
+                Member Login
+              </Link>
+            </li>
+            <li className="py-2 cursor-pointer">
+              <Link href="/signup">Signed Up</Link>
+            </li>
+            <Link href="/contactUsPublic">
+              <li className="py-2 cursor-pointer">Member Support</li>
             </Link>
-            <Link href="/signup" className="py-2 cursor-pointer">
-            <li className="py-2 cursor-pointer">Signed Up</li>
-            </Link>
-            <li className="py-2 cursor-pointer">Member Support</li>
           </ul>
         </div>
         <div className="">
           <h1 className="text-xl font-semibold py-6">COMPANY</h1>
           <ul>
             <FooterList footerData={footerCompany} />
+
+            <li className="py-2 cursor-pointer">
+              <Link href="/login" className="py-2 cursor-pointer">
+                Member Login
+              </Link>
+            </li>
+            <li className="py-2 cursor-pointer">
+              <Link href="/signup">Signed Up</Link>
+            </li>
+             
           </ul>
         </div>
         <div className="">
           <h1 className="text-xl font-semibold py-6 -mt-10">PRIVACY & YOU</h1>
           <ul>
-            {/* <FooterList footerData={footerPrivacy} /> */}
+          
             <li className="py-2 cursor-pointer">
-              <Link href="/termsAndConditions" >
-                Terms of Use
-              </Link>
+              <Link href="/termsAndConditions">Terms of Use</Link>
             </li>
 
             <li className="py-2 cursor-pointer">
-              <Link href="/privacyPolicy" >
-                Privacy Policy
-              </Link>
+              <Link href="/privacyPolicy">Privacy Policy</Link>
+            </li>
+
+            <li className="py-2 cursor-pointer">
+              <Link href="/Contactus">Contact Us</Link>
             </li>
           </ul>
         </div>
@@ -543,11 +569,9 @@ function FooterList({ footerData }: { footerData: any[] }) {
   return (
     <>
       {footerData.map((item) => (
-        <Link href={item.link}>
         <li className="py-2 cursor-pointer" key={item.label}>
           {item.label}
         </li>
-        </Link>
       ))}
     </>
   );
