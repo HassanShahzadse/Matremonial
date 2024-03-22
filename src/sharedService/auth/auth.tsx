@@ -8,8 +8,6 @@ import router, { useRouter } from 'next/router';
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import { toast ,  ToastContainer } from 'react-toastify';
 
-
-
 export const updateUser = async (userId: any, updatedData: any) => {
   try {
     console.log(userId, updatedData)
