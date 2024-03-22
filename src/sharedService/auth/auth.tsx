@@ -6,6 +6,8 @@ import { signOut } from 'firebase/auth';
 import { firebase_app } from "./../fireBase/firebase"
 import router, { useRouter } from 'next/router';
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
+import { toast ,  ToastContainer } from 'react-toastify';
+
 
 
 export const updateUser = async (userId: any, updatedData: any) => {
@@ -193,7 +195,17 @@ export const createUser = async (formData: any) => {
       where('email', '==', formData.email));
     const userQuerySnapshot = await getDocs(userQuery);
     if (!userQuerySnapshot.empty) {
-      window.alert('User with same email already exists.');
+      toast.error("User with the same email already exists", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+    })       
+
       return false;
     }
     const docRef = await addDoc(collection(db, 'users'), {

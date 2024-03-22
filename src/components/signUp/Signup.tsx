@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import "./Signup.css"
 import axios from "axios";
+import { toast ,  ToastContainer } from 'react-toastify';
 import {
   createUser,
   signupWithFacebook,
@@ -21,6 +22,9 @@ import Password from "@/utils/shared/Password";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { CountryCode } from "./CountryCode";
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 type Props = {};
 
@@ -87,6 +91,8 @@ const SignUp = (props: Props) => {
   const onSubmit = async (data: any) => {
     try {
       const users = await createUser(data);
+      
+
       if (!users) return;
       let user = await loginUser(data.email, data.password);
       console.log("Logged in user:", user);
@@ -99,7 +105,18 @@ const SignUp = (props: Props) => {
 
       router.push("/addprofile");
     } catch (error) {
-      console.error("Login failed in login file", error);
+      // console.error("Login failed in login file", error);
+      toast.error("User with the same email already exists", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+    })
+      
     }
   };
   const handleGoogleSignup = async () => {
@@ -123,11 +140,19 @@ const SignUp = (props: Props) => {
 
   return (
     <>
-      <div className="md:fixed md:top-0 md:left-0 md:right-0  h-[5vh] bg-[#fb1086] "></div>
-      <div className="md:mt-[5vh] lg:h-[90vh] ">
+      <ToastContainer />
+       <div className="fixed   top-0 left-0 right-0  h-[5vh] w-screen  rounded-l-xl ">
+        <Image src="/Navbar/NavbarThick.png" alt="Description"  
+          objectFit="cover"
+          fill
+          className=""
+        />
+      </div>
+
+      <div className="md:mt-[5vh] lg:h-[92vh] mt-11 ">
         <div className=" container-fluid">
           <div className="grid lg:grid-cols-2">
-            <div className="lg:order-1 order-2  ps-12 pe-14  pe-14 xsm:mt-2 lg:mt-0 bg-white p-7 rounded-lg shadow-md  md:h-[45vh] lg:h-[90vh]   overflow-auto ">
+            <div className="lg:order-1 order-2  ps-12 pe-14  pe-14 xsm:mt-2 lg:mt-0 bg-white p-7 rounded-lg shadow-md  md:h-[47vh] lg:h-[92vh]   overflow-auto ">
               <h1 className="text-2xl font-bold text-center">
                 LOOKING FOR SOULMATE
               </h1>
@@ -299,7 +324,7 @@ const SignUp = (props: Props) => {
                 </span>
               </div>
             </div>
-            <div className="lg:order-2 order-1   lg:h-[85vh] flex  items-center justify-center  md:h-[45vh] lg:h-[90vh]  flex-col bg-[#ffe8ea]  ">
+            <div className="lg:order-2 order-1   lg:h-[85vh] flex  items-center justify-center  md:h-[47vh] lg:h-[92vh]  flex-col bg-[#ffe8ea]  ">
               <h1 className="font-bold  lg:text-4xl text-5xl  xl:text-5xl  text-[#f46194] text-center md:-mb-3">
                 Muslim Marriage online{" "}
               </h1>
@@ -314,7 +339,13 @@ const SignUp = (props: Props) => {
           </div>
         </div>
       </div>
-      <div className="md:fixed md:bottom-0 md:left-0 md:right-0   h-[5vh] rounded-l-xl bg-[#fb1086]"></div>
+      <div className="fixed bottom-0 left-0 right-0 h-[3vh]  ">
+       <Image src="/Navbar/NavbarThin1.png" alt="Description" 
+        className="rounded-lg"
+        objectFit="cover"
+        fill
+       />
+      </div>
     </>
   );
 };

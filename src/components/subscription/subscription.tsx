@@ -7,6 +7,7 @@ import Image from "next/image";
 import Logo from "/public/icons/LOGO-soulmate.png";
 import Navbar from "../navbar/Navbar";
 
+
 const SubscriptionComponents = () => {
   const [activeButton, setActiveButton] = useState("Subscription");
 
@@ -40,7 +41,15 @@ const SubscriptionComponents = () => {
         <CardsContainer activeButton={activeButton} />
       </div> 
 
-      <div className="bg-[#FD307A] h-[5vh] fixed left-0 w-full bottom-0 z-10 "></div>
+      <div className="bg-[#FD307A] h-[5vh] fixed left-0 w-full bottom-0 z-10 ">
+      <Image
+              src="/Navbar/NavbarThin1.png"
+              alt="Description"
+              className="rounded-lg"
+              objectFit="cover"
+              fill
+            />
+      </div>
       </div> 
     </>
   );
@@ -48,32 +57,10 @@ const SubscriptionComponents = () => {
 
 export default SubscriptionComponents;
 
-// const ToggleButton: React.FC<any> = ({ activeOption, handleClick }) => {
-//   return (
-//     <button
-//       className="relative flex items-center justify-between w-28 h-8 px-2 rounded-full bg-gray-200 focus:outline-none"
-//       onClick={handleClick}
-//     >
-//       <span
-//         className={`absolute top-0 left-0 h-full bg-[#FD307A] rounded-full transition-width duration-300 ${
-//           activeOption === "Subscription" ? "w-14" : "w-0"
-//         }`}
-//       ></span>
-//       <span
-//         className={`absolute top-0 right-0 h-full bg-gray-300 rounded-full transition-width duration-300 ${
-//           activeOption === "Boost" ? "w-14" : "w-0"
-//         }`}
-//       ></span>
-//       <span className="z-10">{activeOption}</span>
-//     </button>
-//   );
-// };
+
 
 const ToggleButton: React.FC<any> = ({ setActiveButton, activeButton }) => {
-  // const [activeButton, setActiveButton] = useState("Subscription");
-
-
-
+  
   const handleClick = (button:any) => {
     setActiveButton(button);
   };

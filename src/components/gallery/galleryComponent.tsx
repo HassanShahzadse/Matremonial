@@ -76,7 +76,15 @@ export default function NotificationsComponent() {
           </div>
         </div>
       </Layout>
-      <div className="bg-[#FD307A] h-[5vh] fixed left-0 w-full bottom-0 z-10 "></div>
+      <div className="bg-[#FD307A] h-[5vh] fixed left-0 w-full bottom-0 z-10 ">
+      <Image
+              src="/Navbar/NavbarThin1.png"
+              alt="Description"
+              className="rounded-lg"
+              objectFit="cover"
+              fill
+            />
+      </div>
     </>
   );
 }

@@ -11,6 +11,21 @@ export default function SideBarFilter({ filters, updateFilters, setFilterVisible
     label: string;
   }
 
+  const fetchCountries = async () => {
+    try {
+      const response = await axios.get("https://restcountries.com/v3.1/all");
+      const countryData = response.data.map((country: any) => ({
+        label: country.name.common,
+        value: country.name.common,
+      }));
+
+      console.log(" name of country", countryData);
+      setLocationOptions(countryData);
+    } catch (error) {
+      console.error("Error fetching countries:", error);
+    }
+  };
+
   useEffect(() => {
     fetchCountries();
   }, []);
@@ -33,20 +48,7 @@ export default function SideBarFilter({ filters, updateFilters, setFilterVisible
     updateFilters(tempFilters);
   };
 
-  const fetchCountries = async () => {
-    try {
-      const response = await axios.get("https://restcountries.com/v3.1/all");
-      const countryData = response.data.map((country: any) => ({
-        label: country.name.common,
-        value: country.name.common,
-      }));
-
-      console.log(" name of country", countryData);
-      setLocationOptions(countryData);
-    } catch (error) {
-      console.error("Error fetching countries:", error);
-    }
-  };
+  
 
   const { locationFilter, ageRangeFilter, genderFilter, professionFilter } = tempFilters;
   const isGenderSelected = (gender: string) => genderFilter === gender;

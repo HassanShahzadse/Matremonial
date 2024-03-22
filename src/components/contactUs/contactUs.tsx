@@ -1,4 +1,6 @@
 import React from "react";
+import Image from "next/image";
+
 
 const Contact = () => {
   return (
@@ -34,7 +36,15 @@ const Contact = () => {
           </p>
         </div>
       </section>
-      <div className="h-[5vh] bg-[#ED147D] "></div>
+      <div className="h-[3vh]  ">
+      <Image
+              src="/Navbar/NavbarThin1.png"
+              alt="Description"
+              className="rounded-lg"
+              objectFit="cover"
+              fill
+            />
+      </div>
     </>
   );
 };

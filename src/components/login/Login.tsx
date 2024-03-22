@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { toast ,  ToastContainer } from 'react-toastify';
 import * as Yup from "yup";
 import {
   loginUser,
@@ -14,6 +15,8 @@ import {
   fetchUserInfoFromFirebaseEmail,
 } from "@/sharedService/users/user";
 import Marrage from "/public/clubmobile.png";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 type Props = {};
 
@@ -32,10 +35,28 @@ const Login = (props: Props) => {
         const userId = user.id;
         router.push("/dashboard");
       } else {
-        window.alert("Login failed , Check your Password and email again");
+        toast.error("Incorrect email or password. Please try again.", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          })
       }
     } catch (error) {
-      window.alert("Login failed , Check your Password and email again");
+      toast.error("Incorrect email or password. Please try again.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+    })
     }
   };
 
@@ -67,11 +88,20 @@ const Login = (props: Props) => {
   });
   return (
     <>
-      <div className="md:fixed md:top-0 md:left-0 md:right-0  h-[5vh] bg-[#fb1086] "></div>
-      <div className="md:mt-[5vh] lg:h-[90vh] ">
+       <ToastContainer />
+      <div className="fixed   top-0 left-0 right-0  h-[5vh] w-screen  rounded-l-xl ">
+        <Image src="/Navbar/NavbarThick.png" alt="Description"  
+          objectFit="cover"
+          fill
+          className=""
+        />
+      </div>
+
+      
+      <div className="md:mt-[5vh] lg:h-[92vh]  mt-11 ">
         <div className=" container-fluid">
           <div className="grid lg:grid-cols-2 ">
-            <div className="  flex  items-center justify-center md:h-[45vh] lg:h-[90vh]    flex-col   bg-[#ffe8ea] ">
+            <div className="  flex  items-center justify-center md:h-[47vh] lg:h-[92vh]    flex-col   bg-[#ffe8ea] ">
               <h1 className="font-bold  lg:text-4xl text-5xl  xl:text-5xl  text-[#f46194] text-center  md:-mb-14">
                 Muslim Marriage online{" "}
               </h1>
@@ -83,7 +113,7 @@ const Login = (props: Props) => {
                 width={500}
               />
             </div>
-            <div className="lg:mt-0 bg-white  flex justify-center md:h-[45vh] lg:h-[90vh]  flex-col   rounded-lg shadow-md ">
+            <div className="lg:mt-0 bg-white  flex justify-center md:h-[47vh] lg:h-[92vh]  flex-col   rounded-lg shadow-md ">
               <div className="card lg:px-32 lg:py-8 p-8">
                 <h1 className="text-2xl  font-bold text-center">
                   Find Your Soulmate
@@ -207,7 +237,13 @@ const Login = (props: Props) => {
           </div>
         </div>
       </div>
-      <div className="md:fixed md:bottom-0 md:left-0 md:right-0   h-[5vh] rounded-l-xl bg-[#fb1086]"></div>
+      <div className="fixed bottom-0 left-0 right-0 h-[3vh]  ">
+       <Image src="/Navbar/NavbarThin1.png" alt="Description" 
+        className="rounded-lg"
+        objectFit="cover"
+        fill
+       />
+      </div>
     </>
   );
 };

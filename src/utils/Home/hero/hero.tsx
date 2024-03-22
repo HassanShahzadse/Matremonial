@@ -122,7 +122,6 @@ const footerCompany = [
 const footerPrivacy = [
   { label: " Terms of Use" },
   { label: " Privacy Policy" },
-  { label: " Contact Us" },
   // { label: " Contact Us" },
 ];
 const footerMore = [
@@ -444,8 +443,8 @@ function Hero() {
       </div>
 
       {/*  ****Footer 1 *****  */}
-      <div className="grid lg:grid-cols-6 items-center mx-8 py-8 font-medium gap-5">
-        <div className="col-span-2">
+      <div className="grid lg:grid-cols-2 items-center mx-8 py-8 font-medium gap-5">
+        <div className="">
           <h1 className="text-2xl text-[#ED147D] font-bold py-6">
             Muslim Marriage Online
           </h1>
@@ -458,6 +457,8 @@ function Hero() {
             users.
           </p>
         </div>
+
+     <div className="grid lg:grid-cols-3 ">
         <div className=" items-center md:ml-4">
           <h1 className="text-xl  font-semibold py-6">NEED HELP?</h1>
 
@@ -479,10 +480,19 @@ function Hero() {
         <div className="">
           <h1 className="text-xl font-semibold py-6">COMPANY</h1>
           <ul>
-            <FooterList footerData={footerCompany} />
+            
+          
+            <li className="py-2 cursor-pointer">
+              <Link href="/aboutus" >
+                About Us
+              </Link>
+            </li>
+            <li className="py-2 cursor-pointer">
+              <Link href="/blog">Blog</Link>
+            </li>
 
             <li className="py-2 cursor-pointer">
-              <Link href="/login" className="py-2 cursor-pointer">
+              <Link href="/login" >
                 Member Login
               </Link>
             </li>
@@ -493,7 +503,7 @@ function Hero() {
           </ul>
         </div>
         <div className="">
-          <h1 className="text-xl font-semibold py-6 -mt-10">PRIVACY & YOU</h1>
+          <h1 className="text-xl font-semibold py-6">PRIVACY & YOU</h1>
           <ul>
           
             <li className="py-2 cursor-pointer">
@@ -504,17 +514,18 @@ function Hero() {
               <Link href="/privacyPolicy">Privacy Policy</Link>
             </li>
 
-            <li className="py-2 cursor-pointer">
-              <Link href="/Contactus">Contact Us</Link>
-            </li>
+           
           </ul>
         </div>
-        <div className="">
+        </div> 
+
+
+        {/* <div className="">
           <h1 className="text-xl font-semibold py-6">MORE</h1>
           <ul>
             <FooterList footerData={footerMore} />
           </ul>
-        </div>
+        </div> */}
       </div>
 
       <footer className="">

@@ -13,6 +13,8 @@ import PersonalInfo from "@/utils/addProfile/personalInfo";
 import BodyType from "@/utils/addProfile/bodyType";
 import Religion from "@/utils/addProfile/Religion";
 import Partner from "@/utils/addProfile/partner";
+import Image from "next/image";
+
 import {
   partnerReligionOptions,
   partnerSectOptions,
@@ -248,7 +250,15 @@ export default function ProfileComponent() {
   return (
     <>
       <div className={styles.backgroundImg}>
-        <div className="h-[8vh] bg-[#fb1086] fixed top-0 z-20 left-0 right-0 "></div>
+        <div className="h-[8vh] bg-[#fb1086] fixed top-0 z-20 left-0 right-0 ">
+        <Image
+              src="/Navbar/NavbarThin1.png"
+              alt="Description"
+              className="rounded-lg"
+              objectFit="cover"
+              fill
+            />
+        </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="sm:container mx-auto  rounded-[3rem] bg-white bg-opacity-70 p-8  mt-20 mb-5 ">
             <div className="card flex justify-center p-1 ">
@@ -383,7 +393,15 @@ export default function ProfileComponent() {
           </div>
         </form>
 
-        <div className="h-[5vh] bg-[#fb1086] fixed bottom-0 left-0 right-0  rounded-s-2xl"></div>
+        <div className="h-[5vh] bg-[#fb1086] fixed bottom-0 left-0 right-0  rounded-s-2xl">
+        <Image
+              src="/Navbar/NavbarThin1.png"
+              alt="Description"
+              className="rounded-lg"
+              objectFit="cover"
+              fill
+            />
+        </div>
       </div>
     </>
   );
