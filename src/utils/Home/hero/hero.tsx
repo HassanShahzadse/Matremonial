@@ -15,6 +15,7 @@ import { ImPinterest2 } from "react-icons/im";
 import { FaInstagramSquare } from "react-icons/fa";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { getLoggedInUserInfo } from "@/utils/userProfile/loggedInUserInfo";
 const datingSiteFeatures = [
   {
     title: "Awesome Community",
@@ -139,6 +140,7 @@ const navLinks = [
 
 function Hero() {
   const router = useRouter();
+  const user = getLoggedInUserInfo()
   var settings = {
     dots: false,
     infinite: true,
@@ -221,13 +223,15 @@ function Hero() {
             ))}
           </div>
           <div className="mt-4 md:mt-0">
-            <Link href="/login">
+            {!user?.id ?
+            <>
+             <Link href="/login">
               <Button
                 css="bg-[#ED147D] pe-7 ps-7   pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold "
                 onClick={function (): void {
                   throw new Error("Function not implemented.");
                 }}
-              >
+                >
                 Login
               </Button>
             </Link>
@@ -237,10 +241,23 @@ function Hero() {
                 onClick={function (): void {
                   throw new Error("Function not implemented.");
                 }}
-              >
+                >
                 Signup
               </Button>
             </Link>
+                </>
+            :
+            <Link href="/dashboard">
+            <Button
+              css="bg-[#ED147D] pe-7 ps-7  ms-3  pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold "
+              onClick={function (): void {
+                console.log("Function not implemented.");
+              }}
+            >
+              Dashboard
+            </Button>
+          </Link>
+            }
           </div>
         </div>
       </nav>

@@ -18,7 +18,7 @@ const SubscriptionComponents = () => {
   return (
     <>
     <Navbar />
-      <div className="mx-auto max-w-7xl  ps-2 pe-4 sm:px-6 lg:px-8 mt-[8vh] lg:mt-[15vh] ">
+      <div className="overflow-hidden mx-auto max-w-7xl  ps-2 pe-4 sm:px-6 lg:px-8 mt-[8vh] lg:mt-[15vh] ">
         <div className=" flex lg:flex-row flex-col  lg:justify-between  justify-center  items-center  my-10">
           <div className="flex flex-col items-center mt-14   lg:-mt-16">
             <Image src={Logo} alt="Logo" width={100} height={100} />
@@ -40,7 +40,7 @@ const SubscriptionComponents = () => {
           </div>
         </div>
 
-        <div className="mt-14">
+        <div className="my-14">
           <CardsContainer
             activeButton={activeButton}
             transitionDirection={transitionDirection}

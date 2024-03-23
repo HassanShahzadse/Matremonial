@@ -1,7 +1,7 @@
 export const getLoggedInUserInfo = (): any => {
     const localUser: any = localStorage.getItem("user");
     const user: any = JSON.parse(localUser);
-
+    if(!user) return false
     const userInfo = {
         ...user,
         userName:user?.userName ? user?.userName :  user.name,
