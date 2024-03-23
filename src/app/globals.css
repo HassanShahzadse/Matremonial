@@ -290,6 +290,39 @@ main {
   top: 0.3px;
   background-image: linear-gradient(to top right, #ee52a0, #ED147D);
 }
+/* Add this CSS for keyframe animations */
+@keyframes fadeAndSlideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeAndSlideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Modify transition classes */
+.transition-left-sub {
+  animation: fadeAndSlideInLeft 0.5s ease forwards;
+}
+
+.transition-right-sub {
+  animation: fadeAndSlideInRight 0.5s ease forwards;
+}
+
+
 .emoji-list {
   position: fixed; /* Popup effect */
   left: 20%;
