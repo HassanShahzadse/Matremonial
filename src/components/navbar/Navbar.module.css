@@ -1,0 +1,13 @@
+.NavbarBanner{
+    background-image:url('./../../../public/Navbar/NavbarThick1.png'); 
+     position: fixed;
+    top: 0%;
+    left: 0%; 
+    width: 100%;
+    height: 11vh;
+    padding: 0%;
+    margin: 0%;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+ }
