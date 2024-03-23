@@ -1,4 +1,5 @@
-import AboutUs from '@/components/aboutus/aboutUs'
+
+import AboutUs from '@/components/aboutUs/aboutUs'
 import React from 'react'
 
 export default function AboutUsPage() {
