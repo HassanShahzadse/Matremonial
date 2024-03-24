@@ -114,11 +114,7 @@ const footerData = [
   { label: " Member Support" },
 ];
 
-const footerCompany = [
-  { label: " About Us" },
-  { label: " Blog" },
-  
-];
+const footerCompany = [{ label: " About Us" }, { label: " Blog" }];
 
 const footerPrivacy = [
   { label: " Terms of Use" },
@@ -140,7 +136,7 @@ const navLinks = [
 
 function Hero() {
   const router = useRouter();
-  const user = getLoggedInUserInfo()
+  const user = getLoggedInUserInfo();
   var settings = {
     dots: false,
     infinite: true,
@@ -223,41 +219,41 @@ function Hero() {
             ))}
           </div>
           <div className="mt-4 md:mt-0">
-            {!user?.id ?
-            <>
-             <Link href="/login">
-              <Button
-                css="bg-[#ED147D] pe-7 ps-7   pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold "
-                onClick={function (): void {
-                  throw new Error("Function not implemented.");
-                }}
+            {!user?.id ? (
+              <>
+                <Link href="/login">
+                  <Button
+                    css="bg-[#ED147D] pe-7 ps-7   pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold "
+                    onClick={function (): void {
+                      throw new Error("Function not implemented.");
+                    }}
+                  >
+                    Login
+                  </Button>
+                </Link>
+                <Link href="/signup">
+                  <Button
+                    css="bg-[#ED147D] pe-7 ps-7  ms-3  pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold "
+                    onClick={function (): void {
+                      throw new Error("Function not implemented.");
+                    }}
+                  >
+                    Signup
+                  </Button>
+                </Link>
+              </>
+            ) : (
+              <Link href="/dashboard">
+                <Button
+                  css="bg-[#ED147D] pe-7 ps-7  ms-3  pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold "
+                  onClick={function (): void {
+                    console.log("Function not implemented.");
+                  }}
                 >
-                Login
-              </Button>
-            </Link>
-            <Link href="/signup">
-              <Button
-                css="bg-[#ED147D] pe-7 ps-7  ms-3  pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold "
-                onClick={function (): void {
-                  throw new Error("Function not implemented.");
-                }}
-                >
-                Signup
-              </Button>
-            </Link>
-                </>
-            :
-            <Link href="/dashboard">
-            <Button
-              css="bg-[#ED147D] pe-7 ps-7  ms-3  pt-2 pb-2 text-[#fff] rounded-[30px] text-[16px] font-bold "
-              onClick={function (): void {
-                console.log("Function not implemented.");
-              }}
-            >
-              Dashboard
-            </Button>
-          </Link>
-            }
+                  Dashboard
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </nav>
@@ -460,89 +456,80 @@ function Hero() {
       </div>
 
       {/*  ****Footer 1 *****  */}
-      <div className="grid lg:grid-cols-2 items-center mx-8 py-8 font-medium gap-5">
-        <div className="">
-          <h1 className="text-2xl text-[#ED147D] font-bold py-6">
-            Muslim Marriage Online
-          </h1>
-          <p>
-            Muslim Marriage Online is registered and trademark corporation based
-            in the USA. We are a leading international matchmaking company for
-            singles globally. Through our network we want to make the process of
-            relationship journy relatively effortiess. All profiles are checked
-            maually with phone verification to ensure a safe environment for the
-            users.
-          </p>
-        </div>
+      <div className="container ps-12 pe-12  mt-12 mb-12">
+        <div className="grid lg:grid-cols-2 items-center   font-medium ">
+          <div className="xl:pe-24 lg:pe-20">
+            <h1 className="text-2xl text-[#ED147D] font-bold ">
+              Muslim Marriage Online
+            </h1>
+            <p>
+              Muslim Marriage Online is registered and trademark corporation
+              based in the USA. We are a leading international matchmaking
+              company for singles globally. Through our network we want to make
+              the process of relationship journy relatively effortiess. All
+              profiles are checked maually with phone verification to ensure a
+              safe environment for the users.
+            </p>
+          </div>
 
-     <div className="grid lg:grid-cols-3 ">
-        <div className=" items-center md:ml-4">
-          <h1 className="text-xl  font-semibold py-6">NEED HELP?</h1>
+          <div className="grid lg:grid-cols-3 lg:ps-4 xl:ps-16  mt-4 lg:mt-0">
+            <div className=" mt-5 lg:mt-0">
+              <h1 className="text-xl  font-semibold ">NEED HELP?</h1>
 
-          <ul>
-            {/* <FooterList footerData={footerData} /> */}
-            <li className="py-2 cursor-pointer">
-              <Link href="/login" className="py-2 cursor-pointer">
-                Member Login
-              </Link>
-            </li>
-            <li className="py-2 cursor-pointer">
-              <Link href="/signup">Signed Up</Link>
-            </li>
-            <Link href="/contactUsPublic">
-              <li className="py-2 cursor-pointer">Member Support</li>
-            </Link>
-          </ul>
-        </div>
-        <div className="">
-          <h1 className="text-xl font-semibold py-6">COMPANY</h1>
-          <ul>
-            
-          
-            <li className="py-2 cursor-pointer">
-              <Link href="/aboutus" >
-                About Us
-              </Link>
-            </li>
-            <li className="py-2 cursor-pointer">
-              <Link href="/blog">Blog</Link>
-            </li>
+              <ul>
+                {/* <FooterList footerData={footerData} /> */}
+                <li className=" cursor-pointer mt-2">
+                  <Link href="/login" className="cursor-pointer">
+                    Member Login
+                  </Link>
+                </li>
+                <li className=" cursor-pointer mt-2">
+                  <Link href="/signup">Signed Up</Link>
+                </li>
+                <li className="mt-2  cursor-pointer">
+                  <Link href="/contactUsPublic ">Member Support</Link>
+                </li>
+              </ul>
+            </div>
+            <div className=" mt-5 lg:mt-0">
+              <h1 className="text-xl font-semibold ">COMPANY</h1>
+              <ul>
+                <li className=" cursor-pointer mt-2">
+                  <Link href="/aboutus">About Us</Link>
+                </li>
+                <li className=" cursor-pointer mt-2">
+                  <Link href="/blog">Blog</Link>
+                </li>
 
-            <li className="py-2 cursor-pointer">
-              <Link href="/login" >
-                Member Login
-              </Link>
-            </li>
-            <li className="py-2 cursor-pointer">
-              <Link href="/signup">Signed Up</Link>
-            </li>
-             
-          </ul>
-        </div>
-        <div className="">
-          <h1 className="text-xl font-semibold py-6">PRIVACY & YOU</h1>
-          <ul>
-          
-            <li className="py-2 cursor-pointer">
-              <Link href="/termsAndConditions">Terms of Use</Link>
-            </li>
+                <li className=" cursor-pointer mt-2">
+                  <Link href="/submitstory">Success Stories</Link>
+                </li>
+                <li className=" cursor-pointer mt-2">
+                  <Link href="/helpingtips">Helping Tips</Link>
+                </li>
+              </ul>
+            </div>
+            <div className="mt-5 lg:mt-0 ">
+              <h1 className="text-xl font-semibold ">PRIVACY & YOU</h1>
+              <ul>
+                <li className=" cursor-pointer mt-2">
+                  <Link href="/termsAndConditions">Terms of Use</Link>
+                </li>
 
-            <li className="py-2 cursor-pointer">
-              <Link href="/privacyPolicy">Privacy Policy</Link>
-            </li>
+                <li className=" cursor-pointer mt-2">
+                  <Link href="/privacyPolicy">Privacy Policy</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
 
-           
-          </ul>
-        </div>
-        </div> 
-
-
-        {/* <div className="">
+          {/* <div className="">
           <h1 className="text-xl font-semibold py-6">MORE</h1>
           <ul>
             <FooterList footerData={footerMore} />
           </ul>
         </div> */}
+        </div>
       </div>
 
       <footer className="">
