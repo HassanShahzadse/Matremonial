@@ -3,21 +3,22 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Logo from "/public/icons/LOGO-soulmate.png";
 import Navbar from "../navbar/Navbar";
+import SideBar from "@/utils/sideBar/sideBar";
+import Layout from "../mainLayout/layout";
 
 const SubscriptionComponents = () => {
   const [activeButton, setActiveButton] = useState("Subscription");
   const [transitionDirection, setTransitionDirection] = useState("");
-  const [expandedIndex, setExpandedIndex] = useState(null);
-
-  const handleToggle = (button:any) => {
+  const [show, setShow] = useState(false);
+  const [hideSideBar, setHideSideBar] = useState(true);
+  const handleToggle:any = (button:any) => {
     setTransitionDirection(activeButton === "Subscription" ? "left" : "right");
     setActiveButton(button);
-    setExpandedIndex(null)
   };
 
   return (
     <>
-    <Navbar />
+      <Layout show={show} setShow={setShow} hideSideBar={hideSideBar} setHideSideBar={setHideSideBar}>
       <div className="overflow-hidden mx-auto max-w-7xl  ps-2 pe-4 sm:px-6 lg:px-8 mt-[8vh] lg:mt-[15vh] ">
         <div className=" flex lg:flex-row flex-col  lg:justify-between  justify-center  items-center  my-10">
           <div className="flex flex-col items-center mt-14   lg:-mt-16">
@@ -44,8 +45,6 @@ const SubscriptionComponents = () => {
           <CardsContainer
             activeButton={activeButton}
             transitionDirection={transitionDirection}
-            setExpandedIndex={setExpandedIndex}
-            expandedIndex={expandedIndex}
           />
         </div>
 
@@ -59,6 +58,7 @@ const SubscriptionComponents = () => {
           />
         </div>
       </div>
+      </Layout>
     </>
   );
 };
@@ -91,21 +91,25 @@ const ToggleButton: React.FC<any> = ({ activeButton,handleToggle }) => {
   );
 };
 
-  const Card: React.FC<any> = ({ title, days, price, isExpanded, expandCard }) => {
+  const Card: React.FC<any> = ({ title, days, price, expandCard }) => {
+    const [isHovered, setIsHovered] = useState(false);
     return (
-      <div className={`p-4 ${isExpanded ? "scale-125" : ""}`}>
+      <div className={`p-4 ${isHovered ? "scale-125" : ""}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      >
         <div
-          className={`bg-[#ffffff] py-6 px-1 ${isExpanded ? "expanded" : ""}    m-2  rounded-3xl  border-[#808080]  drop-shadow-3xl `}
+          className={`bg-[#ffffff] py-6 px-1 ${isHovered ? "expanded" : ""}    m-2  rounded-3xl  border-[#808080]  drop-shadow-3xl `}
           onClick={expandCard}
           style={{ boxShadow: "5px 5px 5px gray", borderWidth: "1px" }}
         >
-          <h3 className={`${isExpanded ? "text-4xl" : "text-3xl"} font-bold text-center`}>{title}</h3>
+          <h3 className={`${isHovered ? "text-4xl" : "text-3xl"} font-bold text-center`}>{title}</h3>
           <p className="text-gray-600 text-center py-3">{days}</p>
           <div className="mt-16 text-center flex flex-col ">
             <span className="py-3">{price}</span>
             <button
               className={`border-2 border-gray-500 px-5    ${
-                isExpanded
+                isHovered
                   ? "bg-[#FE035C] text-[#ffffff]"
                   : "bg-[#ffffff] "
               }          rounded-md mx-auto`}
@@ -118,11 +122,7 @@ const ToggleButton: React.FC<any> = ({ activeButton,handleToggle }) => {
     );
   };
   
-  const CardsContainer: React.FC<any> = ({ activeButton, transitionDirection,expandedIndex,setExpandedIndex }) => {
-  
-    const handleExpand = (index:any) => {
-      setExpandedIndex(index === expandedIndex ? null : index);
-    };
+  const CardsContainer: React.FC<any> = ({ activeButton, transitionDirection }) => {
   
     const subscriptionCards = [
       {
@@ -172,8 +172,6 @@ const ToggleButton: React.FC<any> = ({ activeButton,handleToggle }) => {
             title={data.title}
             days={data.days}
             price={data.price}
-            isExpanded={expandedIndex === index}
-            expandCard={() => handleExpand(index)}
           />
         ))}
       </div>

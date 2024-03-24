@@ -129,9 +129,9 @@ export default function SideBarFilter({ filters, updateFilters, setFilterVisible
             value={professionFilter || ""}
             onChange={(e) => setTempFilters({ ...tempFilters, professionFilter: e.target.value })}
           />
-          <div className="flex justify-between mt-8">
+          <div className="flex justify-center mt-8">
             <button
-              className="bg-[#F05F93] text-center ml-5 px-5 py-2 text-white font-semibold rounded-lg"
+              className="bg-[#F05F93] text-center px-5 py-2 text-white font-semibold rounded-lg"
               onClick={applyFilters}
             >
               Apply

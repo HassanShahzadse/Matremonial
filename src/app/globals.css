@@ -230,6 +230,7 @@ main {
 
   .space-toggle {
     padding-left: calc(var(--nav-width) + 160px);
+    padding-right: 0px;
   }
 }
 

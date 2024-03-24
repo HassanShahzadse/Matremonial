@@ -15,11 +15,13 @@ export default function Layout({
   setSearchText,
   handleCardClick,
   filteredChats,
+  hideSideBar,
+  setHideSideBar
 }: any) {
   return (
     <ProtectedRouteWrapper>
       <div className="">
-        <main className="space-toggle">
+        <main className={`${!hideSideBar ? 'space-toggle':''}`}>
           <SideBar
             show={show}
             filters={filters}
@@ -29,6 +31,8 @@ export default function Layout({
             setSearchText={setSearchText}
             filteredChats={filteredChats}
             handleCardClick={handleCardClick}
+            setHideSideBar={setHideSideBar}
+            hideSideBar={hideSideBar}
           />
           <div className="mt-5">{children}</div>
           <div className=" h-[3vh] fixed left-0 w-full bottom-0 z-10 ">
