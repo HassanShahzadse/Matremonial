@@ -42,7 +42,7 @@ const IndexChat = () => {
         handleUserSidebarLeft={handleUserSidebarLeft}
       />
       {/* <div className='content-right'> */}
-      <div className='flex-1 flex-col overflow-hidden focus:outline-none'>
+      <div className=' flex-1 flex-col  focus:outline-none'>
         <div className='content-wrapper'>
           <div className='content-body'>
             <div

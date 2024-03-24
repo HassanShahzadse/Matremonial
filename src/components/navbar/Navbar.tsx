@@ -31,7 +31,6 @@ export default function Navbar({
     <>
 <div className={styles.NavbarBanner}>
     <div className="flex  w-full  items-center  justify-between px-5">
-      {/* <div className="flex bg-[#FD307A] fixed left-0 w-full top-0 h-[10vh] items-center z-10 justify-between px-5"> */}
         
         
         <div className="search flex sm:space-x-28 items-center justify-center relative">

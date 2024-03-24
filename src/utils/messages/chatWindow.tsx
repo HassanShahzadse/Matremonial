@@ -42,8 +42,8 @@ export const ChatWindow: React.FC<any> = ({ selectedChat, onSendMessage }) => {
   
   return (
     <>
-      <div className="flex-1 my-4 flex col-span-2 h-[75.5vh]">
-        <div className="flex-1 overflow-x-hidden overflow-y-auto w-[85vw] p-4 xsm:mb-20 xl:mb-16">
+      <div className="flex-1 my-4 flex col-span-2 h-[75.5vh] ">
+        <div className="flex-1 overflow-x-hidden overflow-y-auto  p-4 xsm:mb-20 xl:mb-16">
           {/* Render user information */}
           <div className="mb-4"></div>
 
@@ -81,7 +81,7 @@ export const ChatWindow: React.FC<any> = ({ selectedChat, onSendMessage }) => {
 
           {/* Input area for sending messages */}
         </div>
-        <div className="p-4 m-8 mb-5 xsm:mb-6 pb-10 xsm:fixed bottom-0 lg:w-[83vw] xsm:w-[76vw] flex">
+        <div className="p-4 xl:pe-[12rem] lg:pe-[16rem] m-8 mb-5 xsm:mb-6 pb-10 xsm:fixed bottom-0  xsm:w-[76vw] flex">
         <EmojiSelector setter={setInputText} />
           <input
             type="text"
@@ -89,7 +89,7 @@ export const ChatWindow: React.FC<any> = ({ selectedChat, onSendMessage }) => {
             onChange={(e) => setInputText(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Type a message"
-            className="border w-full rounded-full pl-4 p-2 outline-none mx-5"
+            className="border w-full  rounded-full pl-4 p-2 outline-none mx-5"
           />
           {userId !== null && (
             <button

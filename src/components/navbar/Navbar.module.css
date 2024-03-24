@@ -1,5 +1,5 @@
 .NavbarBanner{
-    background-image:url('./../../../public/Navbar/NavbarThick1.png'); 
+    background-image:url('./../../../public/Navbar/NavbarThick.png'); 
      position: fixed;
     top: 0%;
     left: 0%; 
@@ -11,3 +11,16 @@
     background-position: center;
     
  }
+
+
+ @media screen and (min-width: 1228px) {
+    .NavbarBanner {
+        height: 11vh; 
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .NavbarBanner {
+        height: 15vh; 
+    }
+}

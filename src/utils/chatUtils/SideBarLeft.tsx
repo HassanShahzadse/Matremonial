@@ -151,7 +151,7 @@ const SidebarLeft = (props: any) => {
   }
 
   return store ? (
-    <div className='sidebar-left'>
+    <div className='sidebar-left '>
       <div className='sidebar'>
         <div
           className={classnames('chat-profile-sidebar', {

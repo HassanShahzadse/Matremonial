@@ -27,7 +27,7 @@ const ChatLog = (props: any) => {
   const chatArea:any = useRef(null);
 //   const dispatch = useDispatch();
   const [msg, setMsg] = useState('');
-
+  
   const scrollToBottom = () => {
     if (chatArea.current) {
       chatArea.current.scrollTop = chatArea.current.scrollHeight;
