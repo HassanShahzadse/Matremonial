@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Layout from "../mainLayout/layout";
 import Image from "next/image";
-import Soulmate from "/public/icons/LOGO-soulmate.png";
+import brandLogo from "/public/logo.png";
 import useDashboardEffects from "@/utils/hooks/dashboardEffects";
 import Link from "next/link";
 
@@ -28,10 +28,10 @@ export default function DashboardComponent() {
         <div className="container mx-auto flex flex-col bg-[#ffff] justify-center items-center md:mt-40 xl:mt-32  mt-32 text-center">
           <Image
             className="text-center"
-            src={Soulmate}
+            src={brandLogo}
             alt=""
-            width={120}
-            height={120}
+            width={80}
+            height={80}
           />
           <h2 className="text-center text-2xl font-bold">Find Your Soulmate</h2>
           <p className="text-center">Find Your Perfect Match</p>

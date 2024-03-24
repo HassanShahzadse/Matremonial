@@ -16,36 +16,36 @@ interface ViewProfileProps {
 
 export default function ViewProfile({ userId }: ViewProfileProps) {
   const [userProfile, setUserProfile] = useState<any | undefined>();
-  const [RequestStatus,setRequestStatus] = useState<any>('Add Friend')
+  const [RequestStatus, setRequestStatus] = useState<any>('Add Friend')
 
   const user = getLoggedInUserInfo()
-  const handleFriendRequest = async () =>{
-    if(RequestStatus === 'Add Friend') await sendFriendRequest(user.id,userId)
-    if(RequestStatus === 'Accept Request') await acceptFriendRequest(user.id,userId)
-    if(RequestStatus === 'UnFrined') await unfriend(user.id,userId)
+  const handleFriendRequest = async () => {
+    if (RequestStatus === 'Add Friend') await sendFriendRequest(user.id, userId)
+    if (RequestStatus === 'Accept Request') await acceptFriendRequest(user.id, userId)
+    if (RequestStatus === 'UnFrined') await unfriend(user.id, userId)
     fetchData()
   }
-  const handleRejectFriendRequest = async () =>{
-        await rejectFriendRequest(user.id,userId)
-        fetchData()
+  const handleRejectFriendRequest = async () => {
+    await rejectFriendRequest(user.id, userId)
+    fetchData()
   }
-  const checkFriendReq = async (user2:any) =>{
-    if (user.id ===user2.userId ){
+  const checkFriendReq = async (user2: any) => {
+    if (user.id === user2.userId) {
       setRequestStatus('OwnProfile')
       return
     }
-    const check:any = await checkFriendRequest(user.id,user2)
-   const { LoggedInUserHasFriendRequestFromUser2,user2HasFriendRequestFromLoggedInUser,LoggedInUserIsFriendWithUser2} = check
-   if(LoggedInUserHasFriendRequestFromUser2) setRequestStatus('Accept Request')
-  else if(user2HasFriendRequestFromLoggedInUser) setRequestStatus('Request Sent')
-  else if(LoggedInUserIsFriendWithUser2) setRequestStatus('UnFrined')
-   else setRequestStatus('Add Friend')
+    const check: any = await checkFriendRequest(user.id, user2)
+    const { LoggedInUserHasFriendRequestFromUser2, user2HasFriendRequestFromLoggedInUser, LoggedInUserIsFriendWithUser2 } = check
+    if (LoggedInUserHasFriendRequestFromUser2) setRequestStatus('Accept Request')
+    else if (user2HasFriendRequestFromLoggedInUser) setRequestStatus('Request Sent')
+    else if (LoggedInUserIsFriendWithUser2) setRequestStatus('UnFrined')
+    else setRequestStatus('Add Friend')
   }
   const fetchData = async () => {
     try {
       const user: any | undefined = await fetchUserInfoFromFirebase(userId);
       setUserProfile(user);
-      checkFriendReq({...user,userId})
+      checkFriendReq({ ...user, userId })
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -55,18 +55,19 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
     fetchData();
   }, [userId]);
 
-  if(!userProfile) return <Layout><h1>Please Wait...</h1></Layout>
+  if (!userProfile) return <Layout><h1>Please Wait...</h1></Layout>
 
   return (
     <Layout>
-      <div className="mx-auto mt-32 mb-32 lg:me-72">
+      <div className="mx-auto mt-32 mb-32 flex">
+      <div>
         <div className="flex  flex-row">
           <div className="image-wrapper ">
             <Image
-              src={ userProfile?.imageUrls &&
+              src={userProfile?.imageUrls &&
                 userProfile?.imageUrls[0]?.startsWith("https")
-                  ? userProfile?.imageUrls[0]
-                  : "https://www.w3schools.com/w3images/avatar2.png"}
+                ? userProfile?.imageUrls[0]
+                : "https://www.w3schools.com/w3images/avatar2.png"}
               alt="Preview"
               width={130}
               height={130}
@@ -80,23 +81,23 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
                 Profile
               </h2>
               <i className="text-lg mx-3">
-                  {user.gender === "Male" && <i className="fas fa-mars text-blue" />}
-                  {user.gender === "Female" && <i className="fas fa-venus text-[#FF2271]" />}
-                  {user.gender !== "Male" && user.gender !== "Female" && <i className="fas fa-transgender-alt" />}
-                </i>
+                {user.gender === "Male" && <i className="fas fa-mars text-blue" />}
+                {user.gender === "Female" && <i className="fas fa-venus text-[#FF2271]" />}
+                {user.gender !== "Male" && user.gender !== "Female" && <i className="fas fa-transgender-alt" />}
+              </i>
               <span className="ms-3 textt-lg text-[#000000] font-semibold opacity-100">
                 {user.location && user.country ? `${user.location}, ${user.country}` : "Location not available"}
               </span>
             </div>
             <div className="d-flex flex-row mt-8">
-             {RequestStatus !== 'OwnProfile' && <button
+              {RequestStatus !== 'OwnProfile' && <button
                 type="button"
                 className="bg-[#F45F93] text-sm ps-2 pe-2 text-[#ffffff] rounded-s-xl rounded-e-xl border border-[#707070]"
                 onClick={handleFriendRequest}
               >
                 {RequestStatus}
               </button>}
-             {RequestStatus === 'Accept Request' && <button
+              {RequestStatus === 'Accept Request' && <button
                 type="button"
                 className="bg-[#F45F93] text-sm ps-2 pe-2 text-[#ffffff] rounded-s-xl rounded-e-xl ms-2 border border-[#707070]"
                 onClick={handleRejectFriendRequest}
@@ -104,12 +105,12 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
                 Reject Request
               </button>}
               <Link href={`/dashboard/messages/${userId}`}>
-              {RequestStatus !== 'OwnProfile' && <button
-                type="button"
-                className=" bg-[#F45F93] text-sm ms-1 ps-2 pe-2 text-[#ffffff] rounded-s-xl rounded-e-xl border border-[#707070]"
-              >
-                Message
-              </button>}
+                {RequestStatus !== 'OwnProfile' && <button
+                  type="button"
+                  className=" bg-[#F45F93] text-sm ms-1 ps-2 pe-2 text-[#ffffff] rounded-s-xl rounded-e-xl border border-[#707070]"
+                >
+                  Message
+                </button>}
               </Link>
             </div>
           </div>
@@ -121,7 +122,7 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
                 About me
               </h1>
               <p className="mt-4 text-[#000000] font-bold text-sm opacity-100">
-               {userProfile.bio}
+                {userProfile.bio}
               </p>
               <div className="flex flex-row justify-between mt-4 mb-2">
                 <ul>
@@ -167,49 +168,49 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
                 </ul>
                 <ul className="text-center">
                   <li className="text-[#000000] font-bold text-md opacity-100 ">
-                  {userProfile.religion ? `${userProfile.religion} ` : "NA"}
+                    {userProfile.religion ? `${userProfile.religion} ` : "NA"}
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
                     Jutt
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
-                  {userProfile.country ? `${userProfile.country} ` : "NA"}
+                    {userProfile.country ? `${userProfile.country} ` : "NA"}
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
-                  {userProfile.education ? `${userProfile.education} ` : "NA"}
+                    {userProfile.education ? `${userProfile.education} ` : "NA"}
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
-                  {userProfile.profession ? `${userProfile.profession} ` : "NA"}
+                    {userProfile.profession ? `${userProfile.profession} ` : "NA"}
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
                     {userProfile.income ? `${userProfile.income} ` : "NA"}
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
-                  {userProfile.livingArrange ? `${userProfile.livingArrange} ` : "NA"}
+                    {userProfile.livingArrange ? `${userProfile.livingArrange} ` : "NA"}
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
-                  {userProfile.maritalStatus ? `${userProfile.maritalStatus} ` : "NA"}
+                    {userProfile.maritalStatus ? `${userProfile.maritalStatus} ` : "NA"}
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
-                  
+
                     {userProfile.smokeFreq ? `${userProfile.smokeFreq} ` : "NA"}
-                    
+
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
-                  {userProfile.smokeFreq ? `${userProfile.smokeFreq} ` : "NA"}
+                    {userProfile.smokeFreq ? `${userProfile.smokeFreq} ` : "NA"}
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
-                    
+
                     {userProfile.halal ? `${userProfile.halal} ` : "NA"}
-                    
+
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
-                    
+
                     {userProfile.relocate ? `${userProfile.relocate} ` : "NA"}
-                    
+
                   </li>
                   <li className="text-[#000000] font-bold text-md opacity-100 mt-2">
-                  {userProfile.salah ? `${userProfile.salah} ` : "NA"}
+                    {userProfile.salah ? `${userProfile.salah} ` : "NA"}
                   </li>
                 </ul>
               </div>
@@ -244,24 +245,24 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
                   </ul>
                   <ul className="text-center">
                     <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
-                    {userProfile. hair ? `${userProfile. hair} ` : "NA"}
-                     
-                    </li>
-                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
-                    {userProfile. height ? `${userProfile. height} ` : "NA"}
-                      
-                    </li>
-                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
-                    {userProfile. buildCont ? `${userProfile. buildCont} ` : "NA"}
-                      
-                    
-                    </li>
-                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
-                    {userProfile.eyes ? `${userProfile.eyes} ` : "NA"}
+                      {userProfile.hair ? `${userProfile.hair} ` : "NA"}
 
                     </li>
                     <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
-                    {userProfile.eyes ? `${userProfile.eyes} ` : "NA"}
+                      {userProfile.height ? `${userProfile.height} ` : "NA"}
+
+                    </li>
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      {userProfile.buildCont ? `${userProfile.buildCont} ` : "NA"}
+
+
+                    </li>
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      {userProfile.eyes ? `${userProfile.eyes} ` : "NA"}
+
+                    </li>
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      {userProfile.eyes ? `${userProfile.eyes} ` : "NA"}
                     </li>
                     <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
                       {userProfile.hijab ? `${userProfile.hijab} ` : "NA"}
@@ -289,28 +290,28 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
                 </h1>
                 <div className="flex flex-row justify-between mt-0 mb-6">
                   <ul>
-                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
-                    Partner Live
-                  </li>   
-                  <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
-                    Partner Religion 
-                 </li>   
-                 <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
-                    Partner Cast 
-                 </li>   
-                 <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
-                    Partner Education
-                 </li>   
-                 <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
-                    Partner Profession
-                 </li>   
+                    <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                      Partner Live
+                    </li>
+                    <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                      Partner Religion
+                    </li>
+                    <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                      Partner Cast
+                    </li>
+                    <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                      Partner Education
+                    </li>
+                    <li className="text-[#000000] font-semibold text-sm opacity-100 mt-2">
+                      Partner Profession
+                    </li>
                   </ul>
                   <ul className="text-center">
-                  <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
-                  {userProfile.partnerLocation ? `${userProfile.partnerLocation} ` : "NA"}
+                    <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
+                      {userProfile.partnerLocation ? `${userProfile.partnerLocation} ` : "NA"}
                     </li>
                     <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
-                    {userProfile.religion ? `${userProfile.religion} ` : "NA"}
+                      {userProfile.religion ? `${userProfile.religion} ` : "NA"}
 
                     </li>
 
@@ -319,37 +320,38 @@ export default function ViewProfile({ userId }: ViewProfileProps) {
                     </li>
 
                     <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
-                    {userProfile.partnerEducation ? `${userProfile.partnerEducation} ` : "NA"}
+                      {userProfile.partnerEducation ? `${userProfile.partnerEducation} ` : "NA"}
 
                     </li>
                     <li className="text-[#000000] font-bold text-sm opacity-100 mt-2">
-                    {userProfile.partnerProfession ? `${userProfile.partnerProfession} ` : "NA"}
-                                                            
+                      {userProfile.partnerProfession ? `${userProfile.partnerProfession} ` : "NA"}
+
                     </li>
                   </ul>
-                </div>  
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-     <div className="absolute  invisible lg:visible   -mt-[5rem]   -z-50 top-0  right-0  w-[250px] h-[100px]">
-        <div className="bg-[#707070]  pt-16 pb-5">
+        </div>
+        <div className="invisible lg:visible  ms-6 -mt-[5rem] top-0  right-0  w-[250px] h-[100px]">
+          <div className="bg-[#707070]  pt-16 pb-5">
             <h1 className="text-center text-[#FFFFFF]  text-lg ps-[5rem] pe-[5rem]">All Profile</h1>
             <h1 className="text-center text-[#FFFFFF] text-lg">Used To Connect</h1>
-        </div>
-        <div className="bg-black h-[3.5rem] text-[#FFFFFF] font-semibold text-md  flex items-center ps-3">
-           Learn More
-        </div>
-        <div className={styles.bgBanner}>
-          <div className="text-center">
-             <h1 className="text-5xl text-[#FFFFFF] pt-6 ">You’re</h1>
-             <h1 className="text-5xl text-[#FFFFFF] font-bold">invisible</h1>
-             <p className="text-center text-[#FFFFFF] pt-8  pe-12  leading-7 ps-12 font-semibold ">Inorder to increase Your visibility and Get promoted You need to become our supporter.</p>
-             <Link href="/dashboard/subscription"><button className=" text-[#FE2673] rounded-lg font-extrabold ps-7 pe-7 pt-3 cursor-pointer pb-3 bg-[#ffffff] mt-8">Go Premium</button></Link>
+          </div>
+          <div className="bg-black h-[3.5rem] text-[#FFFFFF] font-semibold text-md  flex items-center ps-3">
+            Learn More
+          </div>
+          <div className={styles.bgBanner}>
+            <div className="text-center">
+              <h1 className="text-5xl text-[#FFFFFF] pt-6 ">You’re</h1>
+              <h1 className="text-5xl text-[#FFFFFF] font-bold">invisible</h1>
+              <p className="text-center text-[#FFFFFF] pt-8  pe-12  leading-7 ps-12 font-semibold ">Inorder to increase Your visibility and Get promoted You need to become our supporter.</p>
+              <Link href="/dashboard/subscription"><button className=" text-[#FE2673] rounded-lg font-extrabold ps-7 pe-7 pt-3 cursor-pointer pb-3 bg-[#ffffff] mt-8">Go Premium</button></Link>
+            </div>
           </div>
         </div>
-     </div>
+      </div>
     </Layout>
   );
 }
