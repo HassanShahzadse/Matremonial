@@ -72,7 +72,7 @@ export const UserList = ({
   };
 
   return (
-    <div className="bg-white h-[90vh] xl:w-[450px]  lg:w-[400px]   border-right-gray">
+    <div className="bg-white h-[90vh] xl:w-[380px]  lg:w-[350px]   border-right-gray">
       <div className="flex flex-col md:flex-row justify-between p-4 py-6">
         <div
           className={` ${

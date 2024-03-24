@@ -92,7 +92,7 @@ export default function MessagesComponent({ userId }: MessagesComponentProps) {
     <>
       <Layout show={show} setShow={setShow} handleCardClick={handleCardClick} filteredChats={filteredChats}>
         {/* ******* Header ******* */}
-        <div className="h-[100vh] overflow-hidden md:mt-0 xl:ms-[220px] lg:ms-[175px] ">
+        <div className="h-[100vh] overflow-hidden md:mt-0 xl:ms-[150px] lg:ms-[125px] ">
           <div className=" mx-4 flex space-x-5 items-center mt-20">
             <div className="right w-full flex justify-between xsm:hidden md:flex py-2">
               <div className="img-name flex ml-3 items-center space-x-3">
